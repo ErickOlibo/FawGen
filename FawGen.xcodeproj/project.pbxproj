@@ -57,11 +57,19 @@
 				A7FC85E3229CEA81002C386F /* AppDelegate.swift */,
 				A7FC85E5229CEA81002C386F /* ViewController.swift */,
 				A7FC85E7229CEA81002C386F /* Main.storyboard */,
-				A7FC85EA229CEA82002C386F /* Assets.xcassets */,
-				A7FC85EC229CEA82002C386F /* LaunchScreen.storyboard */,
+				A7FC85F5229DD8A2002C386F /* Supporting Files */,
 				A7FC85EF229CEA82002C386F /* Info.plist */,
 			);
 			path = FawGen;
+			sourceTree = "<group>";
+		};
+		A7FC85F5229DD8A2002C386F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A7FC85EA229CEA82002C386F /* Assets.xcassets */,
+				A7FC85EC229CEA82002C386F /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
