@@ -12,8 +12,15 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        let _ = SocialChecker.simpleLookup("fawgen")
+        let _ = SocialChecker.completeLookup("sucray")
+        
+        
+        
+        
     }
+    
+
 
 
 }
