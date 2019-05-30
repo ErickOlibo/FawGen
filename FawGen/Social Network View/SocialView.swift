@@ -8,6 +8,9 @@
 
 import UIKit
 
+
+/// A UIView representing the icon, name and availability status
+/// of a social network, display as a square
 class SocialView: UIView {
 
     // MARK: - Properties
@@ -56,6 +59,7 @@ class SocialView: UIView {
         
         // Set the constraints
         let viewWidth = bounds.width
+        let viewCornerRadius = viewWidth * 0.2 // 20% of corner radius
         let ratio: CGFloat = viewWidth * 0.1 // 10% of the view width
         let heightRatio: CGFloat = viewWidth * 0.3 // 30% of the view width
         iconTopSpace.constant = ratio
@@ -66,6 +70,7 @@ class SocialView: UIView {
         
         view.addSubview(icon)
         view.addSubview(title)
+        view.layer.cornerRadius = viewCornerRadius
         self.view = view
         self.addSubview(view)
     }
