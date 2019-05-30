@@ -169,21 +169,47 @@ private var complete: [SocialNetwork] {
 /// - Returns: A dictionary of socialNetwork type with their coresponding URL
 public func socialNetworkURLs(for username: String, completeList: Bool = true) -> [SocialNetwork : String] {
     var urlsCollection = [SocialNetwork : String]()
+    let handle = username.lowercased()
+    let www = "www."
+    let at = "@"
+    let dot = "."
     for item in SocialNetwork.allCases {
-        var domain = "https://"
+        var urlUsername = "https://"
         switch item {
+        case .facebook:
+            urlUsername += item.rawValue + ".com/" + handle
+        case .youtube:
+            urlUsername += item.rawValue + ".com/" + handle
+        case .twitter:
+            urlUsername += item.rawValue + ".com/" + handle
+        case .instagram:
+            urlUsername += item.rawValue + ".com/" + handle
+        case .github:
+            urlUsername += item.rawValue + ".com/" + handle
+        case .producthunt:
+            urlUsername += www + item.rawValue + ".com/" + at + handle
+        case .bitbucket:
+            urlUsername += item.rawValue + ".org/" + handle
         case .angellist:
-            domain += "angel.co/"
-        case .bitbucket, .wordpress:
-            domain += item.rawValue + ".org/"
+            urlUsername += "angel.co/" + handle
+        case .vimeo:
+            urlUsername += item.rawValue + ".com/" + handle
         case .behance:
-            domain += item.rawValue + ".net/"
-        default:
-            domain += item.rawValue + ".com/"
+            urlUsername += www + item.rawValue + ".net/" + handle
+        case .medium:
+            urlUsername += item.rawValue + ".com/" + at + handle
+        case .reddit:
+            urlUsername += www + item.rawValue + ".com/user/" + handle
+        case .blogger:
+            urlUsername = "http://" + handle + "blogspot.com/"
+        case .wordpress:
+            urlUsername += handle + dot + item.rawValue + ".com/"
+        case .slack:
+            urlUsername += handle + dot + item.rawValue + ".com/"
+        case .pinterest:
+            urlUsername += www + item.rawValue + ".com/" + handle
         }
-        
-        let url = domain + username.lowercased()
-        urlsCollection[item] = url
+        urlsCollection[item] = urlUsername
     }
     return completeList ? urlsCollection : urlsCollection.filter{ simple.contains($0.key) }
 }
