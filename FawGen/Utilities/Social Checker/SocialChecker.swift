@@ -20,18 +20,24 @@ import UIKit
  */
 public class SocialChecker {
     
+    /// - Warning: This method might be useless as it requires all URLRequest
+    /// to finish before passing on the result.
+    /// This method must be improved or deleted
     public static func simpleLookup(_ username: String) -> [SocialNetwork : Bool]? {
         checkSocialNetworkURLs(for: username, isSimple: true)
         return nil
     }
     
+    /// - Warning: This method might be useless as it requires all URLRequest
+    /// to finish before passing on the result.
+    /// This method must be improved or deleted
     public static func completeLookup(_ username: String) -> [SocialNetwork : Bool]? {
         checkSocialNetworkURLs(for: username, isSimple: false)
         return nil
     }
 }
 
-
+/// Enumeration of ALL social networks used in this app
 public enum SocialNetwork: String, CustomStringConvertible, CaseIterable, Equatable, Hashable {
     case facebook, youtube, twitter, instagram, github, producthunt, bitbucket, angellist
     case vimeo, behance, medium, reddit, blogger, wordpress, slack, pinterest
@@ -40,6 +46,8 @@ public enum SocialNetwork: String, CustomStringConvertible, CaseIterable, Equata
         return self.rawValue
     }
     
+    /// A data type carrying information about a social Network, its icon
+    /// and dominant color.
     public var info: SocialMedia {
         return SocialMedia(self.rawValue, icon: UIImage(named: self.rawValue)!, color: self.color())
     }
@@ -47,41 +55,43 @@ public enum SocialNetwork: String, CustomStringConvertible, CaseIterable, Equata
 
 extension SocialNetwork {
     
-    /// Returns the color as a UIColor
+    /// Returns the SocialNetwork Dominant color as a UIColor
+    /// - Note: There are forced unwrapped as the dominant HEX colors
+    /// should never be badly formatted.
     fileprivate func color() -> UIColor {
         switch self {
         case .facebook:
-            return SocialColor.facebook.rawValue.convertedToUIColor()
+            return SocialColor.facebook.rawValue.convertedToUIColor()!
         case .youtube:
-            return SocialColor.youtube.rawValue.convertedToUIColor()
+            return SocialColor.youtube.rawValue.convertedToUIColor()!
         case .twitter:
-            return SocialColor.twitter.rawValue.convertedToUIColor()
+            return SocialColor.twitter.rawValue.convertedToUIColor()!
         case .instagram:
-            return SocialColor.instagram.rawValue.convertedToUIColor()
+            return SocialColor.instagram.rawValue.convertedToUIColor()!
         case .github:
-            return SocialColor.github.rawValue.convertedToUIColor()
+            return SocialColor.github.rawValue.convertedToUIColor()!
         case .producthunt:
-            return SocialColor.producthunt.rawValue.convertedToUIColor()
+            return SocialColor.producthunt.rawValue.convertedToUIColor()!
         case .bitbucket:
-            return SocialColor.bitbucket.rawValue.convertedToUIColor()
+            return SocialColor.bitbucket.rawValue.convertedToUIColor()!
         case .angellist:
-            return SocialColor.angellist.rawValue.convertedToUIColor()
+            return SocialColor.angellist.rawValue.convertedToUIColor()!
         case .vimeo:
-            return SocialColor.vimeo.rawValue.convertedToUIColor()
+            return SocialColor.vimeo.rawValue.convertedToUIColor()!
         case .behance:
-            return SocialColor.behance.rawValue.convertedToUIColor()
+            return SocialColor.behance.rawValue.convertedToUIColor()!
         case .medium:
-            return SocialColor.medium.rawValue.convertedToUIColor()
+            return SocialColor.medium.rawValue.convertedToUIColor()!
         case .reddit:
-            return SocialColor.reddit.rawValue.convertedToUIColor()
+            return SocialColor.reddit.rawValue.convertedToUIColor()!
         case .blogger:
-            return SocialColor.blogger.rawValue.convertedToUIColor()
+            return SocialColor.blogger.rawValue.convertedToUIColor()!
         case .wordpress:
-            return SocialColor.wordpress.rawValue.convertedToUIColor()
+            return SocialColor.wordpress.rawValue.convertedToUIColor()!
         case .slack:
-            return SocialColor.slack.rawValue.convertedToUIColor()
+            return SocialColor.slack.rawValue.convertedToUIColor()!
         case .pinterest:
-            return SocialColor.pinterest.rawValue.convertedToUIColor()
+            return SocialColor.pinterest.rawValue.convertedToUIColor()!
 
         }
     }
@@ -111,7 +121,8 @@ private enum SocialColor: String {
 }
 
 
-
+/// - Warning: This method URLSession does not fit the current App
+/// It must be improve to allow dispatch to social view
 private func checkSocialNetworkURLs(for username: String, isSimple: Bool) {
     let socialURLs = socialNetworkURLs(for: username)
     let filteredURLs = isSimple ? socialURLs.filter{ simple.contains($0.key) } : socialURLs
@@ -127,7 +138,6 @@ private func checkSocialNetworkURLs(for username: String, isSimple: Bool) {
             if let httpResponse = response as? HTTPURLResponse {
                 DispatchQueue.main.async {
                     result[social] = (httpResponse.statusCode == 404)
-                    
                 }
             } else {
                 DispatchQueue.main.async {
@@ -144,7 +154,6 @@ private func checkSocialNetworkURLs(for username: String, isSimple: Bool) {
     
 }
 
-
 private var simple: [SocialNetwork] {
     return [.facebook, .youtube, .twitter, .instagram]
 }
@@ -153,6 +162,7 @@ private var complete: [SocialNetwork] {
     return SocialNetwork.allCases
 }
 
+/// Return the Social Network URLS for a username
 private func socialNetworkURLs(for username: String) -> [SocialNetwork : String] {
     var urlsCollection = [SocialNetwork : String]()
     for item in SocialNetwork.allCases {
@@ -174,105 +184,4 @@ private func socialNetworkURLs(for username: String) -> [SocialNetwork : String]
     
     return urlsCollection
 }
-
-
-// DELETE under
-
-private func checkSocialURLs(name: String) {
-    let username = name.lowercased()
-    let socialURLs = buildSocialURLs(name: username)
-    let myGroup = DispatchGroup()
-    var result = socialURLs
-    
-    for idx in 1..<socialURLs.count {
-        myGroup.enter()
-        guard let url = URL(string: socialURLs[idx]) else { return }
-        let request = URLRequest(url: url)
-        let task = URLSession.shared.dataTask(with: request) {data, response, error in
-            
-            if let httpResponse = response as? HTTPURLResponse {
-                DispatchQueue.main.async {
-                    result[idx] = String(httpResponse.statusCode)
-                }
-            } else {
-                DispatchQueue.main.async {
-                    result[idx] = "Failed"
-                }
-            }
-            myGroup.leave()
-            
-        }
-        task.resume()
-    }
-    
-    myGroup.notify(queue: .main) {
-        print(result)
-    }
-}
-
-
-
-private struct Social {
-    struct Code {
-        static let fb = "FB"
-        static let yt = "YT"
-        static let tw = "TW"
-        static let ig = "IG"
-    }
-    
-    struct URL {
-        static let facebook = "https://facebook.com/"
-        static let youtube = "https://youtube.com/"
-        static let twitter = "https://twitter.com/"
-        static let instagram = "https://instagram.com/"
-
-    }
-    
-    struct name {
-        static let facebook = "facebook"
-        static let youtube = "youtube"
-        static let twitter = "twitter"
-        static let instagram = "instagram"
-    }
-    
-}
-
-
-
-
-
-
-
-// ******** PRIVATE CLASSES & Methods
-private func buildSocialURLs (name: String) -> [String] {
-    
-    // Social Platforms to check
-    let facebook = "https://facebook.com/"
-    let youtube = "https://youtube.com/"
-    let twitter = "https://twitter.com/"
-    let instagram = "https://instagram.com/"
-    
-    //    let fb = "FB"
-    //    let yt = "YT"
-    //    let tw = "TW"
-    //    let ig = "IG"
-    
-    
-    var social = [String]()
-    social.append(name)
-    social.append(facebook + name)
-    social.append(youtube + name)
-    social.append(twitter + name)
-    social.append(instagram + name)
-    
-    // Build dictionary
-    //    result[fb] = facebook + name
-    //    result[yt] = youtube + name
-    //    result[tw] = twitter + name
-    //    result[ig] = instagram + name
-    
-    print(social)
-    return social
-}
-
 

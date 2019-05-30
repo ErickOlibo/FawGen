@@ -8,7 +8,11 @@
 
 import UIKit
 
-
+/// A structure and data type that carries the icon (logo)
+/// the name and the dominant color of a social Network
+/// - Remark: Use the SocialChecker enum SocialNetwork to access
+/// this data for a particular social Network:
+/// (e.g. SocialNetwork.facebook.info)
 public struct SocialMedia: CustomStringConvertible {
     
     private(set) var icon: UIImage
@@ -17,16 +21,13 @@ public struct SocialMedia: CustomStringConvertible {
     
     init(_ name: String, icon: UIImage, color: UIColor) {
         self.name = name.brandified()
-        self.icon = icon
+        self.icon = icon.withRenderingMode(.alwaysTemplate)
         self.color = color
     }
     
     public var description: String {
         return "\(name)"
     }
-    
-
-    
 }
 
 

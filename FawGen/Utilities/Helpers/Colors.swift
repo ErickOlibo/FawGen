@@ -12,8 +12,9 @@ import UIKit
 
 extension String {
     
-    /// Checks if a HEX format is Valid
-    /// The format can include a hashtag or not
+    /// Checks if a string is a valid HEX format
+    /// - Note: The string can start with or without
+    /// a hashtag (e.g. #00F43E)
     private func isValidHexColor() -> Bool {
         let chars = CharacterSet(charactersIn: "#0123456789ABCDEF").inverted
         let charsNum = self.count
@@ -25,9 +26,12 @@ extension String {
     }
     
     /// Converts a color from the HEX format to the UIColor format
-    public func convertedToUIColor() -> UIColor {
+    /// - Note: This method checks for the validity of the string format
+    /// as HEX color
+    /// - Returns: UIColor from HEX format or nil
+    public func convertedToUIColor() -> UIColor? {
         var color = self.uppercased()
-        guard color.isValidHexColor() else { return .white }
+        guard color.isValidHexColor() else { return nil }
         
         // Remove the starting hashtag if any
         color = color.hasPrefix("#") ? String(color.dropFirst()) : color

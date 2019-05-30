@@ -75,7 +75,7 @@ class SocialView: UIView {
         
         self.socialInfo = info
         title.text = info.name
-        icon.image = info.icon.withRenderingMode(.alwaysTemplate)
+        icon.image = info.icon
         
         setAvailability(status)
     }
