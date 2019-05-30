@@ -6,7 +6,7 @@
 //  Copyright © 2019 DEFKUT Creations OU. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 /**
  Checks the availability of usernames in the list of social network platform.
@@ -39,7 +39,78 @@ public enum SocialNetwork: String, CustomStringConvertible, CaseIterable, Equata
     public var description: String {
         return self.rawValue
     }
+    
+    public var info: SocialMedia {
+        return SocialMedia(self.rawValue, icon: UIImage(named: self.rawValue)!, color: self.color())
+    }
 }
+
+extension SocialNetwork {
+    
+    /// Returns the color as a UIColor
+    fileprivate func color() -> UIColor {
+        switch self {
+        case .facebook:
+            return SocialColor.facebook.rawValue.convertedToUIColor()
+        case .youtube:
+            return SocialColor.youtube.rawValue.convertedToUIColor()
+        case .twitter:
+            return SocialColor.twitter.rawValue.convertedToUIColor()
+        case .instagram:
+            return SocialColor.instagram.rawValue.convertedToUIColor()
+        case .github:
+            return SocialColor.github.rawValue.convertedToUIColor()
+        case .producthunt:
+            return SocialColor.producthunt.rawValue.convertedToUIColor()
+        case .bitbucket:
+            return SocialColor.bitbucket.rawValue.convertedToUIColor()
+        case .angellist:
+            return SocialColor.angellist.rawValue.convertedToUIColor()
+        case .vimeo:
+            return SocialColor.vimeo.rawValue.convertedToUIColor()
+        case .behance:
+            return SocialColor.behance.rawValue.convertedToUIColor()
+        case .medium:
+            return SocialColor.medium.rawValue.convertedToUIColor()
+        case .reddit:
+            return SocialColor.reddit.rawValue.convertedToUIColor()
+        case .blogger:
+            return SocialColor.blogger.rawValue.convertedToUIColor()
+        case .wordpress:
+            return SocialColor.wordpress.rawValue.convertedToUIColor()
+        case .slack:
+            return SocialColor.slack.rawValue.convertedToUIColor()
+        case .pinterest:
+            return SocialColor.pinterest.rawValue.convertedToUIColor()
+
+        }
+    }
+    
+}
+
+
+/// Social Networks color theme enumeration
+/// The format is HEX color and the data type is String
+private enum SocialColor: String {
+    case facebook = "#3b5998" // Chinese Blue
+    case youtube = "#CD201F" // Engine Red
+    case twitter = "#1DA1F2" // Button Blue
+    case instagram = "#3F729B" // Queen Blue
+    case github = "#211F1F" // Raisin Black
+    case producthunt = "#DA552F" // Flame
+    case bitbucket = "#253858" // Indigo
+    case angellist = "#000000" // Black
+    case vimeo = "#19B7EA" // Spiro Disco Ball
+    case behance = "#1769FF" // Shade Of Blue
+    case medium = "#3B3B3B" // Dark Black
+    case reddit = "#FF4500" // Red Orange
+    case blogger = "#F57D00" // Giants Orange
+    case wordpress = "#00749C" // CG Blue
+    case slack = "#3AAE84" // Mint
+    case pinterest = "#F0002A" // Spanish Red
+}
+
+
 
 private func checkSocialNetworkURLs(for username: String, isSimple: Bool) {
     let socialURLs = socialNetworkURLs(for: username)

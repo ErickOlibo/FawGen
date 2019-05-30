@@ -10,11 +10,15 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    
+    @IBOutlet weak var socialViewTwo: MySocialView!
+    @IBOutlet weak var socialView: MySocialView!
+    
+    @IBOutlet weak var socialViewThree: MySocialView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let _ = SocialChecker.simpleLookup("fawgen")
-        let _ = SocialChecker.completeLookup("sucray")
-        
+
         
         
         

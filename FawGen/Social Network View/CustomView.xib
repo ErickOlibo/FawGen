@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomView" customModule="FawGen" customModuleProvider="target">
+            <connections>
+                <outlet property="icon" destination="eP3-AC-INh" id="pKk-57-36A"/>
+                <outlet property="iconTopSpace" destination="8nT-ZI-KmJ" id="ImX-MS-w95"/>
+                <outlet property="title" destination="baK-lM-mp2" id="YTE-Ga-0wo"/>
+                <outlet property="titleBottomSpace" destination="kNC-Q4-eEK" id="IGq-Bi-pxd"/>
+                <outlet property="titleHeightSize" destination="n6w-4D-Iy6" id="NyO-71-pCi"/>
+                <outlet property="titleLeadingSpace" destination="v8O-Kn-fRB" id="U3S-IG-ZrA"/>
+                <outlet property="titleTrailingSpace" destination="tBI-na-Ika" id="d8H-Ud-R1r"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" text="This is Custom" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.40000000000000002" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="baK-lM-mp2">
+                    <rect key="frame" x="10" y="166" width="180" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="n6w-4D-Iy6"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eP3-AC-INh">
+                    <rect key="frame" x="50" y="10" width="100" height="100"/>
+                    <color key="backgroundColor" red="0.92946392300000003" green="0.2235597523" blue="0.1038471399" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="eP3-AC-INh" secondAttribute="height" multiplier="1:1" id="12Q-KE-RYi"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="0.92946392300000003" green="0.82375141110000005" blue="0.80861177569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="eP3-AC-INh" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="8nT-ZI-KmJ"/>
+                <constraint firstItem="eP3-AC-INh" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="R8L-Br-hX9"/>
+                <constraint firstItem="eP3-AC-INh" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="1:2" id="Uze-dW-AnL"/>
+                <constraint firstItem="baK-lM-mp2" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="edW-y2-glG"/>
+                <constraint firstAttribute="bottom" secondItem="baK-lM-mp2" secondAttribute="bottom" constant="10" id="kNC-Q4-eEK"/>
+                <constraint firstAttribute="trailing" secondItem="baK-lM-mp2" secondAttribute="trailing" constant="10" id="tBI-na-Ika"/>
+                <constraint firstItem="baK-lM-mp2" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="v8O-Kn-fRB"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+</document>
