@@ -163,7 +163,11 @@ private var complete: [SocialNetwork] {
 }
 
 /// Return the Social Network URLS for a username
-private func socialNetworkURLs(for username: String) -> [SocialNetwork : String] {
+/// - Parameter username: the username handle to add after each domain
+/// - Parameter completeList: Rather or not this should be for the 4 main socialNetworks
+/// or the complete list of 16 (for the time being)
+/// - Returns: A dictionary of socialNetwork type with their coresponding URL
+public func socialNetworkURLs(for username: String, completeList: Bool = true) -> [SocialNetwork : String] {
     var urlsCollection = [SocialNetwork : String]()
     for item in SocialNetwork.allCases {
         var domain = "https://"
@@ -181,7 +185,6 @@ private func socialNetworkURLs(for username: String) -> [SocialNetwork : String]
         let url = domain + username.lowercased()
         urlsCollection[item] = url
     }
-    
-    return urlsCollection
+    return completeList ? urlsCollection : urlsCollection.filter{ simple.contains($0.key) }
 }
 

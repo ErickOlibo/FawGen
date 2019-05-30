@@ -15,6 +15,7 @@ extension String {
     /// Checks if a string is a valid HEX format
     /// - Note: The string can start with or without
     /// a hashtag (e.g. #00F43E)
+    /// - Returns: A boolean to rather or not this format is HEX compatible
     private func isValidHexColor() -> Bool {
         let chars = CharacterSet(charactersIn: "#0123456789ABCDEF").inverted
         let charsNum = self.count

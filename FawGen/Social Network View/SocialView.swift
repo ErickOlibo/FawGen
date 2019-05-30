@@ -20,7 +20,11 @@ class SocialView: UIView {
         case taken
     }
     
-    public var currentStatus: AvailabilityStatus = .normal
+    public var currentStatus: AvailabilityStatus = .normal {
+        didSet {
+            updateAvailabilityUI()
+        }
+    }
     
     private(set) var socialInfo: SocialMedia?
     
@@ -49,10 +53,11 @@ class SocialView: UIView {
         commonInitialization()
     }
     
+    /// This method set the basic characteristics during the awke from NIB
+    /// of the Social View
     private func commonInitialization() {
         let view = Bundle.main.loadNibNamed(String(describing: type(of: self)), owner: self, options: nil)?.first as! UIView
         view.frame = bounds
-        //print("View Bounds: \(bounds)")
         view.autoresizingMask = [
             UIView.AutoresizingMask.flexibleWidth,
             UIView.AutoresizingMask.flexibleHeight]
@@ -75,20 +80,25 @@ class SocialView: UIView {
         self.addSubview(view)
     }
     
-    // Special Initialization with a SocialMedia type
-    public func initialize(_ info: SocialMedia, status: AvailabilityStatus) {
+    /// Special Initialization with a SocialMedia type to add function
+    /// to an already initialized (via init(frame)) social view
+    /// - Parameter info: this are the social network entity that will
+    /// be core of this socialView.
+    /// - Parameter status: Set the availability status of this entity.
+    /// - Note: This method is overflown with a default status of .normal.
+    public func initialize(_ info: SocialMedia, status: AvailabilityStatus = .normal) {
         
         self.socialInfo = info
         title.text = info.name
         icon.image = info.icon
         
-        setAvailability(status)
+        self.currentStatus = status
     }
-    
-    // Set the availability
-    public func setAvailability(_ status: AvailabilityStatus) {
+
+    /// Update the Availability status of the social view and update the UI
+    private func updateAvailabilityUI() {
         guard let info = socialInfo else { return }
-        switch status {
+        switch currentStatus {
         case .normal:
             title.textColor = .white
             icon.tintColor = .white
@@ -108,7 +118,6 @@ class SocialView: UIView {
             view.backgroundColor = .darkGray
         }
         
-        self.currentStatus = status
     }
 
 
