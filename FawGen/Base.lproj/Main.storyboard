@@ -53,6 +53,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="socialOne" destination="wBn-VJ-hrx" id="Q0k-Lg-445"/>
+                        <outlet property="socialThree" destination="HfR-9j-tWs" id="BEL-YU-j7A"/>
+                        <outlet property="socialTwo" destination="Xww-e0-qpG" id="5Fq-Ff-vwW"/>
                         <outlet property="socialView" destination="cgQ-47-Cds" id="vQx-jJ-8VO"/>
                         <outlet property="socialViewThree" destination="6A0-vO-Svq" id="moU-z3-VPO"/>
                         <outlet property="socialViewTwo" destination="bB0-Er-Vkt" id="JBh-8k-qDD"/>

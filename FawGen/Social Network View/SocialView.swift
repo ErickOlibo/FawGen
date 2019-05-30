@@ -10,6 +10,17 @@ import UIKit
 
 class SocialView: UIView {
 
+    // MARK: - Properties
+    public enum AvailabilityStatus: String {
+        case normal
+        case available
+        case taken
+    }
+    
+    public var currentStatus: AvailabilityStatus = .normal
+    
+    private(set) var socialInfo: SocialMedia?
+    
     
     // MARK: - Outlets
 
@@ -21,6 +32,8 @@ class SocialView: UIView {
     @IBOutlet weak var titleTrailingSpace: NSLayoutConstraint!
     @IBOutlet weak var titleLeadingSpace: NSLayoutConstraint!
     @IBOutlet weak var titleHeightSize: NSLayoutConstraint!
+    private(set) var view: UIView!
+    
     
     
     override init(frame: CGRect) {
@@ -33,10 +46,10 @@ class SocialView: UIView {
         commonInitialization()
     }
     
-    func commonInitialization() {
+    private func commonInitialization() {
         let view = Bundle.main.loadNibNamed(String(describing: type(of: self)), owner: self, options: nil)?.first as! UIView
         view.frame = bounds
-        print("View Bounds: \(bounds)")
+        //print("View Bounds: \(bounds)")
         view.autoresizingMask = [
             UIView.AutoresizingMask.flexibleWidth,
             UIView.AutoresizingMask.flexibleHeight]
@@ -53,18 +66,65 @@ class SocialView: UIView {
         
         
         // Setting default social info
-        let socialInfo = SocialNetwork.pinterest.info
-        title.text = socialInfo.name
-        icon.image = socialInfo.icon.withRenderingMode(.alwaysTemplate)
+//        let socialInfo = SocialNetwork.pinterest.info
+//        title.text = socialInfo.name
+//        icon.image = socialInfo.icon.withRenderingMode(.alwaysTemplate)
+//
+//        title.textColor = .white
+//        icon.tintColor = .white
+//        icon.backgroundColor = socialInfo.color
+//        view.backgroundColor = socialInfo.color
         
-        title.textColor = .white
-        icon.tintColor = .white
-        icon.backgroundColor = socialInfo.color
-        view.backgroundColor = socialInfo.color
         view.addSubview(icon)
         view.addSubview(title)
-        
+        self.view = view
         self.addSubview(view)
     }
+    
+    // Special Initialization with a SocialMedia type
+    public func initialize(_ info: SocialMedia, status: AvailabilityStatus) {
+        
+        self.socialInfo = info
+        title.text = info.name
+        icon.image = info.icon.withRenderingMode(.alwaysTemplate)
+        
+        setAvailability(status)
+    }
+    
+    // Set the availability
+    public func setAvailability(_ status: AvailabilityStatus) {
+        guard let info = socialInfo else { return }
+        switch status {
+        case .normal:
+            title.textColor = .white
+            icon.tintColor = .white
+            icon.backgroundColor = info.color
+            view.backgroundColor = info.color
+            
+        case .available:
+            title.textColor = .white
+            icon.tintColor = .white
+            icon.backgroundColor = .green
+            view.backgroundColor = .green
+            
+        case .taken:
+            title.textColor = .gray
+            icon.tintColor = .gray
+            icon.backgroundColor = .darkGray
+            view.backgroundColor = .darkGray
+        }
+        
+        self.currentStatus = status
+    }
+    
+    // Setup the social info
+//    private func setupSocialView() {
+//        guard let info = socialInfo  else { return }
+//        title.text = info.name
+//        icon.image = info.icon.withRenderingMode(.alwaysTemplate)
+//        
+//    }
+    
+    // Update social view if avalability changes
 
 }
