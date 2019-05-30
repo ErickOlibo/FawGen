@@ -1,5 +1,5 @@
 //
-//  CustomView.swift
+//  SocialView.swift
 //  FawGen
 //
 //  Created by Erick Olibo on 29/05/2019.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomView: UIView {
+class SocialView: UIView {
 
     
     // MARK: - Outlets
@@ -34,7 +34,7 @@ class CustomView: UIView {
     }
     
     func commonInitialization() {
-        let view = Bundle.main.loadNibNamed("CustomView", owner: self, options: nil)?.first as! UIView
+        let view = Bundle.main.loadNibNamed(String(describing: type(of: self)), owner: self, options: nil)?.first as! UIView
         view.frame = bounds
         print("View Bounds: \(bounds)")
         view.autoresizingMask = [

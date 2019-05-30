@@ -18,8 +18,8 @@
 		A7FC8603229EDF20002C386F /* SocialNetworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FC8602229EDF20002C386F /* SocialNetworkView.swift */; };
 		A7FC8605229EE905002C386F /* SocialMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FC8604229EE905002C386F /* SocialMedia.swift */; };
 		A7FC8608229EF08D002C386F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FC8607229EF08D002C386F /* Colors.swift */; };
-		A7FC862C229F4255002C386F /* CustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7FC862B229F4255002C386F /* CustomView.xib */; };
-		A7FC862E229F4265002C386F /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FC862D229F4265002C386F /* CustomView.swift */; };
+		A7FC862C229F4255002C386F /* SocialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7FC862B229F4255002C386F /* SocialView.xib */; };
+		A7FC862E229F4265002C386F /* SocialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FC862D229F4265002C386F /* SocialView.swift */; };
 		A7FC8630229F48A7002C386F /* MySocialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FC862F229F48A7002C386F /* MySocialView.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,8 +37,8 @@
 		A7FC8602229EDF20002C386F /* SocialNetworkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialNetworkView.swift; sourceTree = "<group>"; };
 		A7FC8604229EE905002C386F /* SocialMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMedia.swift; sourceTree = "<group>"; };
 		A7FC8607229EF08D002C386F /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		A7FC862B229F4255002C386F /* CustomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomView.xib; sourceTree = "<group>"; };
-		A7FC862D229F4265002C386F /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
+		A7FC862B229F4255002C386F /* SocialView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SocialView.xib; sourceTree = "<group>"; };
+		A7FC862D229F4265002C386F /* SocialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialView.swift; sourceTree = "<group>"; };
 		A7FC862F229F48A7002C386F /* MySocialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySocialView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -140,8 +140,8 @@
 			children = (
 				A7FC8600229EDB26002C386F /* SocialNetworkView.xib */,
 				A7FC8602229EDF20002C386F /* SocialNetworkView.swift */,
-				A7FC862B229F4255002C386F /* CustomView.xib */,
-				A7FC862D229F4265002C386F /* CustomView.swift */,
+				A7FC862B229F4255002C386F /* SocialView.xib */,
+				A7FC862D229F4265002C386F /* SocialView.swift */,
 				A7FC862F229F48A7002C386F /* MySocialView.swift */,
 			);
 			path = "Social Network View";
@@ -214,7 +214,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7FC85EE229CEA82002C386F /* LaunchScreen.storyboard in Resources */,
-				A7FC862C229F4255002C386F /* CustomView.xib in Resources */,
+				A7FC862C229F4255002C386F /* SocialView.xib in Resources */,
 				A7FC85EB229CEA82002C386F /* Assets.xcassets in Resources */,
 				A7FC8601229EDB26002C386F /* SocialNetworkView.xib in Resources */,
 				A7FC85E9229CEA81002C386F /* Main.storyboard in Resources */,
@@ -229,7 +229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7FC85E6229CEA81002C386F /* ViewController.swift in Sources */,
-				A7FC862E229F4265002C386F /* CustomView.swift in Sources */,
+				A7FC862E229F4265002C386F /* SocialView.swift in Sources */,
 				A7FC85E4229CEA81002C386F /* AppDelegate.swift in Sources */,
 				A7FC8630229F48A7002C386F /* MySocialView.swift in Sources */,
 				A7FC85FE229DDC65002C386F /* SocialChecker.swift in Sources */,
