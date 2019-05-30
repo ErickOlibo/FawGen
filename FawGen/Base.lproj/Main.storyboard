@@ -18,21 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cgQ-47-Cds" customClass="MySocialView" customModule="FawGen" customModuleProvider="target">
-                                <rect key="frame" x="107" y="348" width="200" height="200"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.92946392300000003" green="0.82375141110000005" blue="0.80861177569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bB0-Er-Vkt" customClass="MySocialView" customModule="FawGen" customModuleProvider="target">
-                                <rect key="frame" x="157" y="647" width="100" height="100"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.92946392300000003" green="0.60142088069999999" blue="0.044391806460000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6A0-vO-Svq" customClass="MySocialView" customModule="FawGen" customModuleProvider="target">
-                                <rect key="frame" x="182" y="44" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.92946392300000003" green="0.2235597523" blue="0.1038471399" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wBn-VJ-hrx" customClass="SocialView" customModule="FawGen" customModuleProvider="target">
                                 <rect key="frame" x="20" y="171" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -56,9 +41,6 @@
                         <outlet property="socialOne" destination="wBn-VJ-hrx" id="Q0k-Lg-445"/>
                         <outlet property="socialThree" destination="HfR-9j-tWs" id="BEL-YU-j7A"/>
                         <outlet property="socialTwo" destination="Xww-e0-qpG" id="5Fq-Ff-vwW"/>
-                        <outlet property="socialView" destination="cgQ-47-Cds" id="vQx-jJ-8VO"/>
-                        <outlet property="socialViewThree" destination="6A0-vO-Svq" id="moU-z3-VPO"/>
-                        <outlet property="socialViewTwo" destination="bB0-Er-Vkt" id="JBh-8k-qDD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

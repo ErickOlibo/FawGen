@@ -11,10 +11,6 @@ import UIKit
 class ViewController: UIViewController {
 
     
-    @IBOutlet weak var socialViewTwo: MySocialView!
-    @IBOutlet weak var socialView: MySocialView!
-    @IBOutlet weak var socialViewThree: MySocialView!
-    
     // SocialView outlets
     @IBOutlet weak var socialOne: SocialView! {
         didSet {

@@ -64,17 +64,6 @@ class SocialView: UIView {
         titleLeadingSpace.constant = ratio
         titleHeightSize.constant = heightRatio
         
-        
-        // Setting default social info
-//        let socialInfo = SocialNetwork.pinterest.info
-//        title.text = socialInfo.name
-//        icon.image = socialInfo.icon.withRenderingMode(.alwaysTemplate)
-//
-//        title.textColor = .white
-//        icon.tintColor = .white
-//        icon.backgroundColor = socialInfo.color
-//        view.backgroundColor = socialInfo.color
-        
         view.addSubview(icon)
         view.addSubview(title)
         self.view = view
@@ -116,15 +105,6 @@ class SocialView: UIView {
         
         self.currentStatus = status
     }
-    
-    // Setup the social info
-//    private func setupSocialView() {
-//        guard let info = socialInfo  else { return }
-//        title.text = info.name
-//        icon.image = info.icon.withRenderingMode(.alwaysTemplate)
-//        
-//    }
-    
-    // Update social view if avalability changes
+
 
 }
