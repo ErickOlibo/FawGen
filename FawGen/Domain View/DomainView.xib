@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DomainView" customModule="FawGen" customModuleProvider="target">
+            <connections>
+                <outlet property="extensionLabel" destination="ro2-7g-IXr" id="1Pa-0J-klc"/>
+                <outlet property="extensionLeadingSpace" destination="Tnc-aO-mGe" id="rWV-H2-qG4"/>
+                <outlet property="extensionTrailingSpace" destination="8zH-rV-5f5" id="sR5-lj-arb"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="200" height="100"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Domain" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ro2-7g-IXr">
+                    <rect key="frame" x="20" y="35" width="160" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="ro2-7g-IXr" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="8RI-38-uaD"/>
+                <constraint firstAttribute="trailing" secondItem="ro2-7g-IXr" secondAttribute="trailing" constant="20" id="8zH-rV-5f5"/>
+                <constraint firstItem="ro2-7g-IXr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="Tnc-aO-mGe"/>
+                <constraint firstItem="ro2-7g-IXr" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="ULz-KK-eEX"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+</document>

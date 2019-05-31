@@ -56,8 +56,8 @@ public enum SocialNetwork: String, CustomStringConvertible, CaseIterable, Equata
 extension SocialNetwork {
     
     /// Returns the SocialNetwork Dominant color as a UIColor
-    /// - Note: There are forced unwrapped as the dominant HEX colors
-    /// should never be badly formatted.
+    /// - Note: These are forced unwrapped as the dominant HEX colors
+    /// are manually entered and should never be of wrong format.
     fileprivate func color() -> UIColor {
         switch self {
         case .facebook:
@@ -173,7 +173,7 @@ public func socialNetworkURLs(for username: String, completeList: Bool = true) -
     let www = "www."
     let at = "@"
     let dot = "."
-    for item in SocialNetwork.allCases {
+    for item in complete {
         var urlUsername = "https://"
         switch item {
         case .facebook:
