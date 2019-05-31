@@ -10,6 +10,7 @@
 		A76915B522A0DB7300FB616F /* DomainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A76915B422A0DB7300FB616F /* DomainView.xib */; };
 		A76915B722A0DB8600FB616F /* DomainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76915B622A0DB8600FB616F /* DomainView.swift */; };
 		A76915B922A0DF2F00FB616F /* DomainChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76915B822A0DF2F00FB616F /* DomainChecker.swift */; };
+		A76915BB22A15F6A00FB616F /* FawGenColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76915BA22A15F6A00FB616F /* FawGenColors.swift */; };
 		A7FC85E4229CEA81002C386F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FC85E3229CEA81002C386F /* AppDelegate.swift */; };
 		A7FC85E6229CEA81002C386F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FC85E5229CEA81002C386F /* ViewController.swift */; };
 		A7FC85E9229CEA81002C386F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7FC85E7229CEA81002C386F /* Main.storyboard */; };
@@ -27,6 +28,7 @@
 		A76915B422A0DB7300FB616F /* DomainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DomainView.xib; sourceTree = "<group>"; };
 		A76915B622A0DB8600FB616F /* DomainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainView.swift; sourceTree = "<group>"; };
 		A76915B822A0DF2F00FB616F /* DomainChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainChecker.swift; sourceTree = "<group>"; };
+		A76915BA22A15F6A00FB616F /* FawGenColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FawGenColors.swift; sourceTree = "<group>"; };
 		A7FC85E0229CEA81002C386F /* FawGen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FawGen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7FC85E3229CEA81002C386F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A7FC85E5229CEA81002C386F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				A7FC8607229EF08D002C386F /* Colors.swift */,
+				A76915BA22A15F6A00FB616F /* FawGenColors.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -245,6 +248,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7FC85E6229CEA81002C386F /* ViewController.swift in Sources */,
+				A76915BB22A15F6A00FB616F /* FawGenColors.swift in Sources */,
 				A7FC862E229F4265002C386F /* SocialView.swift in Sources */,
 				A76915B922A0DF2F00FB616F /* DomainChecker.swift in Sources */,
 				A7FC85E4229CEA81002C386F /* AppDelegate.swift in Sources */,

@@ -11,34 +11,44 @@ import UIKit
 class ViewController: UIViewController {
 
     
-    // SocialView outlets
+    // SocialViews Outlets
     @IBOutlet weak var socialOne: SocialView! {
-        didSet {
-            socialOne.initialize(SocialNetwork.facebook.info, status: .normal)
-        }
+        didSet { socialOne.initialize(SocialNetwork.facebook.info) }
     }
     @IBOutlet weak var socialTwo: SocialView! {
-        didSet {
-            socialTwo.initialize(SocialNetwork.youtube.info, status: .normal)
-        }
+        didSet { socialTwo.initialize(SocialNetwork.youtube.info) }
     }
     @IBOutlet weak var socialThree: SocialView! {
-        didSet {
-            socialThree.initialize(SocialNetwork.twitter.info, status: .normal)
-        }
+        didSet { socialThree.initialize(SocialNetwork.twitter.info) }
+    }
+    @IBOutlet weak var socialFour: SocialView! {
+        didSet { socialFour.initialize(SocialNetwork.instagram.info) }
     }
     
-    @IBOutlet weak var socialFour: SocialView! {
-        didSet {
-            socialFour.initialize(SocialNetwork.instagram.info, status: .normal)
-        }
+    // DomainViews Outlets
+    @IBOutlet weak var domainOne: DomainView! {
+        didSet { domainOne.initialize(DomainExtension.com) }
+    }
+    @IBOutlet weak var domainTwo: DomainView!{
+        didSet { domainTwo.initialize(DomainExtension.net) }
+    }
+    @IBOutlet weak var domainThree: DomainView!{
+        didSet { domainThree.initialize(DomainExtension.org) }
+    }
+    @IBOutlet weak var domainFour: DomainView!{
+        didSet { domainFour.initialize(DomainExtension.co) }
     }
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //getSocialNetworkAvailability()
         
+    }
+    
+    // Get Social Network Availability
+    private func getSocialNetworkAvailability() {
         // Dictionary of SocialNetwork to their socialView
         let socialNetViews = [SocialNetwork.facebook : socialOne,
                               SocialNetwork.youtube : socialTwo,

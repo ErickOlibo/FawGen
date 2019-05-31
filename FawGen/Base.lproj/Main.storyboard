@@ -72,16 +72,76 @@
                                     </view>
                                 </subviews>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="L9j-rl-MKZ">
+                                <rect key="frame" x="20" y="556" width="374" height="43.5"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DXY-uu-riK" customClass="DomainView" customModule="FawGen" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="87.5" height="43.5"/>
+                                        <color key="backgroundColor" red="0.92946392300000003" green="0.60142088069999999" blue="0.044391806460000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="DXY-uu-riK" secondAttribute="height" multiplier="2:1" id="li0-iw-Vcc"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                                <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z07-Og-n4z" customClass="DomainView" customModule="FawGen" customModuleProvider="target">
+                                        <rect key="frame" x="95.5" y="0.0" width="87.5" height="43.5"/>
+                                        <color key="backgroundColor" red="0.92946392300000003" green="0.82375141110000005" blue="0.80861177569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Z07-Og-n4z" secondAttribute="height" multiplier="2:1" id="9td-2w-Hpj"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                                <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bT4-vl-BiJ" customClass="DomainView" customModule="FawGen" customModuleProvider="target">
+                                        <rect key="frame" x="191" y="0.0" width="87.5" height="43.5"/>
+                                        <color key="backgroundColor" red="0.92946392300000003" green="0.2235597523" blue="0.1038471399" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="bT4-vl-BiJ" secondAttribute="height" multiplier="2:1" id="rh3-ui-ZD2"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                                <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UlT-8M-Ord" customClass="DomainView" customModule="FawGen" customModuleProvider="target">
+                                        <rect key="frame" x="286.5" y="0.0" width="87.5" height="43.5"/>
+                                        <color key="backgroundColor" red="0.23529411759999999" green="0.34509803919999998" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="UlT-8M-Ord" secondAttribute="height" multiplier="2:1" id="ED6-tZ-KD8"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                                <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="R9h-uV-srE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="3LZ-Se-9N0"/>
                             <constraint firstItem="R9h-uV-srE" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="GTr-Cp-sia"/>
+                            <constraint firstItem="L9j-rl-MKZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Vm2-d1-qbn"/>
                             <constraint firstItem="R9h-uV-srE" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="WOg-hZ-7kb"/>
+                            <constraint firstItem="L9j-rl-MKZ" firstAttribute="top" secondItem="R9h-uV-srE" secondAttribute="bottom" constant="59" id="cWf-fR-SLE"/>
+                            <constraint firstItem="L9j-rl-MKZ" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="t5d-sH-7YN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="domainFour" destination="UlT-8M-Ord" id="1tM-wz-7Mf"/>
+                        <outlet property="domainOne" destination="DXY-uu-riK" id="5Tz-jD-JFF"/>
+                        <outlet property="domainThree" destination="bT4-vl-BiJ" id="eA1-Tg-3yf"/>
+                        <outlet property="domainTwo" destination="Z07-Og-n4z" id="bde-b2-c1K"/>
                         <outlet property="socialFour" destination="d2p-4r-zwF" id="kql-yN-k1q"/>
                         <outlet property="socialOne" destination="wBn-VJ-hrx" id="Q0k-Lg-445"/>
                         <outlet property="socialThree" destination="HfR-9j-tWs" id="BEL-YU-j7A"/>
@@ -90,6 +150,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="47.826086956521742" y="20.758928571428569"/>
         </scene>
     </scenes>
 </document>

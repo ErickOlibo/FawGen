@@ -53,7 +53,7 @@ class SocialView: UIView {
         commonInitialization()
     }
     
-    /// This method set the basic characteristics during the awke from NIB
+    /// This method set the basic characteristics during the awake from NIB
     /// of the Social View
     private func commonInitialization() {
         let view = Bundle.main.loadNibNamed(String(describing: type(of: self)), owner: self, options: nil)?.first as! UIView
@@ -63,10 +63,9 @@ class SocialView: UIView {
             UIView.AutoresizingMask.flexibleHeight]
         
         // Set the constraints
-        let viewWidth = bounds.width
-        let viewCornerRadius = viewWidth * 0.2 // 20% of corner radius
-        let ratio: CGFloat = viewWidth * 0.1 // 10% of the view width
-        let heightRatio: CGFloat = viewWidth * 0.3 // 30% of the view width
+        let viewCornerRadius = bounds.width * 0.1 // 20% of corner radius
+        let ratio: CGFloat = bounds.width * 0.1 // 10% of the view width
+        let heightRatio: CGFloat = bounds.width * 0.3 // 30% of the view width
         iconTopSpace.constant = ratio
         titleBottomSpace.constant = ratio
         titleTrailingSpace.constant = ratio
@@ -81,8 +80,8 @@ class SocialView: UIView {
     }
     
     /// Special Initialization with a SocialMedia type to add function
-    /// to an already initialized (via init(frame)) social view
-    /// - Parameter info: this are the social network entity that will
+    /// to an already initialized Social View (via init(frame) )
+    /// - Parameter info: this is the social network entity that will
     /// be core of this socialView.
     /// - Parameter status: Set the availability status of this entity.
     /// - Note: This method is overflown with a default status of .normal.
@@ -95,7 +94,7 @@ class SocialView: UIView {
         self.currentStatus = status
     }
 
-    /// Update the Availability status of the social view and update the UI
+    /// Updates the Availability status of the social view and updates the UI
     private func updateAvailabilityUI() {
         guard let info = socialInfo else { return }
         switch currentStatus {
