@@ -43,8 +43,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //getSocialNetworkAvailability()
-        
+        getSocialNetworkAvailability()
+//        let thisDamain: Domain = "defkut"
+//        queryWhois(for: thisDamain)
+        domainAvailability()
     }
     
     // Get Social Network Availability
@@ -55,7 +57,7 @@ class ViewController: UIViewController {
                               SocialNetwork.twitter : socialThree,
                               SocialNetwork.instagram : socialFour]
         
-        let username = "sweetlove"
+        let username = "fawgen"
         let socialURLs = socialNetworkURLs(for: username, completeList: false)
         
         for (social, link) in socialURLs {
@@ -85,6 +87,60 @@ class ViewController: UIViewController {
     }
     
 
+    // Testing the construction of URL
+    private func queryWhois(for domain: Domain) {
+        let whoisAPI = WhoisAPI()
+        
+        for ext in DomainExtension.simpleCollection {
+            let urlQuery = whoisAPI.createURL(domain, extension: ext)
+            print(urlQuery)
+        }
+    }
+    
+    // Testing the Domain checker
+    private func domainAvailability () {
+        let domainViews = [DomainExtension.com : domainOne,
+                           DomainExtension.net : domainTwo,
+                           DomainExtension.org : domainThree,
+                           DomainExtension.co : domainFour]
+        let domainName: Domain = "fawgen"
+        let whoisQueryURLS = DomainChecker().whoisURLs(for: domainName, completeList: false)
+        
+        for (ext, queryURL) in whoisQueryURLS {
+            guard let domainV = domainViews[ext] else { print("DomainV failed"); continue }
+            guard let domainView = domainV else { print("DomainView Failed"); continue }
+            guard let url = URL(string: queryURL) else {
+                domainView.currentStatus = .taken
+                print("URL Failed")
+                continue
+            }
+            let request = URLRequest(url: url)
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                if (error == nil) {
+                    
+                    if let result = String(data: data!, encoding: String.Encoding.utf8) {
+                        DispatchQueue.main.async {
+                            // handle result
+                            let comp = result.components(separatedBy: ", ")
+                            if comp.count == 2 {
+                                domainView.currentStatus = (comp[1] == "AVAILABLE") ? .available : .taken
+                            }
+                            print("Ext: \(ext.description) - Response: \(result)")
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            domainView.currentStatus = .taken
+                            print("Data failed to parse!)")
+                        }
+                    }
+                } else {
+                    domainView.currentStatus = .taken
+                    print("Error: \(String(describing: error))")
+                }
+            }
+            task.resume()
+        }
+    }
 
 
 }

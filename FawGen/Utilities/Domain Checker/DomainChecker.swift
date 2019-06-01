@@ -10,20 +10,41 @@ import Foundation
 
 
 
+
 public class DomainChecker {
+    // Class to check a domain
     
-    
+    public func whoisURLs(for domain: Domain, completeList: Bool = true) -> [DomainExtension : String] {
+        var urlsCollection = [DomainExtension : String]()
+        let lowDomain = domain.lowercased()
+        let whoisAPI = WhoisAPI()
+        for ext in complete {
+            urlsCollection[ext] = whoisAPI.createURL(lowDomain, extension: ext)
+        }
+        return completeList ? urlsCollection : urlsCollection.filter{ simple.contains($0.key) }
+    }
     
     
 }
 
 public enum DomainExtension: String, CustomStringConvertible, CaseIterable, Equatable, Hashable {
-    case com, net, org, co, io, ai, couk, eu, app, biz, me, info, xyz, tech, name, mobi
+    case com, net, org, co, io, ai, couk, eu, info, app, biz, me, be, xyz, tech, club
     
     public var description: String {
         return self.rawValue
     }
+    
+    public static var simpleCollection: [DomainExtension] {
+        return simple
+    }
+    
+    
+    public static var completeCollection: [DomainExtension] {
+        return complete
+    }
+    
 }
+
 
 private var simple: [DomainExtension] {
     return [.com, .net, .org, .co]
@@ -48,3 +69,6 @@ public func domainExtensionURLs(for name: String, completeList: Bool = true) -> 
     }
     return completeList ? urlsCollection : urlsCollection.filter{ simple.contains($0.key) }
 }
+
+
+

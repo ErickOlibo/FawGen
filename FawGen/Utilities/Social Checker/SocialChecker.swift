@@ -18,6 +18,8 @@ import UIKit
  TRUE ==> AVAILABLE || FALSE ==> TAKEN
  
  */
+
+
 public class SocialChecker {
     
     /// - Warning: This method might be useless as it requires all URLRequest
