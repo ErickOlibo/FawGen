@@ -87,7 +87,7 @@ class DomainView: UIView {
             
         case .available:
             extensionLabel.textColor = .white
-            view.backgroundColor = .green
+            view.backgroundColor = FawGenColors.availableStatus.color
         case .taken:
             extensionLabel.textColor = .gray
             view.backgroundColor = .darkGray

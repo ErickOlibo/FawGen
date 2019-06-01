@@ -107,8 +107,8 @@ class SocialView: UIView {
         case .available:
             title.textColor = .white
             icon.tintColor = .white
-            icon.backgroundColor = .green
-            view.backgroundColor = .green
+            icon.backgroundColor = FawGenColors.availableStatus.color
+            view.backgroundColor = FawGenColors.availableStatus.color
             
         case .taken:
             title.textColor = .gray
