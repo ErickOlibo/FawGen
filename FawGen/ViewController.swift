@@ -11,6 +11,14 @@ import UIKit
 class ViewController: UIViewController {
 
     
+    // Font testing and random font Outlets
+    @IBOutlet weak var randomFontLabel: UILabel!
+    
+    @IBAction func selectNewFont(_ sender: UIButton) {
+        updateUItext()
+    }
+    
+    
     // SocialViews Outlets
     @IBOutlet weak var socialOne: SocialView! {
         didSet { socialOne.initialize(SocialNetwork.facebook.info) }
@@ -43,11 +51,34 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getSocialNetworkAvailability()
-//        let thisDamain: Domain = "defkut"
-//        queryWhois(for: thisDamain)
-        domainAvailability()
+//        getSocialNetworkAvailability()
+//        domainAvailability()
+        let fontLister = FontsLister()
+        fontLister.printListToConsole()
+        
+        
     }
+    
+    private func getNewFontName() -> String? {
+        let fontLister = FontsLister()
+        return fontLister.randomFont()
+    }
+    
+    private func updateUItext() {
+        let randFont = getNewFontName() ?? "Avenir-Medium"
+        print("FontName: \(randFont)")
+        randomFontLabel.font = UIFont(name: randFont, size: 400)
+        let rndWord = Constants.fakeWords.randomElement() ?? "Failed!"
+        randomFontLabel.text = rndWord.capitalized
+        print("BEFORE -> CGSize Text in label: \(randomFontLabel.intrinsicContentSize)")
+//        randomFontLabel.numberOfLines = 0
+//        randomFontLabel.minimumScaleFactor = 0.1
+//        randomFontLabel.adjustsFontSizeToFitWidth = true
+        randomFontLabel.fitTextToBounds()
+        print("After -> CGSize Text in label: \(randomFontLabel.intrinsicContentSize)")
+        
+    }
+    
     
     // Get Social Network Availability
     private func getSocialNetworkAvailability() {
@@ -142,6 +173,8 @@ class ViewController: UIViewController {
         }
     }
 
+
+    
 
 }
 
