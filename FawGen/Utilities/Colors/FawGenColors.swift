@@ -8,6 +8,10 @@
 
 import UIKit
 
+/// This is an enumeration of the list of constant colors used and available
+/// in this the FawGen app.
+///  - Note: The primary, secondary, tertiary colors are from FawGen logomark
+/// availableStatus is the in-app visual color for available domains and handles
 public enum FawGenColors: String, CustomStringConvertible, CaseIterable, Equatable, Hashable {
     case primary, secondary, tertiary, availableStatus
     
@@ -17,6 +21,7 @@ public enum FawGenColors: String, CustomStringConvertible, CaseIterable, Equatab
         return self.rawValue
     }
     
+    /// returns the FawGen constant colors as UIColor
     public var color: UIColor {
         switch self {
         case .primary:

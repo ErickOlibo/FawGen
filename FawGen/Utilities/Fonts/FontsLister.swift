@@ -8,20 +8,27 @@
 
 import UIKit
 
-/// Prints to the console the list of fonts present in the device
-/// - Warning:
-/// This is not to be use for during development and distribution
+/// Serves to list the system fonts and added fonts to the console
+/// and select a random font to use inside the application
+/// - Warning: The added font part is not implemented yet and
+/// requires some investigation
 public class FontsLister {
     
     init () {
         
     }
-    
+    /// randomizes the selection of an unique font from the font present in
+    /// the system.
+    /// - Returns: an optional String as the font name
+    /// - Remarks: the font name includes the type (normal, italic, regular, etc..),
+    /// therefore this method does not give the opion to choose its type
     public func randomFont() -> String? {
         return pickRandomFont()
     }
     
-    
+    /// prints the list of font currently register by the system to the xcode console
+    /// - Note: This is not a method that has any use for distribution environment
+    /// It must be used only for development purposes.
     public func printListToConsole() {
         printFonts()
     }

@@ -9,10 +9,16 @@
 import Foundation
 
 public class WhoisAPI {
+    
+    /// creates the proper URL to query the Whois Server located at Defkut.com
+    /// - Parameters:
+    ///     - domain: This is the domain name only without the extension
+    ///     - extension: The domain extension to check for availability
     public func createURL(_ domain: Domain, extension ext: DomainExtension) -> String {
         let lowDomain = domain.lowercased()
         let dot = "."
-        let query = "domain=" + lowDomain + dot + ext.rawValue
+        let checkedExt = ext == .couk ? "co.uk" : ext.rawValue
+        let query = "domain=" + lowDomain + dot + checkedExt
         let key = "key=" + Credentials.key
         let token = "token=" + Credentials.token
         let amp = "&"

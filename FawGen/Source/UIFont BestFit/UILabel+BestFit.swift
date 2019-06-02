@@ -6,7 +6,8 @@
 //  Copyright © 2019 DEFKUT Creations OU. All rights reserved.
 //
 //
-//  From joncardasis/UIFont+BestFit.swift in GitHub.com
+//  From joncardasis/UIFont+BestFit.swift in GitHub.com with really minor
+//  adjustments. 
 
 import UIKit
 

@@ -69,7 +69,7 @@ class DomainView: UIView {
     /// to the already initialized Domain View (via init(frame) )
     /// - Parameter info: this is the Domain Extension type that will
     /// be core to this DomainView.
-    /// - Parameter ststus: Set the availability status of this entity.
+    /// - Parameter status: Set the availability status of this entity.
     /// - Note: This methose is overflown with a default status of .normal
     public func initialize(_ info: DomainExtension, status: AvailabilityStatus = .normal) {
         let dot = "."
@@ -78,7 +78,7 @@ class DomainView: UIView {
         self.currentStatus = status
     }
     
-    // Updates the Availability status of the Domain View and updates the UI
+    /// Updates the Availability status of the Domain View and updates the UI
     private func updateAvailabilityUI() {
         switch currentStatus {
         case .normal:

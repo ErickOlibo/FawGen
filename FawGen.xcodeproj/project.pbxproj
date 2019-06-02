@@ -65,6 +65,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A722066422A4139800E1C256 /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				A76915BA22A15F6A00FB616F /* FawGenColors.swift */,
+				A7FC8607229EF08D002C386F /* Colors.swift */,
+			);
+			path = Colors;
+			sourceTree = "<group>";
+		};
 		A76915B222A0C32000FB616F /* Domain Checker */ = {
 			isa = PBXGroup;
 			children = (
@@ -125,8 +134,8 @@
 				A7FC85FF229EDA9B002C386F /* Social Network View */,
 				A7FC85F7229DDA9F002C386F /* Resources */,
 				A7FC85F6229DDA95002C386F /* Source */,
-				A7FC85F5229DD8A2002C386F /* Supporting Files */,
 				A7FC85F8229DDAAD002C386F /* Utilities */,
+				A7FC85F5229DD8A2002C386F /* Supporting Files */,
 				A7FC85EF229CEA82002C386F /* Info.plist */,
 				A7FC85E3229CEA81002C386F /* AppDelegate.swift */,
 			);
@@ -145,6 +154,7 @@
 		A7FC85F6229DDA95002C386F /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				A7EC016722A36DFA0056E2C7 /* UIFont BestFit */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -159,7 +169,7 @@
 		A7FC85F8229DDAAD002C386F /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				A7EC016722A36DFA0056E2C7 /* UIFont BestFit */,
+				A722066422A4139800E1C256 /* Colors */,
 				A7EC016422A366370056E2C7 /* Global Entities */,
 				A76915B222A0C32000FB616F /* Domain Checker */,
 				A7FC8606229EF055002C386F /* Helpers */,
@@ -198,8 +208,6 @@
 		A7FC8606229EF055002C386F /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				A7FC8607229EF08D002C386F /* Colors.swift */,
-				A76915BA22A15F6A00FB616F /* FawGenColors.swift */,
 				A76915BE22A218BA00FB616F /* TypeAlias.swift */,
 			);
 			path = Helpers;
