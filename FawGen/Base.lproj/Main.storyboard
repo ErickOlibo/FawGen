@@ -154,16 +154,24 @@
                                     <action selector="selectNewFont:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zc6-7I-7Rn"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ccV-tD-1jo" customClass="GradientView" customModule="FawGen" customModuleProvider="target">
+                                <rect key="frame" x="20" y="153" width="374" height="121"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ccV-tD-1jo" secondAttribute="trailing" constant="20" id="1Qx-kL-67i"/>
                             <constraint firstItem="R9h-uV-srE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="3LZ-Se-9N0"/>
                             <constraint firstItem="hiL-bW-Jpx" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="9Qj-5g-iAF"/>
+                            <constraint firstItem="hiL-bW-Jpx" firstAttribute="top" secondItem="ccV-tD-1jo" secondAttribute="bottom" constant="20" id="Aoo-qk-2Dw"/>
                             <constraint firstItem="blf-YT-TBh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="49" id="EC1-c5-VCT"/>
+                            <constraint firstItem="ccV-tD-1jo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Fgj-DY-9JI"/>
                             <constraint firstItem="R9h-uV-srE" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="GTr-Cp-sia"/>
                             <constraint firstItem="R9h-uV-srE" firstAttribute="top" secondItem="hiL-bW-Jpx" secondAttribute="bottom" constant="82.5" id="L7Y-FZ-hPD"/>
                             <constraint firstItem="L9j-rl-MKZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Vm2-d1-qbn"/>
                             <constraint firstItem="R9h-uV-srE" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="WOg-hZ-7kb"/>
+                            <constraint firstItem="ccV-tD-1jo" firstAttribute="top" secondItem="blf-YT-TBh" secondAttribute="bottom" constant="20" id="ZcE-cu-nM4"/>
                             <constraint firstItem="L9j-rl-MKZ" firstAttribute="top" secondItem="R9h-uV-srE" secondAttribute="bottom" constant="59" id="cWf-fR-SLE"/>
                             <constraint firstItem="L9j-rl-MKZ" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="t5d-sH-7YN"/>
                             <constraint firstItem="blf-YT-TBh" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="vde-f8-wNG"/>
@@ -176,6 +184,7 @@
                         <outlet property="domainOne" destination="DXY-uu-riK" id="5Tz-jD-JFF"/>
                         <outlet property="domainThree" destination="bT4-vl-BiJ" id="eA1-Tg-3yf"/>
                         <outlet property="domainTwo" destination="Z07-Og-n4z" id="bde-b2-c1K"/>
+                        <outlet property="randomColorView" destination="ccV-tD-1jo" id="fRq-Qe-pk3"/>
                         <outlet property="randomFontLabel" destination="blf-YT-TBh" id="rrD-mo-1gI"/>
                         <outlet property="socialFour" destination="d2p-4r-zwF" id="kql-yN-k1q"/>
                         <outlet property="socialOne" destination="wBn-VJ-hrx" id="Q0k-Lg-445"/>

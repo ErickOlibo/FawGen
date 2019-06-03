@@ -47,7 +47,10 @@ class ViewController: UIViewController {
         didSet { domainFour.initialize(DomainExtension.co) }
     }
     
+    @IBOutlet weak var randomColorView: GradientView!
     
+    
+    private let generator = ColorGenerator()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,6 +78,8 @@ class ViewController: UIViewController {
         randomFontLabel.fitTextToBounds()
         getDomainAvailability(for: rndWord)
         getSocialNetworkAvailability(for: rndWord)
+        randomColorView.randomGradient()
+        randomFontLabel.backgroundColor = generator.randomColor()
         
     }
     

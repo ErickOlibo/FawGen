@@ -18,7 +18,7 @@ import UIKit
 /// the golden ratio to generate color pleasing sets. Each random color
 /// generated is visually distinct from each other.
 /// There are 3 methods available:
-///     - random: returns a random color
+///     - randomColor: returns a random color
 ///     - gradientColors: returns a pair of suitable color for a gradient blend
 ///     - variation: returns a color
 /// - Author: Marc Charbonneau
@@ -41,7 +41,7 @@ public class ColorGenerator {
     /// This method generates a random color. Each call will yeild a color
     /// that is visually distinct from the previous one.
     /// - Returns: a randomly generated color of type UIColor.
-    public func random() -> UIColor {
+    public func randomColor() -> UIColor {
         randomHue += goldenRatioConjugate
         randomHue.formTruncatingRemainder(dividingBy: 1.0)
         
