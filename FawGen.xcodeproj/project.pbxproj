@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A722066722A4B56000E1C256 /* ColorGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722066622A4B56000E1C256 /* ColorGenerator.swift */; };
+		A722066922A4BFF200E1C256 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722066822A4BFF200E1C256 /* GradientView.swift */; };
 		A76915B522A0DB7300FB616F /* DomainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A76915B422A0DB7300FB616F /* DomainView.xib */; };
 		A76915B722A0DB8600FB616F /* DomainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76915B622A0DB8600FB616F /* DomainView.swift */; };
 		A76915B922A0DF2F00FB616F /* DomainChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76915B822A0DF2F00FB616F /* DomainChecker.swift */; };
@@ -30,6 +32,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A722066622A4B56000E1C256 /* ColorGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorGenerator.swift; sourceTree = "<group>"; };
+		A722066822A4BFF200E1C256 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		A76915B422A0DB7300FB616F /* DomainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DomainView.xib; sourceTree = "<group>"; };
 		A76915B622A0DB8600FB616F /* DomainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainView.swift; sourceTree = "<group>"; };
 		A76915B822A0DF2F00FB616F /* DomainChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainChecker.swift; sourceTree = "<group>"; };
@@ -72,6 +76,15 @@
 				A7FC8607229EF08D002C386F /* Colors.swift */,
 			);
 			path = Colors;
+			sourceTree = "<group>";
+		};
+		A722066522A4B54000E1C256 /* Color Generator */ = {
+			isa = PBXGroup;
+			children = (
+				A722066622A4B56000E1C256 /* ColorGenerator.swift */,
+				A722066822A4BFF200E1C256 /* GradientView.swift */,
+			);
+			path = "Color Generator";
 			sourceTree = "<group>";
 		};
 		A76915B222A0C32000FB616F /* Domain Checker */ = {
@@ -154,6 +167,7 @@
 		A7FC85F6229DDA95002C386F /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				A722066522A4B54000E1C256 /* Color Generator */,
 				A7EC016722A36DFA0056E2C7 /* UIFont BestFit */,
 			);
 			path = Source;
@@ -291,6 +305,8 @@
 				A7FC862E229F4265002C386F /* SocialView.swift in Sources */,
 				A76915B922A0DF2F00FB616F /* DomainChecker.swift in Sources */,
 				A7FC85E4229CEA81002C386F /* AppDelegate.swift in Sources */,
+				A722066922A4BFF200E1C256 /* GradientView.swift in Sources */,
+				A722066722A4B56000E1C256 /* ColorGenerator.swift in Sources */,
 				A7EC016622A3667B0056E2C7 /* GlobalConstants.swift in Sources */,
 				A7FC85FE229DDC65002C386F /* SocialChecker.swift in Sources */,
 				A76915BF22A218BA00FB616F /* TypeAlias.swift in Sources */,
