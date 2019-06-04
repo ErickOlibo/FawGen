@@ -22,11 +22,7 @@ class RandomizeViewController: UITableViewController {
         setupNavigationBarItems()
     }
     
-    // MARK: - Navigation bar items
     
-    private func setupNavigationBarItems() {
-        print(123)
-    }
 
     // MARK: - Table view data source
 

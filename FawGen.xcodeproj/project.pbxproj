@@ -17,6 +17,7 @@
 		A76915BB22A15F6A00FB616F /* FawGenColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76915BA22A15F6A00FB616F /* FawGenColors.swift */; };
 		A76915BD22A211D700FB616F /* WhoisAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76915BC22A211D700FB616F /* WhoisAPI.swift */; };
 		A76915BF22A218BA00FB616F /* TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76915BE22A218BA00FB616F /* TypeAlias.swift */; };
+		A79936E122A6234F0091C9CA /* RandomizeViewController+NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79936E022A6234F0091C9CA /* RandomizeViewController+NavBar.swift */; };
 		A7EC016622A3667B0056E2C7 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC016522A3667B0056E2C7 /* GlobalConstants.swift */; };
 		A7EC016922A36E510056E2C7 /* UIFont+BestFit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC016822A36E510056E2C7 /* UIFont+BestFit.swift */; };
 		A7EC016B22A36F1D0056E2C7 /* UILabel+BestFit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC016A22A36F1D0056E2C7 /* UILabel+BestFit.swift */; };
@@ -44,6 +45,7 @@
 		A76915BA22A15F6A00FB616F /* FawGenColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FawGenColors.swift; sourceTree = "<group>"; };
 		A76915BC22A211D700FB616F /* WhoisAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhoisAPI.swift; sourceTree = "<group>"; };
 		A76915BE22A218BA00FB616F /* TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAlias.swift; sourceTree = "<group>"; };
+		A79936E022A6234F0091C9CA /* RandomizeViewController+NavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RandomizeViewController+NavBar.swift"; sourceTree = "<group>"; };
 		A7EC016522A3667B0056E2C7 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
 		A7EC016822A36E510056E2C7 /* UIFont+BestFit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+BestFit.swift"; sourceTree = "<group>"; };
 		A7EC016A22A36F1D0056E2C7 /* UILabel+BestFit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+BestFit.swift"; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				A722066E22A575FD00E1C256 /* RandomizeViewController.swift */,
+				A79936E022A6234F0091C9CA /* RandomizeViewController+NavBar.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 				A722067122A5765500E1C256 /* RandomizeCell.swift in Sources */,
 				A76915BF22A218BA00FB616F /* TypeAlias.swift in Sources */,
 				A7EC016922A36E510056E2C7 /* UIFont+BestFit.swift in Sources */,
+				A79936E122A6234F0091C9CA /* RandomizeViewController+NavBar.swift in Sources */,
 				A7FC8608229EF08D002C386F /* Colors.swift in Sources */,
 				A76915BD22A211D700FB616F /* WhoisAPI.swift in Sources */,
 				A7FC8605229EE905002C386F /* SocialMedia.swift in Sources */,
