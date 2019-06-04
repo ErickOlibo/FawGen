@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		A722066722A4B56000E1C256 /* ColorGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722066622A4B56000E1C256 /* ColorGenerator.swift */; };
 		A722066922A4BFF200E1C256 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722066822A4BFF200E1C256 /* GradientView.swift */; };
+		A722066F22A575FD00E1C256 /* RandomizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722066E22A575FD00E1C256 /* RandomizeViewController.swift */; };
+		A722067122A5765500E1C256 /* RandomizeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722067022A5765500E1C256 /* RandomizeCell.swift */; };
 		A76915B522A0DB7300FB616F /* DomainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A76915B422A0DB7300FB616F /* DomainView.xib */; };
 		A76915B722A0DB8600FB616F /* DomainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76915B622A0DB8600FB616F /* DomainView.swift */; };
 		A76915B922A0DF2F00FB616F /* DomainChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76915B822A0DF2F00FB616F /* DomainChecker.swift */; };
@@ -34,6 +36,8 @@
 /* Begin PBXFileReference section */
 		A722066622A4B56000E1C256 /* ColorGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorGenerator.swift; sourceTree = "<group>"; };
 		A722066822A4BFF200E1C256 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		A722066E22A575FD00E1C256 /* RandomizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomizeViewController.swift; sourceTree = "<group>"; };
+		A722067022A5765500E1C256 /* RandomizeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomizeCell.swift; sourceTree = "<group>"; };
 		A76915B422A0DB7300FB616F /* DomainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DomainView.xib; sourceTree = "<group>"; };
 		A76915B622A0DB8600FB616F /* DomainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainView.swift; sourceTree = "<group>"; };
 		A76915B822A0DF2F00FB616F /* DomainChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainChecker.swift; sourceTree = "<group>"; };
@@ -85,6 +89,39 @@
 				A722066822A4BFF200E1C256 /* GradientView.swift */,
 			);
 			path = "Color Generator";
+			sourceTree = "<group>";
+		};
+		A722066A22A5755600E1C256 /* Randomize */ = {
+			isa = PBXGroup;
+			children = (
+				A722066B22A5756900E1C256 /* Model */,
+				A722066C22A5757700E1C256 /* Views */,
+				A722066D22A5758100E1C256 /* Controllers */,
+			);
+			path = Randomize;
+			sourceTree = "<group>";
+		};
+		A722066B22A5756900E1C256 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A722066C22A5757700E1C256 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A722067022A5765500E1C256 /* RandomizeCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A722066D22A5758100E1C256 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A722066E22A575FD00E1C256 /* RandomizeViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		A76915B222A0C32000FB616F /* Domain Checker */ = {
@@ -144,6 +181,7 @@
 				A7FC85E5229CEA81002C386F /* ViewController.swift */,
 				A7FC85E7229CEA81002C386F /* Main.storyboard */,
 				A76915B322A0DB2D00FB616F /* Domain View */,
+				A722066A22A5755600E1C256 /* Randomize */,
 				A7FC85FF229EDA9B002C386F /* Social Network View */,
 				A7FC85F7229DDA9F002C386F /* Resources */,
 				A7FC85F6229DDA95002C386F /* Source */,
@@ -309,6 +347,7 @@
 				A722066722A4B56000E1C256 /* ColorGenerator.swift in Sources */,
 				A7EC016622A3667B0056E2C7 /* GlobalConstants.swift in Sources */,
 				A7FC85FE229DDC65002C386F /* SocialChecker.swift in Sources */,
+				A722067122A5765500E1C256 /* RandomizeCell.swift in Sources */,
 				A76915BF22A218BA00FB616F /* TypeAlias.swift in Sources */,
 				A7EC016922A36E510056E2C7 /* UIFont+BestFit.swift in Sources */,
 				A7FC8608229EF08D002C386F /* Colors.swift in Sources */,
@@ -317,6 +356,7 @@
 				A76915B722A0DB8600FB616F /* DomainView.swift in Sources */,
 				A7EC016B22A36F1D0056E2C7 /* UILabel+BestFit.swift in Sources */,
 				A7FC85FB229DDB58002C386F /* FontsLister.swift in Sources */,
+				A722066F22A575FD00E1C256 /* RandomizeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
