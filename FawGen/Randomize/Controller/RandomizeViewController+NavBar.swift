@@ -99,6 +99,9 @@ extension RandomizeViewController {
     private func pushLogoWebsiteViewController() {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let previousVC = storyBoard.instantiateViewController(withIdentifier: "PreviousVC")
+        let backItem = UIBarButtonItem()
+        backItem.title = "Test"
+        navigationItem.backBarButtonItem = backItem
         self.navigationController?.pushViewController(previousVC, animated: true)
     }
     

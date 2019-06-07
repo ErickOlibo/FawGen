@@ -219,7 +219,9 @@
                             <outlet property="delegate" destination="jnX-Wt-s1c" id="3az-z7-DrC"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="n22-ZZ-17J"/>
+                    <navigationItem key="navigationItem" id="n22-ZZ-17J">
+                        <barButtonItem key="backBarButtonItem" title="Randomizer" id="ybw-MV-y7p"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TSH-I5-Esf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -13,7 +13,14 @@ import UIKit
 ///  - Note: The primary, secondary, tertiary colors are from FawGen logomark
 /// availableStatus is the in-app visual color for available domains and handles
 public enum FawGenColors: String, CustomStringConvertible, CaseIterable, Equatable, Hashable {
-    case primary, secondary, tertiary, availableStatus
+    /// Of tint color Orange, name code: Orioles Orange
+    case primary
+    /// Of tint color Blue, name code: Prussian Blue
+    case secondary
+    /// Of tint color Yellow, name code: UCLA Gold
+    case tertiary
+    /// Of tint color Green, name code: UFO Green
+    case availableStatus
     
     
     
