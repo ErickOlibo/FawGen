@@ -11,9 +11,10 @@ import UIKit
 extension RandomizeViewController {
     
     func setupNavigationBarItems() {
+        setupRemainingNavItems()
         setupLeftNavItems()
         setupRightNavItems()
-        setupRemainingNavItems()
+        
     }
     
     private func setupLeftNavItems() {
@@ -47,6 +48,7 @@ extension RandomizeViewController {
         // To make the navigation bar really white and not translucent
         navigationController?.navigationBar.backgroundColor = .white
         navigationController?.navigationBar.isTranslucent = false
+        //navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     
@@ -75,12 +77,13 @@ extension RandomizeViewController {
     
     private func presentSettingsViewController() {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let previousVC = storyBoard.instantiateViewController(withIdentifier: "PreviousVC")
+        let settingsVC = storyBoard.instantiateViewController(withIdentifier: "SettingsVC")
+        self.navigationController?.pushViewController(settingsVC, animated: true)
         
-        let transitionDelegate = SPStorkTransitioningDelegate()
-        previousVC.transitioningDelegate = transitionDelegate
-        previousVC.modalPresentationStyle = .custom
-        self.present(previousVC, animated: true, completion: nil)
+//        let transitionDelegate = SPStorkTransitioningDelegate()
+//        previousVC.transitioningDelegate = transitionDelegate
+//        previousVC.modalPresentationStyle = .custom
+//        self.present(previousVC, animated: true, completion: nil)
     }
     
     private func presentFilterViewController() {

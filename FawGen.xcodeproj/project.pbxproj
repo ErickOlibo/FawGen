@@ -154,6 +154,8 @@
 		A70C4B7422AA0675001BD6CC /* SPRequestPermissionLocationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70C4AE822AA0675001BD6CC /* SPRequestPermissionLocationHandler.swift */; };
 		A70C4B7522AA0675001BD6CC /* SPShare.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70C4AEA22AA0675001BD6CC /* SPShare.swift */; };
 		A70C4B7622AA0675001BD6CC /* SPBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70C4AEC22AA0675001BD6CC /* SPBadge.swift */; };
+		A70C4B8022AA95D4001BD6CC /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70C4B7F22AA95D4001BD6CC /* SettingsViewController.swift */; };
+		A70C4B8222AA9626001BD6CC /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70C4B8122AA9626001BD6CC /* SettingsCell.swift */; };
 		A722066722A4B56000E1C256 /* ColorGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722066622A4B56000E1C256 /* ColorGenerator.swift */; };
 		A722066922A4BFF200E1C256 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722066822A4BFF200E1C256 /* GradientView.swift */; };
 		A722066F22A575FD00E1C256 /* RandomizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722066E22A575FD00E1C256 /* RandomizeViewController.swift */; };
@@ -330,6 +332,8 @@
 		A70C4AEA22AA0675001BD6CC /* SPShare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPShare.swift; sourceTree = "<group>"; };
 		A70C4AEC22AA0675001BD6CC /* SPBadge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPBadge.swift; sourceTree = "<group>"; };
 		A70C4AED22AA0675001BD6CC /* SPStorkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPStorkController.h; sourceTree = "<group>"; };
+		A70C4B7F22AA95D4001BD6CC /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		A70C4B8122AA9626001BD6CC /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		A722066622A4B56000E1C256 /* ColorGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorGenerator.swift; sourceTree = "<group>"; };
 		A722066822A4BFF200E1C256 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		A722066E22A575FD00E1C256 /* RandomizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomizeViewController.swift; sourceTree = "<group>"; };
@@ -1008,6 +1012,7 @@
 		A70C4B7922AA0833001BD6CC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A70C4B8122AA9626001BD6CC /* SettingsCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1015,6 +1020,7 @@
 		A70C4B7A22AA0841001BD6CC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				A70C4B7F22AA95D4001BD6CC /* SettingsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1125,10 +1131,10 @@
 		A7FC85E2229CEA81002C386F /* FawGen */ = {
 			isa = PBXGroup;
 			children = (
-				A70C4B7722AA081B001BD6CC /* Settings */,
 				A7FC85E5229CEA81002C386F /* ViewController.swift */,
 				A7FC85E7229CEA81002C386F /* Main.storyboard */,
 				A76915B322A0DB2D00FB616F /* Domain View */,
+				A70C4B7722AA081B001BD6CC /* Settings */,
 				A722066A22A5755600E1C256 /* Randomize */,
 				A7FC85FF229EDA9B002C386F /* Social Network View */,
 				A7FC85F7229DDA9F002C386F /* Resources */,
@@ -1311,6 +1317,7 @@
 				A70C4A2522AA0611001BD6CC /* SPLarkSettingsController.swift in Sources */,
 				A70C4B3A22AA0675001BD6CC /* SPUITableViewCellExtenshion.swift in Sources */,
 				A70C4AF422AA0675001BD6CC /* SPStorkDismissingAnimationController.swift in Sources */,
+				A70C4B8022AA95D4001BD6CC /* SettingsViewController.swift in Sources */,
 				A70C4B2622AA0675001BD6CC /* SPFormButtonTableViewCell.swift in Sources */,
 				A70C4B3722AA0675001BD6CC /* SPTypes.swift in Sources */,
 				A70C4B2422AA0675001BD6CC /* SPEmptyProposeView.swift in Sources */,
@@ -1434,6 +1441,7 @@
 				A70C4B2E22AA0675001BD6CC /* SPImageTableViewCell.swift in Sources */,
 				A70C4B3322AA0675001BD6CC /* SPVideoPlayer.swift in Sources */,
 				A7EC016B22A36F1D0056E2C7 /* UILabel+BestFit.swift in Sources */,
+				A70C4B8222AA9626001BD6CC /* SettingsCell.swift in Sources */,
 				A70C4B5822AA0675001BD6CC /* SPCodeAudioIconPack.swift in Sources */,
 				A7FC85FB229DDB58002C386F /* FontsLister.swift in Sources */,
 				A70C4B0822AA0675001BD6CC /* SPConfirmActionViewController.swift in Sources */,
