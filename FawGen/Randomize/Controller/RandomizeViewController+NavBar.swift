@@ -68,5 +68,7 @@ extension RandomizeViewController {
         print("pushedSettingButton")
     }
     
+    // MARK: - ViewController from Right NavBar Button
+    
     
 }

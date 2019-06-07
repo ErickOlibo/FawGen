@@ -988,6 +988,37 @@
 			path = badge;
 			sourceTree = "<group>";
 		};
+		A70C4B7722AA081B001BD6CC /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				A70C4B7A22AA0841001BD6CC /* Controller */,
+				A70C4B7922AA0833001BD6CC /* Views */,
+				A70C4B7822AA082B001BD6CC /* Model */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		A70C4B7822AA082B001BD6CC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A70C4B7922AA0833001BD6CC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A70C4B7A22AA0841001BD6CC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		A722066422A4139800E1C256 /* Colors */ = {
 			isa = PBXGroup;
 			children = (
@@ -1011,7 +1042,7 @@
 			children = (
 				A722066B22A5756900E1C256 /* Model */,
 				A722066C22A5757700E1C256 /* Views */,
-				A722066D22A5758100E1C256 /* Controllers */,
+				A722066D22A5758100E1C256 /* Controller */,
 			);
 			path = Randomize;
 			sourceTree = "<group>";
@@ -1031,13 +1062,13 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		A722066D22A5758100E1C256 /* Controllers */ = {
+		A722066D22A5758100E1C256 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				A722066E22A575FD00E1C256 /* RandomizeViewController.swift */,
 				A79936E022A6234F0091C9CA /* RandomizeViewController+NavBar.swift */,
 			);
-			path = Controllers;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		A76915B222A0C32000FB616F /* Domain Checker */ = {
@@ -1094,6 +1125,7 @@
 		A7FC85E2229CEA81002C386F /* FawGen */ = {
 			isa = PBXGroup;
 			children = (
+				A70C4B7722AA081B001BD6CC /* Settings */,
 				A7FC85E5229CEA81002C386F /* ViewController.swift */,
 				A7FC85E7229CEA81002C386F /* Main.storyboard */,
 				A76915B322A0DB2D00FB616F /* Domain View */,

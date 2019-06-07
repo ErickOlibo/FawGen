@@ -103,6 +103,8 @@ public class SPCollectionViewLayout: UICollectionViewFlowLayout {
                 proposedContentOffset.y = round(rawPageValue) * self.pageHeight
             }
             return proposedContentOffset;
+        default:
+            return CGPoint(x: 0, y: 0)
         }
     }
     
@@ -155,6 +157,9 @@ public class SPCollectionViewLayout: UICollectionViewFlowLayout {
                     owner.alpha = alpha
                 }
             }
+            
+        default:
+            return nil
         }
         return newAttributesArray
     }
@@ -253,6 +258,8 @@ public class SPCollectionViewLayout: UICollectionViewFlowLayout {
             self.minimumLineSpacing = collectionView.frame.width * itemSpacingFactor
         case .vertical:
             self.minimumLineSpacing = collectionView.frame.height * itemSpacingFactor
+        default:
+            break
         }
         self.minimumLineSpacing.setIfMore(when: self.maxItemSpace)
         self.minimumLineSpacing.setIfFewer(when: self.minItemSpace)

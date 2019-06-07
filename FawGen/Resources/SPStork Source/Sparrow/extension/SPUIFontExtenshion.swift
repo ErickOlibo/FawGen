@@ -23,14 +23,14 @@ import UIKit
 
 public extension UIFont {
     
-    public struct fonts {
+    struct fonts {
         
         public static func AvenirNext(type: BoldType, size: CGFloat) -> UIFont {
             return UIFont.createFont(.AvenirNext, boldType: type, size: size)
         }
     }
     
-    public static func system(type: BoldType, size: CGFloat) -> UIFont {
+    static func system(type: BoldType, size: CGFloat) -> UIFont {
         if #available(iOS 8.2, *) {
             return UIFont.systemFont(ofSize: size, weight: self.getBoldTypeBy(boldType: type))
         } else {
@@ -38,7 +38,7 @@ public extension UIFont {
         }
     }
     
-    public static func createFont(_ fontType: FontType, boldType: BoldType, size: CGFloat) -> UIFont {
+    static func createFont(_ fontType: FontType, boldType: BoldType, size: CGFloat) -> UIFont {
         return UIFont.init(
             name: self.getFontNameBy(fontType: fontType) + self.getBoldTypeNameBy(boldType: boldType),
             size: size
@@ -94,11 +94,11 @@ public extension UIFont {
         }
     }
     
-    public enum FontType {
+    enum FontType {
         case AvenirNext
     }
     
-    public enum BoldType {
+    enum BoldType {
         case Regular
         case Medium
         case Light
