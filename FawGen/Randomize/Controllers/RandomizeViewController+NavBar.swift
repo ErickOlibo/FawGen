@@ -27,27 +27,21 @@ extension RandomizeViewController {
     }
     
     private func setupRightNavItems() {
-        let favoriteButton = UIButton(type: .system)
-        favoriteButton.setImage(UIImage(named: "favorites_filled")?.withRenderingMode(.alwaysTemplate), for: .normal)
-        favoriteButton.tintColor = FawGenColors.secondary.color
-        let favBtnItem = UIBarButtonItem(customView: favoriteButton)
-        
-        let filterButton = UIButton(type: .system)
-        filterButton.setImage(UIImage(named: "filter")?.withRenderingMode(.alwaysTemplate), for: .normal)
-        filterButton.tintColor = FawGenColors.secondary.color
-        let filterBtnItem = UIBarButtonItem(customView: filterButton)
-        
-        let settingButton = UIButton(type: .system)
-        settingButton.setImage(UIImage(named: "settings")?.withRenderingMode(.alwaysTemplate), for: .normal)
-        settingButton.tintColor = FawGenColors.secondary.color
-        let settingBtnItem = UIBarButtonItem(customView: settingButton)
-        
-        favoriteButton.addTarget(self, action: #selector(pushedFavoriteButton), for: .touchUpInside)
-        filterButton.addTarget(self, action: #selector(pushedFilterButton), for: .touchUpInside)
-        settingButton.addTarget(self, action: #selector(pushedSettingButton), for: .touchUpInside)
-    
-        navigationItem.rightBarButtonItems = [settingBtnItem, filterBtnItem, favBtnItem]
+        let collection = [("settings" , #selector(pushedSettingButton)),
+                          ("filter" , #selector(pushedFilterButton)),
+                          ("favorites_filled" , #selector(pushedFavoriteButton))]
+        var barButtonItems = [UIBarButtonItem]()
+        for (imageName, selector) in collection {
+            let itemButton = UIButton(type: .system)
+            itemButton.setImage(UIImage(named: imageName)?.withRenderingMode(.alwaysTemplate), for: .normal)
+            itemButton.tintColor = FawGenColors.secondary.color
+            itemButton.addTarget(self, action: selector, for: .touchUpInside)
+            let itemBarButton = UIBarButtonItem(customView: itemButton)
+            barButtonItems.append(itemBarButton)
+        }
+        navigationItem.rightBarButtonItems = barButtonItems
     }
+    
     
     private func setupRemainingNavItems() {
         // To make the navigation bar really white and not translucent
