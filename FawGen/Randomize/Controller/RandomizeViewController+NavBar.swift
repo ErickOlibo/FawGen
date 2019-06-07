@@ -54,10 +54,12 @@ extension RandomizeViewController {
     
     @objc private func pushedLogoButton() {
         print("pushedLogoButton")
+        pushLogoWebsiteViewController()
     }
     
     @objc private func pushedFilterButton() {
         print("pushedFilterButton")
+        presentFilterViewController()
     }
     
     @objc private func pushedFavoriteButton() {
@@ -66,9 +68,35 @@ extension RandomizeViewController {
     
     @objc private func pushedSettingButton() {
         print("pushedSettingButton")
+        presentSettingsViewController()
     }
     
     // MARK: - ViewController from Right NavBar Button
     
+    private func presentSettingsViewController() {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let previousVC = storyBoard.instantiateViewController(withIdentifier: "PreviousVC")
+        
+        let transitionDelegate = SPStorkTransitioningDelegate()
+        previousVC.transitioningDelegate = transitionDelegate
+        previousVC.modalPresentationStyle = .custom
+        self.present(previousVC, animated: true, completion: nil)
+    }
+    
+    private func presentFilterViewController() {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let previousVC = storyBoard.instantiateViewController(withIdentifier: "PreviousVC")
+        previousVC.view.backgroundColor = .gray
+        let ratio = 3.0 / CGFloat(4)
+        let vcHeight = view.bounds.height * ratio // 2/3 of the phone heigth
+        print("Screen: \(view.bounds.height) --> Lark: \(vcHeight)")
+        self.presentAsLark(previousVC, height: vcHeight, complection: nil)
+    }
+    
+    private func pushLogoWebsiteViewController() {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let previousVC = storyBoard.instantiateViewController(withIdentifier: "PreviousVC")
+        self.navigationController?.pushViewController(previousVC, animated: true)
+    }
     
 }
