@@ -9,83 +9,96 @@
 import UIKit
 
 class SettingsViewController: UITableViewController {
+    
+    // MARK: - Properties
+    
+    
+    // MARK: - Outlets
+    @IBOutlet weak var historyCount: UILabel!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Settings"
 
+        updateUI()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-
-    // MARK: - Table view data source
-
-//    override func numberOfSections(in tableView: UITableView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return 0
-//    }
-//
-//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        // #warning Incomplete implementation, return the number of rows
-//        return 0
-//    }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+    
+    
+    // Update the UI specially for the History list count
+    private func updateUI() {
+        print("UpdateUI")
+        let random = (4...60).randomElement() ?? 0
+        let adjNumber = random < 51  ? String(random) : "50+"
+        print("Number: \(adjNumber)")
+        historyCount.text = adjNumber
+        historyCount.textColor = FawGenColors.primary.color
+//        let labelCornerRadius = historyCount.frame.width * 0.1
+//        historyCount.layer.cornerRadius = labelCornerRadius
+        
     }
-    */
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
+    
+    
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "Fields Explanation") {
+            guard let destination = segue.destination as? AboutViewController else { return }
+            destination.aboutURL = URL(string: UrlFor.explanation)
+            destination.navigationItem.title = "Explanation"
+            print(UrlFor.explanation)
+        }
+        
+        if (segue.identifier == "FAQ") {
+            guard let destination = segue.destination as? AboutViewController else { return }
+            destination.aboutURL = URL(string: UrlFor.faq)
+            destination.navigationItem.title = "F.A.Q."
+            print(UrlFor.faq)
+        }
+        
+        if (segue.identifier == "Feedback") {
+            guard let destination = segue.destination as? AboutViewController else { return }
+            destination.aboutURL = URL(string: UrlFor.feedback)
+            destination.navigationItem.title = "Feedback"
+            print(UrlFor.feedback)
+        }
+        
+        if (segue.identifier == "Terms of Use") {
+            guard let destination = segue.destination as? AboutViewController else { return }
+            destination.aboutURL = URL(string: UrlFor.termOfUse)
+            destination.navigationItem.title = "Terms of Use"
+            print(UrlFor.termOfUse)
+        }
+        
+        if (segue.identifier == "Privacy Policy") {
+            guard let destination = segue.destination as? AboutViewController else { return }
+            destination.aboutURL = URL(string: UrlFor.privacy)
+            destination.navigationItem.title = "Privacy Policy"
+            print(UrlFor.privacy)
+        }
+        
+        if (segue.identifier == "Open-source Libraries") {
+            guard let destination = segue.destination as? AboutViewController else { return }
+            destination.aboutURL = URL(string: UrlFor.openSource)
+            destination.navigationItem.title = "Licenses"
+            print(UrlFor.openSource)
+        }
+        
+        if (segue.identifier == "Disclaimer") {
+            guard let destination = segue.destination as? AboutViewController else { return }
+            destination.aboutURL = URL(string: UrlFor.disclaimer)
+            destination.navigationItem.title = "Disclaimer"
+            print(UrlFor.disclaimer)
+        }
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+     }
+    
 
 }
