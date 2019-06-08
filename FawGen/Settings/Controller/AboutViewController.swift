@@ -30,6 +30,8 @@ class AboutViewController: UIViewController {
         loadURL()
     }
     
+    /// Loads the content of the URL to the Webview
+    /// - Note: aboutURL must be set to see the page
     private func loadURL() {
         guard let url = aboutURL else { return }
         spinner.startAnimating()
@@ -40,6 +42,7 @@ class AboutViewController: UIViewController {
     
     
 }
+
 
 
 extension AboutViewController: WKNavigationDelegate{

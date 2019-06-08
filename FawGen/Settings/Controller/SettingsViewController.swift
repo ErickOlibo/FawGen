@@ -16,21 +16,21 @@ class SettingsViewController: UITableViewController {
     // MARK: - Outlets
     @IBOutlet weak var historyCount: UILabel!
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Settings"
-
+        
         updateUI()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
     }
     
     
     // Update the UI specially for the History list count
+    /// Updates the number of keywords hitory query performed
+    /// during the lifespan of the app
+    /// - Note: There is a need to implement a reset button
+    /// for the history list
     private func updateUI() {
         print("UpdateUI")
         let random = (4...60).randomElement() ?? 0
@@ -38,17 +38,14 @@ class SettingsViewController: UITableViewController {
         print("Number: \(adjNumber)")
         historyCount.text = adjNumber
         historyCount.textColor = FawGenColors.primary.color
-//        let labelCornerRadius = historyCount.frame.width * 0.1
-//        historyCount.layer.cornerRadius = labelCornerRadius
         
     }
-
     
     
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "Fields Explanation") {
             guard let destination = segue.destination as? AboutViewController else { return }
             destination.aboutURL = URL(string: UrlFor.explanation)
@@ -97,8 +94,8 @@ class SettingsViewController: UITableViewController {
             destination.navigationItem.title = "Disclaimer"
             print(UrlFor.disclaimer)
         }
-
-     }
+        
+    }
     
-
+    
 }

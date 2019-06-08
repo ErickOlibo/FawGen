@@ -75,17 +75,19 @@ extension RandomizeViewController {
     
     // MARK: - ViewController from Right NavBar Button
     
+    /// Presents as push transition the settings view controller
+    /// - Note: The SettingsViewController is access via its StoryBoard ID (identifier)
     private func presentSettingsViewController() {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let settingsVC = storyBoard.instantiateViewController(withIdentifier: "SettingsVC")
         self.navigationController?.pushViewController(settingsVC, animated: true)
-        
-//        let transitionDelegate = SPStorkTransitioningDelegate()
-//        previousVC.transitioningDelegate = transitionDelegate
-//        previousVC.modalPresentationStyle = .custom
-//        self.present(previousVC, animated: true, completion: nil)
+
     }
     
+    /// Presents as Lark  transition (slides up to reveal behind)
+    /// the filter view controller.
+    /// - Warning: The height of display must be define in respect
+    /// of the screen size (depending on the type of iPhone)
     private func presentFilterViewController() {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let previousVC = storyBoard.instantiateViewController(withIdentifier: "PreviousVC")
@@ -96,6 +98,9 @@ extension RandomizeViewController {
         self.presentAsLark(previousVC, height: vcHeight, complection: nil)
     }
     
+    /// Presents as push transition the About view controller web view
+    /// to display the content of the fawgen website.
+    /// - Warning: The www.fawgen.com site is not ready
     private func pushLogoWebsiteViewController() {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let aboutVC = storyBoard.instantiateViewController(withIdentifier: "AboutVC") as! AboutViewController
