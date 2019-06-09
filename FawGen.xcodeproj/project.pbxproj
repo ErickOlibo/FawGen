@@ -158,6 +158,8 @@
 		A70C4B8222AA9626001BD6CC /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70C4B8122AA9626001BD6CC /* SettingsCell.swift */; };
 		A70C4B8422AB403A001BD6CC /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70C4B8322AB403A001BD6CC /* AboutViewController.swift */; };
 		A70C4B8722AB4869001BD6CC /* ServerKeyStringConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70C4B8622AB4869001BD6CC /* ServerKeyStringConvenience.swift */; };
+		A70C4B8E22ABFFF0001BD6CC /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70C4B8D22ABFFF0001BD6CC /* FilterViewController.swift */; };
+		A70C4B9122ACB6DA001BD6CC /* NaturalLanguageProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70C4B9022ACB6DA001BD6CC /* NaturalLanguageProcessor.swift */; };
 		A722066722A4B56000E1C256 /* ColorGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722066622A4B56000E1C256 /* ColorGenerator.swift */; };
 		A722066922A4BFF200E1C256 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722066822A4BFF200E1C256 /* GradientView.swift */; };
 		A722066F22A575FD00E1C256 /* RandomizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722066E22A575FD00E1C256 /* RandomizeViewController.swift */; };
@@ -338,6 +340,8 @@
 		A70C4B8122AA9626001BD6CC /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		A70C4B8322AB403A001BD6CC /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		A70C4B8622AB4869001BD6CC /* ServerKeyStringConvenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerKeyStringConvenience.swift; sourceTree = "<group>"; };
+		A70C4B8D22ABFFF0001BD6CC /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		A70C4B9022ACB6DA001BD6CC /* NaturalLanguageProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaturalLanguageProcessor.swift; sourceTree = "<group>"; };
 		A722066622A4B56000E1C256 /* ColorGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorGenerator.swift; sourceTree = "<group>"; };
 		A722066822A4BFF200E1C256 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		A722066E22A575FD00E1C256 /* RandomizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomizeViewController.swift; sourceTree = "<group>"; };
@@ -999,9 +1003,9 @@
 		A70C4B7722AA081B001BD6CC /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				A70C4B7A22AA0841001BD6CC /* Controller */,
-				A70C4B7922AA0833001BD6CC /* Views */,
 				A70C4B7822AA082B001BD6CC /* Model */,
+				A70C4B7922AA0833001BD6CC /* Views */,
+				A70C4B7A22AA0841001BD6CC /* Controller */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1036,6 +1040,56 @@
 				A70C4B8622AB4869001BD6CC /* ServerKeyStringConvenience.swift */,
 			);
 			path = "Server URL";
+			sourceTree = "<group>";
+		};
+		A70C4B8822ABFEB7001BD6CC /* Model View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A70C4B8922ABFF66001BD6CC /* Filter */,
+				A70C4B7722AA081B001BD6CC /* Settings */,
+				A722066A22A5755600E1C256 /* Randomize */,
+			);
+			path = "Model View Controllers";
+			sourceTree = "<group>";
+		};
+		A70C4B8922ABFF66001BD6CC /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				A70C4B8B22ABFF74001BD6CC /* Model */,
+				A70C4B8A22ABFF6E001BD6CC /* Views */,
+				A70C4B8C22ABFF7B001BD6CC /* Controller */,
+			);
+			path = Filter;
+			sourceTree = "<group>";
+		};
+		A70C4B8A22ABFF6E001BD6CC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A70C4B8B22ABFF74001BD6CC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A70C4B8C22ABFF7B001BD6CC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A70C4B8D22ABFFF0001BD6CC /* FilterViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		A70C4B8F22ACB6AD001BD6CC /* Natural Language Processing */ = {
+			isa = PBXGroup;
+			children = (
+				A70C4B9022ACB6DA001BD6CC /* NaturalLanguageProcessor.swift */,
+			);
+			path = "Natural Language Processing";
 			sourceTree = "<group>";
 		};
 		A722066422A4139800E1C256 /* Colors */ = {
@@ -1146,9 +1200,8 @@
 			children = (
 				A7FC85E5229CEA81002C386F /* ViewController.swift */,
 				A7FC85E7229CEA81002C386F /* Main.storyboard */,
+				A70C4B8822ABFEB7001BD6CC /* Model View Controllers */,
 				A76915B322A0DB2D00FB616F /* Domain View */,
-				A70C4B7722AA081B001BD6CC /* Settings */,
-				A722066A22A5755600E1C256 /* Randomize */,
 				A7FC85FF229EDA9B002C386F /* Social Network View */,
 				A7FC85F7229DDA9F002C386F /* Resources */,
 				A7FC85F6229DDA95002C386F /* Source */,
@@ -1190,6 +1243,7 @@
 		A7FC85F8229DDAAD002C386F /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				A70C4B8F22ACB6AD001BD6CC /* Natural Language Processing */,
 				A70C4B8522AB4815001BD6CC /* Server URL */,
 				A722066422A4139800E1C256 /* Colors */,
 				A7EC016422A366370056E2C7 /* Global Entities */,
@@ -1402,9 +1456,11 @@
 				A70C4B2B22AA0675001BD6CC /* SPFormTextInputTableViewCell.swift in Sources */,
 				A70C4B4522AA0675001BD6CC /* SPUIVisualEffectViewExtenshion.swift in Sources */,
 				A70C4B5C22AA0675001BD6CC /* SPGolubevGolubevIconPack.swift in Sources */,
+				A70C4B8E22ABFFF0001BD6CC /* FilterViewController.swift in Sources */,
 				A70C4B6F22AA0675001BD6CC /* SPDelay.swift in Sources */,
 				A70C4B0C22AA0675001BD6CC /* SPNativeLoginNavigationController.swift in Sources */,
 				A7FC85FE229DDC65002C386F /* SocialChecker.swift in Sources */,
+				A70C4B9122ACB6DA001BD6CC /* NaturalLanguageProcessor.swift in Sources */,
 				A70C4B7522AA0675001BD6CC /* SPShare.swift in Sources */,
 				A70C4B4722AA0675001BD6CC /* SPTextFieldExtenshion.swift in Sources */,
 				A70C4B6C22AA0675001BD6CC /* SPDevice.swift in Sources */,

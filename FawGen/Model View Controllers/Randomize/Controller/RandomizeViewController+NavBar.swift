@@ -28,13 +28,15 @@ extension RandomizeViewController {
     }
     
     private func setupRightNavItems() {
-        let collection = [("settings" , #selector(pushedSettingButton)),
-                          ("filter" , #selector(pushedFilterButton)),
-                          ("favorites_filled" , #selector(pushedFavoriteButton))]
+        let collection = [("settings_colored" , #selector(pushedSettingButton)),
+                          ("filter_colored" , #selector(pushedFilterButton)),
+                          ("favorites_colored" , #selector(pushedFavoriteButton))]
         var barButtonItems = [UIBarButtonItem]()
         for (imageName, selector) in collection {
             let itemButton = UIButton(type: .system)
-            itemButton.setImage(UIImage(named: imageName)?.withRenderingMode(.alwaysTemplate), for: .normal)
+            itemButton.translatesAutoresizingMaskIntoConstraints = false
+            itemButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+            itemButton.setImage(UIImage(named: imageName)?.withRenderingMode(.alwaysOriginal), for: .normal)
             itemButton.tintColor = FawGenColors.secondary.color
             itemButton.addTarget(self, action: selector, for: .touchUpInside)
             let itemBarButton = UIBarButtonItem(customView: itemButton)
@@ -55,12 +57,10 @@ extension RandomizeViewController {
     // MARK: - Buttons Push Actions
     
     @objc private func pushedLogoButton() {
-        print("pushedLogoButton")
         pushLogoWebsiteViewController()
     }
     
     @objc private func pushedFilterButton() {
-        print("pushedFilterButton")
         presentFilterViewController()
     }
     
@@ -69,7 +69,6 @@ extension RandomizeViewController {
     }
     
     @objc private func pushedSettingButton() {
-        print("pushedSettingButton")
         presentSettingsViewController()
     }
     
@@ -81,7 +80,7 @@ extension RandomizeViewController {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let settingsVC = storyBoard.instantiateViewController(withIdentifier: "SettingsVC")
         self.navigationController?.pushViewController(settingsVC, animated: true)
-
+        
     }
     
     /// Presents as Lark  transition (slides up to reveal behind)
@@ -89,13 +88,18 @@ extension RandomizeViewController {
     /// - Warning: The height of display must be define in respect
     /// of the screen size (depending on the type of iPhone)
     private func presentFilterViewController() {
+        
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let previousVC = storyBoard.instantiateViewController(withIdentifier: "PreviousVC")
-        previousVC.view.backgroundColor = .gray
-        let ratio = 3.0 / CGFloat(4)
-        let vcHeight = view.bounds.height * ratio // 2/3 of the phone heigth
-        print("Screen: \(view.bounds.height) --> Lark: \(vcHeight)")
-        self.presentAsLark(previousVC, height: vcHeight, complection: nil)
+        let filterVC = storyBoard.instantiateViewController(withIdentifier: "FilterVC") as! FilterViewController
+        let transitionDelegate = SPLarkTransitioningDelegate()
+        filterVC.transitioningDelegate = transitionDelegate
+        filterVC.modalPresentationStyle = .custom
+        filterVC.modalPresentationCapturesStatusBarAppearance = true
+        let ratio = 3.0 / CGFloat(4) // --> 3/4 or 75%
+        let vcHeight = view.bounds.height * ratio
+        //filterVC.view.layoutIfNeeded()
+        self.presentAsLark(filterVC, height: vcHeight, complection: nil)
+        
     }
     
     /// Presents as push transition the About view controller web view
