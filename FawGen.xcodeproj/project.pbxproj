@@ -160,6 +160,10 @@
 		A70C4B8722AB4869001BD6CC /* ServerKeyStringConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70C4B8622AB4869001BD6CC /* ServerKeyStringConvenience.swift */; };
 		A70C4B8E22ABFFF0001BD6CC /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70C4B8D22ABFFF0001BD6CC /* FilterViewController.swift */; };
 		A70C4B9122ACB6DA001BD6CC /* NaturalLanguageProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70C4B9022ACB6DA001BD6CC /* NaturalLanguageProcessor.swift */; };
+		A70C4BB422ADAA0C001BD6CC /* GMStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70C4BB322ADAA0C001BD6CC /* GMStepper.swift */; };
+		A70C4BB622ADCA85001BD6CC /* TEOStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70C4BB522ADCA85001BD6CC /* TEOStepper.swift */; };
+		A70C4BB922ADE0F3001BD6CC /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70C4BB822ADE0F3001BD6CC /* UIButtonExtension.swift */; };
+		A70C4BBB22ADED1A001BD6CC /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70C4BBA22ADED1A001BD6CC /* UILabelExtension.swift */; };
 		A722066722A4B56000E1C256 /* ColorGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722066622A4B56000E1C256 /* ColorGenerator.swift */; };
 		A722066922A4BFF200E1C256 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722066822A4BFF200E1C256 /* GradientView.swift */; };
 		A722066F22A575FD00E1C256 /* RandomizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722066E22A575FD00E1C256 /* RandomizeViewController.swift */; };
@@ -342,6 +346,10 @@
 		A70C4B8622AB4869001BD6CC /* ServerKeyStringConvenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerKeyStringConvenience.swift; sourceTree = "<group>"; };
 		A70C4B8D22ABFFF0001BD6CC /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		A70C4B9022ACB6DA001BD6CC /* NaturalLanguageProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaturalLanguageProcessor.swift; sourceTree = "<group>"; };
+		A70C4BB322ADAA0C001BD6CC /* GMStepper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GMStepper.swift; sourceTree = "<group>"; };
+		A70C4BB522ADCA85001BD6CC /* TEOStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TEOStepper.swift; sourceTree = "<group>"; };
+		A70C4BB822ADE0F3001BD6CC /* UIButtonExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
+		A70C4BBA22ADED1A001BD6CC /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
 		A722066622A4B56000E1C256 /* ColorGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorGenerator.swift; sourceTree = "<group>"; };
 		A722066822A4BFF200E1C256 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		A722066E22A575FD00E1C256 /* RandomizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomizeViewController.swift; sourceTree = "<group>"; };
@@ -1092,6 +1100,23 @@
 			path = "Natural Language Processing";
 			sourceTree = "<group>";
 		};
+		A70C4BB222ADA9F3001BD6CC /* GMStepper */ = {
+			isa = PBXGroup;
+			children = (
+				A70C4BB322ADAA0C001BD6CC /* GMStepper.swift */,
+				A70C4BB522ADCA85001BD6CC /* TEOStepper.swift */,
+			);
+			path = GMStepper;
+			sourceTree = "<group>";
+		};
+		A70C4BB722ADE0CA001BD6CC /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				A70C4BB822ADE0F3001BD6CC /* UIButtonExtension.swift */,
+			);
+			path = Animations;
+			sourceTree = "<group>";
+		};
 		A722066422A4139800E1C256 /* Colors */ = {
 			isa = PBXGroup;
 			children = (
@@ -1234,6 +1259,7 @@
 		A7FC85F7229DDA9F002C386F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A70C4BB222ADA9F3001BD6CC /* GMStepper */,
 				A70C4A2C22AA0655001BD6CC /* SPStork Source */,
 				A70C4A1522AA0611001BD6CC /* SPLarkController */,
 			);
@@ -1243,6 +1269,7 @@
 		A7FC85F8229DDAAD002C386F /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				A70C4BB722ADE0CA001BD6CC /* Animations */,
 				A70C4B8F22ACB6AD001BD6CC /* Natural Language Processing */,
 				A70C4B8522AB4815001BD6CC /* Server URL */,
 				A722066422A4139800E1C256 /* Colors */,
@@ -1285,6 +1312,7 @@
 			isa = PBXGroup;
 			children = (
 				A76915BE22A218BA00FB616F /* TypeAlias.swift */,
+				A70C4BBA22ADED1A001BD6CC /* UILabelExtension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1384,6 +1412,7 @@
 				A70C4B4122AA0675001BD6CC /* SPUserDefaultsExtenshion.swift in Sources */,
 				A70C4A2522AA0611001BD6CC /* SPLarkSettingsController.swift in Sources */,
 				A70C4B3A22AA0675001BD6CC /* SPUITableViewCellExtenshion.swift in Sources */,
+				A70C4BB622ADCA85001BD6CC /* TEOStepper.swift in Sources */,
 				A70C4AF422AA0675001BD6CC /* SPStorkDismissingAnimationController.swift in Sources */,
 				A70C4B8022AA95D4001BD6CC /* SettingsViewController.swift in Sources */,
 				A70C4B2622AA0675001BD6CC /* SPFormButtonTableViewCell.swift in Sources */,
@@ -1392,6 +1421,7 @@
 				A70C4B6122AA0675001BD6CC /* SPDownloader.swift in Sources */,
 				A7FC862E229F4265002C386F /* SocialView.swift in Sources */,
 				A70C4B6522AA0675001BD6CC /* SPTwitter.swift in Sources */,
+				A70C4BBB22ADED1A001BD6CC /* UILabelExtension.swift in Sources */,
 				A70C4B0222AA0675001BD6CC /* SPAppStoreActionButton.swift in Sources */,
 				A70C4B5922AA0675001BD6CC /* SPCodeSocialIconPack.swift in Sources */,
 				A70C4B6722AA0675001BD6CC /* SPTelegram.swift in Sources */,
@@ -1450,6 +1480,7 @@
 				A70C4B5F22AA0675001BD6CC /* SPAnimationAlpha.swift in Sources */,
 				A70C4B6822AA0675001BD6CC /* SPInstagram.swift in Sources */,
 				A70C4B4822AA0675001BD6CC /* SPUITabBarControllerExtenshion.swift in Sources */,
+				A70C4BB922ADE0F3001BD6CC /* UIButtonExtension.swift in Sources */,
 				A70C4A2222AA0611001BD6CC /* SPLarkController.swift in Sources */,
 				A70C4B3422AA0675001BD6CC /* SPLabel.swift in Sources */,
 				A70C4B5322AA0675001BD6CC /* SPMail.swift in Sources */,
@@ -1495,6 +1526,7 @@
 				A70C4B8422AB403A001BD6CC /* AboutViewController.swift in Sources */,
 				A7FC8605229EE905002C386F /* SocialMedia.swift in Sources */,
 				A70C4B7322AA0675001BD6CC /* SPPermission.swift in Sources */,
+				A70C4BB422ADAA0C001BD6CC /* GMStepper.swift in Sources */,
 				A70C4B0322AA0675001BD6CC /* SPAppleMusicButton.swift in Sources */,
 				A76915B722A0DB8600FB616F /* DomainView.swift in Sources */,
 				A70C4B0D22AA0675001BD6CC /* SPNativeLoginViewController.swift in Sources */,

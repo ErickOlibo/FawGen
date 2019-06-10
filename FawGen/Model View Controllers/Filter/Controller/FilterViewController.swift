@@ -20,6 +20,11 @@ class FilterViewController: UIViewController {
     @IBOutlet weak var advancedLabel: UILabel!
     @IBOutlet weak var keywordsTextField: UITextField!
     @IBOutlet weak var sendButton: UIButton!
+    @IBOutlet weak var lengthStepper: TEOStepper!
+    @IBOutlet weak var lengthOnOffButton: UIButton!
+    
+    
+    
     
     // Collection for the words in corpus Level
     @IBOutlet var wordsLevelMeter: [UIView]!
@@ -30,6 +35,12 @@ class FilterViewController: UIViewController {
         // More actions like Go to the Randomizer
         keywordsTextField.resignFirstResponder()
     }
+    
+    @IBAction func tappedLengthOnOff(_ sender: UIButton) {
+        sender.pulse()
+        print("Length is On - Off")
+    }
+    
 
     override open var preferredStatusBarUpdateAnimation: UIStatusBarAnimation { return .slide }
     
@@ -48,6 +59,7 @@ class FilterViewController: UIViewController {
         setCloseButton()
         updateUI()
         setWordsLevelMeter()
+        lengthStepperUI()
     }
     
     // Dismiss keyboard at touch outside textField and inside filterVC
@@ -59,6 +71,18 @@ class FilterViewController: UIViewController {
 }
 
 extension FilterViewController {
+    
+    // Set up the LengthStepper
+    private func lengthStepperUI() {
+        let collection: [Double : String] = [6 : "6 letters", 7 : "7 letters", 8 : "8 letters", 9 : "9 letters", 10 : "10 letters", 11 : "11 letters", 12 : "12 letters", 13 : "13 letters", 14 : "14 letters", 15 : "15 letters", 16 : "16 letters" ]
+        lengthStepper.textCollection = collection
+        lengthStepper.value = 8
+        lengthStepper.minimumValue = 6
+        lengthStepper.maximumValue = 16
+        lengthStepper.labelWidthWeight = 0.5
+        lengthStepper.labelSlideLength = 20
+        
+    }
     
     // Set the wordLevelMeter
     private func setWordsLevelMeter(for count: Int = 0) {
