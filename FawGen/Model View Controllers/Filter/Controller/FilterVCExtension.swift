@@ -19,42 +19,69 @@ extension FilterViewController {
     private func setupLengthStepper() {
         let collection: [Double : String] = [6 : "6 letters", 7 : "7 letters", 8 : "8 letters", 9 : "9 letters", 10 : "10 letters", 11 : "11 letters", 12 : "12 letters", 13 : "13 letters", 14 : "14 letters", 15 : "15 letters", 16 : "16 letters" ]
         lengthStepper.textCollection = collection
-        lengthStepper.value = 8
+        lengthStepper.value = DefaultDB.getValue(for: .length)! as Double
         lengthStepper.minimumValue = 6
         lengthStepper.maximumValue = 16
-        lengthStepper.labelWidthWeight = 0.5
-        lengthStepper.labelSlideLength = 20
-         
-        // Set the colors after
-        
+        enabledStatus(for: lengthStepper)
     }
     
     private func setupTypeStepper() {
         let collection: [Double : String] = [1 : "alpha", 2 : "beta", 3 : "gamma", 4 : "delta", 5 : "epsilon", 6 : "zeta"]
-        lengthStepper.textCollection = collection
-        lengthStepper.value = 3
-        lengthStepper.minimumValue = 1
-        lengthStepper.maximumValue = 6
-        lengthStepper.labelWidthWeight = 0.5
-        lengthStepper.labelSlideLength = 20
-        
-        // set the color
-        
-        
+        typeStepper.textCollection = collection
+        typeStepper.value = DefaultDB.getValue(for: .type)! as Double
+        typeStepper.minimumValue = 1
+        typeStepper.maximumValue = 6
+        //commonSetup(for: typeStepper)
     }
     
     
     private func setupSymbolStepper() {
         let collection: [Double : String] = [1 : "popular", 2 : "common", 3 : "average", 4 : "uncommon", 5 : "rare"]
-        lengthStepper.textCollection = collection
-        lengthStepper.value = 3
-        lengthStepper.minimumValue = 1
-        lengthStepper.maximumValue = 5
-        lengthStepper.labelWidthWeight = 0.5
-        lengthStepper.labelSlideLength = 20
-        
-        // set the color
+        symbolStepper.textCollection = collection
+        symbolStepper.value = DefaultDB.getValue(for: .symbol)! as Double
+        symbolStepper.minimumValue = 1
+        symbolStepper.maximumValue = 5
+        //commonSetup(for: symbolStepper)
     }
+    
+    
+
+    
+    private func enabledStatus(for stepper: TEOStepper) {
+        var onOffIsEnabled = false
+        switch stepper.tag {
+        case 1:
+            onOffIsEnabled = DefaultDB.getValue(for: .lengthOnOff)! as Bool
+        case 2:
+            onOffIsEnabled = DefaultDB.getValue(for: .typeOnOff)! as Bool
+        case 3:
+            onOffIsEnabled = DefaultDB.getValue(for: .symbolOnOff)! as Bool
+        default:
+            break
+        }
+        
+        stepper.isEnabled = onOffIsEnabled
+        stepper.labelBackgroundColor = onOffIsEnabled ? FawGenColors.primary.color : .gray
+        stepper.buttonsBackgroundColor = onOffIsEnabled ? FawGenColors.primaryDark.color : .darkGray
+        stepper.limitHitAnimationColor = onOffIsEnabled ? FawGenColors.primary.color : .gray
+        stepper.buttonsTextColor = onOffIsEnabled ? .white : .clear
+        stepper.labelTextColor = onOffIsEnabled ? .white : .clear
+        
+    }
+
+    
+    public func saveSteppersValues() {
+        let length = lengthStepper.value
+        //let type = typeStepper.value
+        //let symbol = symbolStepper.value
+        DefaultDB.save(length as Double, for: .length)
+        //DefaultDB.save(type as Double, for: .type)
+        //DefaultDB.save(symbol as Double, for: .symbol)
+        
+    }
+    
+    
+    
 }
 
 
@@ -64,13 +91,72 @@ extension FilterViewController {
     // Setting all buttons with the default (all false) or the saved
     // (via userDefault) states
     public func setupOnOffUI() {
-        
+        // Recall from UserDefaults
+        let status = currentOnOffStatus(for: lengthOnOff)
+        updateOnOffUI(for: lengthOnOff, with: status)
+
         
     }
     
-    public func updateOnOffUI(for button: OnOff) {
+    private func currentOnOffStatus(for sender: UIButton) -> Bool {
+        switch sender.tag {
+        case 1:
+            return DefaultDB.getValue(for: .lengthOnOff)! as Bool
+        case 2:
+            return DefaultDB.getValue(for: .typeOnOff)! as Bool
+        case 3:
+            return DefaultDB.getValue(for: .symbolOnOff)! as Bool
+        default:
+            break
+        }
+        return false
+    }
+    
+    public func switchOnOff(for sender: UIButton) {
+        let status = currentOnOffStatus(for: sender)
+        switch sender.tag {
+        case 1:
+            DefaultDB.save(!status, for: .lengthOnOff)
+            enabledStatus(for: lengthStepper)
+        case 2:
+            DefaultDB.save(!status, for: .typeOnOff)
+            enabledStatus(for: typeStepper)
+        case 3:
+            DefaultDB.save(!status, for: .symbolOnOff)
+            enabledStatus(for: symbolStepper)
+        default:
+            break
+        }
+        updateOnOffUI(for: sender, with: !status)
         
+    }
+    
+    private func updateOnOffUI(for sender: UIButton, with status: Bool) {
+        // set the text inside the OnOFf button
+        let normal = "Length\n"
+        let isOn = status ? "On" : "Off"
+        let attributedLength = NSMutableAttributedString(string: normal)
+        let attrs = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 20)]
+        let attributedBold = NSMutableAttributedString(string: isOn, attributes: attrs)
+        attributedLength.append(attributedBold)
+        if status {
+            sender.setAttributedTitle(attributedLength, for: .normal)
+            sender.titleLabel?.textColor = .white
+            sender.backgroundColor = FawGenColors.primary.color
+        } else {
+            sender.setAttributedTitle(attributedLength, for: .normal)
+            sender.titleLabel?.textColor = .lightGray
+            sender.backgroundColor = .darkGray
+        }
         
+    }
+    
+    private func addBoldText(fullString: NSString, boldPartOfString: NSString, font: UIFont!, boldFont: UIFont!) -> NSAttributedString {
+        let nonBoldFontAttribute = [NSAttributedString.Key.font:font!]
+        let boldFontAttribute = [NSAttributedString.Key.font:boldFont!]
+        let boldString = NSMutableAttributedString(string: fullString as String, attributes:nonBoldFontAttribute)
+        boldString.addAttributes(boldFontAttribute, range: fullString.range(of: boldPartOfString as String))
+        return boldString
     }
     
     
@@ -103,8 +189,8 @@ extension FilterViewController {
             DefaultDB.save(3.0 as Double, for: .symbol)
         }
         
-        if DefaultDB.getValue(for: .SymbolOnOff)! as Bool? == nil {
-            DefaultDB.save(false, for: .SymbolOnOff)
+        if DefaultDB.getValue(for: .symbolOnOff)! as Bool? == nil {
+            DefaultDB.save(false, for: .symbolOnOff)
         }
     }
     
@@ -183,6 +269,7 @@ extension FilterViewController {
     }
     
     @objc private func tapCloseButton() {
+        saveSteppersValues()
         keywordsTextField.resignFirstResponder()
         self.dismiss(animated: true, completion: nil)
     }

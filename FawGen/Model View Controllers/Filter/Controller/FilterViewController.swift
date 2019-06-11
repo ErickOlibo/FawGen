@@ -14,10 +14,13 @@ class FilterViewController: UIViewController {
     public let closeButton = SPLarkSettingsCloseButton()
     public let nlp = NaturalLanguageProcessor()
     public let titleLabel = UILabel()
-    public var onOffCollection = [OnOff : Bool]()
-    public enum OnOff: String {
-        case length, type, symbol
-    }
+//    public var onOffCollection = [OnOff : Bool]()
+//    public enum OnOff: String {
+//        case length, type, symbol
+//    }
+//    public enum OnOffButton: Int {
+//        case length = 1, type, symbol
+//    }
     
     
     // MARK: - Outlets
@@ -42,6 +45,7 @@ class FilterViewController: UIViewController {
     
     @IBAction func tappedLengthOnOff(_ sender: UIButton) {
         sender.pulse()
+        switchOnOff(for: sender)
         print("Length is On - Off")
     }
     
@@ -63,9 +67,16 @@ class FilterViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .black
-        setupFilterUI()
         initDataBase()
+        setupFilterUI()
+        setupOnOffUI()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        saveSteppersValues()
+    }
+    
     
     // Dismiss keyboard at touch outside textField and inside filterVC
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

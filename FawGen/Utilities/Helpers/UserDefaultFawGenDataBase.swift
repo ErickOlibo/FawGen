@@ -18,7 +18,7 @@ private let defaults = UserDefaults.standard
 // organizes and saves the simple data values.
 
 public enum LightDB: String, CustomStringConvertible, Equatable {
-    case history, length, lengthOnOff, type, typeOnOff, symbol, SymbolOnOff
+    case history, length, lengthOnOff, type, typeOnOff, symbol, symbolOnOff
     
     public var description: String {
         return self.rawValue
@@ -29,6 +29,7 @@ public struct DefaultDB {
     
     static func save<T: Equatable>(_ value: T, for key: LightDB) {
         defaults.setValue(value, forKey: convert(key))
+        defaults.synchronize()
     }
     
     static func getValue<T: Equatable>(for key: LightDB) -> T? {
@@ -43,14 +44,6 @@ public struct DefaultDB {
     
     
     private static func convert(_ key: LightDB) -> String {
-        //print("Conver Key: \(key.description)")
         return key.description
-//        switch key {
-//        case .history:
-//            return key.rawValue
-//        default:
-//            print("that")
-//        }
-//        return ""
     }
 }

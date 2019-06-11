@@ -202,9 +202,9 @@ public class TEOStepper: UIControl {
     let formatter = NumberFormatter()
     
     /**
-     Width of the sliding animation. When buttons clicked, the middle label does a slide animation towards to the clicked button. Defaults to 5.
+     Width of the sliding animation. When buttons clicked, the middle label does a slide animation towards to the clicked button. Defaults to 15.
      */
-    public var labelSlideLength: CGFloat = 5
+    public var labelSlideLength: CGFloat = 15
     
     /// Duration of the sliding animation
     let labelSlideDuration = TimeInterval(0.2)

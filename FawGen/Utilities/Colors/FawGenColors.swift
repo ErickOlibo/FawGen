@@ -21,6 +21,8 @@ public enum FawGenColors: String, CustomStringConvertible, CaseIterable, Equatab
     case tertiary
     /// Of tint color Green, name code: UFO Green
     case availableStatus
+    /// Of tint color Orange, name code: Darker Orioles Orange
+    case primaryDark
     
     
     
@@ -39,6 +41,8 @@ public enum FawGenColors: String, CustomStringConvertible, CaseIterable, Equatab
             return Colors.tertiary.rawValue.convertedToUIColor()!
         case .availableStatus:
             return Colors.availableStatus.rawValue.convertedToUIColor()!
+        case .primaryDark:
+            return Colors.primaryDark.rawValue.convertedToUIColor()!
         }
     }
 }
@@ -49,4 +53,5 @@ private enum Colors: String {
     case secondary = "#0D2C54" // Prussian Blue
     case tertiary = "FFB400" // UCLA Gold
     case availableStatus = "3CD070" // UFO Green (for available Status
+    case primaryDark = "#BC3000" // Special darker Orange for Steppers
 }
