@@ -164,6 +164,8 @@
 		A70C4BB622ADCA85001BD6CC /* TEOStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70C4BB522ADCA85001BD6CC /* TEOStepper.swift */; };
 		A70C4BB922ADE0F3001BD6CC /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70C4BB822ADE0F3001BD6CC /* UIButtonExtension.swift */; };
 		A70C4BBB22ADED1A001BD6CC /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70C4BBA22ADED1A001BD6CC /* UILabelExtension.swift */; };
+		A70C4BBD22AE05F4001BD6CC /* FilterVCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70C4BBC22AE05F4001BD6CC /* FilterVCExtension.swift */; };
+		A70C4BBF22AE19F4001BD6CC /* UserDefaultFawGenDataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70C4BBE22AE19F4001BD6CC /* UserDefaultFawGenDataBase.swift */; };
 		A722066722A4B56000E1C256 /* ColorGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722066622A4B56000E1C256 /* ColorGenerator.swift */; };
 		A722066922A4BFF200E1C256 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722066822A4BFF200E1C256 /* GradientView.swift */; };
 		A722066F22A575FD00E1C256 /* RandomizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722066E22A575FD00E1C256 /* RandomizeViewController.swift */; };
@@ -350,6 +352,8 @@
 		A70C4BB522ADCA85001BD6CC /* TEOStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TEOStepper.swift; sourceTree = "<group>"; };
 		A70C4BB822ADE0F3001BD6CC /* UIButtonExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		A70C4BBA22ADED1A001BD6CC /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
+		A70C4BBC22AE05F4001BD6CC /* FilterVCExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterVCExtension.swift; sourceTree = "<group>"; };
+		A70C4BBE22AE19F4001BD6CC /* UserDefaultFawGenDataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultFawGenDataBase.swift; sourceTree = "<group>"; };
 		A722066622A4B56000E1C256 /* ColorGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorGenerator.swift; sourceTree = "<group>"; };
 		A722066822A4BFF200E1C256 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		A722066E22A575FD00E1C256 /* RandomizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomizeViewController.swift; sourceTree = "<group>"; };
@@ -1088,6 +1092,7 @@
 			isa = PBXGroup;
 			children = (
 				A70C4B8D22ABFFF0001BD6CC /* FilterViewController.swift */,
+				A70C4BBC22AE05F4001BD6CC /* FilterVCExtension.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1313,6 +1318,7 @@
 			children = (
 				A76915BE22A218BA00FB616F /* TypeAlias.swift */,
 				A70C4BBA22ADED1A001BD6CC /* UILabelExtension.swift */,
+				A70C4BBE22AE19F4001BD6CC /* UserDefaultFawGenDataBase.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1443,6 +1449,7 @@
 				A70C4AF822AA0675001BD6CC /* SPStorkCloseView.swift in Sources */,
 				A70C4B2022AA0675001BD6CC /* SPView.swift in Sources */,
 				A722066922A4BFF200E1C256 /* GradientView.swift in Sources */,
+				A70C4BBF22AE19F4001BD6CC /* UserDefaultFawGenDataBase.swift in Sources */,
 				A722066722A4B56000E1C256 /* ColorGenerator.swift in Sources */,
 				A70C4B5522AA0675001BD6CC /* SPLayout.swift in Sources */,
 				A70C4B0622AA0675001BD6CC /* SPBaseViewController.swift in Sources */,
@@ -1544,6 +1551,7 @@
 				A70C4AF922AA0675001BD6CC /* SPStorkControllerDelegate.swift in Sources */,
 				A70C4B2E22AA0675001BD6CC /* SPImageTableViewCell.swift in Sources */,
 				A70C4B3322AA0675001BD6CC /* SPVideoPlayer.swift in Sources */,
+				A70C4BBD22AE05F4001BD6CC /* FilterVCExtension.swift in Sources */,
 				A7EC016B22A36F1D0056E2C7 /* UILabel+BestFit.swift in Sources */,
 				A70C4B8222AA9626001BD6CC /* SettingsCell.swift in Sources */,
 				A70C4B5822AA0675001BD6CC /* SPCodeAudioIconPack.swift in Sources */,

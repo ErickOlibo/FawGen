@@ -665,7 +665,7 @@
                     <connections>
                         <outlet property="advancedLabel" destination="fU2-Iv-T24" id="cpX-rQ-WE2"/>
                         <outlet property="keywordsTextField" destination="MMX-zD-IRe" id="DsP-fP-Jaf"/>
-                        <outlet property="lengthOnOffButton" destination="tHw-of-h4a" id="LZx-ar-kwK"/>
+                        <outlet property="lengthOnOff" destination="tHw-of-h4a" id="XsA-96-Ink"/>
                         <outlet property="lengthStepper" destination="bJt-Ze-Ba1" id="Jud-tN-CKA"/>
                         <outlet property="sendButton" destination="Qjs-S6-rf1" id="vH3-9P-0Xh"/>
                         <outletCollection property="wordsLevelMeter" destination="t29-YM-8RW" collectionClass="NSMutableArray" id="RrU-Im-PZd"/>
