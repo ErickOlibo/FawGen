@@ -18,23 +18,19 @@ class FilterViewController: UIViewController {
 //    public enum OnOff: String {
 //        case length, type, symbol
 //    }
-//    public enum OnOffButton: Int {
-//        case length = 1, type, symbol
-//    }
+    public enum SettingCategory: Int, CaseIterable, Equatable, Hashable {
+        case length = 1, type, symbol
+    }
     
     
-    // MARK: - Outlets
+    // MARK: - Outlets & Outlets collection
     @IBOutlet weak var advancedLabel: UILabel!
     @IBOutlet weak var keywordsTextField: UITextField!
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet var wordsLevelMeter: [UIView]!
     
-    @IBOutlet weak var lengthStepper: TEOStepper!
-    @IBOutlet weak var lengthOnOff: UIButton!
-    @IBOutlet weak var typeStepper: TEOStepper!
-    @IBOutlet weak var typeOnOff: UIButton!
-    @IBOutlet weak var symbolStepper: TEOStepper!
-    @IBOutlet weak var symbolOnOff: UIButton!
+    @IBOutlet var steppers: [TEOStepper]!
+    @IBOutlet var onOffs: [UIButton]!
     
     
     // MARK: - Actions
@@ -43,20 +39,10 @@ class FilterViewController: UIViewController {
         keywordsTextField.resignFirstResponder()
     }
     
-    @IBAction func tappedLengthOnOff(_ sender: UIButton) {
+    @IBAction func tappedOnOff(_ sender: UIButton) {
         sender.pulse()
         switchOnOff(for: sender)
-        print("Length is On - Off")
-    }
-    
-    @IBAction func tappedTypeOnOff(_ sender: UIButton) {
-        sender.pulse()
-        print("Type is On - Off")
-    }
-    
-    @IBAction func tappedSymbolOnOff(_ sender: UIButton) {
-        sender.pulse()
-        print("Symbol is On - Off")
+        print("tapped OnOff for \(sender.tag)")
     }
     
 
@@ -67,16 +53,18 @@ class FilterViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .black
-        initDataBase()
-        setupFilterUI()
-        setupOnOffUI()
+        setupDataBase()
+        setupCloseButton()
+        setupKeywords()
+        setupSteppers()
+        setupOnOffs()
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         saveSteppersValues()
     }
-    
     
     // Dismiss keyboard at touch outside textField and inside filterVC
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -87,18 +75,16 @@ class FilterViewController: UIViewController {
  
 }
 
-
-// Updates all element of FilterVC UI
-extension FilterViewController {
-    private func setupFilterUI() {
-        setupKeywordsUI()
-        setupCloseButtonUI()
-        setupSteppers()
-        
-    }
-    
-    
-}
+//
+//// Updates all element of FilterVC UI
+//extension FilterViewController {
+//    private func setupFilterUI() {
+//        
+//        
+//    }
+//    
+//    
+//}
 
 
 

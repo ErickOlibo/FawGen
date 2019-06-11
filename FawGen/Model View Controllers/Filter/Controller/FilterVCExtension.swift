@@ -9,41 +9,129 @@
 import UIKit
 
 
+// ************************************** STEPPERS ***************************************
+
 // Extension for the three steppers (Length, Type, Symbol)
 extension FilterViewController {
     
     public func setupSteppers() {
-        setupLengthStepper()
+        for category in SettingCategory.allCases {
+            let collection = getStepperCollection(for: category)
+            let minMax = getStepperMinMaxValue(for: category)
+            let stepper = getStepper(for: category)
+            stepper.textCollection = collection
+            stepper.minimumValue = minMax[0]
+            stepper.maximumValue = minMax[1]
+            switch category {
+            case .length:
+                stepper.value = DefaultDB.getValue(for: .length)! as Double
+            case .type:
+                stepper.value = DefaultDB.getValue(for: .type)! as Double
+            case .symbol:
+                stepper.value = DefaultDB.getValue(for: .symbol)! as Double
+            }
+            enabledStatus(for: stepper)
+        }
     }
     
-    private func setupLengthStepper() {
-        let collection: [Double : String] = [6 : "6 letters", 7 : "7 letters", 8 : "8 letters", 9 : "9 letters", 10 : "10 letters", 11 : "11 letters", 12 : "12 letters", 13 : "13 letters", 14 : "14 letters", 15 : "15 letters", 16 : "16 letters" ]
-        lengthStepper.textCollection = collection
-        lengthStepper.value = DefaultDB.getValue(for: .length)! as Double
-        lengthStepper.minimumValue = 6
-        lengthStepper.maximumValue = 16
-        enabledStatus(for: lengthStepper)
+    public func saveSteppersValues() {
+        for stepper in steppers {
+            let currentValue = stepper.value
+            switch stepper.tag {
+            case 1:
+                DefaultDB.save(currentValue as Double, for: .length)
+            case 2:
+                DefaultDB.save(currentValue as Double, for: .type)
+            case 3:
+                DefaultDB.save(currentValue as Double, for: .symbol)
+            default:
+                break
+            }
+        }
     }
     
-    private func setupTypeStepper() {
-        let collection: [Double : String] = [1 : "alpha", 2 : "beta", 3 : "gamma", 4 : "delta", 5 : "epsilon", 6 : "zeta"]
-        typeStepper.textCollection = collection
-        typeStepper.value = DefaultDB.getValue(for: .type)! as Double
-        typeStepper.minimumValue = 1
-        typeStepper.maximumValue = 6
-        //commonSetup(for: typeStepper)
+    private func getStepper(for category: SettingCategory) -> TEOStepper {
+        return steppers.filter{ $0.tag == category.rawValue }[0]
     }
     
-    
-    private func setupSymbolStepper() {
-        let collection: [Double : String] = [1 : "popular", 2 : "common", 3 : "average", 4 : "uncommon", 5 : "rare"]
-        symbolStepper.textCollection = collection
-        symbolStepper.value = DefaultDB.getValue(for: .symbol)! as Double
-        symbolStepper.minimumValue = 1
-        symbolStepper.maximumValue = 5
-        //commonSetup(for: symbolStepper)
+    private func getStepperCollection(for category: SettingCategory) -> [Double : String] {
+        let lengthCollection: [Double : String] = [6 : "6 letters", 7 : "7 letters", 8 : "8 letters", 9 : "9 letters", 10 : "10 letters", 11 : "11 letters", 12 : "12 letters", 13 : "13 letters", 14 : "14 letters", 15 : "15 letters", 16 : "16 letters" ]
+        let typeCollection: [Double : String] = [1 : "alpha", 2 : "beta", 3 : "gamma", 4 : "delta", 5 : "epsilon", 6 : "zeta"]
+        let symbolCollection: [Double : String] = [1 : "popular", 2 : "common", 3 : "average", 4 : "uncommon", 5 : "rare"]
+        switch category {
+        case .length:
+            return lengthCollection
+        case .type:
+            return typeCollection
+        case .symbol:
+            return symbolCollection
+        }
     }
     
+    private func getStepperMinMaxValue(for category: SettingCategory) -> [Double] {
+        switch category {
+        case .length:
+            return [6, 16]
+        case .type:
+            return [1, 6]
+        case .symbol:
+            return [1, 5]
+        }
+    }
+    
+//    private func setupLengthStepper() {
+//        let collection = getStepperCollection(for: 1)
+//        let stepper = getStepper(with: 1)
+//        stepper.textCollection = collection
+//        stepper.value = DefaultDB.getValue(for: .length)! as Double
+//        stepper.minimumValue = 6
+//        stepper.maximumValue = 16
+//
+//
+//        enabledStatus(for: stepper)
+//    }
+    
+//    private func realSetupAllSteppers() {
+//        for category in SettingCategory.allCases {
+//            let collection = getStepperCollection(for: category)
+//            let minMax = getStepperMinMaxValue(for: category)
+//            let stepper = getStepper(for: category)
+//            stepper.textCollection = collection
+//            stepper.minimumValue = minMax[0]
+//            stepper.maximumValue = minMax[1]
+//            switch category {
+//            case .length:
+//                stepper.value = DefaultDB.getValue(for: .length)! as Double
+//            case .type:
+//                stepper.value = DefaultDB.getValue(for: .type)! as Double
+//            case .symbol:
+//                stepper.value = DefaultDB.getValue(for: .symbol)! as Double
+//            }
+//            enabledStatus(for: stepper)
+//        }
+//    }
+    
+//    private func setupTypeStepper() {
+//        let collection: [Double : String] = [1 : "alpha", 2 : "beta", 3 : "gamma", 4 : "delta", 5 : "epsilon", 6 : "zeta"]
+//        let stepper = getStepper(with: 2)
+//        stepper.textCollection = collection
+//        stepper.value = DefaultDB.getValue(for: .type)! as Double
+//        stepper.minimumValue = 1
+//        stepper.maximumValue = 6
+//        enabledStatus(for: stepper)
+//    }
+//
+//
+//    private func setupSymbolStepper() {
+//        let collection: [Double : String] = [1 : "popular", 2 : "common", 3 : "average", 4 : "uncommon", 5 : "rare"]
+//        let stepper = getStepper(with: 3)
+//        stepper.textCollection = collection
+//        stepper.value = DefaultDB.getValue(for: .symbol)! as Double
+//        stepper.minimumValue = 1
+//        stepper.maximumValue = 5
+//        enabledStatus(for: stepper)
+//    }
+//
     
 
     
@@ -61,7 +149,7 @@ extension FilterViewController {
         }
         
         stepper.isEnabled = onOffIsEnabled
-        stepper.labelBackgroundColor = onOffIsEnabled ? FawGenColors.primary.color : .gray
+        stepper.labelBackgroundColor = onOffIsEnabled ? FawGenColors.primary.color : .darkGray
         stepper.buttonsBackgroundColor = onOffIsEnabled ? FawGenColors.primaryDark.color : .darkGray
         stepper.limitHitAnimationColor = onOffIsEnabled ? FawGenColors.primary.color : .gray
         stepper.buttonsTextColor = onOffIsEnabled ? .white : .clear
@@ -70,33 +158,52 @@ extension FilterViewController {
     }
 
     
-    public func saveSteppersValues() {
-        let length = lengthStepper.value
-        //let type = typeStepper.value
-        //let symbol = symbolStepper.value
-        DefaultDB.save(length as Double, for: .length)
-        //DefaultDB.save(type as Double, for: .type)
-        //DefaultDB.save(symbol as Double, for: .symbol)
-        
-    }
     
-    
-    
+ 
 }
 
+// ************************************** ON OFF TAP ***************************************
 
 // Extension for the handling of OnOff tapp
 extension FilterViewController {
     
-    // Setting all buttons with the default (all false) or the saved
-    // (via userDefault) states
-    public func setupOnOffUI() {
-        // Recall from UserDefaults
-        let status = currentOnOffStatus(for: lengthOnOff)
-        updateOnOffUI(for: lengthOnOff, with: status)
-
+    public func setupOnOffs() {
+        for category in SettingCategory.allCases {
+            setupOnOff(for: category)
+        }
         
     }
+    
+//    // Setting all buttons with the default (all false) or the saved
+//    // (via userDefault) states
+//    public func setupOnOffUI() {
+//        // Recall from UserDefaults
+//        let status = currentOnOffStatus(for: lengthOnOff)
+//        updateOnOffUI(for: lengthOnOff, with: status)
+//
+//
+//    }
+    
+    private func setupOnOff(for category: SettingCategory) {
+        var button = UIButton()
+        switch category {
+        case .length:
+            button = getOnOffButton(for: .length)
+        case .type:
+            button = getOnOffButton(for: .type)
+        case .symbol:
+            button = getOnOffButton(for: .symbol)
+        }
+        //button.contentHorizontalAlignment = .center
+        //button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+        let status = currentOnOffStatus(for: button)
+        updateOnOff(for: button, with: status)
+    }
+    
+    private func getOnOffButton(for category: SettingCategory) -> UIButton {
+        return onOffs.filter{ $0.tag == category.rawValue }[0]
+    }
+    
     
     private func currentOnOffStatus(for sender: UIButton) -> Bool {
         switch sender.tag {
@@ -114,26 +221,35 @@ extension FilterViewController {
     
     public func switchOnOff(for sender: UIButton) {
         let status = currentOnOffStatus(for: sender)
+        var stepper = TEOStepper()
         switch sender.tag {
         case 1:
             DefaultDB.save(!status, for: .lengthOnOff)
-            enabledStatus(for: lengthStepper)
+            stepper = getStepper(for: .length)
         case 2:
             DefaultDB.save(!status, for: .typeOnOff)
-            enabledStatus(for: typeStepper)
+            stepper = getStepper(for: .type)
         case 3:
             DefaultDB.save(!status, for: .symbolOnOff)
-            enabledStatus(for: symbolStepper)
+            stepper = getStepper(for: .symbol)
         default:
             break
         }
-        updateOnOffUI(for: sender, with: !status)
+        enabledStatus(for: stepper)
+        updateOnOff(for: sender, with: !status)
         
     }
     
-    private func updateOnOffUI(for sender: UIButton, with status: Bool) {
+    
+    private func onOfftext(for sender: UIButton) -> String {
+        let onOffLabels = ["Length\n", "Type\n", "Symbol\n"]
+        return onOffLabels[sender.tag - 1]
+    }
+    
+    
+    private func updateOnOff(for sender: UIButton, with status: Bool) {
         // set the text inside the OnOFf button
-        let normal = "Length\n"
+        let normal = onOfftext(for: sender)
         let isOn = status ? "On" : "Off"
         let attributedLength = NSMutableAttributedString(string: normal)
         let attrs = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 20)]
@@ -162,12 +278,15 @@ extension FilterViewController {
     
 }
 
+
+// ************************************** USER DATABASE ***************************************
+
 // Extension for the UserDefaults initial state.
 // Should only be initialized at the first time FilterVC
 // is loaded.
 extension FilterViewController {
     
-    public func initDataBase() {
+    public func setupDataBase() {
         
         if DefaultDB.getValue(for: .length)! as Double? == nil {
             DefaultDB.save(8.0 as Double, for: .length)
@@ -198,11 +317,12 @@ extension FilterViewController {
 }
 
 
+// ************************************** KEYWORDS DESCRIPTION ***************************************
 
 // Extension for the Keywords / Description textField
 extension FilterViewController {
     
-    public func setupKeywordsUI() {
+    public func setupKeywords() {
         keywordsTextField.delegate = self
         advancedLabel.textColor = .white
         sendButton.layer.cornerRadius = sendButton.bounds.height / 2
@@ -259,9 +379,11 @@ extension FilterViewController {
     
 }
 
+
+// ************************************** CLOSE BUTTON ***************************************
 // Extension for the close button
 extension FilterViewController {
-    public func setupCloseButtonUI() {
+    public func setupCloseButton() {
         closeButton.sizeToFit()
         closeButton.addTarget(self, action: #selector(tapCloseButton), for: .touchUpInside)
         closeButton.frame = CGRect(x: view.bounds.width - 50, y: 20, width: 30, height: 30)
@@ -277,6 +399,7 @@ extension FilterViewController {
 
 
 
+// ************************************** TEXT FIELD DELEGATE ***************************************
 
 extension FilterViewController: UITextFieldDelegate {
     

@@ -600,7 +600,7 @@
                                     </view>
                                 </subviews>
                             </stackView>
-                            <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bJt-Ze-Ba1" customClass="TEOStepper" customModule="FawGen" customModuleProvider="target">
+                            <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bJt-Ze-Ba1" userLabel="LengthStepper" customClass="TEOStepper" customModule="FawGen" customModuleProvider="target">
                                 <rect key="frame" x="20" y="230" width="200" height="60"/>
                                 <color key="backgroundColor" red="0.92946392300000003" green="0.2235597523" blue="0.1038471399" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -613,7 +613,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tHw-of-h4a" userLabel="lengthOnOff">
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tHw-of-h4a" userLabel="LengthOnOff">
                                 <rect key="frame" x="240" y="230" width="60" height="60"/>
                                 <color key="backgroundColor" red="0.92946392300000003" green="0.2235597523" blue="0.1038471399" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -631,7 +631,39 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="tappedLengthOnOff:" destination="kfp-0M-PlI" eventType="touchUpInside" id="tH6-ol-LzX"/>
+                                    <action selector="tappedOnOff:" destination="kfp-0M-PlI" eventType="touchUpInside" id="NBT-6H-gGW"/>
+                                </connections>
+                            </button>
+                            <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L5T-OE-VZE" userLabel="TypeStepper" customClass="TEOStepper" customModule="FawGen" customModuleProvider="target">
+                                <rect key="frame" x="20" y="320" width="200" height="60"/>
+                                <color key="backgroundColor" red="0.92946392300000003" green="0.2235597523" blue="0.1038471399" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="Xhx-Yk-iNh"/>
+                                    <constraint firstAttribute="width" secondItem="L5T-OE-VZE" secondAttribute="height" multiplier="10:3" id="mCM-4L-PNF"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Gye-s8-PG3" userLabel="TypeOnOff">
+                                <rect key="frame" x="240" y="320" width="60" height="60"/>
+                                <color key="backgroundColor" red="0.92946392300000003" green="0.2235597523" blue="0.1038471399" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="Jbt-ZE-3nr"/>
+                                    <constraint firstAttribute="width" secondItem="Gye-s8-PG3" secondAttribute="height" multiplier="1:1" id="uai-mi-bxI"/>
+                                </constraints>
+                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                <state key="normal" title=""/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="tappedOnOff:" destination="kfp-0M-PlI" eventType="touchUpInside" id="ja4-EA-8n9"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TAi-Dj-gCj" userLabel="Separator">
@@ -641,26 +673,68 @@
                                     <constraint firstAttribute="height" constant="2" id="2k3-4a-C7T"/>
                                 </constraints>
                             </view>
+                            <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZU2-f3-njA" userLabel="SymbolStepper" customClass="TEOStepper" customModule="FawGen" customModuleProvider="target">
+                                <rect key="frame" x="20" y="410" width="200" height="60"/>
+                                <color key="backgroundColor" red="0.92946392300000003" green="0.2235597523" blue="0.1038471399" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="Pn0-wq-fsu"/>
+                                    <constraint firstAttribute="width" secondItem="ZU2-f3-njA" secondAttribute="height" multiplier="10:3" id="w0f-Xy-jZy"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Th-jy-DZQ" userLabel="SymbolOnOff">
+                                <rect key="frame" x="240" y="410" width="60" height="60"/>
+                                <color key="backgroundColor" red="0.92946392300000003" green="0.2235597523" blue="0.1038471399" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="5Th-jy-DZQ" secondAttribute="height" multiplier="1:1" id="SJ3-Vm-gVj"/>
+                                    <constraint firstAttribute="width" constant="60" id="eyz-02-tv8"/>
+                                </constraints>
+                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="tappedOnOff:" destination="kfp-0M-PlI" eventType="touchUpInside" id="cPc-te-MTc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.23529411759999999" green="0.34509803919999998" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="TAi-Dj-gCj" firstAttribute="leading" secondItem="4fE-r6-jXH" secondAttribute="leading" constant="20" id="0K3-bB-CwD"/>
+                            <constraint firstItem="ZU2-f3-njA" firstAttribute="leading" secondItem="4fE-r6-jXH" secondAttribute="leading" constant="20" id="3bE-HK-1Ve"/>
                             <constraint firstItem="MMX-zD-IRe" firstAttribute="top" secondItem="8O2-R8-HaD" secondAttribute="bottom" constant="5" id="5mD-93-yJ6"/>
                             <constraint firstItem="4fE-r6-jXH" firstAttribute="top" secondItem="Qjs-S6-rf1" secondAttribute="bottom" constant="-127" id="8FA-e1-hZD"/>
                             <constraint firstItem="tHw-of-h4a" firstAttribute="top" secondItem="4fE-r6-jXH" secondAttribute="top" constant="186" id="8Xd-W9-OCC"/>
                             <constraint firstItem="TAi-Dj-gCj" firstAttribute="top" secondItem="4fE-r6-jXH" secondAttribute="top" constant="147" id="ANd-02-MMQ"/>
+                            <constraint firstItem="Gye-s8-PG3" firstAttribute="top" secondItem="tHw-of-h4a" secondAttribute="bottom" constant="30" id="I05-VW-xm4"/>
+                            <constraint firstItem="5Th-jy-DZQ" firstAttribute="top" secondItem="Gye-s8-PG3" secondAttribute="bottom" constant="30" id="LKV-52-RTU"/>
                             <constraint firstItem="MMX-zD-IRe" firstAttribute="top" secondItem="fU2-Iv-T24" secondAttribute="bottom" constant="30" id="NHT-g0-G19"/>
                             <constraint firstItem="fU2-Iv-T24" firstAttribute="leading" secondItem="4fE-r6-jXH" secondAttribute="leading" constant="25" id="PoJ-PZ-K3y"/>
                             <constraint firstItem="8O2-R8-HaD" firstAttribute="leading" secondItem="4fE-r6-jXH" secondAttribute="leading" constant="30" id="RaU-DS-axC"/>
                             <constraint firstItem="4fE-r6-jXH" firstAttribute="trailing" secondItem="Qjs-S6-rf1" secondAttribute="trailing" constant="20" id="SVB-vr-9ll"/>
                             <constraint firstItem="4fE-r6-jXH" firstAttribute="trailing" secondItem="8O2-R8-HaD" secondAttribute="trailing" constant="82" id="Vgq-3h-cC6"/>
                             <constraint firstItem="MMX-zD-IRe" firstAttribute="leading" secondItem="4fE-r6-jXH" secondAttribute="leading" constant="20" id="WKn-To-q2l"/>
+                            <constraint firstItem="ZU2-f3-njA" firstAttribute="top" secondItem="L5T-OE-VZE" secondAttribute="bottom" constant="30" id="Y5W-Df-ddg"/>
+                            <constraint firstItem="L5T-OE-VZE" firstAttribute="top" secondItem="bJt-Ze-Ba1" secondAttribute="bottom" constant="30" id="adX-96-Oq1"/>
                             <constraint firstItem="TAi-Dj-gCj" firstAttribute="centerX" secondItem="4fE-r6-jXH" secondAttribute="centerX" id="bh0-6I-xbu"/>
                             <constraint firstItem="bJt-Ze-Ba1" firstAttribute="leading" secondItem="4fE-r6-jXH" secondAttribute="leading" constant="20" id="cM8-Zn-UkT"/>
                             <constraint firstItem="bJt-Ze-Ba1" firstAttribute="top" secondItem="4fE-r6-jXH" secondAttribute="top" constant="186" id="gET-C4-nLH"/>
+                            <constraint firstItem="tHw-of-h4a" firstAttribute="leading" secondItem="bJt-Ze-Ba1" secondAttribute="trailing" constant="20" id="gRZ-9p-oIk"/>
+                            <constraint firstItem="L5T-OE-VZE" firstAttribute="leading" secondItem="4fE-r6-jXH" secondAttribute="leading" constant="20" id="jaG-3g-HLm"/>
                             <constraint firstItem="4fE-r6-jXH" firstAttribute="trailing" secondItem="TAi-Dj-gCj" secondAttribute="trailing" constant="20" id="kl4-Y5-iCH"/>
                             <constraint firstItem="fU2-Iv-T24" firstAttribute="top" secondItem="4fE-r6-jXH" secondAttribute="top" constant="40" id="mgw-FH-Ttp"/>
-                            <constraint firstItem="tHw-of-h4a" firstAttribute="leading" secondItem="4fE-r6-jXH" secondAttribute="leading" constant="240" id="rRh-E6-XC5"/>
+                            <constraint firstItem="5Th-jy-DZQ" firstAttribute="leading" secondItem="ZU2-f3-njA" secondAttribute="trailing" constant="20" id="v0t-1r-QzW"/>
+                            <constraint firstItem="Gye-s8-PG3" firstAttribute="leading" secondItem="L5T-OE-VZE" secondAttribute="trailing" constant="20" id="waV-40-iz6"/>
                             <constraint firstItem="4fE-r6-jXH" firstAttribute="trailing" secondItem="MMX-zD-IRe" secondAttribute="trailing" constant="70" id="wip-Gs-JWM"/>
                             <constraint firstItem="4fE-r6-jXH" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fU2-Iv-T24" secondAttribute="trailing" symbolic="YES" id="xqm-d1-lhL"/>
                         </constraints>
@@ -669,14 +743,18 @@
                     <connections>
                         <outlet property="advancedLabel" destination="fU2-Iv-T24" id="cpX-rQ-WE2"/>
                         <outlet property="keywordsTextField" destination="MMX-zD-IRe" id="DsP-fP-Jaf"/>
-                        <outlet property="lengthOnOff" destination="tHw-of-h4a" id="XsA-96-Ink"/>
-                        <outlet property="lengthStepper" destination="bJt-Ze-Ba1" id="Jud-tN-CKA"/>
                         <outlet property="sendButton" destination="Qjs-S6-rf1" id="vH3-9P-0Xh"/>
                         <outletCollection property="wordsLevelMeter" destination="t29-YM-8RW" collectionClass="NSMutableArray" id="RrU-Im-PZd"/>
                         <outletCollection property="wordsLevelMeter" destination="ayL-Fe-W8e" collectionClass="NSMutableArray" id="Y9O-Ai-T9U"/>
                         <outletCollection property="wordsLevelMeter" destination="35V-Oo-lp6" collectionClass="NSMutableArray" id="3Vn-h8-4tT"/>
                         <outletCollection property="wordsLevelMeter" destination="iWT-dA-bps" collectionClass="NSMutableArray" id="7i1-Oj-mMr"/>
                         <outletCollection property="wordsLevelMeter" destination="XK4-VH-TIa" collectionClass="NSMutableArray" id="mrx-ZW-crM"/>
+                        <outletCollection property="steppers" destination="bJt-Ze-Ba1" collectionClass="NSMutableArray" id="vAU-iZ-Shi"/>
+                        <outletCollection property="steppers" destination="L5T-OE-VZE" collectionClass="NSMutableArray" id="MMB-R1-n4O"/>
+                        <outletCollection property="steppers" destination="ZU2-f3-njA" collectionClass="NSMutableArray" id="FLS-sS-i2e"/>
+                        <outletCollection property="onOffs" destination="tHw-of-h4a" collectionClass="NSMutableArray" id="nnP-89-sXz"/>
+                        <outletCollection property="onOffs" destination="Gye-s8-PG3" collectionClass="NSMutableArray" id="T1H-hb-bsi"/>
+                        <outletCollection property="onOffs" destination="5Th-jy-DZQ" collectionClass="NSMutableArray" id="IKP-E0-KGh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cza-n0-bbn" userLabel="First Responder" sceneMemberID="firstResponder"/>
