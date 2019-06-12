@@ -51,7 +51,7 @@ extension RandomizeViewController {
     private func setLarkPresentHeight() {
         // set the height with respect to the iphone type
       
-        larkPresentHeight = 480 + UIDevice().safeAreaBottomHeight()
+        larkPresentHeight = 500 + UIDevice().safeAreaBottomHeight()
         print("Lark Height: \(larkPresentHeight)")
     }
     

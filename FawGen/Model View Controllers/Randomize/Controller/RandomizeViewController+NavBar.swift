@@ -99,9 +99,9 @@ extension RandomizeViewController {
         filterVC.modalPresentationStyle = .custom
         filterVC.modalPresentationCapturesStatusBarAppearance = true
         
-        let phoneHeight = UIScreen.main.nativeBounds.height
-        let (h, m) = UIDevice().currentPhoneHeightName()
-        print("Phone Height: \(phoneHeight) - Device: [\(h), \(m)]")
+//        let phoneHeight = UIScreen.main.nativeBounds.height
+//        let (h, m) = UIDevice().currentPhoneHeightName()
+//        //print("Phone Height: \(phoneHeight) - Device: [\(h), \(m)]")
 
         self.presentAsLark(filterVC, height: larkPresentHeight, complection: nil)
         

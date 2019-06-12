@@ -79,62 +79,7 @@ extension FilterViewController {
         }
     }
     
-//    private func setupLengthStepper() {
-//        let collection = getStepperCollection(for: 1)
-//        let stepper = getStepper(with: 1)
-//        stepper.textCollection = collection
-//        stepper.value = DefaultDB.getValue(for: .length)! as Double
-//        stepper.minimumValue = 6
-//        stepper.maximumValue = 16
-//
-//
-//        enabledStatus(for: stepper)
-//    }
-    
-//    private func realSetupAllSteppers() {
-//        for category in SettingCategory.allCases {
-//            let collection = getStepperCollection(for: category)
-//            let minMax = getStepperMinMaxValue(for: category)
-//            let stepper = getStepper(for: category)
-//            stepper.textCollection = collection
-//            stepper.minimumValue = minMax[0]
-//            stepper.maximumValue = minMax[1]
-//            switch category {
-//            case .length:
-//                stepper.value = DefaultDB.getValue(for: .length)! as Double
-//            case .type:
-//                stepper.value = DefaultDB.getValue(for: .type)! as Double
-//            case .symbol:
-//                stepper.value = DefaultDB.getValue(for: .symbol)! as Double
-//            }
-//            enabledStatus(for: stepper)
-//        }
-//    }
-    
-//    private func setupTypeStepper() {
-//        let collection: [Double : String] = [1 : "alpha", 2 : "beta", 3 : "gamma", 4 : "delta", 5 : "epsilon", 6 : "zeta"]
-//        let stepper = getStepper(with: 2)
-//        stepper.textCollection = collection
-//        stepper.value = DefaultDB.getValue(for: .type)! as Double
-//        stepper.minimumValue = 1
-//        stepper.maximumValue = 6
-//        enabledStatus(for: stepper)
-//    }
-//
-//
-//    private func setupSymbolStepper() {
-//        let collection: [Double : String] = [1 : "popular", 2 : "common", 3 : "average", 4 : "uncommon", 5 : "rare"]
-//        let stepper = getStepper(with: 3)
-//        stepper.textCollection = collection
-//        stepper.value = DefaultDB.getValue(for: .symbol)! as Double
-//        stepper.minimumValue = 1
-//        stepper.maximumValue = 5
-//        enabledStatus(for: stepper)
-//    }
-//
-    
 
-    
     private func enabledStatus(for stepper: TEOStepper) {
         var onOffIsEnabled = false
         switch stepper.tag {
@@ -158,8 +103,6 @@ extension FilterViewController {
     }
 
     
-    
- 
 }
 
 // ************************************** ON OFF TAP ***************************************
@@ -326,6 +269,7 @@ extension FilterViewController {
 extension FilterViewController {
     
     public func setupKeywords() {
+        keywordsTextField.placeholderColor = FawGenColors.primary.color
         keywordsTextField.delegate = self
         advancedLabel.textColor = .white
         sendButton.layer.cornerRadius = sendButton.bounds.height / 2
@@ -412,29 +356,32 @@ extension FilterViewController: UITextFieldDelegate {
     }
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        //print("Text is been clear")
         updateSendButton(isActive: false)
         return true
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-//        UIView.animate(withDuration: 0.3, animations: {
-//            self.view.frame = CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y - 200, width: self.view.frame.size.width, height: self.view.frame.size.height)
-//        })
-        
-        //        let text = textField.text ?? "NIL"
-        //        print("Text did Begin Editing: \(text)")
+
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-//        UIView.animate(withDuration: 0.3, animations: {
-//            self.view.frame = CGRect(x:self.view.frame.origin.x, y:self.view.frame.origin.y + 200, width:self.view.frame.size.width, height:self.view.frame.size.height)
-//        })
 
-        
-        //        let text = textField.text ?? "NIL"
-        //        print("Text did end Editing: \(text)")
     }
 }
 
+// ************************************** KEYBOARD NOTIFICATION ***************************************
 
+extension FilterViewController {
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        guard let userInfo = notification.userInfo else { return }
+        guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+        keyboardFrame = keyboardSize.cgRectValue
+        view.frame.origin.y -= keyboardFrame.height
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        view.frame.origin.y += keyboardFrame.height
+    }
+    
+}

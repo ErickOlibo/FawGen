@@ -11,6 +11,7 @@ import UIKit
 class FilterViewController: UIViewController {
     
     // MARK: - Properties
+    public var keyboardFrame = CGRect()
     public let closeButton = SPLarkSettingsCloseButton()
     public let nlp = NaturalLanguageProcessor()
     public let titleLabel = UILabel()
@@ -52,6 +53,11 @@ class FilterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        // Register Notifications:
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
         view.backgroundColor = .black
         setupDataBase()
         setupCloseButton()
@@ -64,6 +70,8 @@ class FilterViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         saveSteppersValues()
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     // Dismiss keyboard at touch outside textField and inside filterVC
@@ -75,16 +83,7 @@ class FilterViewController: UIViewController {
  
 }
 
-//
-//// Updates all element of FilterVC UI
-//extension FilterViewController {
-//    private func setupFilterUI() {
-//        
-//        
-//    }
-//    
-//    
-//}
+
 
 
 
