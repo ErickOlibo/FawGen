@@ -9,16 +9,21 @@
 import UIKit
 
 class RandomizeViewController: UITableViewController {
+    
+    
+    
+    // Size of the keyword frame
+    private(set) var keyboardFrame = CGRect()
+    var larkPresentHeight = CGFloat()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
+        // Notification center
+        NotificationCenter.default.addObserver(self, selector: #selector(RandomizeViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(RandomizeViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        setLarkPresentHeight()
         setupNavigationBarItems()
     }
     
@@ -36,59 +41,39 @@ class RandomizeViewController: UITableViewController {
         return 0
     }
 
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
+
+
+extension RandomizeViewController {
+    
+    private func setLarkPresentHeight() {
+        // set the height with respect to the iphone type
+      
+        larkPresentHeight = 480 + UIDevice().safeAreaBottomHeight()
+        print("Lark Height: \(larkPresentHeight)")
+    }
+    
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        print("keyboardWillShow")
+//        guard let userInfo = notification.userInfo else { return }
+//        guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+//        keyboardFrame = keyboardSize.cgRectValue
+//        print("Frame: \(keyboardFrame) - Self.View Y origin Before: \(self.view.frame.origin.y)")
+//        self.view.frame.origin.y -= keyboardFrame.height
+//        print("Frame: \(keyboardFrame) - Self.View Y origin After: \(self.view.frame.origin.y)")
+
+    }
+    
+    @objc private func keyboardWillHide(notification: NSNotification) {
+        print("keyboardWillHide")
+//        print("Self.View Y origin Before: \(self.view.frame.origin.y)")
+//        self.view.frame.origin.y += keyboardFrame.height
+//        print("Self.View Y origin After: \(self.view.frame.origin.y)")
+        
+
+    }
+}
+
+

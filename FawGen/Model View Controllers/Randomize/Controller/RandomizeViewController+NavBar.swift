@@ -88,17 +88,22 @@ extension RandomizeViewController {
     /// - Warning: The height of display must be define in respect
     /// of the screen size (depending on the type of iPhone)
     private func presentFilterViewController() {
+        // FilterViewController as child of this
+        let filterVC: FilterViewController = {
+            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+            return storyBoard.instantiateViewController(withIdentifier: "FilterVC") as! FilterViewController
+        }()
         
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let filterVC = storyBoard.instantiateViewController(withIdentifier: "FilterVC") as! FilterViewController
         let transitionDelegate = SPLarkTransitioningDelegate()
         filterVC.transitioningDelegate = transitionDelegate
         filterVC.modalPresentationStyle = .custom
         filterVC.modalPresentationCapturesStatusBarAppearance = true
-        let ratio = 3.0 / CGFloat(4) // --> 3/4 or 75%
-        let vcHeight = view.bounds.height * ratio
-        //filterVC.view.layoutIfNeeded()
-        self.presentAsLark(filterVC, height: vcHeight, complection: nil)
+        
+        let phoneHeight = UIScreen.main.nativeBounds.height
+        let (h, m) = UIDevice().currentPhoneHeightName()
+        print("Phone Height: \(phoneHeight) - Device: [\(h), \(m)]")
+
+        self.presentAsLark(filterVC, height: larkPresentHeight, complection: nil)
         
     }
     

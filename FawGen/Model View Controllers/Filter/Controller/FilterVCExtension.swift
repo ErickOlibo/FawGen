@@ -194,8 +194,8 @@ extension FilterViewController {
         case .symbol:
             button = getOnOffButton(for: .symbol)
         }
-        //button.contentHorizontalAlignment = .center
-        //button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+        button.contentHorizontalAlignment = .left
+        button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 0)
         let status = currentOnOffStatus(for: button)
         updateOnOff(for: button, with: status)
     }
@@ -261,10 +261,13 @@ extension FilterViewController {
             sender.backgroundColor = FawGenColors.primary.color
         } else {
             sender.setAttributedTitle(attributedLength, for: .normal)
-            sender.titleLabel?.textColor = .lightGray
+            sender.titleLabel?.textColor = .white
             sender.backgroundColor = .darkGray
         }
         
+        // Try the size.
+//        let frame = sender.currentTitle.frame
+//        print("Cat: \(sender.tag) Frame: \(frame ?? CGRect.zero)")
     }
     
     private func addBoldText(fullString: NSString, boldPartOfString: NSString, font: UIFont!, boldFont: UIFont!) -> NSAttributedString {
@@ -415,12 +418,23 @@ extension FilterViewController: UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
+//        UIView.animate(withDuration: 0.3, animations: {
+//            self.view.frame = CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y - 200, width: self.view.frame.size.width, height: self.view.frame.size.height)
+//        })
+        
         //        let text = textField.text ?? "NIL"
         //        print("Text did Begin Editing: \(text)")
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+//        UIView.animate(withDuration: 0.3, animations: {
+//            self.view.frame = CGRect(x:self.view.frame.origin.x, y:self.view.frame.origin.y + 200, width:self.view.frame.size.width, height:self.view.frame.size.height)
+//        })
+
+        
         //        let text = textField.text ?? "NIL"
         //        print("Text did end Editing: \(text)")
     }
 }
+
+

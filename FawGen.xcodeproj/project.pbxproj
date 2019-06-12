@@ -166,6 +166,7 @@
 		A70C4BBB22ADED1A001BD6CC /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70C4BBA22ADED1A001BD6CC /* UILabelExtension.swift */; };
 		A70C4BBD22AE05F4001BD6CC /* FilterVCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70C4BBC22AE05F4001BD6CC /* FilterVCExtension.swift */; };
 		A70C4BBF22AE19F4001BD6CC /* UserDefaultFawGenDataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70C4BBE22AE19F4001BD6CC /* UserDefaultFawGenDataBase.swift */; };
+		A70C4BC122B07E36001BD6CC /* DeviceScreenSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70C4BC022B07E36001BD6CC /* DeviceScreenSizes.swift */; };
 		A722066722A4B56000E1C256 /* ColorGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722066622A4B56000E1C256 /* ColorGenerator.swift */; };
 		A722066922A4BFF200E1C256 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722066822A4BFF200E1C256 /* GradientView.swift */; };
 		A722066F22A575FD00E1C256 /* RandomizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722066E22A575FD00E1C256 /* RandomizeViewController.swift */; };
@@ -354,6 +355,7 @@
 		A70C4BBA22ADED1A001BD6CC /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
 		A70C4BBC22AE05F4001BD6CC /* FilterVCExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterVCExtension.swift; sourceTree = "<group>"; };
 		A70C4BBE22AE19F4001BD6CC /* UserDefaultFawGenDataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultFawGenDataBase.swift; sourceTree = "<group>"; };
+		A70C4BC022B07E36001BD6CC /* DeviceScreenSizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceScreenSizes.swift; sourceTree = "<group>"; };
 		A722066622A4B56000E1C256 /* ColorGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorGenerator.swift; sourceTree = "<group>"; };
 		A722066822A4BFF200E1C256 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		A722066E22A575FD00E1C256 /* RandomizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomizeViewController.swift; sourceTree = "<group>"; };
@@ -1319,6 +1321,7 @@
 				A76915BE22A218BA00FB616F /* TypeAlias.swift */,
 				A70C4BBA22ADED1A001BD6CC /* UILabelExtension.swift */,
 				A70C4BBE22AE19F4001BD6CC /* UserDefaultFawGenDataBase.swift */,
+				A70C4BC022B07E36001BD6CC /* DeviceScreenSizes.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1440,6 +1443,7 @@
 				A70C4B3122AA0675001BD6CC /* SPTableViewCell.swift in Sources */,
 				A70C4B2222AA0675001BD6CC /* SPEmptyProposeLabel.swift in Sources */,
 				A70C4B0022AA0675001BD6CC /* SPDownloadingButton.swift in Sources */,
+				A70C4BC122B07E36001BD6CC /* DeviceScreenSizes.swift in Sources */,
 				A70C4A2622AA0611001BD6CC /* SPLarkSettingsCollectionView.swift in Sources */,
 				A70C4B4622AA0675001BD6CC /* SPUICollectionViewExtenshion.swift in Sources */,
 				A70C4B3222AA0675001BD6CC /* SPCollectionImagesTableViewCell.swift in Sources */,
