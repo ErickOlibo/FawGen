@@ -113,7 +113,7 @@ extension UILabel {
         UIView.animate(withDuration: 0.6, delay: 1.4, options: .curveEaseOut, animations: {
             self.alpha = 0
         }) { (_) in
-            print("Dim is completed")
+            //print("Dim is completed")
         }
     }
     

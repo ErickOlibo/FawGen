@@ -10,23 +10,16 @@ import UIKit
 
 class RandomizeViewController: UITableViewController {
     
-    
-    
-    // Size of the keyword frame
-    private(set) var keyboardFrame = CGRect()
-    var larkPresentHeight = CGFloat()
+    /// Represents the vertical displacement height when a child view
+    /// controller is presented by the Parent. This height takes into
+    /// consideration the SafeArea Bottom height (34px) find in all
+    /// current and available iPhone X models
+    public var larkPresentHeight = 500 + UIDevice().safeAreaBottomHeight()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
-        // Notification center
-        NotificationCenter.default.addObserver(self, selector: #selector(RandomizeViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(RandomizeViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        setLarkPresentHeight()
         setupNavigationBarItems()
     }
-    
     
 
     // MARK: - Table view data source
@@ -45,20 +38,5 @@ class RandomizeViewController: UITableViewController {
 
 }
 
-
-extension RandomizeViewController {
-    
-    private func setLarkPresentHeight() {
-        larkPresentHeight = 500 + UIDevice().safeAreaBottomHeight()
-    }
-    
-    @objc private func keyboardWillShow(notification: NSNotification) {
-
-    }
-    
-    @objc private func keyboardWillHide(notification: NSNotification) {
-
-    }
-}
 
 

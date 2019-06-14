@@ -10,27 +10,30 @@ import UIKit
 
 extension RandomizeViewController {
     
-    func setupNavigationBarItems() {
+    public func setupNavigationBarItems() {
         setupRemainingNavItems()
         setupLeftNavItems()
         setupRightNavItems()
         
     }
     
+    /// Sets up FawGen logo as a navigation bar left tappable item
+    /// with a push present of a WebView to display
+    /// www.fawgen.com website.
     private func setupLeftNavItems() {
-        // Left NavBar Item (logo button to be connected to a ViewController to display the fawgen website in a webView
-        // remember how it was done in inroze
         let logoButton = UIButton(type: .system)
         logoButton.setImage(UIImage(named: "logoNavBar")?.withRenderingMode(.alwaysOriginal), for: .normal)
-        logoButton.addTarget(self, action: #selector(pushedLogoButton), for: .touchUpInside)
+        logoButton.addTarget(self, action: #selector(presentLogoWebsiteViewController), for: .touchUpInside)
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: logoButton)
         
     }
     
+    /// Sets the navigation bar 3 right items as listed in letf-to-right order:
+    /// Favorite, Filter, Favorites.
     private func setupRightNavItems() {
-        let collection = [("settings_colored" , #selector(pushedSettingButton)),
-                          ("filter_colored" , #selector(pushedFilterButton)),
-                          ("favorites_colored" , #selector(pushedFavoriteButton))]
+        let collection = [("settings_colored" , #selector(presentSettingsViewController)),
+                          ("filter_colored" , #selector(presentFilterViewController)),
+                          ("favorites_colored" , #selector(presentFavoritesViewController))]
         var barButtonItems = [UIBarButtonItem]()
         for (imageName, selector) in collection {
             let itemButton = UIButton(type: .system)
@@ -45,50 +48,28 @@ extension RandomizeViewController {
         navigationItem.rightBarButtonItems = barButtonItems
     }
     
-    
+    /// sets the remainder items not set in the setupNavigationBarItems(),
+    /// setupLeftNavItems(), and setupRightNavItems().
     private func setupRemainingNavItems() {
-        // To make the navigation bar really white and not translucent
         navigationController?.navigationBar.backgroundColor = .white
         navigationController?.navigationBar.isTranslucent = false
-        //navigationController?.navigationBar.prefersLargeTitles = true
     }
-    
-    
-    // MARK: - Buttons Push Actions
-    
-    @objc private func pushedLogoButton() {
-        pushLogoWebsiteViewController()
-    }
-    
-    @objc private func pushedFilterButton() {
-        presentFilterViewController()
-    }
-    
-    @objc private func pushedFavoriteButton() {
-        print("pushedFavoriteButton")
-    }
-    
-    @objc private func pushedSettingButton() {
-        presentSettingsViewController()
-    }
-    
-    // MARK: - ViewController from Right NavBar Button
+
+    // MARK: - Navigation Bar Button Actions
     
     /// Presents as push transition the settings view controller
-    /// - Note: The SettingsViewController is access via its StoryBoard ID (identifier)
-    private func presentSettingsViewController() {
+    /// - Note: SettingsViewController is access via its StoryBoard identifier
+    @objc private func presentSettingsViewController() {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let settingsVC = storyBoard.instantiateViewController(withIdentifier: "SettingsVC")
         self.navigationController?.pushViewController(settingsVC, animated: true)
         
     }
     
-    /// Presents as Lark  transition (slides up to reveal behind)
-    /// the filter view controller.
-    /// - Warning: The height of display must be define in respect
-    /// of the screen size (depending on the type of iPhone)
-    private func presentFilterViewController() {
-        // FilterViewController as child of this
+    /// Presents the Filter View Controller as Lark transition
+    /// (slides up to reveal behind)
+    /// - Note: FilterViewController is access via its StoryBoard identifier
+    @objc private func presentFilterViewController() {
         let filterVC: FilterViewController = {
             let storyBoard = UIStoryboard(name: "Main", bundle: nil)
             return storyBoard.instantiateViewController(withIdentifier: "FilterVC") as! FilterViewController
@@ -98,11 +79,6 @@ extension RandomizeViewController {
         filterVC.transitioningDelegate = transitionDelegate
         filterVC.modalPresentationStyle = .custom
         filterVC.modalPresentationCapturesStatusBarAppearance = true
-        
-//        let phoneHeight = UIScreen.main.nativeBounds.height
-//        let (h, m) = UIDevice().currentPhoneHeightName()
-//        //print("Phone Height: \(phoneHeight) - Device: [\(h), \(m)]")
-
         self.presentAsLark(filterVC, height: larkPresentHeight, complection: nil)
         
     }
@@ -110,7 +86,7 @@ extension RandomizeViewController {
     /// Presents as push transition the About view controller web view
     /// to display the content of the fawgen website.
     /// - Warning: The www.fawgen.com site is not ready
-    private func pushLogoWebsiteViewController() {
+    @objc private func presentLogoWebsiteViewController() {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let aboutVC = storyBoard.instantiateViewController(withIdentifier: "AboutVC") as! AboutViewController
         let backItem = UIBarButtonItem()
@@ -119,6 +95,13 @@ extension RandomizeViewController {
         aboutVC.aboutURL = URL(string: UrlFor.fawgen)
         aboutVC.navigationItem.title = "FawGen"
         self.navigationController?.pushViewController(aboutVC, animated: true)
+    }
+    
+    /// Presents as push transition the FavoritesView controller
+    /// - Warning: Missing implementation for FavoritesViewController
+    @objc private func presentFavoritesViewController() {
+        print("pushedFavoriteButton")
+        
     }
     
 }

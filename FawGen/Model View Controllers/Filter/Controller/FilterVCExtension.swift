@@ -9,12 +9,11 @@
 import UIKit
 
 
-// ****************** STEPPERS ***************************************
 // MARK: - Steppers
 
-// Extension for the three steppers (Length, Type, Symbol)
 extension FilterViewController {
     
+    /// Initializes the Steppers for the Length, Type and Symbol sliders
     public func setupSteppers() {
         for category in SettingCategory.allCases {
             let collection = getStepperCollection(for: category)
@@ -35,6 +34,8 @@ extension FilterViewController {
         }
     }
     
+    /// Saves to local UserDefault database the current values for
+    /// each stepper.
     public func saveSteppersValues() {
         for stepper in steppers {
             let currentValue = stepper.value
@@ -51,10 +52,19 @@ extension FilterViewController {
         }
     }
     
+    /// Gets the stepper of the right setting category from the outlet
+    /// collection of steppers
+    /// - Parameter category: a SettingCategory enum case
+    /// - Returns: the right TEOStepper from the collection of steppers
     private func getStepper(for category: SettingCategory) -> TEOStepper {
         return steppers.filter{ $0.tag == category.rawValue }[0]
     }
     
+    
+    /// Gets the right collection [Double : String] in order to set the right
+    /// steppers label for the legnth, type or symbol slider
+    /// - Parameter category: a SettingCategory enum case
+    /// - Returns: the right collection [Double : String] for Stepper setup
     private func getStepperCollection(for category: SettingCategory) -> [Double : String] {
         let lengthCollection: [Double : String] = [6 : "6 letters", 7 : "7 letters", 8 : "8 letters", 9 : "9 letters", 10 : "10 letters", 11 : "11 letters", 12 : "12 letters", 13 : "13 letters", 14 : "14 letters", 15 : "15 letters", 16 : "16 letters" ]
         let typeCollection: [Double : String] = [1 : "alpha", 2 : "beta", 3 : "gamma", 4 : "delta", 5 : "epsilon", 6 : "zeta"]
@@ -69,6 +79,10 @@ extension FilterViewController {
         }
     }
     
+    /// Get the right minValue and maxValue in order to set up the right stepper
+    /// boundaries values
+    /// - Parameter category: a SettingCategory enum case
+    /// - Returns: the min and max as array.
     private func getStepperMinMaxValue(for category: SettingCategory) -> [Double] {
         switch category {
         case .length:
@@ -79,8 +93,42 @@ extension FilterViewController {
             return [1, 5]
         }
     }
-    
+}
 
+
+// MARK: - ON OFF Buttons
+
+extension FilterViewController {
+    
+    /// Initializes the On Off buttons and their current status
+    public func setupOnOffs() {
+        for category in SettingCategory.allCases { setupOnOff(for: category) }
+    }
+    
+    
+    /// Initializes the OnOff buttons and prepare them to appear
+    /// with the right status
+    /// - Parameter category: a SettingCategory enum case
+    private func setupOnOff(for category: SettingCategory) {
+        var button = UIButton()
+        switch category {
+        case .length:
+            button = getOnOffButton(for: .length)
+        case .type:
+            button = getOnOffButton(for: .type)
+        case .symbol:
+            button = getOnOffButton(for: .symbol)
+        }
+        button.contentHorizontalAlignment = .left
+        button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 0)
+        let status = currentOnOffStatus(for: button)
+        updateOnOff(for: button, with: status)
+    }
+    
+    /// Keep the OnOff Steppers indicators in sync with the UserDefault
+    /// database. Enables or disables the touch actions and the visibility
+    /// of the Button
+    /// - Parameter stepper: a stepper from the Steppers collection
     private func enabledStatus(for stepper: TEOStepper) {
         var onOffIsEnabled = false
         switch stepper.tag {
@@ -102,42 +150,18 @@ extension FilterViewController {
         stepper.labelTextColor = onOffIsEnabled ? .white : .clear
         
     }
-
     
-}
-
-// ****************** ON OFF TAP ***************************************
-// MARK: - ON OFF Tap
-
-// Extension for the handling of OnOff tapp
-extension FilterViewController {
-    
-    public func setupOnOffs() {
-        for category in SettingCategory.allCases { setupOnOff(for: category) }
-    }
-    
-    
-    private func setupOnOff(for category: SettingCategory) {
-        var button = UIButton()
-        switch category {
-        case .length:
-            button = getOnOffButton(for: .length)
-        case .type:
-            button = getOnOffButton(for: .type)
-        case .symbol:
-            button = getOnOffButton(for: .symbol)
-        }
-        button.contentHorizontalAlignment = .left
-        button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 0)
-        let status = currentOnOffStatus(for: button)
-        updateOnOff(for: button, with: status)
-    }
-    
+    /// Gets the button of the right setting category from the outlet
+    /// collection of onOffs (UIButton)
+    /// - Parameter category: a SettingCategory enum case
+    /// - Returns: the right OnOff UIButton from the collection of buttons
     private func getOnOffButton(for category: SettingCategory) -> UIButton {
         return onOffs.filter{ $0.tag == category.rawValue }[0]
     }
     
     
+    /// Returns the current OnOff status, as Bool, for the button that was tapped
+    /// - Parameter sender: UIButton from OnOffs button collection
     private func currentOnOffStatus(for sender: UIButton) -> Bool {
         switch sender.tag {
         case 1:
@@ -152,6 +176,9 @@ extension FilterViewController {
         return false
     }
     
+    
+    /// Switches between ON and OFF for the button that was touched
+    /// - Parameter sender: UIButton from OnOffs button collection
     public func switchOnOff(for sender: UIButton) {
         let status = currentOnOffStatus(for: sender)
         var stepper = TEOStepper()
@@ -174,14 +201,19 @@ extension FilterViewController {
     }
     
     
+    /// Returns the text that should be displayed inside the OnOff buttons
+    /// - Parameter sender: UIButton from OnOffs button collection
     private func onOfftext(for sender: UIButton) -> String {
         let onOffLabels = ["Length\n", "Type\n", "Symbol\n"]
         return onOffLabels[sender.tag - 1]
     }
     
     
+    /// updates the OnOff button to a chosen status Bool
+    /// - Parameters:
+    ///     - sender: UIButton from OnOffs button collection
+    ///     - status: update the OnOff button to rather On or Off
     private func updateOnOff(for sender: UIButton, with status: Bool) {
-        // set the text inside the OnOFf button
         let normal = onOfftext(for: sender)
         let isOn = status ? "On" : "Off"
         let attributedLength = NSMutableAttributedString(string: normal)
@@ -199,25 +231,18 @@ extension FilterViewController {
         }
     }
     
-    private func addBoldText(fullString: NSString, boldPartOfString: NSString, font: UIFont!, boldFont: UIFont!) -> NSAttributedString {
-        let nonBoldFontAttribute = [NSAttributedString.Key.font:font!]
-        let boldFontAttribute = [NSAttributedString.Key.font:boldFont!]
-        let boldString = NSMutableAttributedString(string: fullString as String, attributes:nonBoldFontAttribute)
-        boldString.addAttributes(boldFontAttribute, range: fullString.range(of: boldPartOfString as String))
-        return boldString
-    }
-    
     
 }
 
 
-// ****************** USER DATABASE ***************************************
 // MARK: - User Database
 // Extension for the UserDefaults initial state.
 // Should only be initialized at the first time FilterVC
 // is loaded.
 extension FilterViewController {
     
+    /// Sets up the initial default values (at first run) for the Length, Type
+    /// and Symbol steppers and Buttons
     public func setupDataBase() {
         
         if DefaultDB.getValue(for: .length)! as Double? == nil {
@@ -243,18 +268,15 @@ extension FilterViewController {
         if DefaultDB.getValue(for: .symbolOnOff)! as Bool? == nil {
             DefaultDB.save(false, for: .symbolOnOff)
         }
-        
     }
-    
-    
 }
 
 
-// ****************** KEYWORDS DESCRIPTION ***************************************
 // MARK: - Keywords Description
-// Extension for the Keywords / Description textField
+
 extension FilterViewController {
     
+    /// Sets up the initial conditions for the Advanced (randomWords via keywords)
     public func setupKeywords() {
         keywordsTextField.placeholderColor = FawGenColors.primary.color
         keywordsTextField.smartInsertDeleteType = .no
@@ -267,6 +289,10 @@ extension FilterViewController {
         setWordsLevelMeter()
     }
     
+    
+    /// set up the meter level in respect how many keywords are
+    /// present in the overall model corpus.
+    /// - Parameter count: is the number of words find in corpus
     private func setWordsLevelMeter(for count: Int = 0) {
         for levelView in wordsLevelMeter {
             levelView.backgroundColor = levelView.tag <= count ? FawGenColors.primary.color : .darkGray
@@ -274,13 +300,18 @@ extension FilterViewController {
     }
     
     
-    
+    /// return the number of keywords that are part of the model's corpus
+    /// - Parameter keywords: the text inserted or type by the user.
     private func getValidWordsCount(for keywords: String) -> Int {
         let wordsList = nlp.tokenizeByWords(keywords)
         let wordsInCorpus = wordsList.filter { Constants.thousandWords.contains($0)}
         return wordsInCorpus.count
     }
     
+    
+    /// Updates the color and accessibility (enable - disable) of the send botton but
+    /// setting its status
+    /// - Parameter isActive: the status that the button should adhere to
     private func updateSendButton(isActive: Bool) {
         switch isActive {
         case false:
@@ -293,22 +324,13 @@ extension FilterViewController {
             sendButton.isEnabled = true
         }
     }
-    
-    private func setKeywordsText () {
-        var keywordsFrame = keywordsTextField.frame
-        keywordsFrame.size.height = 53
-        keywordsTextField.frame = keywordsFrame
-    }
-    
-    
-    
 }
 
 
-// ****************** CLOSE BUTTON ***************************************
 // MARK: - Close Button
-// Extension for the close button
+
 extension FilterViewController {
+    /// Sets up the close Button and its attributes
     public func setupCloseButton() {
         closeButton.sizeToFit()
         closeButton.addTarget(self, action: #selector(tapCloseButton), for: .touchUpInside)
@@ -325,12 +347,11 @@ extension FilterViewController {
 
 
 
-// ****************** TEXT FIELD DELEGATE ***************************************
 // MARK: - Text Field Delegate
 extension FilterViewController: UITextFieldDelegate {
     
     @objc private func editingChanged() {
-        
+        //print("[editingChanged]")
         guard let currentText = keywordsTextField.text else { return }
         guard let textCount = keywordsTextField.text?.count else { return }
         maxKeywordLengthChecker(for: textCount)
@@ -338,7 +359,6 @@ extension FilterViewController: UITextFieldDelegate {
         let wordsInCorpusCount = getValidWordsCount(for: currentText)
         setWordsLevelMeter(for: wordsInCorpusCount)
     }
-    
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         hasTappedSendForKeywords = false
@@ -350,20 +370,6 @@ extension FilterViewController: UITextFieldDelegate {
         return true
     }
     
-    func textFieldShouldClear(_ textField: UITextField) -> Bool {
-
-        return true
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-
-    }
-    
-    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let textFieldText = textField.text,
             let rangeOfTextToReplace = Range(range, in: textFieldText) else { return false }
@@ -374,8 +380,10 @@ extension FilterViewController: UITextFieldDelegate {
         return count <= keywordsMaxChars
     }
     
-    
-    func maxKeywordLengthChecker(for length: Int) {
+    /// Checks if the text entered (as paste or typed) exceeds the max length
+    /// and display visula info to the user
+    /// - Parameter length: the length to check as String
+    private func maxKeywordLengthChecker(for length: Int) {
         if textLimitLabel.alpha != 1 { textLimitLabel.alpha = 1 }
         textLimitLabel.textColor = .white
         if length > keywordsMaxChars {
@@ -394,8 +402,8 @@ extension FilterViewController: UITextFieldDelegate {
     
 }
 
-// ****************** KEYBOARD NOTIFICATION ***************************************
 // MARK: - Keyboard Notification
+
 extension FilterViewController {
     
     @objc func keyboardWillShow(notification: NSNotification) {
@@ -418,10 +426,13 @@ extension FilterViewController {
 }
 
 
-// ************************************** KEYWORDS HISTORY ***************************************
 // MARK: - History Keywords Description
+
 extension FilterViewController {
     
+    /// records the keywords query to the UserDefault Database. The keywords
+    /// and the date when it was queried is saved
+    /// - Parameter keywords: the string text to query against
     public func saveToHistory(_ keywords: String) {
         let now = Date()
         if DefaultDB.getValue(for: .history)! as KeywordsHistory? == nil {
@@ -436,6 +447,7 @@ extension FilterViewController {
         
     }
     
+    /// Sends the keyqords query for analyzing from the model
     public func keywordsRequestSent() {
         if let keywords = keywordsTextField.text { saveToHistory(keywords) }
         hasTappedSendForKeywords = true
