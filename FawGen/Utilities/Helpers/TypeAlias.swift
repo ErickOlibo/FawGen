@@ -21,3 +21,7 @@ public typealias Domain = String
 public typealias Handle = String
 
 
+/// This is for the Advance filter the type used to save data
+/// to the userDefaults. The keywords (or project description), and the time
+/// where the query was requested
+public typealias KeywordsHistory = [String : Date]

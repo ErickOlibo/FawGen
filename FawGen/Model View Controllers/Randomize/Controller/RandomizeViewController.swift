@@ -49,29 +49,14 @@ class RandomizeViewController: UITableViewController {
 extension RandomizeViewController {
     
     private func setLarkPresentHeight() {
-        // set the height with respect to the iphone type
-      
         larkPresentHeight = 500 + UIDevice().safeAreaBottomHeight()
-        print("Lark Height: \(larkPresentHeight)")
     }
     
     @objc private func keyboardWillShow(notification: NSNotification) {
-        print("keyboardWillShow")
-//        guard let userInfo = notification.userInfo else { return }
-//        guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
-//        keyboardFrame = keyboardSize.cgRectValue
-//        print("Frame: \(keyboardFrame) - Self.View Y origin Before: \(self.view.frame.origin.y)")
-//        self.view.frame.origin.y -= keyboardFrame.height
-//        print("Frame: \(keyboardFrame) - Self.View Y origin After: \(self.view.frame.origin.y)")
 
     }
     
     @objc private func keyboardWillHide(notification: NSNotification) {
-        print("keyboardWillHide")
-//        print("Self.View Y origin Before: \(self.view.frame.origin.y)")
-//        self.view.frame.origin.y += keyboardFrame.height
-//        print("Self.View Y origin After: \(self.view.frame.origin.y)")
-        
 
     }
 }

@@ -9,7 +9,8 @@
 import UIKit
 
 
-// ************************************** STEPPERS ***************************************
+// ****************** STEPPERS ***************************************
+// MARK: - Steppers
 
 // Extension for the three steppers (Length, Type, Symbol)
 extension FilterViewController {
@@ -105,27 +106,16 @@ extension FilterViewController {
     
 }
 
-// ************************************** ON OFF TAP ***************************************
+// ****************** ON OFF TAP ***************************************
+// MARK: - ON OFF Tap
 
 // Extension for the handling of OnOff tapp
 extension FilterViewController {
     
     public func setupOnOffs() {
-        for category in SettingCategory.allCases {
-            setupOnOff(for: category)
-        }
-        
+        for category in SettingCategory.allCases { setupOnOff(for: category) }
     }
     
-//    // Setting all buttons with the default (all false) or the saved
-//    // (via userDefault) states
-//    public func setupOnOffUI() {
-//        // Recall from UserDefaults
-//        let status = currentOnOffStatus(for: lengthOnOff)
-//        updateOnOffUI(for: lengthOnOff, with: status)
-//
-//
-//    }
     
     private func setupOnOff(for category: SettingCategory) {
         var button = UIButton()
@@ -207,10 +197,6 @@ extension FilterViewController {
             sender.titleLabel?.textColor = .white
             sender.backgroundColor = .darkGray
         }
-        
-        // Try the size.
-//        let frame = sender.currentTitle.frame
-//        print("Cat: \(sender.tag) Frame: \(frame ?? CGRect.zero)")
     }
     
     private func addBoldText(fullString: NSString, boldPartOfString: NSString, font: UIFont!, boldFont: UIFont!) -> NSAttributedString {
@@ -225,8 +211,8 @@ extension FilterViewController {
 }
 
 
-// ************************************** USER DATABASE ***************************************
-
+// ****************** USER DATABASE ***************************************
+// MARK: - User Database
 // Extension for the UserDefaults initial state.
 // Should only be initialized at the first time FilterVC
 // is loaded.
@@ -257,19 +243,21 @@ extension FilterViewController {
         if DefaultDB.getValue(for: .symbolOnOff)! as Bool? == nil {
             DefaultDB.save(false, for: .symbolOnOff)
         }
+        
     }
     
     
 }
 
 
-// ************************************** KEYWORDS DESCRIPTION ***************************************
-
+// ****************** KEYWORDS DESCRIPTION ***************************************
+// MARK: - Keywords Description
 // Extension for the Keywords / Description textField
 extension FilterViewController {
     
     public func setupKeywords() {
         keywordsTextField.placeholderColor = FawGenColors.primary.color
+        keywordsTextField.smartInsertDeleteType = .no
         keywordsTextField.delegate = self
         advancedLabel.textColor = .white
         sendButton.layer.cornerRadius = sendButton.bounds.height / 2
@@ -282,20 +270,10 @@ extension FilterViewController {
     private func setWordsLevelMeter(for count: Int = 0) {
         for levelView in wordsLevelMeter {
             levelView.backgroundColor = levelView.tag <= count ? FawGenColors.primary.color : .darkGray
-//            if levelView.tag <= count {
-//                levelView.backgroundColor = FawGenColors.primary.color
-//            } else {
-//                levelView.backgroundColor = .darkGray
-//            }
         }
     }
     
-    @objc private func editingChanged() {
-        guard let currentText = keywordsTextField.text else { return }
-        currentText.count > 0 ? updateSendButton(isActive: true) : updateSendButton(isActive: false)
-        let wordsInCorpusCount = getValidWordsCount(for: currentText)
-        setWordsLevelMeter(for: wordsInCorpusCount)
-    }
+    
     
     private func getValidWordsCount(for keywords: String) -> Int {
         let wordsList = nlp.tokenizeByWords(keywords)
@@ -327,7 +305,8 @@ extension FilterViewController {
 }
 
 
-// ************************************** CLOSE BUTTON ***************************************
+// ****************** CLOSE BUTTON ***************************************
+// MARK: - Close Button
 // Extension for the close button
 extension FilterViewController {
     public func setupCloseButton() {
@@ -346,17 +325,33 @@ extension FilterViewController {
 
 
 
-// ************************************** TEXT FIELD DELEGATE ***************************************
-
+// ****************** TEXT FIELD DELEGATE ***************************************
+// MARK: - Text Field Delegate
 extension FilterViewController: UITextFieldDelegate {
     
+    @objc private func editingChanged() {
+        
+        guard let currentText = keywordsTextField.text else { return }
+        guard let textCount = keywordsTextField.text?.count else { return }
+        maxKeywordLengthChecker(for: textCount)
+        currentText.count > 0 ? updateSendButton(isActive: true) : updateSendButton(isActive: false)
+        let wordsInCorpusCount = getValidWordsCount(for: currentText)
+        setWordsLevelMeter(for: wordsInCorpusCount)
+    }
+    
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        hasTappedSendForKeywords = false
+        return true
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        keywordsRequestSent()
         return true
     }
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        updateSendButton(isActive: false)
+
         return true
     }
     
@@ -367,10 +362,40 @@ extension FilterViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
 
     }
+    
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let textFieldText = textField.text,
+            let rangeOfTextToReplace = Range(range, in: textFieldText) else { return false }
+
+        let substringToReplace = textFieldText[rangeOfTextToReplace]
+        let count = textFieldText.count - substringToReplace.count + string.count
+        if count > keywordsMaxChars { maxKeywordLengthChecker(for: count) }
+        return count <= keywordsMaxChars
+    }
+    
+    
+    func maxKeywordLengthChecker(for length: Int) {
+        if textLimitLabel.alpha != 1 { textLimitLabel.alpha = 1 }
+        textLimitLabel.textColor = .white
+        if length > keywordsMaxChars {
+            textLimitLabel.text = "Too large: \(length)/\(keywordsMaxChars)"
+            textLimitLabel.flashLimit()
+        } else if length == 0 {
+            if textLimitLabel.alpha != 0 { textLimitLabel.alpha = 0 }
+        } else {
+            textLimitLabel.stopAllRunningAnimations()
+            guard let textCount = keywordsTextField.text?.count else { return }
+            let leftChars = keywordsMaxChars - textCount
+            textLimitLabel.text = "Left: \(leftChars)"
+        }
+    }
+    
+    
 }
 
-// ************************************** KEYBOARD NOTIFICATION ***************************************
-
+// ****************** KEYBOARD NOTIFICATION ***************************************
+// MARK: - Keyboard Notification
 extension FilterViewController {
     
     @objc func keyboardWillShow(notification: NSNotification) {
@@ -384,4 +409,38 @@ extension FilterViewController {
         view.frame.origin.y += keyboardFrame.height
     }
     
+    @objc func keyboardDidHide(notification: NSNotification) {
+        if hasTappedSendForKeywords {
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+}
+
+
+// ************************************** KEYWORDS HISTORY ***************************************
+// MARK: - History Keywords Description
+extension FilterViewController {
+    
+    public func saveToHistory(_ keywords: String) {
+        let now = Date()
+        if DefaultDB.getValue(for: .history)! as KeywordsHistory? == nil {
+            DefaultDB.save([keywords : now], for: .history)
+        } else {
+            var savedHistory = DefaultDB.getValue(for: .history)! as KeywordsHistory
+            savedHistory[keywords] = now
+            let sanitizedHistory = DefaultDB.sanitize(savedHistory)
+            DefaultDB.save(sanitizedHistory, for: .history)
+        }
+        
+        
+    }
+    
+    public func keywordsRequestSent() {
+        if let keywords = keywordsTextField.text { saveToHistory(keywords) }
+        hasTappedSendForKeywords = true
+        keywordsTextField.text = nil
+        updateSendButton(isActive: false)
+        keywordsTextField.resignFirstResponder()
+    }
 }

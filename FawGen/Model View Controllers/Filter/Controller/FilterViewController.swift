@@ -15,21 +15,22 @@ class FilterViewController: UIViewController {
     public let closeButton = SPLarkSettingsCloseButton()
     public let nlp = NaturalLanguageProcessor()
     public let titleLabel = UILabel()
-//    public var onOffCollection = [OnOff : Bool]()
-//    public enum OnOff: String {
-//        case length, type, symbol
-//    }
+    public var hasTappedSendForKeywords = false
+    public let keywordsMaxChars = 200 // Like old twitter
+    
     public enum SettingCategory: Int, CaseIterable, Equatable, Hashable {
         case length = 1, type, symbol
     }
     
     
     // MARK: - Outlets & Outlets collection
+    
+    @IBOutlet weak var textLimitLabel: UILabel!
     @IBOutlet weak var advancedLabel: UILabel!
     @IBOutlet weak var keywordsTextField: UITextField!
     @IBOutlet weak var sendButton: UIButton!
-    @IBOutlet var wordsLevelMeter: [UIView]!
     
+    @IBOutlet var wordsLevelMeter: [UIView]!
     @IBOutlet var steppers: [TEOStepper]!
     @IBOutlet var onOffs: [UIButton]!
     
@@ -37,13 +38,12 @@ class FilterViewController: UIViewController {
     // MARK: - Actions
     @IBAction func tappedSend(_ sender: UIButton) {
         sender.pulse()
-        keywordsTextField.resignFirstResponder()
+        keywordsRequestSent()
     }
     
     @IBAction func tappedOnOff(_ sender: UIButton) {
         sender.pulse()
         switchOnOff(for: sender)
-        print("tapped OnOff for \(sender.tag)")
     }
     
 
@@ -57,6 +57,7 @@ class FilterViewController: UIViewController {
         // Register Notifications:
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidHide), name: UIResponder.keyboardDidHideNotification, object: nil)
         
         view.backgroundColor = .black
         setupDataBase()
@@ -64,6 +65,9 @@ class FilterViewController: UIViewController {
         setupKeywords()
         setupSteppers()
         setupOnOffs()
+        
+        // Text Field
+        //textLimitLabel.text = "This Is way too big to see"
 
     }
     
@@ -72,6 +76,7 @@ class FilterViewController: UIViewController {
         saveSteppersValues()
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidHideNotification, object: nil)
     }
     
     // Dismiss keyboard at touch outside textField and inside filterVC

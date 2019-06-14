@@ -69,3 +69,58 @@ extension UIButton {
     
     
 }
+
+extension UILabel {
+    
+    
+    
+    func shake() {
+        
+        let shake = CABasicAnimation(keyPath: "position")
+        shake.duration = 0.1
+        shake.repeatCount = 2
+        
+        shake.autoreverses = true
+        let fromPoint = CGPoint(x: center.x - 5, y: center.y)
+        let fromValue = NSValue(cgPoint: fromPoint)
+        
+        let toPoint = CGPoint(x: center.x + 5, y: center.y)
+        let toValue = NSValue(cgPoint: toPoint)
+        
+        shake.fromValue = fromValue
+        shake.toValue = toValue
+        layer.add(shake, forKey: nil)
+        
+    }
+    
+    func flashLimit() {
+        CATransaction.begin()
+        let flash = CABasicAnimation(keyPath: "opacity")
+        flash.duration = 0.7
+        flash.fromValue = 0.1
+        flash.toValue = 1
+        flash.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        flash.autoreverses = true
+        flash.repeatCount = 1
+        CATransaction.setCompletionBlock { [weak self] in
+            self?.dim()
+        }
+        layer.add(flash, forKey: nil)
+        CATransaction.commit()
+    }
+    
+    func dim() {
+        UIView.animate(withDuration: 0.6, delay: 1.4, options: .curveEaseOut, animations: {
+            self.alpha = 0
+        }) { (_) in
+            print("Dim is completed")
+        }
+    }
+    
+    func stopAllRunningAnimations() {
+        self.layer.removeAllAnimations()
+        
+    }
+    
+    
+}

@@ -9,7 +9,7 @@
 import Foundation
 
 private let defaults = UserDefaults.standard
-
+private let maxEntries = 30 // maxim
 
 // Save the keywords and description history to a file
 // in the system. History has date and text as data type.
@@ -41,7 +41,16 @@ public struct DefaultDB {
         defaults.synchronize()
     }
     
-    
+    static func sanitize(_ keywordsHistory: KeywordsHistory) -> KeywordsHistory {
+        var history = keywordsHistory
+        if history.count > maxEntries {
+            let sorted = history.sorted{ $0.value < $1.value }
+            let (key, _) = sorted[0]
+            history.removeValue(forKey: key)
+        }
+        //print("History Count: \(history.count) --> \(history)")
+        return history
+    }
     
     private static func convert(_ key: LightDB) -> String {
         return key.description

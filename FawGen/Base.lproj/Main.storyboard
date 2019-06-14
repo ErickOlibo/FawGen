@@ -518,6 +518,12 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filters" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mcE-Qg-pzN">
+                                <rect key="frame" x="25" y="69" width="67.333333333333329" height="27.666666666666671"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Describe your project!" adjustsFontSizeToFit="NO" minimumFontSize="16" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="MMX-zD-IRe">
                                 <rect key="frame" x="20" y="451.66666666666669" width="324" height="30"/>
                                 <nil key="textColor"/>
@@ -707,10 +713,13 @@
                                     <action selector="tappedOnOff:" destination="kfp-0M-PlI" eventType="touchUpInside" id="cPc-te-MTc"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filters" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mcE-Qg-pzN">
-                                <rect key="frame" x="25" y="69" width="67.333333333333329" height="27.666666666666671"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="too large" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IcM-M1-5uJ">
+                                <rect key="frame" x="283.33333333333331" y="486.66666666666669" width="60.666666666666686" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="yeI-mb-djB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -742,9 +751,12 @@
                             <constraint firstItem="tHw-of-h4a" firstAttribute="leading" secondItem="bJt-Ze-Ba1" secondAttribute="trailing" constant="20" id="gRZ-9p-oIk"/>
                             <constraint firstItem="L5T-OE-VZE" firstAttribute="leading" secondItem="4fE-r6-jXH" secondAttribute="leading" constant="20" id="jaG-3g-HLm"/>
                             <constraint firstItem="4fE-r6-jXH" firstAttribute="trailing" secondItem="TAi-Dj-gCj" secondAttribute="trailing" constant="20" id="kl4-Y5-iCH"/>
+                            <constraint firstItem="IcM-M1-5uJ" firstAttribute="trailing" secondItem="MMX-zD-IRe" secondAttribute="trailing" id="lmW-Su-GLC"/>
+                            <constraint firstItem="IcM-M1-5uJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4fE-r6-jXH" secondAttribute="leading" symbolic="YES" id="pRu-cE-fik"/>
                             <constraint firstItem="5Th-jy-DZQ" firstAttribute="leading" secondItem="ZU2-f3-njA" secondAttribute="trailing" constant="20" id="v0t-1r-QzW"/>
                             <constraint firstItem="Gye-s8-PG3" firstAttribute="leading" secondItem="L5T-OE-VZE" secondAttribute="trailing" constant="20" id="waV-40-iz6"/>
                             <constraint firstItem="4fE-r6-jXH" firstAttribute="trailing" secondItem="MMX-zD-IRe" secondAttribute="trailing" constant="70" id="wip-Gs-JWM"/>
+                            <constraint firstItem="IcM-M1-5uJ" firstAttribute="top" secondItem="MMX-zD-IRe" secondAttribute="bottom" constant="5" id="xds-qt-HNy"/>
                             <constraint firstItem="4fE-r6-jXH" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fU2-Iv-T24" secondAttribute="trailing" symbolic="YES" id="xqm-d1-lhL"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4fE-r6-jXH"/>
@@ -753,6 +765,7 @@
                         <outlet property="advancedLabel" destination="fU2-Iv-T24" id="cpX-rQ-WE2"/>
                         <outlet property="keywordsTextField" destination="MMX-zD-IRe" id="DsP-fP-Jaf"/>
                         <outlet property="sendButton" destination="Qjs-S6-rf1" id="vH3-9P-0Xh"/>
+                        <outlet property="textLimitLabel" destination="IcM-M1-5uJ" id="0Uc-iM-2Zv"/>
                         <outletCollection property="wordsLevelMeter" destination="t29-YM-8RW" collectionClass="NSMutableArray" id="RrU-Im-PZd"/>
                         <outletCollection property="wordsLevelMeter" destination="ayL-Fe-W8e" collectionClass="NSMutableArray" id="Y9O-Ai-T9U"/>
                         <outletCollection property="wordsLevelMeter" destination="35V-Oo-lp6" collectionClass="NSMutableArray" id="3Vn-h8-4tT"/>
