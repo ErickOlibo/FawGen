@@ -93,6 +93,8 @@ class ViewController: UIViewController {
         domainTwo.currentStatus = .normal
         domainThree.currentStatus = .normal
         domainFour.currentStatus = .normal
+        
+        print("Social: \(socialOne.bounds) - Domain: \(domainOne.bounds)")
     
     }
     
