@@ -170,7 +170,7 @@
 		A722066722A4B56000E1C256 /* ColorGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722066622A4B56000E1C256 /* ColorGenerator.swift */; };
 		A722066922A4BFF200E1C256 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722066822A4BFF200E1C256 /* GradientView.swift */; };
 		A722066F22A575FD00E1C256 /* RandomizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722066E22A575FD00E1C256 /* RandomizeViewController.swift */; };
-		A722067122A5765500E1C256 /* RandomizeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722067022A5765500E1C256 /* RandomizeCell.swift */; };
+		A722067122A5765500E1C256 /* FakeWordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722067022A5765500E1C256 /* FakeWordCell.swift */; };
 		A76915B522A0DB7300FB616F /* DomainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A76915B422A0DB7300FB616F /* DomainView.xib */; };
 		A76915B722A0DB8600FB616F /* DomainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76915B622A0DB8600FB616F /* DomainView.swift */; };
 		A76915B922A0DF2F00FB616F /* DomainChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76915B822A0DF2F00FB616F /* DomainChecker.swift */; };
@@ -179,7 +179,7 @@
 		A76915BF22A218BA00FB616F /* TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76915BE22A218BA00FB616F /* TypeAlias.swift */; };
 		A79936E122A6234F0091C9CA /* RandomizeViewController+NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79936E022A6234F0091C9CA /* RandomizeViewController+NavBar.swift */; };
 		A7B7E03C22B44AE700398289 /* RandomizeVCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7E03B22B44AE700398289 /* RandomizeVCExtension.swift */; };
-		A7B7E03E22B44E6600398289 /* FakeWordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7E03D22B44E6600398289 /* FakeWordModel.swift */; };
+		A7B7E03E22B44E6600398289 /* FakeWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7E03D22B44E6600398289 /* FakeWord.swift */; };
 		A7B7E06322B4D3B000398289 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7E06222B4D3B000398289 /* DataSource.swift */; };
 		A7EC016622A3667B0056E2C7 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC016522A3667B0056E2C7 /* GlobalConstants.swift */; };
 		A7EC016922A36E510056E2C7 /* UIFont+BestFit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC016822A36E510056E2C7 /* UIFont+BestFit.swift */; };
@@ -362,7 +362,7 @@
 		A722066622A4B56000E1C256 /* ColorGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorGenerator.swift; sourceTree = "<group>"; };
 		A722066822A4BFF200E1C256 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		A722066E22A575FD00E1C256 /* RandomizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomizeViewController.swift; sourceTree = "<group>"; };
-		A722067022A5765500E1C256 /* RandomizeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomizeCell.swift; sourceTree = "<group>"; };
+		A722067022A5765500E1C256 /* FakeWordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeWordCell.swift; sourceTree = "<group>"; };
 		A76915B422A0DB7300FB616F /* DomainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DomainView.xib; sourceTree = "<group>"; };
 		A76915B622A0DB8600FB616F /* DomainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainView.swift; sourceTree = "<group>"; };
 		A76915B822A0DF2F00FB616F /* DomainChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainChecker.swift; sourceTree = "<group>"; };
@@ -371,7 +371,7 @@
 		A76915BE22A218BA00FB616F /* TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAlias.swift; sourceTree = "<group>"; };
 		A79936E022A6234F0091C9CA /* RandomizeViewController+NavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RandomizeViewController+NavBar.swift"; sourceTree = "<group>"; };
 		A7B7E03B22B44AE700398289 /* RandomizeVCExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomizeVCExtension.swift; sourceTree = "<group>"; };
-		A7B7E03D22B44E6600398289 /* FakeWordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeWordModel.swift; sourceTree = "<group>"; };
+		A7B7E03D22B44E6600398289 /* FakeWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeWord.swift; sourceTree = "<group>"; };
 		A7B7E06222B4D3B000398289 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		A7EC016522A3667B0056E2C7 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
 		A7EC016822A36E510056E2C7 /* UIFont+BestFit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+BestFit.swift"; sourceTree = "<group>"; };
@@ -1151,8 +1151,8 @@
 		A722066A22A5755600E1C256 /* Randomize */ = {
 			isa = PBXGroup;
 			children = (
-				A7B7E03F22B45B2900398289 /* Data Source */,
 				A722066B22A5756900E1C256 /* Model */,
+				A7B7E03F22B45B2900398289 /* Data Source */,
 				A722066C22A5757700E1C256 /* Views */,
 				A722066D22A5758100E1C256 /* Controller */,
 			);
@@ -1162,7 +1162,7 @@
 		A722066B22A5756900E1C256 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A7B7E03D22B44E6600398289 /* FakeWordModel.swift */,
+				A7B7E03D22B44E6600398289 /* FakeWord.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1170,7 +1170,7 @@
 		A722066C22A5757700E1C256 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				A722067022A5765500E1C256 /* RandomizeCell.swift */,
+				A7B7E08F22B57DBB00398289 /* Cell */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1209,6 +1209,14 @@
 				A7B7E06222B4D3B000398289 /* DataSource.swift */,
 			);
 			path = "Data Source";
+			sourceTree = "<group>";
+		};
+		A7B7E08F22B57DBB00398289 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				A722067022A5765500E1C256 /* FakeWordCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		A7EC016422A366370056E2C7 /* Global Entities */ = {
@@ -1436,7 +1444,7 @@
 				A70C4B1C22AA0675001BD6CC /* SPGolubevIconView.swift in Sources */,
 				A70C4AEE22AA0675001BD6CC /* SPStorkHaptic.swift in Sources */,
 				A70C4B4122AA0675001BD6CC /* SPUserDefaultsExtenshion.swift in Sources */,
-				A7B7E03E22B44E6600398289 /* FakeWordModel.swift in Sources */,
+				A7B7E03E22B44E6600398289 /* FakeWord.swift in Sources */,
 				A70C4A2522AA0611001BD6CC /* SPLarkSettingsController.swift in Sources */,
 				A70C4B3A22AA0675001BD6CC /* SPUITableViewCellExtenshion.swift in Sources */,
 				A70C4BB622ADCA85001BD6CC /* TEOStepper.swift in Sources */,
@@ -1528,7 +1536,7 @@
 				A70C4B6C22AA0675001BD6CC /* SPDevice.swift in Sources */,
 				A70C4B0122AA0675001BD6CC /* SPButton.swift in Sources */,
 				A70C4B1F22AA0675001BD6CC /* SPDownloadingUIImageView.swift in Sources */,
-				A722067122A5765500E1C256 /* RandomizeCell.swift in Sources */,
+				A722067122A5765500E1C256 /* FakeWordCell.swift in Sources */,
 				A70C4B7622AA0675001BD6CC /* SPBadge.swift in Sources */,
 				A70C4B2922AA0675001BD6CC /* SPFormTextFiledTableViewCell.swift in Sources */,
 				A70C4B5122AA0675001BD6CC /* SPConstraints.swift in Sources */,

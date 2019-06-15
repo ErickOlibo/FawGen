@@ -8,9 +8,16 @@
 
 import UIKit
 final class DataSource: NSObject, UITableViewDataSource {
-    private let cellIdentifier = "RandomizeCell"
+    private let cellIdentifier = "FakeWordCell"
     
-    private var items: [String] = ["ability", "about", "above", "accept", "according", "account", "across", "action", "activity", "actually", "address", "administration", "admit", "adult", "affect", "after", "again", "against", "agency", "agent", "agree", "agreement", "ahead", "allow", "almost", "alone", "along", "already", "although", "always", "American", "among", "amount", "analysis", "animal", "another", "answer", "anyone", "anything"]
+    private var items: [FakeWord] = {
+        let dataSize = 30
+        var collection = [FakeWord]()
+        for _ in 0..<dataSize {
+            collection.append(FakeWord())
+        }
+        return collection
+    }()
     
     
     private var indexPaths: Set<IndexPath> = []
@@ -21,19 +28,15 @@ final class DataSource: NSObject, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! RandomizeCell
-        let title = items[indexPath.row]
-        
-        cell.update(title: title)
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! FakeWordCell
+        let data = self[indexPath]
+        cell.update(data: data)
         cell.state = cellIsExpanded(at: indexPath) ? .expanded : .collapsed
         
         return cell
     }
     
-    
-    
-    
+  
 }
 
 extension DataSource {
@@ -51,7 +54,7 @@ extension DataSource {
 }
 
 extension DataSource {
-    subscript(indexPath: IndexPath) -> String {
+    subscript(indexPath: IndexPath) -> FakeWord {
         return items[indexPath.row]
     }
 }

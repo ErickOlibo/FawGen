@@ -35,18 +35,6 @@ class RandomizeViewController: UITableViewController {
         tableView.separatorStyle = .none
     }
 
-    // MARK: - Table view data source
-
-//    override func numberOfSections(in tableView: UITableView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return 0
-//    }
-//
-//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        // #warning Incomplete implementation, return the number of rows
-//        return 0
-//    }
-//
 
 
 }
@@ -55,34 +43,14 @@ class RandomizeViewController: UITableViewController {
 extension RandomizeViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! RandomizeCell
-        
-        cell.state = .expanded
-        dataSource.addExpandedIndexPath(indexPath)
-        
-        DispatchQueue.main.async {
-            tableView.beginUpdates()
-            UIView.animate(withDuration: 0.7) {
-                cell.detailsView.alpha = 1
-            }
-            tableView.endUpdates()
-        }
+        //let cell = tableView.cellForRow(at: indexPath) as! FakeWordCell
+
         
     }
     
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! RandomizeCell
-        
-        cell.state = .collapsed
-        dataSource.removeExpandedIndexPath(indexPath)
-        
-        DispatchQueue.main.async {
-            tableView.beginUpdates()
-            UIView.animate(withDuration: 0.7) {
-                cell.detailsView.alpha = 0
-            }
-            tableView.endUpdates()
-        }
+        //let cell = tableView.cellForRow(at: indexPath) as! FakeWordCell
+
     }
 }
 
