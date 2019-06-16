@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "TextToSpeech@1x.png",
+      "filename" : "SaveColorOn@1x.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "TextToSpeech@2x.png",
+      "filename" : "SaveColorOn@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "TextToSpeech@3x.png",
+      "filename" : "SaveColorOn@3x.png",
       "scale" : "3x"
     }
   ],
@@ -21,6 +21,6 @@
     "author" : "xcode"
   },
   "properties" : {
-    "template-rendering-intent" : "template"
+    "template-rendering-intent" : "original"
   }
 }

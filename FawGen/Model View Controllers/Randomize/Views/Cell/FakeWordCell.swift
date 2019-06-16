@@ -43,14 +43,20 @@ class FakeWordCell: UITableViewCell {
     @IBOutlet private weak var textToSpeechButton: UIButton!
     
     // Bottom View
+    
+    @IBOutlet weak var bottomView: UIView!
     @IBOutlet private weak var fakeWordRootLabel: UILabel!
     @IBOutlet private var socialViews: [SocialView]!
     @IBOutlet private var domainViews: [DomainView]!
     
+    
+    // DomainViews and SocialViews horizontal spacing constraints
+    
+    
     // MARK: - Properties
     private let expandedViewIndex: Int = 1
     var state: CellState = .collapsed { didSet { toggle() } }
-    private(set) var currentFakeword: FakeWord?
+    private(set) var currentFakeword = FakeWord()
     
     
     
@@ -60,11 +66,15 @@ class FakeWordCell: UITableViewCell {
     // MARK: - Actions
     @IBAction func tappedSave(_ sender: UIButton) {
         print("Save Fake Word")
+        sender.pulse()
+        toggleSave()
     }
     @IBAction func tappedDetailedReport(_ sender: UIButton) {
+        sender.pulse()
         print("Show Detailed Report")
     }
     @IBAction func tappedTextToSpeech(_ sender: UIButton) {
+        sender.pulse()
         print("Speak the fake word in English")
     }
     
@@ -74,19 +84,100 @@ class FakeWordCell: UITableViewCell {
     override func awakeFromNib() {
         //super.awakeFromNib()
         selectionStyle = .none
-        containerView.layer.cornerRadius = 5.0
+        //containerView.layer.cornerRadius = 5.0
+        setupCell()
+        setupSave()
+        setupSocialDomain()
+    }
+    
+    
+    private func setupSocialDomain() {
+        let orderdSocial = socialViews.sorted{ $0.tag < $1.tag }
+        let orderedDomain = domainViews.sorted{ $0.tag < $1.tag }
+        
+        for idx in 0..<4 {
+            orderdSocial[idx].layer.cornerRadius = 10
+            orderedDomain[idx].layer.cornerRadius = 10
+            switch idx {
+            case 0:
+                orderdSocial[idx].initialize(SocialNetwork.facebook.info)
+                orderedDomain[idx].initialize(DomainExtension.com)
+            case 1:
+                orderdSocial[idx].initialize(SocialNetwork.youtube.info)
+                orderedDomain[idx].initialize(DomainExtension.net)
+            case 2:
+                orderdSocial[idx].initialize(SocialNetwork.twitter.info)
+                orderedDomain[idx].initialize(DomainExtension.org)
+            case 3:
+                orderdSocial[idx].initialize(SocialNetwork.instagram.info)
+                orderedDomain[idx].initialize(DomainExtension.co)
+            default:
+                break
+            }
+        }
+        
+//        for social in socialViews {
+//            social.layer.cornerRadius = 10
+//
+//
+//        }
+//
+//        for domain in domainViews {
+//            domain.layer.cornerRadius = 10
+//        }
+        
+    }
+    
+    private func toggleSave() {
+        currentFakeword.isSaved = !currentFakeword.isSaved
+        setupSave()
+    }
+    
+    private func setupSave() {
+        if currentFakeword.isSaved {
+            saveWordButton.setImage(#imageLiteral(resourceName: "SaveColorOn"), for: .normal)
+        } else {
+            saveWordButton.setImage(#imageLiteral(resourceName: "SaveOff"), for: .normal)
+            saveWordButton.tintColor = .lightGray
+        }
+        //saveWordButton.backgroundColor = currentFakeword.isSaved ? FawGenColors.primary.color : .darkGray
+    }
+    
+    private func setupSocialViews() {
+        
+    }
+    
+    
+    private func setupDomainViews() {
+        
+    }
+    
+    private func setupCell() {
+        textToSpeechButton.tintColor = FawGenColors.secondary.color
+        detailedReportButton.tintColor = FawGenColors.secondary.color
+        saveWordButton.layer.cornerRadius = 10
     }
     
     public func update(data: FakeWord) {
         currentFakeword = data
         
         // Setup the cell
+        designBar.backgroundColor = data.designBarColor
+        madeUpLogo.image = data.logo
+        fakeWordLabel.text = data.name
+        fakeWordRootLabel.text = data.madeUpRoots
+        
+        // Random Font
+        fakeWordLabel.font = UIFont(name: data.font, size: 400)
+        fakeWordLabel.fitTextToBounds()
+        
         
         
     }
     
     private func toggle() {
-
+        stackView.arrangedSubviews[expandedViewIndex].isHidden = stateIsCollapsed()
+        carret.image = state.carretImage
     }
     
     private func stateIsCollapsed() -> Bool {

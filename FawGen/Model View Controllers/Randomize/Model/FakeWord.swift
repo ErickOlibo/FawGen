@@ -18,7 +18,7 @@ struct FakeWord {
     var isSaved: Bool = false
     let name: String = {
         guard let rndWord = Constants.fakeWords.randomElement() else { return "No Fakes"}
-        return rndWord
+        return rndWord.capitalized 
     }()
     
     let madeUpRoots: String = {

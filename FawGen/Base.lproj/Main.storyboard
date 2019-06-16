@@ -222,10 +222,10 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="414" height="130"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6X1-D3-Eew">
-                                                                    <rect key="frame" x="10" y="5" width="5" height="60"/>
+                                                                    <rect key="frame" x="10" y="5" width="10" height="60"/>
                                                                     <color key="backgroundColor" red="0.82352941180000006" green="0.22352941179999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="5" id="0k4-ur-Hlv"/>
+                                                                        <constraint firstAttribute="width" constant="10" id="0k4-ur-Hlv"/>
                                                                         <constraint firstAttribute="height" constant="60" id="Bos-Yl-RH9"/>
                                                                     </constraints>
                                                                 </view>
@@ -254,29 +254,41 @@
                                                                 </imageView>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4hx-Q7-zEy">
                                                                     <rect key="frame" x="10" y="80" width="60" height="40"/>
-                                                                    <color key="backgroundColor" red="0.82352941180000006" green="0.22352941179999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="60" id="EBH-aj-JRy"/>
                                                                         <constraint firstAttribute="height" constant="40" id="MUW-Rl-Gfm"/>
                                                                     </constraints>
+                                                                    <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
                                                                     <state key="normal" image="TextToSpeech"/>
+                                                                    <connections>
+                                                                        <action selector="tappedTextToSpeech:" destination="RWl-8X-hlE" eventType="touchUpInside" id="45L-l9-E5u"/>
+                                                                    </connections>
                                                                 </button>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZzN-HD-zcl">
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZzN-HD-zcl">
                                                                     <rect key="frame" x="334" y="80" width="60" height="40"/>
-                                                                    <color key="backgroundColor" red="0.82352941180000006" green="0.22352941179999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="40" id="AGr-Xe-cnP"/>
                                                                         <constraint firstAttribute="width" constant="60" id="B1M-Z3-C85"/>
                                                                     </constraints>
+                                                                    <state key="normal" image="SaveOn"/>
+                                                                    <connections>
+                                                                        <action selector="tappedSave:" destination="RWl-8X-hlE" eventType="touchUpInside" id="nec-Hp-Bgz"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y1N-0g-Oon">
                                                                     <rect key="frame" x="90" y="80" width="60" height="40"/>
-                                                                    <color key="backgroundColor" red="0.82352941180000006" green="0.22352941179999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="60" id="Ggz-H8-0lE"/>
                                                                         <constraint firstAttribute="height" constant="40" id="MMt-K0-puF"/>
                                                                     </constraints>
+                                                                    <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
                                                                     <state key="normal" image="DetailedReport"/>
+                                                                    <connections>
+                                                                        <action selector="tappedDetailedReport:" destination="RWl-8X-hlE" eventType="touchUpInside" id="CrE-zB-aJ6"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -303,65 +315,97 @@
                                                             <rect key="frame" x="0.0" y="130" width="414" height="229.66666666666663"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBW-9q-zYL">
-                                                                    <rect key="frame" x="20" y="5" width="374" height="60"/>
+                                                                    <rect key="frame" x="20" y="5" width="374" height="54"/>
                                                                     <string key="text">Lorem ipsum..Lorem ipsum..Lorem ipsum..Lorem ipsum..Lorem ipsum..Lorem ipsum..Lorem ipsum..Lorem ipsum..Lorem ipsum..Lorem ipsum..</string>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sql-Wd-U7u" userLabel="facebook" customClass="SocialView" customModule="FawGen" customModuleProvider="target">
-                                                                    <rect key="frame" x="10" y="80" width="82.666666666666671" height="82.666666666666686"/>
-                                                                    <color key="backgroundColor" red="0.92946392300000003" green="0.82375141110000005" blue="0.80861177569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" secondItem="Sql-Wd-U7u" secondAttribute="height" multiplier="1:1" id="rIV-s2-B8T"/>
-                                                                    </constraints>
-                                                                </view>
-                                                                <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MYX-3Z-W0b" userLabel="youtube" customClass="SocialView" customModule="FawGen" customModuleProvider="target">
-                                                                    <rect key="frame" x="100" y="80" width="83" height="82.666666666666686"/>
-                                                                    <color key="backgroundColor" red="0.92946392300000003" green="0.82375141110000005" blue="0.80861177569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" secondItem="MYX-3Z-W0b" secondAttribute="height" multiplier="1:1" id="bKX-Bp-M2r"/>
-                                                                    </constraints>
-                                                                </view>
-                                                                <view tag="3" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U06-TK-v9O" userLabel="twitter" customClass="SocialView" customModule="FawGen" customModuleProvider="target">
-                                                                    <rect key="frame" x="200" y="80" width="82.666666666666629" height="82.666666666666686"/>
-                                                                    <color key="backgroundColor" red="0.92946392300000003" green="0.82375141110000005" blue="0.80861177569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" secondItem="U06-TK-v9O" secondAttribute="height" multiplier="1:1" id="W78-Zc-mxx"/>
-                                                                    </constraints>
-                                                                </view>
-                                                                <view tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y1B-Dk-r7U" userLabel="instagram" customClass="SocialView" customModule="FawGen" customModuleProvider="target">
-                                                                    <rect key="frame" x="321.33333333333331" y="80" width="82.666666666666686" height="82.666666666666686"/>
-                                                                    <color key="backgroundColor" red="0.92946392300000003" green="0.82375141110000005" blue="0.80861177569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" secondItem="y1B-Dk-r7U" secondAttribute="height" multiplier="1:1" id="0hW-V7-yRe"/>
-                                                                    </constraints>
-                                                                </view>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="gOc-E7-Fa5" userLabel="Social Stack View">
+                                                                    <rect key="frame" x="10" y="74" width="392" height="80"/>
+                                                                    <subviews>
+                                                                        <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sql-Wd-U7u" userLabel="facebook" customClass="SocialView" customModule="FawGen" customModuleProvider="target">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                                                            <color key="backgroundColor" red="0.92946392300000003" green="0.82375141110000005" blue="0.80861177569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" secondItem="Sql-Wd-U7u" secondAttribute="height" multiplier="1:1" id="rIV-s2-B8T"/>
+                                                                            </constraints>
+                                                                        </view>
+                                                                        <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MYX-3Z-W0b" userLabel="youtube" customClass="SocialView" customModule="FawGen" customModuleProvider="target">
+                                                                            <rect key="frame" x="104" y="0.0" width="80" height="80"/>
+                                                                            <color key="backgroundColor" red="0.92946392300000003" green="0.82375141110000005" blue="0.80861177569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" secondItem="MYX-3Z-W0b" secondAttribute="height" multiplier="1:1" id="bKX-Bp-M2r"/>
+                                                                            </constraints>
+                                                                        </view>
+                                                                        <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U06-TK-v9O" userLabel="twitter" customClass="SocialView" customModule="FawGen" customModuleProvider="target">
+                                                                            <rect key="frame" x="208" y="0.0" width="80" height="80"/>
+                                                                            <color key="backgroundColor" red="0.92946392300000003" green="0.82375141110000005" blue="0.80861177569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" secondItem="U06-TK-v9O" secondAttribute="height" multiplier="1:1" id="W78-Zc-mxx"/>
+                                                                            </constraints>
+                                                                        </view>
+                                                                        <view tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y1B-Dk-r7U" userLabel="instagram" customClass="SocialView" customModule="FawGen" customModuleProvider="target">
+                                                                            <rect key="frame" x="312" y="0.0" width="80" height="80"/>
+                                                                            <color key="backgroundColor" red="0.92946392300000003" green="0.82375141110000005" blue="0.80861177569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" secondItem="y1B-Dk-r7U" secondAttribute="height" multiplier="1:1" id="0hW-V7-yRe"/>
+                                                                            </constraints>
+                                                                        </view>
+                                                                    </subviews>
+                                                                </stackView>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="NcC-yF-e8g" userLabel="Domain Stack View">
+                                                                    <rect key="frame" x="10" y="174" width="392" height="40"/>
+                                                                    <subviews>
+                                                                        <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lzx-ff-ccP" userLabel="COM" customClass="DomainView" customModule="FawGen" customModuleProvider="target">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="80" height="40"/>
+                                                                            <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" secondItem="lzx-ff-ccP" secondAttribute="height" multiplier="2:1" id="AHt-01-xbP"/>
+                                                                            </constraints>
+                                                                        </view>
+                                                                        <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9gX-Ug-Ewv" userLabel="NET" customClass="DomainView" customModule="FawGen" customModuleProvider="target">
+                                                                            <rect key="frame" x="104" y="0.0" width="80" height="40"/>
+                                                                            <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" secondItem="9gX-Ug-Ewv" secondAttribute="height" multiplier="2:1" id="oGm-9d-qKE"/>
+                                                                            </constraints>
+                                                                        </view>
+                                                                        <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="esV-Sg-aWS" userLabel="ORG" customClass="DomainView" customModule="FawGen" customModuleProvider="target">
+                                                                            <rect key="frame" x="208" y="0.0" width="80" height="40"/>
+                                                                            <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" secondItem="esV-Sg-aWS" secondAttribute="height" multiplier="2:1" id="kNg-MV-vWM"/>
+                                                                            </constraints>
+                                                                        </view>
+                                                                        <view tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XDP-pr-TsJ" userLabel="CO" customClass="DomainView" customModule="FawGen" customModuleProvider="target">
+                                                                            <rect key="frame" x="312" y="0.0" width="80" height="40"/>
+                                                                            <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" secondItem="XDP-pr-TsJ" secondAttribute="height" multiplier="2:1" id="tDg-KM-uyl"/>
+                                                                            </constraints>
+                                                                        </view>
+                                                                    </subviews>
+                                                                </stackView>
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
-                                                                <constraint firstItem="Sql-Wd-U7u" firstAttribute="top" secondItem="dBW-9q-zYL" secondAttribute="bottom" constant="15" id="0w7-n0-Noo"/>
-                                                                <constraint firstAttribute="bottom" secondItem="y1B-Dk-r7U" secondAttribute="bottom" constant="66.999999999999972" id="5cF-JM-NqB"/>
                                                                 <constraint firstItem="dBW-9q-zYL" firstAttribute="top" secondItem="enH-PK-4R3" secondAttribute="top" constant="5" id="9Wz-1l-EAR"/>
-                                                                <constraint firstItem="U06-TK-v9O" firstAttribute="top" secondItem="dBW-9q-zYL" secondAttribute="bottom" constant="15" id="Hek-uF-oQI"/>
-                                                                <constraint firstItem="Sql-Wd-U7u" firstAttribute="width" secondItem="enH-PK-4R3" secondAttribute="width" multiplier="1:5" id="LG2-Gl-PnZ"/>
-                                                                <constraint firstAttribute="bottom" secondItem="MYX-3Z-W0b" secondAttribute="bottom" constant="66.999999999999972" id="S63-1S-WUI"/>
-                                                                <constraint firstItem="y1B-Dk-r7U" firstAttribute="top" secondItem="dBW-9q-zYL" secondAttribute="bottom" constant="15" id="SU0-Qz-TGV"/>
-                                                                <constraint firstAttribute="trailing" secondItem="y1B-Dk-r7U" secondAttribute="trailing" constant="10" id="YNC-cE-EbK"/>
-                                                                <constraint firstItem="Sql-Wd-U7u" firstAttribute="leading" secondItem="enH-PK-4R3" secondAttribute="leading" constant="10" id="cMI-XP-Yty"/>
-                                                                <constraint firstItem="MYX-3Z-W0b" firstAttribute="top" secondItem="dBW-9q-zYL" secondAttribute="bottom" constant="15" id="eXj-r3-pTK"/>
-                                                                <constraint firstAttribute="bottom" secondItem="U06-TK-v9O" secondAttribute="bottom" constant="66.999999999999972" id="guf-DO-hhj"/>
+                                                                <constraint firstItem="gOc-E7-Fa5" firstAttribute="top" secondItem="dBW-9q-zYL" secondAttribute="bottom" constant="15" id="D4P-qo-bOt"/>
+                                                                <constraint firstAttribute="trailing" secondItem="NcC-yF-e8g" secondAttribute="trailing" constant="12" id="WzY-q3-bFa"/>
+                                                                <constraint firstAttribute="trailing" secondItem="gOc-E7-Fa5" secondAttribute="trailing" constant="12" id="YUb-7f-iIT"/>
+                                                                <constraint firstItem="NcC-yF-e8g" firstAttribute="leading" secondItem="enH-PK-4R3" secondAttribute="leading" constant="10" id="c3L-IT-XAN"/>
+                                                                <constraint firstItem="gOc-E7-Fa5" firstAttribute="leading" secondItem="enH-PK-4R3" secondAttribute="leading" constant="10" id="mYp-Mu-rw2"/>
+                                                                <constraint firstAttribute="bottom" secondItem="NcC-yF-e8g" secondAttribute="bottom" constant="15.666666666666629" id="pKV-sm-dVw"/>
                                                                 <constraint firstAttribute="trailing" secondItem="dBW-9q-zYL" secondAttribute="trailing" constant="20" id="pbt-v9-QKz"/>
-                                                                <constraint firstItem="MYX-3Z-W0b" firstAttribute="width" secondItem="Sql-Wd-U7u" secondAttribute="width" id="qCB-d9-tQP"/>
-                                                                <constraint firstAttribute="bottom" secondItem="Sql-Wd-U7u" secondAttribute="bottom" constant="67" id="ubO-O9-mkT"/>
+                                                                <constraint firstItem="NcC-yF-e8g" firstAttribute="top" secondItem="gOc-E7-Fa5" secondAttribute="bottom" constant="20" id="xf0-OY-6KP"/>
                                                                 <constraint firstItem="dBW-9q-zYL" firstAttribute="leading" secondItem="enH-PK-4R3" secondAttribute="leading" constant="20" id="xmP-5l-WcW"/>
-                                                                <constraint firstItem="MYX-3Z-W0b" firstAttribute="leading" secondItem="Sql-Wd-U7u" secondAttribute="trailing" constant="7.3333333333333286" id="zJd-QB-ldS"/>
                                                             </constraints>
                                                         </view>
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="bLK-o4-RKw" secondAttribute="bottom" id="4Wr-Kj-bH3"/>
                                                 <constraint firstItem="bLK-o4-RKw" firstAttribute="top" secondItem="SvI-jl-VuD" secondAttribute="top" id="Pyz-jN-oOF"/>
@@ -378,6 +422,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="bottomView" destination="enH-PK-4R3" id="hQR-e2-oby"/>
                                     <outlet property="carret" destination="tsC-1Q-FbE" id="kJ4-v6-bvk"/>
                                     <outlet property="containerView" destination="SvI-jl-VuD" id="Vun-KS-IFm"/>
                                     <outlet property="designBar" destination="6X1-D3-Eew" id="rqF-LX-1C4"/>
@@ -392,6 +437,10 @@
                                     <outletCollection property="socialViews" destination="MYX-3Z-W0b" collectionClass="NSMutableArray" id="hEg-hb-7eU"/>
                                     <outletCollection property="socialViews" destination="U06-TK-v9O" collectionClass="NSMutableArray" id="qNd-pA-cf9"/>
                                     <outletCollection property="socialViews" destination="y1B-Dk-r7U" collectionClass="NSMutableArray" id="5hc-LZ-Qcg"/>
+                                    <outletCollection property="domainViews" destination="lzx-ff-ccP" collectionClass="NSMutableArray" id="8Dr-7I-2I6"/>
+                                    <outletCollection property="domainViews" destination="9gX-Ug-Ewv" collectionClass="NSMutableArray" id="GEf-cj-rpe"/>
+                                    <outletCollection property="domainViews" destination="esV-Sg-aWS" collectionClass="NSMutableArray" id="dEw-Yx-2PB"/>
+                                    <outletCollection property="domainViews" destination="XDP-pr-TsJ" collectionClass="NSMutableArray" id="w4w-4C-JZh"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1026,6 +1075,7 @@
     </scenes>
     <resources>
         <image name="DetailedReport" width="40" height="40"/>
+        <image name="SaveOn" width="40" height="40"/>
         <image name="TextToSpeech" width="40" height="40"/>
         <image name="collapse" width="24" height="24"/>
         <image name="disclamer" width="28" height="28"/>

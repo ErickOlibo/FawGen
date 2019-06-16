@@ -31,7 +31,7 @@ class RandomizeViewController: UITableViewController {
         tableView.delegate = self
         tableView.dataSource = dataSource
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 360.0
+        tableView.estimatedRowHeight = 200.0
         tableView.separatorStyle = .none
     }
 
@@ -43,13 +43,34 @@ class RandomizeViewController: UITableViewController {
 extension RandomizeViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //let cell = tableView.cellForRow(at: indexPath) as! FakeWordCell
+        let cell = tableView.cellForRow(at: indexPath) as! FakeWordCell
+        print("didSelectRowAt")
+        
+        cell.state = .expanded
+        dataSource.addExpandedIndexPath(indexPath)
+        
+        tableView.beginUpdates()
+        cell.bottomView.alpha = 0
+        UIView.animate(withDuration: 0.7) {
+            cell.bottomView.alpha = 1
+        }
+        tableView.endUpdates()
 
         
     }
     
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        //let cell = tableView.cellForRow(at: indexPath) as! FakeWordCell
+        let cell = tableView.cellForRow(at: indexPath) as! FakeWordCell
+        print("didDeselectRowAt")
+        cell.state = .collapsed
+        dataSource.removeExpandedIndexPath(indexPath)
+        
+        tableView.beginUpdates()
+        cell.bottomView.alpha = 1
+        UIView.animate(withDuration: 0.7) {
+            cell.bottomView.alpha = 0
+        }
+        tableView.endUpdates()
 
     }
 }
