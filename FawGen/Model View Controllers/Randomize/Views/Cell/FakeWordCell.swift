@@ -115,17 +115,6 @@ class FakeWordCell: UITableViewCell {
                 break
             }
         }
-        
-//        for social in socialViews {
-//            social.layer.cornerRadius = 10
-//
-//
-//        }
-//
-//        for domain in domainViews {
-//            domain.layer.cornerRadius = 10
-//        }
-        
     }
     
     private func toggleSave() {
@@ -140,17 +129,8 @@ class FakeWordCell: UITableViewCell {
             saveWordButton.setImage(#imageLiteral(resourceName: "SaveOff"), for: .normal)
             saveWordButton.tintColor = .lightGray
         }
-        //saveWordButton.backgroundColor = currentFakeword.isSaved ? FawGenColors.primary.color : .darkGray
     }
     
-    private func setupSocialViews() {
-        
-    }
-    
-    
-    private func setupDomainViews() {
-        
-    }
     
     private func setupCell() {
         textToSpeechButton.tintColor = FawGenColors.secondary.color

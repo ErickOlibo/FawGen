@@ -32,7 +32,7 @@ final class DataSource: NSObject, UITableViewDataSource {
         let data = self[indexPath]
         cell.update(data: data)
         cell.state = cellIsExpanded(at: indexPath) ? .expanded : .collapsed
-        
+        cell.bottomView.alpha = cell.state == .expanded ? 1 : 0
         return cell
     }
     

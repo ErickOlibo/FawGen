@@ -46,11 +46,22 @@ class SettingsViewController: UITableViewController {
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if (segue.identifier == "Keywords History") {
+            guard let destination = segue.destination as? KeywordsHistoryViewController else { return }
+            destination.navigationItem.title = "History"
+        }
+        
         if (segue.identifier == "Fields Explanation") {
             guard let destination = segue.destination as? AboutViewController else { return }
             destination.aboutURL = URL(string: UrlFor.explanation)
             destination.navigationItem.title = "Explanation"
             print(UrlFor.explanation)
+        }
+        
+        if (segue.identifier == "Checker") {
+            guard let destination = segue.destination as? CheckerViewController else { return }
+            destination.navigationItem.title = "Checker"
         }
         
         if (segue.identifier == "FAQ") {

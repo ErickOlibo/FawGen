@@ -89,9 +89,9 @@ extension RandomizeViewController {
     @objc private func presentLogoWebsiteViewController() {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let aboutVC = storyBoard.instantiateViewController(withIdentifier: "AboutVC") as! AboutViewController
-        let backItem = UIBarButtonItem()
-        backItem.title = "Randomize"
-        navigationItem.backBarButtonItem = backItem
+//        let backItem = UIBarButtonItem()
+//        backItem.title = "Back"
+//        navigationItem.backBarButtonItem = backItem
         aboutVC.aboutURL = URL(string: UrlFor.fawgen)
         aboutVC.navigationItem.title = "FawGen"
         self.navigationController?.pushViewController(aboutVC, animated: true)

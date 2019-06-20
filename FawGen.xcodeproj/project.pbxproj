@@ -181,6 +181,9 @@
 		A7B7E03C22B44AE700398289 /* RandomizeVCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7E03B22B44AE700398289 /* RandomizeVCExtension.swift */; };
 		A7B7E03E22B44E6600398289 /* FakeWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7E03D22B44E6600398289 /* FakeWord.swift */; };
 		A7B7E06322B4D3B000398289 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7E06222B4D3B000398289 /* DataSource.swift */; };
+		A7B7E0AF22B9EE2F00398289 /* TextToSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7E0AE22B9EE2F00398289 /* TextToSpeech.swift */; };
+		A7B7E0D222BBF94600398289 /* CheckerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7E0D122BBF94600398289 /* CheckerViewController.swift */; };
+		A7B7E0D522BC277800398289 /* KeywordsHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7E0D422BC277800398289 /* KeywordsHistoryViewController.swift */; };
 		A7EC016622A3667B0056E2C7 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC016522A3667B0056E2C7 /* GlobalConstants.swift */; };
 		A7EC016922A36E510056E2C7 /* UIFont+BestFit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC016822A36E510056E2C7 /* UIFont+BestFit.swift */; };
 		A7EC016B22A36F1D0056E2C7 /* UILabel+BestFit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC016A22A36F1D0056E2C7 /* UILabel+BestFit.swift */; };
@@ -373,6 +376,9 @@
 		A7B7E03B22B44AE700398289 /* RandomizeVCExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomizeVCExtension.swift; sourceTree = "<group>"; };
 		A7B7E03D22B44E6600398289 /* FakeWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeWord.swift; sourceTree = "<group>"; };
 		A7B7E06222B4D3B000398289 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
+		A7B7E0AE22B9EE2F00398289 /* TextToSpeech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextToSpeech.swift; sourceTree = "<group>"; };
+		A7B7E0D122BBF94600398289 /* CheckerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckerViewController.swift; sourceTree = "<group>"; };
+		A7B7E0D422BC277800398289 /* KeywordsHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordsHistoryViewController.swift; sourceTree = "<group>"; };
 		A7EC016522A3667B0056E2C7 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
 		A7EC016822A36E510056E2C7 /* UIFont+BestFit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+BestFit.swift"; sourceTree = "<group>"; };
 		A7EC016A22A36F1D0056E2C7 /* UILabel+BestFit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+BestFit.swift"; sourceTree = "<group>"; };
@@ -1049,7 +1055,7 @@
 			isa = PBXGroup;
 			children = (
 				A70C4B7F22AA95D4001BD6CC /* SettingsViewController.swift */,
-				A70C4B8322AB403A001BD6CC /* AboutViewController.swift */,
+				A7B7E0D322BC272E00398289 /* Childs */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1219,6 +1225,16 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		A7B7E0D322BC272E00398289 /* Childs */ = {
+			isa = PBXGroup;
+			children = (
+				A70C4B8322AB403A001BD6CC /* AboutViewController.swift */,
+				A7B7E0D122BBF94600398289 /* CheckerViewController.swift */,
+				A7B7E0D422BC277800398289 /* KeywordsHistoryViewController.swift */,
+			);
+			path = Childs;
+			sourceTree = "<group>";
+		};
 		A7EC016422A366370056E2C7 /* Global Entities */ = {
 			isa = PBXGroup;
 			children = (
@@ -1347,6 +1363,7 @@
 				A70C4BBA22ADED1A001BD6CC /* UILabelExtension.swift */,
 				A70C4BBE22AE19F4001BD6CC /* UserDefaultFawGenDataBase.swift */,
 				A70C4BC022B07E36001BD6CC /* DeviceScreenSizes.swift */,
+				A7B7E0AE22B9EE2F00398289 /* TextToSpeech.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1434,6 +1451,7 @@
 				A70C4B4222AA0675001BD6CC /* SPUIViewControllerExtenshion.swift in Sources */,
 				A70C4B3622AA0675001BD6CC /* SPNativeStyleKit.swift in Sources */,
 				A70C4AFE22AA0675001BD6CC /* SPSystemIconButton.swift in Sources */,
+				A7B7E0D222BBF94600398289 /* CheckerViewController.swift in Sources */,
 				A70C4B1522AA0675001BD6CC /* SPMengTransformCollectionView.swift in Sources */,
 				A70C4B4322AA0675001BD6CC /* SPStringExtenshion.swift in Sources */,
 				A70C4B4022AA0675001BD6CC /* SPArrayExtension.swift in Sources */,
@@ -1557,6 +1575,7 @@
 				A70C4B0922AA0675001BD6CC /* SPNativeTableViewController.swift in Sources */,
 				A70C4B3D22AA0675001BD6CC /* SPUIImageExtension.swift in Sources */,
 				A70C4B6922AA0675001BD6CC /* SPWhatsApp.swift in Sources */,
+				A7B7E0AF22B9EE2F00398289 /* TextToSpeech.swift in Sources */,
 				A70C4B5B22AA0675001BD6CC /* SPCodeDraw.swift in Sources */,
 				A70C4B7422AA0675001BD6CC /* SPRequestPermissionLocationHandler.swift in Sources */,
 				A70C4B3922AA0675001BD6CC /* SPUIAlertControllerExtenshion.swift in Sources */,
@@ -1601,6 +1620,7 @@
 				A70C4B1D22AA0675001BD6CC /* SPTextField.swift in Sources */,
 				A70C4B1122AA0675001BD6CC /* SPCollectionViewCell.swift in Sources */,
 				A722066F22A575FD00E1C256 /* RandomizeViewController.swift in Sources */,
+				A7B7E0D522BC277800398289 /* KeywordsHistoryViewController.swift in Sources */,
 				A70C4B4E22AA0675001BD6CC /* SPUIColorExtension.swift in Sources */,
 				A70C4AFB22AA0675001BD6CC /* SPPlayCircleButton.swift in Sources */,
 				A70C4B0722AA0675001BD6CC /* SPWelcomeViewController.swift in Sources */,
