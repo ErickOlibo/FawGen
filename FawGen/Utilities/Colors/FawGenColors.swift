@@ -52,6 +52,6 @@ private enum Colors: String {
     case primary = "#F6511D" // Orioles Orange
     case secondary = "#0D2C54" // Prussian Blue
     case tertiary = "FFB400" // UCLA Gold
-    case availableStatus = "3CD070" // UFO Green (for available Status
+    case availableStatus = "3CD070" // UFO Green (for available Status)
     case primaryDark = "#BC3000" // Special darker Orange for Steppers
 }
