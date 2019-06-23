@@ -56,6 +56,7 @@ class SocialView: UIView {
     /// This method set the basic characteristics during the awake from NIB
     /// of the Social View
     private func commonInitialization() {
+        print(String(describing: type(of: self)))
         let view = Bundle.main.loadNibNamed(String(describing: type(of: self)), owner: self, options: nil)?.first as! UIView
         view.frame = bounds
         view.autoresizingMask = [

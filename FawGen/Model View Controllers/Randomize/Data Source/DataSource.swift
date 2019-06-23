@@ -10,8 +10,8 @@ import UIKit
 final class DataSource: NSObject, UITableViewDataSource {
     private let cellIdentifier = "FakeWordCell"
     
-    private var items: [FakeWord] = {
-        let dataSize = 30
+    public var items: [FakeWord] = {
+        let dataSize = 0
         var collection = [FakeWord]()
         for _ in 0..<dataSize {
             collection.append(FakeWord())

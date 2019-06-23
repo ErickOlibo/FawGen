@@ -27,8 +27,29 @@ class RandomizeViewController: UITableViewController {
         super.viewDidLoad()
         setupNavigationBarItems()
         setupTableView()
+        //simpleAssistUI()
     }
     
+    override func viewWillLayoutSubviews() {
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        simpleAssistUI()
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // remove all views from theh footerView
+        if let subViews = tableView.tableFooterView?.subviews {
+            for view in subViews {
+                view.removeFromSuperview()
+            }
+        }
+    }
     
     private func setupTableView() {
         tableView.delegate = self
@@ -36,11 +57,45 @@ class RandomizeViewController: UITableViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 200.0
         tableView.separatorStyle = .none
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
+        //tableView.backgroundColor = FawGenColors.secondary.color
     }
 
 
 
 }
+
+extension RandomizeViewController {
+    private func simpleAssistUI() {
+        print("DataSource: \(dataSource.items.count)")
+        if dataSource.items.count > 0 {
+            print("DataSource is not empty")
+            // Set => Reset and AnotherSet FooterView
+            let viewBounds = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 80)
+            let resetAnotherSetView = UIView(frame: viewBounds)
+            resetAnotherSetView.backgroundColor = .red
+            tableView.tableFooterView = resetAnotherSetView
+        } else {
+            // Set => Simple Assist FooterView
+//            let width = tableView.bounds.width
+//            let height = tableView.bounds.height
+//            let viewBounds = CGRect(x: 20, y: 500, width: 200, height: 200)
+//            let simpleAssistView = UIView(frame: viewBounds)
+//            simpleAssistView.backgroundColor = .orange
+            tableView.isScrollEnabled = false
+            tableView.tableFooterView = SimpleAssistView(frame: tableView.bounds)
+            //print("W: \(width) - H: \(height)")
+            print("ParentView: \(view.bounds)")
+            print("TableView: \(tableView.bounds)")
+            
+        }
+    }
+    
+    
+    
+}
+
+
 
 
 extension RandomizeViewController {
