@@ -13,10 +13,12 @@
             <connections>
                 <outlet property="assistButton" destination="ek9-Ji-FxD" id="hW5-up-Yt0"/>
                 <outlet property="bottomView" destination="LEW-oq-BMs" id="Sfo-3I-ntn"/>
+                <outlet property="keywordsFrameView" destination="aig-xh-kYw" id="NTi-YU-x6f"/>
                 <outlet property="keywordsGrowningTextView" destination="cUw-9L-DOM" id="pL2-I5-hvc"/>
                 <outlet property="letsGoButton" destination="wrR-BQ-Q65" id="Ris-Dv-IWi"/>
                 <outlet property="simpleButton" destination="d34-MM-4sU" id="rDu-6B-NKN"/>
                 <outlet property="stackView" destination="8Mk-iy-67S" id="uMM-vu-vQq"/>
+                <outlet property="textLengthLabel" destination="2e6-JD-GhH" id="peP-Nf-aVi"/>
                 <outlet property="topView" destination="D4d-Ex-8Zo" id="tCO-b7-xvo"/>
             </connections>
         </placeholder>
@@ -34,7 +36,7 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9yw-NB-PEX" userLabel="Top Sub View">
                                     <rect key="frame" x="0.0" y="0.0" width="374" height="150"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aig-xh-kYw" userLabel="Keyword View Frame">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aig-xh-kYw" userLabel="Keywords View Frame">
                                             <rect key="frame" x="0.0" y="75" width="374" height="75"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cUw-9L-DOM" customClass="GrowingTextView" customModule="FawGen" customModuleProvider="target">
@@ -44,22 +46,36 @@
                                                         <constraint firstAttribute="height" constant="40" id="RsV-vJ-G1q"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="write something"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Keywords or Describe Project"/>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
                                                             <integer key="value" value="200"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="maxHeight">
                                                             <real key="value" value="100"/>
                                                         </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </textView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="127/200" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2e6-JD-GhH" userLabel="Text Length Label">
+                                                    <rect key="frame" x="299.5" y="0.0" width="64.5" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="jYd-eH-ol7"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" red="0.23529411759999999" green="0.34901960780000002" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstItem="cUw-9L-DOM" firstAttribute="top" secondItem="aig-xh-kYw" secondAttribute="top" constant="25" id="F1o-5y-sz6"/>
+                                                <constraint firstAttribute="trailing" secondItem="2e6-JD-GhH" secondAttribute="trailing" constant="10" id="OOM-LB-sQQ"/>
                                                 <constraint firstAttribute="bottom" secondItem="cUw-9L-DOM" secondAttribute="bottom" constant="10" id="b7o-Dd-5Pg"/>
+                                                <constraint firstItem="2e6-JD-GhH" firstAttribute="top" secondItem="aig-xh-kYw" secondAttribute="top" id="c2P-he-vLN"/>
                                                 <constraint firstAttribute="trailing" secondItem="cUw-9L-DOM" secondAttribute="trailing" constant="10" id="lUT-fJ-zsI"/>
                                                 <constraint firstItem="cUw-9L-DOM" firstAttribute="leading" secondItem="aig-xh-kYw" secondAttribute="leading" constant="10" id="pkl-dA-xbq"/>
                                             </constraints>
@@ -105,6 +121,11 @@
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                     <state key="normal" title="Simple"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="5"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="tappedSimple:" destination="-1" eventType="touchUpInside" id="Ca7-rT-uF2"/>
                                     </connections>
@@ -118,6 +139,11 @@
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                     <state key="normal" title="Assist"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="5"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="tappedAssit:" destination="-1" eventType="touchUpInside" id="127-gD-eW3"/>
                                     </connections>

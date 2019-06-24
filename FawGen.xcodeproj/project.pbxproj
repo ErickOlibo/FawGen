@@ -179,6 +179,7 @@
 		A76915BD22A211D700FB616F /* WhoisAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76915BC22A211D700FB616F /* WhoisAPI.swift */; };
 		A76915BF22A218BA00FB616F /* TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76915BE22A218BA00FB616F /* TypeAlias.swift */; };
 		A79936E122A6234F0091C9CA /* RandomizeViewController+NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79936E022A6234F0091C9CA /* RandomizeViewController+NavBar.swift */; };
+		A7A1CB5222C127BC003CB1B8 /* SimpleAssistView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A1CB5122C127BC003CB1B8 /* SimpleAssistView+Extensions.swift */; };
 		A7B7E03C22B44AE700398289 /* RandomizeVCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7E03B22B44AE700398289 /* RandomizeVCExtension.swift */; };
 		A7B7E03E22B44E6600398289 /* FakeWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7E03D22B44E6600398289 /* FakeWord.swift */; };
 		A7B7E06322B4D3B000398289 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7E06222B4D3B000398289 /* DataSource.swift */; };
@@ -380,6 +381,7 @@
 		A76915BC22A211D700FB616F /* WhoisAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhoisAPI.swift; sourceTree = "<group>"; };
 		A76915BE22A218BA00FB616F /* TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAlias.swift; sourceTree = "<group>"; };
 		A79936E022A6234F0091C9CA /* RandomizeViewController+NavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RandomizeViewController+NavBar.swift"; sourceTree = "<group>"; };
+		A7A1CB5122C127BC003CB1B8 /* SimpleAssistView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SimpleAssistView+Extensions.swift"; sourceTree = "<group>"; };
 		A7B7E03B22B44AE700398289 /* RandomizeVCExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomizeVCExtension.swift; sourceTree = "<group>"; };
 		A7B7E03D22B44E6600398289 /* FakeWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeWord.swift; sourceTree = "<group>"; };
 		A7B7E06222B4D3B000398289 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
@@ -1252,6 +1254,7 @@
 			isa = PBXGroup;
 			children = (
 				A7B7E0D922BEAB6500398289 /* SimpleAssistView.swift */,
+				A7A1CB5122C127BC003CB1B8 /* SimpleAssistView+Extensions.swift */,
 				A7B7E0DB22BEAB7A00398289 /* SimpleAssistView.xib */,
 				A7B7E0DD22BEB73D00398289 /* ResetAnotherSetView.xib */,
 				A7B7E0DF22BEB75200398289 /* ResetAnotherSetView.swift */,
@@ -1501,6 +1504,7 @@
 				A7B7E03E22B44E6600398289 /* FakeWord.swift in Sources */,
 				A70C4A2522AA0611001BD6CC /* SPLarkSettingsController.swift in Sources */,
 				A70C4B3A22AA0675001BD6CC /* SPUITableViewCellExtenshion.swift in Sources */,
+				A7A1CB5222C127BC003CB1B8 /* SimpleAssistView+Extensions.swift in Sources */,
 				A70C4BB622ADCA85001BD6CC /* TEOStepper.swift in Sources */,
 				A70C4AF422AA0675001BD6CC /* SPStorkDismissingAnimationController.swift in Sources */,
 				A70C4B8022AA95D4001BD6CC /* SettingsViewController.swift in Sources */,

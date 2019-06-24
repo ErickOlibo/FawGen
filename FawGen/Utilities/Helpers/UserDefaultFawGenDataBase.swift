@@ -48,7 +48,7 @@ public struct DefaultDB {
             let (key, _) = sorted[0]
             history.removeValue(forKey: key)
         }
-        //print("History Count: \(history.count) --> \(history)")
+        print("History Count: \(history.count) --> \(history)")
         return history
     }
     

@@ -19,15 +19,21 @@ class RandomizeViewController: UITableViewController {
     /// current and available iPhone X models
     public var larkPresentHeight = 500 + UIDevice().safeAreaBottomHeight()
     fileprivate var dataSource = DataSource()
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
+    override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
+    public var keyboardFrame = CGRect()
+    public let horizontalSpaceKeyboardLowerSimpleAssistView: CGFloat = 10
+    public let halfHeightSimpleAssistView: CGFloat = 135
+    public let heightButtonsToLetsGo: CGFloat = 60
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBarItems()
         setupTableView()
-        //simpleAssistUI()
+        
+        // Add observers
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidHide), name: UIResponder.keyboardDidHideNotification, object: nil)
     }
     
     override func viewWillLayoutSubviews() {
@@ -42,13 +48,17 @@ class RandomizeViewController: UITableViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
         // remove all views from theh footerView
         if let subViews = tableView.tableFooterView?.subviews {
             for view in subViews {
                 view.removeFromSuperview()
             }
         }
+        
+        // Remove Observers
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidHideNotification, object: nil)
     }
     
     private func setupTableView() {
@@ -69,6 +79,7 @@ extension RandomizeViewController {
     private func simpleAssistUI() {
         print("DataSource: \(dataSource.items.count)")
         if dataSource.items.count > 0 {
+            tableView.isScrollEnabled = true
             print("DataSource is not empty")
             // Set => Reset and AnotherSet FooterView
             let viewBounds = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 80)
@@ -76,23 +87,10 @@ extension RandomizeViewController {
             resetAnotherSetView.backgroundColor = .red
             tableView.tableFooterView = resetAnotherSetView
         } else {
-            // Set => Simple Assist FooterView
-//            let width = tableView.bounds.width
-//            let height = tableView.bounds.height
-//            let viewBounds = CGRect(x: 20, y: 500, width: 200, height: 200)
-//            let simpleAssistView = UIView(frame: viewBounds)
-//            simpleAssistView.backgroundColor = .orange
             tableView.isScrollEnabled = false
             tableView.tableFooterView = SimpleAssistView(frame: tableView.bounds)
-            //print("W: \(width) - H: \(height)")
-//            print("ParentView: \(view.bounds)")
-//            print("TableView: \(tableView.bounds)")
-            
         }
     }
-    
-    
-    
 }
 
 
