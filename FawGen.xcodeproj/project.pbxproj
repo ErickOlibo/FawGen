@@ -171,6 +171,7 @@
 		A722066922A4BFF200E1C256 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722066822A4BFF200E1C256 /* GradientView.swift */; };
 		A722066F22A575FD00E1C256 /* RandomizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722066E22A575FD00E1C256 /* RandomizeViewController.swift */; };
 		A722067122A5765500E1C256 /* FakeWordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722067022A5765500E1C256 /* FakeWordCell.swift */; };
+		A7414F0A22C0668800E90AEA /* TEOGrowingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7414F0922C0668800E90AEA /* TEOGrowingTextView.swift */; };
 		A76915B522A0DB7300FB616F /* DomainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A76915B422A0DB7300FB616F /* DomainView.xib */; };
 		A76915B722A0DB8600FB616F /* DomainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76915B622A0DB8600FB616F /* DomainView.swift */; };
 		A76915B922A0DF2F00FB616F /* DomainChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76915B822A0DF2F00FB616F /* DomainChecker.swift */; };
@@ -371,6 +372,7 @@
 		A722066822A4BFF200E1C256 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		A722066E22A575FD00E1C256 /* RandomizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomizeViewController.swift; sourceTree = "<group>"; };
 		A722067022A5765500E1C256 /* FakeWordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeWordCell.swift; sourceTree = "<group>"; };
+		A7414F0922C0668800E90AEA /* TEOGrowingTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TEOGrowingTextView.swift; sourceTree = "<group>"; };
 		A76915B422A0DB7300FB616F /* DomainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DomainView.xib; sourceTree = "<group>"; };
 		A76915B622A0DB8600FB616F /* DomainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainView.swift; sourceTree = "<group>"; };
 		A76915B822A0DF2F00FB616F /* DomainChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainChecker.swift; sourceTree = "<group>"; };
@@ -1261,6 +1263,7 @@
 			isa = PBXGroup;
 			children = (
 				A7B7E0E222BEFD3E00398289 /* GrowingTextView.swift */,
+				A7414F0922C0668800E90AEA /* TEOGrowingTextView.swift */,
 			);
 			path = "Growing Text View";
 			sourceTree = "<group>";
@@ -1626,6 +1629,7 @@
 				A70C4A2322AA0611001BD6CC /* SPLarkSettingsCloseButton.swift in Sources */,
 				A70C4AFA22AA0675001BD6CC /* SPVibration.swift in Sources */,
 				A70C4B4422AA0675001BD6CC /* SPStrideableExtension.swift in Sources */,
+				A7414F0A22C0668800E90AEA /* TEOGrowingTextView.swift in Sources */,
 				A70C4AFC22AA0675001BD6CC /* SPSocialButton.swift in Sources */,
 				A70C4B5A22AA0675001BD6CC /* SPCodeSystemIconPack.swift in Sources */,
 				A70C4B6622AA0675001BD6CC /* SPViber.swift in Sources */,

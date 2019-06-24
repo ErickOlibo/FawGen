@@ -85,8 +85,8 @@ extension RandomizeViewController {
             tableView.isScrollEnabled = false
             tableView.tableFooterView = SimpleAssistView(frame: tableView.bounds)
             //print("W: \(width) - H: \(height)")
-            print("ParentView: \(view.bounds)")
-            print("TableView: \(tableView.bounds)")
+//            print("ParentView: \(view.bounds)")
+//            print("TableView: \(tableView.bounds)")
             
         }
     }
