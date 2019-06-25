@@ -30,4 +30,17 @@ class NaturalLanguageProcessor {
         }
         return listWords
     }
+    
+    
+    func tokenize(_ keywords: String) -> [String] {
+        var list = [String]()
+        let tokenizer = NLTokenizer(unit: .word)
+        tokenizer.string = keywords
+        tokenizer.enumerateTokens(in: keywords.startIndex..<keywords.endIndex) { (tokenRange, _) -> Bool in
+            let token = String(keywords[tokenRange])
+            list.append(token)
+            return true
+        }
+        return list
+    }
 }

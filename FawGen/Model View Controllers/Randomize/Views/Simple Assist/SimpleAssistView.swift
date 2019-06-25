@@ -19,8 +19,9 @@ class SimpleAssistView: UIView {
     public let openViewIndex: Int = 0
     public var textMaxLength: Int = 200
     public var state: StackViewState = .close { didSet { toggle() }}
-    
-    
+    public let nlp = NaturalLanguageProcessor()
+    public var currentWordsCount: Int = 0
+    public var currentCorpusCount: Int = 0
     
     // MARK: - Outlets
     @IBOutlet weak var stackView: UIStackView!
