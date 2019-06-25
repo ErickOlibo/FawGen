@@ -106,6 +106,7 @@ extension SimpleAssistView: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         if let attributedText = keywordsGrowningTextView.attributedText {
             textLimitUI(for: attributedText.length)
+            
             keywordsGrowningTextView.attributedText = formatEntered(attributedText)
         }
     }
@@ -124,7 +125,7 @@ extension SimpleAssistView: UITextViewDelegate {
         endAttributedText.addAttributes(normalAttributes, range: fullRange)
         let wordsInText = nlp.tokenize(text)
         let wordsInCorpus = listOfWordsInCorpusArray(for: text) // Lowercased
-        print("[T: \(wordsInText.count) | C: \(wordsInCorpus.count)] - \(text)")
+        //print("LEN:[\(attributedText.length)] - [T: \(wordsInText.count) | C: \(wordsInCorpus.count)]")
         let corpusSet = Set(wordsInCorpus)
         let textSet = Set(wordsInText)
         
@@ -175,21 +176,22 @@ extension SimpleAssistView {
     
     public func letsGoSimple() {
         print("Let's Go SIMPLE")
+        simpleAssistDelegate?.querySimpleModel()
         // Send to model
     }
     
     public func letsGoAssist() {
-        print("Let's Go ASSIST")
-        
         // Save to history
         if let text = keywordsGrowningTextView.text {
             if text.count == 0 {
                 letsGoSimple()
             } else {
+                print("Let's Go ASSIST")
                 let entry = String(text.prefix(textMaxLength))
                 saveToHistory(entry)
                 keywordsGrowningTextView.text = String()
                 textLengthLabel.text = String()
+                simpleAssistDelegate?.queryAssistedModel(by: entry)
             }
             
         }

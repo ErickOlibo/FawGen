@@ -172,6 +172,7 @@
 		A722066F22A575FD00E1C256 /* RandomizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722066E22A575FD00E1C256 /* RandomizeViewController.swift */; };
 		A722067122A5765500E1C256 /* FakeWordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722067022A5765500E1C256 /* FakeWordCell.swift */; };
 		A7414F0A22C0668800E90AEA /* TEOGrowingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7414F0922C0668800E90AEA /* TEOGrowingTextView.swift */; };
+		A75C631E22C2911C00EB2333 /* SimpleAssistDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75C631D22C2911C00EB2333 /* SimpleAssistDelegate.swift */; };
 		A76915B522A0DB7300FB616F /* DomainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A76915B422A0DB7300FB616F /* DomainView.xib */; };
 		A76915B722A0DB8600FB616F /* DomainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76915B622A0DB8600FB616F /* DomainView.swift */; };
 		A76915B922A0DF2F00FB616F /* DomainChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76915B822A0DF2F00FB616F /* DomainChecker.swift */; };
@@ -374,6 +375,7 @@
 		A722066E22A575FD00E1C256 /* RandomizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomizeViewController.swift; sourceTree = "<group>"; };
 		A722067022A5765500E1C256 /* FakeWordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeWordCell.swift; sourceTree = "<group>"; };
 		A7414F0922C0668800E90AEA /* TEOGrowingTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TEOGrowingTextView.swift; sourceTree = "<group>"; };
+		A75C631D22C2911C00EB2333 /* SimpleAssistDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleAssistDelegate.swift; sourceTree = "<group>"; };
 		A76915B422A0DB7300FB616F /* DomainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DomainView.xib; sourceTree = "<group>"; };
 		A76915B622A0DB8600FB616F /* DomainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainView.swift; sourceTree = "<group>"; };
 		A76915B822A0DF2F00FB616F /* DomainChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainChecker.swift; sourceTree = "<group>"; };
@@ -1258,6 +1260,7 @@
 				A7B7E0DB22BEAB7A00398289 /* SimpleAssistView.xib */,
 				A7B7E0DD22BEB73D00398289 /* ResetAnotherSetView.xib */,
 				A7B7E0DF22BEB75200398289 /* ResetAnotherSetView.swift */,
+				A75C631D22C2911C00EB2333 /* SimpleAssistDelegate.swift */,
 			);
 			path = "Simple Assist";
 			sourceTree = "<group>";
@@ -1657,6 +1660,7 @@
 				A70C4B3B22AA0675001BD6CC /* SPUITextFieldExtenshion.swift in Sources */,
 				A70C4AF522AA0675001BD6CC /* SPStorkViewControllerExtenshion.swift in Sources */,
 				A70C4B6222AA0675001BD6CC /* SPAppStore.swift in Sources */,
+				A75C631E22C2911C00EB2333 /* SimpleAssistDelegate.swift in Sources */,
 				A70C4B6D22AA0675001BD6CC /* SPSpotlight.swift in Sources */,
 				A70C4AF122AA0675001BD6CC /* SPStorkTransitioningDelegate.swift in Sources */,
 				A70C4B1D22AA0675001BD6CC /* SPTextField.swift in Sources */,

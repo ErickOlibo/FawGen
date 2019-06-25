@@ -9,6 +9,13 @@
 import UIKit
 final class DataSource: NSObject, UITableViewDataSource {
     private let cellIdentifier = "FakeWordCell"
+    public var dataSize: Int = 0
+    
+    public enum QueryType {
+        case simple
+        case assist
+    }
+    
     
     public var items: [FakeWord] = {
         let dataSize = 0
@@ -19,10 +26,31 @@ final class DataSource: NSObject, UITableViewDataSource {
         return collection
     }()
     
+//    // Initialization
+//    override init() {
+//        super.init()
+//        
+//    }
+//    
+//    init(_ keywords: String) {
+//        print("INIT with KEywords")
+//        var collection = [FakeWord]()
+//        for _ in 0..<10 {
+//            collection.append(FakeWord())
+//        }
+//        items = collection
+//        
+//    }
+//    
+//    init(_ isSimple: Bool) {
+//        
+//    }
+    
     
     private var indexPaths: Set<IndexPath> = []
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("tableView - numberOfRowsInSection: \(items.count)")
         return items.count
     }
     
@@ -56,5 +84,16 @@ extension DataSource {
 extension DataSource {
     subscript(indexPath: IndexPath) -> FakeWord {
         return items[indexPath.row]
+    }
+}
+
+
+extension DataSource {
+    public func getRandomItems(count: Int) -> [FakeWord] {
+        var collection = [FakeWord]()
+        for _ in 0..<count {
+            collection.append(FakeWord())
+        }
+        return collection
     }
 }

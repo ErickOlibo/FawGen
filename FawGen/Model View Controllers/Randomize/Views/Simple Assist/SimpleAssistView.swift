@@ -11,6 +11,7 @@ import UIKit
 class SimpleAssistView: UIView {
     
     // MARK: - Properties
+    var simpleAssistDelegate: SimpleAssistDelegate?
     enum StackViewState: String {
         case open
         case close
@@ -73,6 +74,7 @@ class SimpleAssistView: UIView {
     }
  
 }
+
 
 
 
