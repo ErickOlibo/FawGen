@@ -11,6 +11,8 @@ import UIKit
 extension SimpleAssistView {
     
     // MARK: - Methods
+    /// Initializes the basic setup nedded for the view
+    /// to display properly
     public func commonInitialization() {
         let view = Bundle.main.loadNibNamed(String(describing: type(of: self)), owner: self, options: nil)?.first as! UIView
         view.frame = bounds
@@ -21,6 +23,9 @@ extension SimpleAssistView {
         state = .close
     }
     
+    /// Updates the cornerRadius for the Let's Go Button depending
+    /// on the state (open or close) directly related to the Randomize
+    /// type selected (open = Assist, close = Simple)
     private func updateCornerLetsGoButton() {
         switch state {
         case .close:
@@ -30,6 +35,8 @@ extension SimpleAssistView {
         }
     }
     
+    /// Sets the necessary UI for the area where the Keywords, or
+    /// project description are entered.
     public func keywordsFrameSetup() {
         keywordsFrameView.clipsToBounds = true
         keywordsFrameView.layer.cornerRadius = 10
@@ -38,6 +45,7 @@ extension SimpleAssistView {
         
     }
     
+    /// Sets the attributes of the growing UITextView
     public func keywordsGrowningTextSetup() {
         keywordsGrowningTextView.delegate = self
         keywordsGrowningTextView.smartInsertDeleteType = .no
@@ -46,6 +54,7 @@ extension SimpleAssistView {
         textMaxLength = keywordsGrowningTextView.maxLength
     }
     
+    /// Sets the basic attributes of the Let's Go button
     public func letsGoButtonSetup() {
         letsGoButton.clipsToBounds = true
         letsGoButton.layer.cornerRadius = 10
@@ -71,6 +80,8 @@ extension SimpleAssistView {
         state = .open
     }
     
+    /// updates the background color of the Simple and Assist button
+    /// with respect to the state (open or close)
     private func updateSimpleAssist() {
         switch state {
         case . close:
@@ -82,6 +93,8 @@ extension SimpleAssistView {
         }
     }
     
+    /// toggles the UI from the open state to close state and
+    /// the stackView
     public func toggle() {
         print("Toggled() --> State is: \(state.rawValue)")
         updateCornerLetsGoButton()
@@ -111,6 +124,9 @@ extension SimpleAssistView: UITextViewDelegate {
         }
     }
     
+    /// Formats the user entered text to highlight keywords that I
+    /// part of the model corpus. These keywords are used but the
+    /// Words Vector Space to define similarities
     private func formatEntered(_ attributedText: NSAttributedString) -> NSMutableAttributedString {
         let hightlightAttributes: [NSAttributedString.Key: Any] = [
             .backgroundColor: FawGenColors.primary.color,
@@ -125,7 +141,6 @@ extension SimpleAssistView: UITextViewDelegate {
         endAttributedText.addAttributes(normalAttributes, range: fullRange)
         let wordsInText = nlp.tokenize(text)
         let wordsInCorpus = listOfWordsInCorpusArray(for: text) // Lowercased
-        //print("LEN:[\(attributedText.length)] - [T: \(wordsInText.count) | C: \(wordsInCorpus.count)]")
         let corpusSet = Set(wordsInCorpus)
         let textSet = Set(wordsInText)
         
@@ -140,7 +155,9 @@ extension SimpleAssistView: UITextViewDelegate {
         return endAttributedText
     }
     
-    
+    /// Updates the number of characters in the TextView and show
+    /// users the remaining characters to limit and when the limit
+    /// is reached
     private func textLimitUI(for length: Int ) {
         let remain = textMaxLength - length
         switch length {
@@ -174,12 +191,18 @@ extension SimpleAssistView: UITextViewDelegate {
 // MARK: - Let's Go Button
 extension SimpleAssistView {
     
+    /// Executes the request for the creation of random words using
+    /// the simple Model engine. This is performed by the ViewController
+    /// (RandomizeViewController) via a delegation protocol
     public func letsGoSimple() {
         print("Let's Go SIMPLE")
         simpleAssistDelegate?.querySimpleModel()
         // Send to model
     }
     
+    /// Executes the request for the creation of random words using
+    /// the assisted Model engine. This is performed by the ViewController
+    /// (RandomizeViewController) via a delegation protocol
     public func letsGoAssist() {
         // Save to history
         if let text = keywordsGrowningTextView.text {
@@ -205,7 +228,8 @@ extension SimpleAssistView {
 
 // MARK: - Keywords and Description History
 extension SimpleAssistView {
-    /// records the keywords query to the UserDefault Database. The keywords
+    
+    /// Records the keywords query to the UserDefault Database. The keywords
     /// and the date when it was queried is saved
     /// - Parameter keywords: the string text to query against
     public func saveToHistory(_ keywords: String) {
@@ -220,14 +244,17 @@ extension SimpleAssistView {
         }
     }
     
-    /// return the number of keywords that are part of the model's corpus
+    /// Returns the number of keywords that are part of the model's corpus
+    /// As a Set is returned, the order and the repeatitiveness are not important
     /// - Parameter keywords: the text inserted or type by the user.
     private func listOfWordsInCorpus(for keywords: String) -> Set<String> {
         let wordsList = nlp.tokenizeByWords(keywords)
         return wordsList.filter { Constants.thousandWords.contains($0)}
     }
     
-    // Same list but with all matches, even duplicates
+    /// Returns the number of keywords that are part of the model's corpus
+    /// As an Array is returned, the order and the repeatitiveness are crucial.
+    /// - Parameter keywords: the text inserted or type by the user.
     private func listOfWordsInCorpusArray(for keywords: String) -> [String] {
         let list = nlp.tokenize(keywords).map{ $0.lowercased() }
         return list.filter { Constants.thousandWords.contains($0)}
@@ -240,6 +267,7 @@ extension SimpleAssistView {
 // MARK: - animation
 extension SimpleAssistView {
     // MARK: - Haptic Feedback
+    /// Vibrates the device to indicate a warning
     public func fireHapticFeedback() {
         if #available(iOS 10.0, *) {
             let generator = UINotificationFeedbackGenerator()
@@ -261,14 +289,20 @@ extension UIView {
 }
 
 
-// https://stackoverflow.com/questions/32305891/index-of-a-substring-in-a-string-with-swift
-extension StringProtocol { // for Swift 4.x syntax you will needed also to constrain the collection Index to String Index - `extension StringProtocol where Index == String.Index`
+/// https://stackoverflow.com/questions/32305891/index-of-a-substring-in-a-string-with-swift
+extension StringProtocol {
+    
+    /// Returns the start String.index of a string (or subString) in another string
     func index(of string: Self, options: String.CompareOptions = []) -> Index? {
         return range(of: string, options: options)?.lowerBound
     }
+    
+    /// Returns the end String.index of a string (or subString) in another string
     func endIndex(of string: Self, options: String.CompareOptions = []) -> Index? {
         return range(of: string, options: options)?.upperBound
     }
+    /// Returns the startIndex and endIndex (lowerBound and upperBound) of a string
+    /// in another string
     func indexes(of string: Self, options: String.CompareOptions = []) -> [Index] {
         var result: [Index] = []
         var startIndex = self.startIndex
@@ -280,6 +314,8 @@ extension StringProtocol { // for Swift 4.x syntax you will needed also to const
         }
         return result
     }
+    
+    /// Returns the start and end index of a string as a [Range<Index>]
     func ranges(of string: Self, options: String.CompareOptions = []) -> [Range<Index>] {
         var result: [Range<Index>] = []
         var startIndex = self.startIndex

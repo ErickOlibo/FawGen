@@ -26,25 +26,6 @@ final class DataSource: NSObject, UITableViewDataSource {
         return collection
     }()
     
-//    // Initialization
-//    override init() {
-//        super.init()
-//        
-//    }
-//    
-//    init(_ keywords: String) {
-//        print("INIT with KEywords")
-//        var collection = [FakeWord]()
-//        for _ in 0..<10 {
-//            collection.append(FakeWord())
-//        }
-//        items = collection
-//        
-//    }
-//    
-//    init(_ isSimple: Bool) {
-//        
-//    }
     
     
     private var indexPaths: Set<IndexPath> = []

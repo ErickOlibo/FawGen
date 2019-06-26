@@ -1175,8 +1175,8 @@
 		A722066A22A5755600E1C256 /* Randomize */ = {
 			isa = PBXGroup;
 			children = (
-				A722066B22A5756900E1C256 /* Model */,
 				A7B7E03F22B45B2900398289 /* Data Source */,
+				A722066B22A5756900E1C256 /* Model */,
 				A722066C22A5757700E1C256 /* Views */,
 				A722066D22A5758100E1C256 /* Controller */,
 			);

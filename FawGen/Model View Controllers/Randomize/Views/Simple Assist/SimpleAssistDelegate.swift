@@ -8,6 +8,25 @@
 
 import Foundation
 
+
+/// - Attention:  The creation of a protocol to hold the delegate takes several
+/// steps that must be followed
+///     - Create a protocol file to hold the delegate conformity methods
+///     - The required methods should be in the protocol implementation. Their
+///         implementation is left to the class or object that takes delegation ownership
+///     - The optional methods can be placed in an extension but need the open/close curly
+///         bracket in order to be placed in this extension. Their implementation is left
+///         to the class of object that takes delegation ownership
+///     - Create a variable property in the class that have methods that need to notify the
+///         the delegation ownership
+///     - Conform to the protocol and its method in the class that owners the delegate
+/// As an example:
+///     - Create protocol file -> (SimpleAssistDelegate.swift)
+///     - Define Required and Optinal Methods -> (SimpleAssistDelegate.swift)
+///     - Create variable property -> (SimpleAssistView.swift)
+///     - Conform to the protocol -> (RandomizeViewController.swift -> )
+
+
 protocol SimpleAssistDelegate {
     func queryAssistedModel(by keywords: String)
     func querySimpleModel()

@@ -20,7 +20,6 @@ class SettingsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Settings"
-        
         updateUI()
         
     }
@@ -38,7 +37,6 @@ class SettingsViewController: UITableViewController {
         print("Number: \(adjNumber)")
         historyCount.text = adjNumber
         historyCount.textColor = FawGenColors.primary.color
-        
     }
     
     
