@@ -10,6 +10,8 @@ import UIKit
 
 // MARK: - Keyboard notifications
 extension RandomizeViewController {
+    /// Notifies when the keyboard is about to show in order the displace the view
+    /// accordingly of the keyboard height
     @objc func keyboardWillShow(notification: NSNotification) {
         guard let userInfo = notification.userInfo else { return }
         guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
@@ -26,6 +28,8 @@ extension RandomizeViewController {
     }
     
     
+    /// Displaces the SimpleAssistView in order to place it in respect of the
+    /// newly displayed keyboard
     private func SimpleAssistDisplacement() -> CGFloat {
         let displacement = 0.0 + (UIDevice().safeAreaBottomHeight() / 2)
         let keyboardHeight = keyboardFrame.height
