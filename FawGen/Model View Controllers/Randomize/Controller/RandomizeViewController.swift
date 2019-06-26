@@ -19,7 +19,7 @@ class RandomizeViewController: UITableViewController {
     /// controller is presented by the Parent. This height takes into
     /// consideration the SafeArea Bottom height (34px) find in all
     /// current and available iPhone X models
-    public var larkPresentHeight = 500 + UIDevice().safeAreaBottomHeight()
+    public var larkPresentHeight = 400 + UIDevice().safeAreaBottomHeight()
     fileprivate var dataSource = DataSource()
     override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
     public var keyboardFrame = CGRect()

@@ -61,7 +61,7 @@ extension FilterViewController {
     
     
     /// Gets the right collection [Double : String] in order to set the right
-    /// steppers label for the legnth, type or symbol slider
+    /// steppers label for the length, type or symbol
     /// - Parameter category: a SettingCategory enum case
     /// - Returns: the right collection [Double : String] for Stepper setup
     private func getStepperCollection(for category: SettingCategory) -> [Double : String] {
@@ -118,7 +118,6 @@ extension FilterViewController {
             button = getOnOffButton(for: .symbol)
         }
         button.contentHorizontalAlignment = .center
-        //button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 0)
         let status = currentOnOffStatus(for: button)
         updateOnOff(for: button, with: status)
     }
