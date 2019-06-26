@@ -12,6 +12,8 @@ import UIKit
 /// in this the FawGen app.
 ///  - Note: The primary, secondary, tertiary colors are from FawGen logomark
 /// availableStatus is the in-app visual color for available domains and handles
+/// - ToDo: Make sure that all constant colors are defined here, even if you use
+/// the system default. Just to assure consstency across the App
 public enum FawGenColors: String, CustomStringConvertible, CaseIterable, Equatable, Hashable {
     /// Of tint color Orange, name code: Orioles Orange
     case primary
@@ -31,7 +33,7 @@ public enum FawGenColors: String, CustomStringConvertible, CaseIterable, Equatab
         return self.rawValue
     }
     
-    /// returns the FawGen constant colors as UIColor
+    /// returns the FawGen App Colors for consistency concern
     public var color: UIColor {
         switch self {
         case .primary:
@@ -51,6 +53,7 @@ public enum FawGenColors: String, CustomStringConvertible, CaseIterable, Equatab
 }
 
 
+/// The list of Fawgen App colors as Hex String
 private enum Colors: String {
     case primary = "#F6511D" // Orioles Orange
     case secondary = "#0D2C54" // Prussian Blue
