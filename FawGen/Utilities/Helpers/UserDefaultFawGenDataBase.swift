@@ -15,8 +15,7 @@ private let maxEntries = 30 // maxim
 // in the system. History has date and text as data type.
 
 
-// organizes and saves the simple data values.
-
+/// enumeration of the different type of data title to keep
 public enum LightDB: String, CustomStringConvertible, Equatable {
     case history, length, lengthOnOff, type, typeOnOff, symbol, symbolOnOff
     
@@ -25,6 +24,10 @@ public enum LightDB: String, CustomStringConvertible, Equatable {
     }
 }
 
+
+/// organizes and saves the simple data values necessary to keep
+/// the FawGen app running
+/// - Note: There is a great example on how to use generic method
 public struct DefaultDB {
     
     static func save<T: Equatable>(_ value: T, for key: LightDB) {
@@ -41,6 +44,10 @@ public struct DefaultDB {
         defaults.synchronize()
     }
     
+    /// Assures the latest keywords history is properly documented
+    /// by keeping a max list and updating date in case the same keywords
+    /// are used.
+    /// - Note: Currently the max entries is set to 30 (var maxEntries)
     static func sanitize(_ keywordsHistory: KeywordsHistory) -> KeywordsHistory {
         var history = keywordsHistory
         if history.count > maxEntries {

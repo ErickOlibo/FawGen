@@ -10,6 +10,11 @@ import UIKit
 
 extension UIDevice {
     
+    /// Gets the name of the device used with respect of the bounds height
+    /// of the screen. It's a good indication of what device is used
+    /// - Note: The Device model cannot be used in a distribution App as it
+    /// would trigger and flag during the App store release process. i.e:
+    /// Apple will reject the app
     public func currentPhoneHeightName() -> (CGFloat, String) {
         let height = UIScreen.main.nativeBounds.height
         var name = "UNDETERMINED"
@@ -37,6 +42,8 @@ extension UIDevice {
         return (height, name)
     }
     
+    /// Detect the sare area bottom present in the iPhone X (Xs, Xs max)
+    /// models.
     public func hasSafeAreaBottomHeight() -> Bool {
         let (currentHeight, _) = currentPhoneHeightName()
         switch currentHeight {
