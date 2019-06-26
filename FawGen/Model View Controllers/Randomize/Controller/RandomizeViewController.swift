@@ -15,9 +15,6 @@ class RandomizeViewController: UITableViewController {
         case assist
     }
     
-    
-    // The back button 
-    
     /// Represents the vertical displacement height when a child view
     /// controller is presented by the Parent. This height takes into
     /// consideration the SafeArea Bottom height (34px) find in all
@@ -35,7 +32,7 @@ class RandomizeViewController: UITableViewController {
         super.viewDidLoad()
         setupNavigationBarItems()
         setupTableView()
-        //tableView.tableFooterView.si
+
         // Add observers
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -48,7 +45,7 @@ class RandomizeViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        simpleAssistUI()
+        simpleAssistOrNewSetHomeUI()
     }
     
     
@@ -82,17 +79,18 @@ class RandomizeViewController: UITableViewController {
 }
 
 extension RandomizeViewController {
-    private func simpleAssistUI() {
-        //print("[simpleAssistUI] - DataSource: \(dataSource.items.count)")
+    
+    /// Selects the right TableFooterView to present. Depending on the
+    /// size of the DataSource Items count. If 0 then AssistHome, else
+    /// NewSetHome
+    private func simpleAssistOrNewSetHomeUI() {
         if dataSource.items.count > 0 {
-            //print("DataSource is not empty")
             let viewBounds = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 60)
             let newSetHomeView = NewSetHomeView(frame: viewBounds)
             newSetHomeView.newSetHomeDelegate = self
             tableView.tableFooterView = newSetHomeView
             
         } else {
-            //tableView.isScrollEnabled = false
             let simpleAssistView = SimpleAssistView(frame: tableView.bounds)
             simpleAssistView.simpleAssistDelegate = self
             tableView.tableFooterView = simpleAssistView
@@ -142,12 +140,10 @@ extension RandomizeViewController {
 // Comforming to NewSetHomeDelegate
 extension RandomizeViewController: NewSetHomeDelegate {
     func showSimpleAssist() {
-        //print("showSimpleAssist")
         prepareForShowingSimpleAssist()
     }
     
     func queryNewSetFromSimpleModel() {
-        //print("queryNewSetFromSimpleModel")
         letsGoQuery(.simple)
     }
     
@@ -160,26 +156,30 @@ extension RandomizeViewController: NewSetHomeDelegate {
         tableView.deleteRows(at: indexPaths, with: .automatic)
         dataSource.items = newItems
         tableView.endUpdates()
-        simpleAssistUI()
+        simpleAssistOrNewSetHomeUI()
     }
     
     
 }
 
 
-// Getting info from the SimpleAssistView
+// Conforming to SimpleAssistDelegate
 extension RandomizeViewController: SimpleAssistDelegate {
     
     func querySimpleModel() {
-        //print("queryModelSimply")
         letsGoQuery(.simple)
     }
     
     func queryAssistedModel(by keywords: String) {
-        //print("queryModelAssisted, Keywords: \(keywords)")
         letsGoQuery(.assist, with: keywords)
     }
     
+    
+    /// Queries the model after the user has pressed Let's Go button. Depending
+    /// on the type (simple or assit) a different Model Engine will be queried
+    /// - Parameters:
+    ///     - type: between simple and assist or without keywords or with
+    ///     - keywords: string entered by the user
     private func letsGoQuery(_ type: LetsGoType, with keywords: String = String()){
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         
@@ -217,7 +217,7 @@ extension RandomizeViewController: SimpleAssistDelegate {
         if let firstIndex = indexPathsNew.first {
             tableView.scrollToRow(at: firstIndex, at: .top, animated: true)
         }
-        simpleAssistUI()
+        simpleAssistOrNewSetHomeUI()
     }
     
     
