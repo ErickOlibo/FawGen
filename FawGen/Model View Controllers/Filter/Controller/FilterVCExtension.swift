@@ -10,7 +10,6 @@ import UIKit
 
 
 // MARK: - Steppers
-
 extension FilterViewController {
     
     /// Initializes the Steppers for the Length, Type and Symbol sliders
@@ -97,7 +96,6 @@ extension FilterViewController {
 
 
 // MARK: - ON OFF Buttons
-
 extension FilterViewController {
     
     /// Initializes the On Off buttons and their current status
@@ -119,8 +117,8 @@ extension FilterViewController {
         case .symbol:
             button = getOnOffButton(for: .symbol)
         }
-        button.contentHorizontalAlignment = .left
-        button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 0)
+        button.contentHorizontalAlignment = .center
+        //button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 0)
         let status = currentOnOffStatus(for: button)
         updateOnOff(for: button, with: status)
     }
@@ -214,10 +212,10 @@ extension FilterViewController {
     ///     - sender: UIButton from OnOffs button collection
     ///     - status: update the OnOff button to rather On or Off
     private func updateOnOff(for sender: UIButton, with status: Bool) {
-        let normal = onOfftext(for: sender)
+        let normal = "" //onOfftext(for: sender)
         let isOn = status ? "On" : "Off"
         let attributedLength = NSMutableAttributedString(string: normal)
-        let attrs = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 20)]
+        let attrs = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 22)]
         let attributedBold = NSMutableAttributedString(string: isOn, attributes: attrs)
         attributedLength.append(attributedBold)
         if status {
@@ -272,63 +270,7 @@ extension FilterViewController {
 }
 
 
-// MARK: - Keywords Description
-
-extension FilterViewController {
-    
-    /// Sets up the initial conditions for the Advanced (randomWords via keywords)
-    public func setupKeywords() {
-        keywordsTextField.placeholderColor = FawGenColors.primary.color
-        keywordsTextField.smartInsertDeleteType = .no
-        keywordsTextField.delegate = self
-        advancedLabel.textColor = .white
-        sendButton.layer.cornerRadius = sendButton.bounds.height / 2
-        sendButton.setImage(UIImage(named: "sendSmall")?.withRenderingMode(.alwaysTemplate), for: .normal)
-        updateSendButton(isActive: false)
-        keywordsTextField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
-        setWordsLevelMeter()
-    }
-    
-    
-    /// set up the meter level in respect how many keywords are
-    /// present in the overall model corpus.
-    /// - Parameter count: is the number of words find in corpus
-    private func setWordsLevelMeter(for count: Int = 0) {
-        for levelView in wordsLevelMeter {
-            levelView.backgroundColor = levelView.tag <= count ? FawGenColors.primary.color : .darkGray
-        }
-    }
-    
-    
-    /// return the number of keywords that are part of the model's corpus
-    /// - Parameter keywords: the text inserted or type by the user.
-    private func getValidWordsCount(for keywords: String) -> Int {
-        let wordsList = nlp.tokenizeByWords(keywords)
-        let wordsInCorpus = wordsList.filter { Constants.thousandWords.contains($0)}
-        return wordsInCorpus.count
-    }
-    
-    
-    /// Updates the color and accessibility (enable - disable) of the send botton but
-    /// setting its status
-    /// - Parameter isActive: the status that the button should adhere to
-    private func updateSendButton(isActive: Bool) {
-        switch isActive {
-        case false:
-            sendButton.tintColor = .lightGray
-            sendButton.backgroundColor = .darkGray
-            sendButton.isEnabled = false
-        case true:
-            sendButton.tintColor = FawGenColors.secondary.color
-            sendButton.backgroundColor = FawGenColors.primary.color
-            sendButton.isEnabled = true
-        }
-    }
-}
-
-
 // MARK: - Close Button
-
 extension FilterViewController {
     /// Sets up the close Button and its attributes
     public func setupCloseButton() {
@@ -340,119 +282,7 @@ extension FilterViewController {
     
     @objc private func tapCloseButton() {
         saveSteppersValues()
-        keywordsTextField.resignFirstResponder()
         self.dismiss(animated: true, completion: nil)
     }
 }
 
-
-
-// MARK: - Text Field Delegate
-extension FilterViewController: UITextFieldDelegate {
-    
-    @objc private func editingChanged() {
-        //print("[editingChanged]")
-        guard let currentText = keywordsTextField.text else { return }
-        guard let textCount = keywordsTextField.text?.count else { return }
-        maxKeywordLengthChecker(for: textCount)
-        currentText.count > 0 ? updateSendButton(isActive: true) : updateSendButton(isActive: false)
-        let wordsInCorpusCount = getValidWordsCount(for: currentText)
-        setWordsLevelMeter(for: wordsInCorpusCount)
-    }
-    
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        hasTappedSendForKeywords = false
-        return true
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        keywordsRequestSent()
-        return true
-    }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        guard let textFieldText = textField.text,
-            let rangeOfTextToReplace = Range(range, in: textFieldText) else { return false }
-
-        let substringToReplace = textFieldText[rangeOfTextToReplace]
-        let count = textFieldText.count - substringToReplace.count + string.count
-        if count > keywordsMaxChars { maxKeywordLengthChecker(for: count) }
-        return count <= keywordsMaxChars
-    }
-    
-    /// Checks if the text entered (as paste or typed) exceeds the max length
-    /// and display visula info to the user
-    /// - Parameter length: the length to check as String
-    private func maxKeywordLengthChecker(for length: Int) {
-        if textLimitLabel.alpha != 1 { textLimitLabel.alpha = 1 }
-        textLimitLabel.textColor = .white
-        if length > keywordsMaxChars {
-            textLimitLabel.text = "Too large: \(length)/\(keywordsMaxChars)"
-            textLimitLabel.flashLimit()
-        } else if length == 0 {
-            if textLimitLabel.alpha != 0 { textLimitLabel.alpha = 0 }
-        } else {
-            textLimitLabel.stopAllRunningAnimations()
-            guard let textCount = keywordsTextField.text?.count else { return }
-            let leftChars = keywordsMaxChars - textCount
-            textLimitLabel.text = "Left: \(leftChars)"
-        }
-    }
-    
-    
-}
-
-// MARK: - Keyboard Notification
-
-extension FilterViewController {
-    
-    @objc func keyboardWillShow(notification: NSNotification) {
-        guard let userInfo = notification.userInfo else { return }
-        guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
-        keyboardFrame = keyboardSize.cgRectValue
-        view.frame.origin.y -= keyboardFrame.height
-    }
-    
-    @objc func keyboardWillHide(notification: NSNotification) {
-        view.frame.origin.y += keyboardFrame.height
-    }
-    
-    @objc func keyboardDidHide(notification: NSNotification) {
-        if hasTappedSendForKeywords {
-            self.dismiss(animated: true, completion: nil)
-        }
-    }
-    
-}
-
-
-// MARK: - History Keywords Description
-
-extension FilterViewController {
-    
-    /// records the keywords query to the UserDefault Database. The keywords
-    /// and the date when it was queried is saved
-    /// - Parameter keywords: the string text to query against
-    public func saveToHistory(_ keywords: String) {
-        let now = Date()
-        if DefaultDB.getValue(for: .history)! as KeywordsHistory? == nil {
-            DefaultDB.save([keywords : now], for: .history)
-        } else {
-            var savedHistory = DefaultDB.getValue(for: .history)! as KeywordsHistory
-            savedHistory[keywords] = now
-            let sanitizedHistory = DefaultDB.sanitize(savedHistory)
-            DefaultDB.save(sanitizedHistory, for: .history)
-        }
-        
-        
-    }
-    
-    /// Sends the keyqords query for analyzing from the model
-    public func keywordsRequestSent() {
-        if let keywords = keywordsTextField.text { saveToHistory(keywords) }
-        hasTappedSendForKeywords = true
-        keywordsTextField.text = nil
-        updateSendButton(isActive: false)
-        keywordsTextField.resignFirstResponder()
-    }
-}

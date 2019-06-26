@@ -1091,9 +1091,9 @@
 		A70C4B8822ABFEB7001BD6CC /* Model View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A722066A22A5755600E1C256 /* Randomize */,
 				A70C4B8922ABFF66001BD6CC /* Filter */,
 				A70C4B7722AA081B001BD6CC /* Settings */,
-				A722066A22A5755600E1C256 /* Randomize */,
 			);
 			path = "Model View Controllers";
 			sourceTree = "<group>";

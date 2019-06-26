@@ -150,7 +150,7 @@ public class TEOStepper: UIControl {
     }
     
     /// Font of the middle label. Defaults to AvenirNext-Bold, 20.0 points in size.
-    @objc public var labelFont = UIFont(name: "AvenirNext-Bold", size: 20.0)! {
+    @objc public var labelFont = UIFont(name: "AvenirNext-DemiBold", size: 20.0)! {
         didSet {
             label.font = labelFont
         }
