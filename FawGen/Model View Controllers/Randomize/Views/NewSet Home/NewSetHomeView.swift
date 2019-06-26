@@ -44,37 +44,10 @@ class NewSetHomeView: UIView {
         setupUI()
     }
     
-}
-
-
-extension NewSetHomeView {
     
-    private func commonInitialization() {
-        let view = Bundle.main.loadNibNamed(String(describing: type(of: self)), owner: self, options: nil)?.first as! UIView
-        view.frame = bounds
-        view.autoresizingMask = [
-            UIView.AutoresizingMask.flexibleWidth,
-            UIView.AutoresizingMask.flexibleHeight]
-        view.backgroundColor = FawGenColors.cellGray.color
-        
-        self.addSubview(view)
-    }
-    
-    private func setupUI() {
-        containerView.backgroundColor = .clear
-        //homeButton.setTitleColor(FawGenColors.secondary.color, for: .normal)
-        homeButton.setTitleColor(FawGenColors.primary.color)
-        newSetButton.setTitleColor(FawGenColors.primary.color)
-    
-    }
-    
-//    private func showSimpleAssistView() {
-//
-//    }
-//
-//    private func fetchNewSetOfFakeWords() {
-//
-//    }
     
     
 }
+
+
+

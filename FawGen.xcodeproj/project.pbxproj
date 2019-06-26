@@ -193,6 +193,7 @@
 		A7B7E0DE22BEB73D00398289 /* NewSetHomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7B7E0DD22BEB73D00398289 /* NewSetHomeView.xib */; };
 		A7B7E0E022BEB75200398289 /* NewSetHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7E0DF22BEB75200398289 /* NewSetHomeView.swift */; };
 		A7B7E0E322BEFD3F00398289 /* GrowingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7E0E222BEFD3E00398289 /* GrowingTextView.swift */; };
+		A7EB4E2E22C39F9C007ED405 /* NewSetHomeView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EB4E2D22C39F9C007ED405 /* NewSetHomeView+Extension.swift */; };
 		A7EC016622A3667B0056E2C7 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC016522A3667B0056E2C7 /* GlobalConstants.swift */; };
 		A7EC016922A36E510056E2C7 /* UIFont+BestFit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC016822A36E510056E2C7 /* UIFont+BestFit.swift */; };
 		A7EC016B22A36F1D0056E2C7 /* UILabel+BestFit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC016A22A36F1D0056E2C7 /* UILabel+BestFit.swift */; };
@@ -397,6 +398,7 @@
 		A7B7E0DD22BEB73D00398289 /* NewSetHomeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewSetHomeView.xib; sourceTree = "<group>"; };
 		A7B7E0DF22BEB75200398289 /* NewSetHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSetHomeView.swift; sourceTree = "<group>"; };
 		A7B7E0E222BEFD3E00398289 /* GrowingTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrowingTextView.swift; sourceTree = "<group>"; };
+		A7EB4E2D22C39F9C007ED405 /* NewSetHomeView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewSetHomeView+Extension.swift"; sourceTree = "<group>"; };
 		A7EC016522A3667B0056E2C7 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
 		A7EC016822A36E510056E2C7 /* UIFont+BestFit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+BestFit.swift"; sourceTree = "<group>"; };
 		A7EC016A22A36F1D0056E2C7 /* UILabel+BestFit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+BestFit.swift"; sourceTree = "<group>"; };
@@ -1217,6 +1219,7 @@
 				A7B7E0DD22BEB73D00398289 /* NewSetHomeView.xib */,
 				A7B7E0DF22BEB75200398289 /* NewSetHomeView.swift */,
 				A75C632022C2ED0400EB2333 /* NewSetHomeDelegate.swift */,
+				A7EB4E2D22C39F9C007ED405 /* NewSetHomeView+Extension.swift */,
 			);
 			path = "NewSet Home";
 			sourceTree = "<group>";
@@ -1497,6 +1500,7 @@
 				A70C4B3522AA0675001BD6CC /* SPBlurView.swift in Sources */,
 				A70C4B1822AA0675001BD6CC /* SPFakeBarView.swift in Sources */,
 				A70C4A2422AA0611001BD6CC /* SPLarkSettingsCollectionViewCell.swift in Sources */,
+				A7EB4E2E22C39F9C007ED405 /* NewSetHomeView+Extension.swift in Sources */,
 				A70C4B0B22AA0675001BD6CC /* SPNativeLoginCodeViewController.swift in Sources */,
 				A7FC85E6229CEA81002C386F /* ViewController.swift in Sources */,
 				A70C4A2722AA0611001BD6CC /* SPLarkPresentingAnimationController.swift in Sources */,
