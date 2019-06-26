@@ -173,6 +173,7 @@
 		A722067122A5765500E1C256 /* FakeWordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722067022A5765500E1C256 /* FakeWordCell.swift */; };
 		A7414F0A22C0668800E90AEA /* TEOGrowingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7414F0922C0668800E90AEA /* TEOGrowingTextView.swift */; };
 		A75C631E22C2911C00EB2333 /* SimpleAssistDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75C631D22C2911C00EB2333 /* SimpleAssistDelegate.swift */; };
+		A75C632122C2ED0400EB2333 /* NewSetHomeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75C632022C2ED0400EB2333 /* NewSetHomeDelegate.swift */; };
 		A76915B522A0DB7300FB616F /* DomainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A76915B422A0DB7300FB616F /* DomainView.xib */; };
 		A76915B722A0DB8600FB616F /* DomainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76915B622A0DB8600FB616F /* DomainView.swift */; };
 		A76915B922A0DF2F00FB616F /* DomainChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76915B822A0DF2F00FB616F /* DomainChecker.swift */; };
@@ -189,8 +190,8 @@
 		A7B7E0D522BC277800398289 /* KeywordsHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7E0D422BC277800398289 /* KeywordsHistoryViewController.swift */; };
 		A7B7E0DA22BEAB6500398289 /* SimpleAssistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7E0D922BEAB6500398289 /* SimpleAssistView.swift */; };
 		A7B7E0DC22BEAB7A00398289 /* SimpleAssistView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7B7E0DB22BEAB7A00398289 /* SimpleAssistView.xib */; };
-		A7B7E0DE22BEB73D00398289 /* ResetAnotherSetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7B7E0DD22BEB73D00398289 /* ResetAnotherSetView.xib */; };
-		A7B7E0E022BEB75200398289 /* ResetAnotherSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7E0DF22BEB75200398289 /* ResetAnotherSetView.swift */; };
+		A7B7E0DE22BEB73D00398289 /* NewSetHomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7B7E0DD22BEB73D00398289 /* NewSetHomeView.xib */; };
+		A7B7E0E022BEB75200398289 /* NewSetHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7E0DF22BEB75200398289 /* NewSetHomeView.swift */; };
 		A7B7E0E322BEFD3F00398289 /* GrowingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7E0E222BEFD3E00398289 /* GrowingTextView.swift */; };
 		A7EC016622A3667B0056E2C7 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC016522A3667B0056E2C7 /* GlobalConstants.swift */; };
 		A7EC016922A36E510056E2C7 /* UIFont+BestFit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC016822A36E510056E2C7 /* UIFont+BestFit.swift */; };
@@ -376,6 +377,7 @@
 		A722067022A5765500E1C256 /* FakeWordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeWordCell.swift; sourceTree = "<group>"; };
 		A7414F0922C0668800E90AEA /* TEOGrowingTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TEOGrowingTextView.swift; sourceTree = "<group>"; };
 		A75C631D22C2911C00EB2333 /* SimpleAssistDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleAssistDelegate.swift; sourceTree = "<group>"; };
+		A75C632022C2ED0400EB2333 /* NewSetHomeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSetHomeDelegate.swift; sourceTree = "<group>"; };
 		A76915B422A0DB7300FB616F /* DomainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DomainView.xib; sourceTree = "<group>"; };
 		A76915B622A0DB8600FB616F /* DomainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainView.swift; sourceTree = "<group>"; };
 		A76915B822A0DF2F00FB616F /* DomainChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainChecker.swift; sourceTree = "<group>"; };
@@ -392,8 +394,8 @@
 		A7B7E0D422BC277800398289 /* KeywordsHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordsHistoryViewController.swift; sourceTree = "<group>"; };
 		A7B7E0D922BEAB6500398289 /* SimpleAssistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleAssistView.swift; sourceTree = "<group>"; };
 		A7B7E0DB22BEAB7A00398289 /* SimpleAssistView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimpleAssistView.xib; sourceTree = "<group>"; };
-		A7B7E0DD22BEB73D00398289 /* ResetAnotherSetView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResetAnotherSetView.xib; sourceTree = "<group>"; };
-		A7B7E0DF22BEB75200398289 /* ResetAnotherSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetAnotherSetView.swift; sourceTree = "<group>"; };
+		A7B7E0DD22BEB73D00398289 /* NewSetHomeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewSetHomeView.xib; sourceTree = "<group>"; };
+		A7B7E0DF22BEB75200398289 /* NewSetHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSetHomeView.swift; sourceTree = "<group>"; };
 		A7B7E0E222BEFD3E00398289 /* GrowingTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrowingTextView.swift; sourceTree = "<group>"; };
 		A7EC016522A3667B0056E2C7 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
 		A7EC016822A36E510056E2C7 /* UIFont+BestFit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+BestFit.swift"; sourceTree = "<group>"; };
@@ -1193,6 +1195,7 @@
 			isa = PBXGroup;
 			children = (
 				A7B7E0D622BEAAD000398289 /* Simple Assist */,
+				A75C631F22C2ECBF00EB2333 /* NewSet Home */,
 				A7B7E08F22B57DBB00398289 /* Cell */,
 			);
 			path = Views;
@@ -1206,6 +1209,16 @@
 				A7B7E03B22B44AE700398289 /* RandomizeVCExtension.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		A75C631F22C2ECBF00EB2333 /* NewSet Home */ = {
+			isa = PBXGroup;
+			children = (
+				A7B7E0DD22BEB73D00398289 /* NewSetHomeView.xib */,
+				A7B7E0DF22BEB75200398289 /* NewSetHomeView.swift */,
+				A75C632022C2ED0400EB2333 /* NewSetHomeDelegate.swift */,
+			);
+			path = "NewSet Home";
 			sourceTree = "<group>";
 		};
 		A76915B222A0C32000FB616F /* Domain Checker */ = {
@@ -1257,10 +1270,8 @@
 			children = (
 				A7B7E0D922BEAB6500398289 /* SimpleAssistView.swift */,
 				A7A1CB5122C127BC003CB1B8 /* SimpleAssistView+Extensions.swift */,
-				A7B7E0DB22BEAB7A00398289 /* SimpleAssistView.xib */,
-				A7B7E0DD22BEB73D00398289 /* ResetAnotherSetView.xib */,
-				A7B7E0DF22BEB75200398289 /* ResetAnotherSetView.swift */,
 				A75C631D22C2911C00EB2333 /* SimpleAssistDelegate.swift */,
+				A7B7E0DB22BEAB7A00398289 /* SimpleAssistView.xib */,
 			);
 			path = "Simple Assist";
 			sourceTree = "<group>";
@@ -1468,7 +1479,7 @@
 			files = (
 				A7FC85EE229CEA82002C386F /* LaunchScreen.storyboard in Resources */,
 				A7FC862C229F4255002C386F /* SocialView.xib in Resources */,
-				A7B7E0DE22BEB73D00398289 /* ResetAnotherSetView.xib in Resources */,
+				A7B7E0DE22BEB73D00398289 /* NewSetHomeView.xib in Resources */,
 				A76915B522A0DB7300FB616F /* DomainView.xib in Resources */,
 				A7FC85EB229CEA82002C386F /* Assets.xcassets in Resources */,
 				A7FC85E9229CEA81002C386F /* Main.storyboard in Resources */,
@@ -1580,10 +1591,11 @@
 				A70C4B5F22AA0675001BD6CC /* SPAnimationAlpha.swift in Sources */,
 				A70C4B6822AA0675001BD6CC /* SPInstagram.swift in Sources */,
 				A70C4B4822AA0675001BD6CC /* SPUITabBarControllerExtenshion.swift in Sources */,
+				A75C632122C2ED0400EB2333 /* NewSetHomeDelegate.swift in Sources */,
 				A70C4BB922ADE0F3001BD6CC /* UIButtonExtension.swift in Sources */,
 				A70C4A2222AA0611001BD6CC /* SPLarkController.swift in Sources */,
 				A70C4B3422AA0675001BD6CC /* SPLabel.swift in Sources */,
-				A7B7E0E022BEB75200398289 /* ResetAnotherSetView.swift in Sources */,
+				A7B7E0E022BEB75200398289 /* NewSetHomeView.swift in Sources */,
 				A70C4B5322AA0675001BD6CC /* SPMail.swift in Sources */,
 				A70C4B2B22AA0675001BD6CC /* SPFormTextInputTableViewCell.swift in Sources */,
 				A70C4B4522AA0675001BD6CC /* SPUIVisualEffectViewExtenshion.swift in Sources */,

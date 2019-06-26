@@ -23,7 +23,8 @@ public enum FawGenColors: String, CustomStringConvertible, CaseIterable, Equatab
     case availableStatus
     /// Of tint color Orange, name code: Darker Orioles Orange
     case primaryDark
-    
+    /// Of tint very light gray, name code: Very Light Gray (for cell background)
+    case cellGray
     
     
     public var description: String {
@@ -43,6 +44,8 @@ public enum FawGenColors: String, CustomStringConvertible, CaseIterable, Equatab
             return Colors.availableStatus.rawValue.convertedToUIColor()!
         case .primaryDark:
             return Colors.primaryDark.rawValue.convertedToUIColor()!
+        case .cellGray:
+            return Colors.cellGray.rawValue.convertedToUIColor()!
         }
     }
 }
@@ -54,4 +57,5 @@ private enum Colors: String {
     case tertiary = "FFB400" // UCLA Gold
     case availableStatus = "3CD070" // UFO Green (for available Status)
     case primaryDark = "#BC3000" // Special darker Orange for Steppers
+    case cellGray = "#EEEEEE" // Very Light gray color from the Design
 }

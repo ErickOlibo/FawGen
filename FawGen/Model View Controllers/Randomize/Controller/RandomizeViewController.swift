@@ -83,15 +83,14 @@ class RandomizeViewController: UITableViewController {
 
 extension RandomizeViewController {
     private func simpleAssistUI() {
-        print("DataSource: \(dataSource.items.count)")
+        //print("[simpleAssistUI] - DataSource: \(dataSource.items.count)")
         if dataSource.items.count > 0 {
-            //tableView.isScrollEnabled = true
-            print("DataSource is not empty")
-            // Set => Reset and AnotherSet FooterView
-            let viewBounds = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 80)
-            let resetAnotherSetView = UIView(frame: viewBounds)
-            resetAnotherSetView.backgroundColor = .red
-            tableView.tableFooterView = resetAnotherSetView
+            //print("DataSource is not empty")
+            let viewBounds = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 60)
+            let newSetHomeView = NewSetHomeView(frame: viewBounds)
+            newSetHomeView.newSetHomeDelegate = self
+            tableView.tableFooterView = newSetHomeView
+            
         } else {
             //tableView.isScrollEnabled = false
             let simpleAssistView = SimpleAssistView(frame: tableView.bounds)
@@ -140,20 +139,44 @@ extension RandomizeViewController {
 }
 
 
+// Comforming to NewSetHomeDelegate
+extension RandomizeViewController: NewSetHomeDelegate {
+    func showSimpleAssist() {
+        //print("showSimpleAssist")
+        prepareForShowingSimpleAssist()
+    }
+    
+    func queryNewSetFromSimpleModel() {
+        //print("queryNewSetFromSimpleModel")
+        letsGoQuery(.simple)
+    }
+    
+    
+    private func prepareForShowingSimpleAssist() {
+        let newItems = dataSource.getRandomItems(count: 0)
+        tableView.beginUpdates()
+        let rowsCount = tableView.numberOfRows(inSection: 0)
+        let indexPaths = (0..<rowsCount).map { IndexPath(row: $0, section: 0)}
+        tableView.deleteRows(at: indexPaths, with: .automatic)
+        dataSource.items = newItems
+        tableView.endUpdates()
+        simpleAssistUI()
+    }
+    
+    
+}
+
+
 // Getting info from the SimpleAssistView
 extension RandomizeViewController: SimpleAssistDelegate {
     
-    func transferHand(_ type: String) {
-        print("[TRANSFER HAND] from -> \(type)")
-    }
-    
     func querySimpleModel() {
-        print("queryModelSimply")
+        //print("queryModelSimply")
         letsGoQuery(.simple)
     }
     
     func queryAssistedModel(by keywords: String) {
-        print("queryModelAssisted, Keywords: \(keywords)")
+        //print("queryModelAssisted, Keywords: \(keywords)")
         letsGoQuery(.assist, with: keywords)
     }
     
@@ -163,8 +186,12 @@ extension RandomizeViewController: SimpleAssistDelegate {
         // Get the fakeWords from the Model
         switch type {
         case .simple:
+            // Get the New Items from the DataShource to Display
+            // This is the random one
             print("Get X random words from model")
         case .assist:
+            // Get the new Items from the Keyboards and vector space from
+            // Model
             print("With KEYWORDS, get X random words from model")
         }
         
@@ -174,8 +201,11 @@ extension RandomizeViewController: SimpleAssistDelegate {
         tableView.beginUpdates()
         let rowsCount = tableView.numberOfRows(inSection: 0)
         let indexPaths = (0..<rowsCount).map { IndexPath(row: $0, section: 0)}
+        
         tableView.deleteRows(at: indexPaths, with: .automatic)
-        dataSource.items.append(contentsOf: newItems)
+        print("IndexPaths Count: \(indexPaths.count) - Current Items Count: \(dataSource.items.count)")
+        dataSource.items = newItems
+        print("New Items Count: \(dataSource.items.count)")
         var indexPathsNew = [IndexPath]()
         for idx in 0..<dataSource.items.count {
             let path = IndexPath(row: idx, section: 0)
@@ -184,9 +214,11 @@ extension RandomizeViewController: SimpleAssistDelegate {
         tableView.insertRows(at: indexPathsNew, with: .automatic)
         tableView.endUpdates()
 
+        if let firstIndex = indexPathsNew.first {
+            tableView.scrollToRow(at: firstIndex, at: .top, animated: true)
+        }
         simpleAssistUI()
     }
-    
     
     
 }
