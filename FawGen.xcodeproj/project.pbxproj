@@ -176,6 +176,7 @@
 		A74DAFE522C453F3005ACAD0 /* CellSocialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A74DAFE422C453F3005ACAD0 /* CellSocialView.xib */; };
 		A74DAFE722C459D1005ACAD0 /* CellDomainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74DAFE622C459D1005ACAD0 /* CellDomainView.swift */; };
 		A74DAFE922C45AB5005ACAD0 /* CellDomainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A74DAFE822C45AB5005ACAD0 /* CellDomainView.xib */; };
+		A74DAFEC22C51B31005ACAD0 /* ToDoList.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A74DAFEB22C51B31005ACAD0 /* ToDoList.rtf */; };
 		A75C631E22C2911C00EB2333 /* SimpleAssistDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75C631D22C2911C00EB2333 /* SimpleAssistDelegate.swift */; };
 		A75C632122C2ED0400EB2333 /* NewSetHomeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75C632022C2ED0400EB2333 /* NewSetHomeDelegate.swift */; };
 		A76915B522A0DB7300FB616F /* DomainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A76915B422A0DB7300FB616F /* DomainView.xib */; };
@@ -384,6 +385,8 @@
 		A74DAFE422C453F3005ACAD0 /* CellSocialView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CellSocialView.xib; sourceTree = "<group>"; };
 		A74DAFE622C459D1005ACAD0 /* CellDomainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellDomainView.swift; sourceTree = "<group>"; };
 		A74DAFE822C45AB5005ACAD0 /* CellDomainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CellDomainView.xib; sourceTree = "<group>"; };
+		A74DAFEB22C51B31005ACAD0 /* ToDoList.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = ToDoList.rtf; sourceTree = "<group>"; };
+		A74DAFED22C51BCD005ACAD0 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		A75C631D22C2911C00EB2333 /* SimpleAssistDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleAssistDelegate.swift; sourceTree = "<group>"; };
 		A75C632022C2ED0400EB2333 /* NewSetHomeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSetHomeDelegate.swift; sourceTree = "<group>"; };
 		A76915B422A0DB7300FB616F /* DomainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DomainView.xib; sourceTree = "<group>"; };
@@ -1218,6 +1221,15 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		A74DAFEA22C51ADB005ACAD0 /* TO DO List */ = {
+			isa = PBXGroup;
+			children = (
+				A74DAFEB22C51B31005ACAD0 /* ToDoList.rtf */,
+				A74DAFED22C51BCD005ACAD0 /* README.md */,
+			);
+			path = "TO DO List";
+			sourceTree = "<group>";
+		};
 		A75C631F22C2ECBF00EB2333 /* NewSet Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -1349,6 +1361,7 @@
 		A7FC85F5229DD8A2002C386F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A74DAFEA22C51ADB005ACAD0 /* TO DO List */,
 				A7FC85EA229CEA82002C386F /* Assets.xcassets */,
 				A7FC85EC229CEA82002C386F /* LaunchScreen.storyboard */,
 			);
@@ -1491,6 +1504,7 @@
 			files = (
 				A7FC85EE229CEA82002C386F /* LaunchScreen.storyboard in Resources */,
 				A74DAFE522C453F3005ACAD0 /* CellSocialView.xib in Resources */,
+				A74DAFEC22C51B31005ACAD0 /* ToDoList.rtf in Resources */,
 				A7FC862C229F4255002C386F /* SocialView.xib in Resources */,
 				A7B7E0DE22BEB73D00398289 /* NewSetHomeView.xib in Resources */,
 				A76915B522A0DB7300FB616F /* DomainView.xib in Resources */,

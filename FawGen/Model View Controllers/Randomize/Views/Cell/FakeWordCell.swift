@@ -31,6 +31,7 @@ class FakeWordCell: UITableViewCell {
     
 
     // Top View
+    @IBOutlet weak var topView: UIView!
     @IBOutlet private weak var logoBackground: UIView!
     @IBOutlet private weak var madeUpLogo: UIImageView!
     @IBOutlet private weak var fakeWordLabel: UILabel!
@@ -41,17 +42,14 @@ class FakeWordCell: UITableViewCell {
     
     // Bottom View
     @IBOutlet weak var bottomView: UIView!
-    @IBOutlet private weak var fakeWordRootLabel: UILabel!
+    @IBOutlet private weak var rootTextLabel: UILabel!
     @IBOutlet private var socialViews: [CellSocialView]!
     @IBOutlet private var domainViews: [CellDomainView]!
     
-//    @IBOutlet var socialBackgroundViews: [UIView]!
-//    @IBOutlet var socialImages: [UIImageView]!
-//    @IBOutlet var domainBackgroundViews: [UIView]!
-//    @IBOutlet var domainLabels: [UILabel]!
-    
-    
     // DomainViews and SocialViews horizontal spacing constraints
+    @IBOutlet weak var rootTextLabelHeight: NSLayoutConstraint!
+    
+    
     
     
     // MARK: - Properties
@@ -74,6 +72,8 @@ class FakeWordCell: UITableViewCell {
     }
     @IBAction func tappedTextToSpeech(_ sender: UIButton) {
         sender.pulse()
+        let tts = TextToSpeech()
+        tts.speakFakeWord(currentFakeword.name, accent: .american)
         print("Speak the fake word in English")
     }
     
@@ -81,9 +81,8 @@ class FakeWordCell: UITableViewCell {
 
     // MARK: - Others
     override func awakeFromNib() {
-        //super.awakeFromNib()
+        super.awakeFromNib()
         selectionStyle = .none
-        //containerView.layer.cornerRadius = 5.0
         setupCell()
         setupSave()
         setupSocialDomain()
@@ -95,8 +94,6 @@ class FakeWordCell: UITableViewCell {
         let orderedDomain = domainViews.sorted{ $0.tag < $1.tag }
 
         for idx in 0..<4 {
-            //orderdSocial[idx].layer.cornerRadius = 10
-            //orderedDomain[idx].layer.cornerRadius = 10
             switch idx {
             case 0:
                 orderdSocial[idx].initialize(SocialNetwork.facebook.info)
@@ -125,9 +122,7 @@ class FakeWordCell: UITableViewCell {
         if currentFakeword.isSaved {
             saveWordButton.tintColor = .white
             saveWordButton.backgroundColor = FawGenColors.primary.color
-            //saveWordButton.setImage(#imageLiteral(resourceName: "SaveColorOn"), for: .normal)
         } else {
-           // saveWordButton.setImage(#imageLiteral(resourceName: "SaveOff"), for: .normal)
             saveWordButton.tintColor = .lightGray
             saveWordButton.backgroundColor = .gray
         }
@@ -147,13 +142,15 @@ class FakeWordCell: UITableViewCell {
         logoBackground.backgroundColor = data.designBarColor
         madeUpLogo.image = data.logo
         fakeWordLabel.text = data.name
-        fakeWordRootLabel.text = data.madeUpRoots
+        rootTextLabel.text = data.madeUpRoots
+
+        // AFTER getting the root, set the contrainst on the TopViewHeight
+        guard let rootFont = rootTextLabel.font else { return }
+        let width = topView.bounds.width - 10
         
-        // Random Font
-        fakeWordLabel.font = UIFont(name: data.font, size: 400)
-        fakeWordLabel.fitTextToBounds()
-        
-        
+        let height = heightForView(text: data.madeUpRoots, font: rootFont, width: width)
+        print("[\(data.name)] - HeightLabels [ \(rootTextLabel.bounds.height) | \(height) ]")
+        rootTextLabelHeight.constant = height
         
     }
     
@@ -164,6 +161,18 @@ class FakeWordCell: UITableViewCell {
     
     private func stateIsCollapsed() -> Bool {
         return state == .collapsed
+    }
+    
+    private func heightForView(text: String, font: UIFont, width: CGFloat) -> CGFloat {
+        let frame = CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude)
+        let label = UILabel(frame: frame)
+        label.numberOfLines = 0
+        label.lineBreakMode = .byTruncatingTail
+        label.font = font
+        label.text = text
+        label.sizeToFit()
+        
+        return label.frame.height
     }
     
 }

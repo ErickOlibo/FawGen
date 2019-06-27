@@ -44,7 +44,7 @@ class TextToSpeech {
     }
     
     
-    public func speakFakeWord(_ word: String, accent: TTSAccent ) {
+    public func speakFakeWord(_ word: String, accent: TTSAccent = TTSAccent.american ) {
         utterance = AVSpeechUtterance(string: word)
         utterance.rate = 0.5  // Natural voice speed and API default
         utterance.voice = AVSpeechSynthesisVoice(language: accent.code)
