@@ -107,8 +107,8 @@ extension RandomizeViewController {
         let cell = tableView.cellForRow(at: indexPath) as! FakeWordCell
         print("didSelectRowAt")
         
-        cell.state = .expanded
-        dataSource.addExpandedIndexPath(indexPath)
+        cell.state = .opened
+        dataSource.addOpenedIndexPath(indexPath)
         
         tableView.beginUpdates()
         cell.bottomView.alpha = 0
@@ -123,8 +123,8 @@ extension RandomizeViewController {
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! FakeWordCell
         print("didDeselectRowAt")
-        cell.state = .collapsed
-        dataSource.removeExpandedIndexPath(indexPath)
+        cell.state = .closed
+        dataSource.removeOpenedIndexPath(indexPath)
         
         tableView.beginUpdates()
         cell.bottomView.alpha = 1

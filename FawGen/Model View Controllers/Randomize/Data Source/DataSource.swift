@@ -40,8 +40,8 @@ final class DataSource: NSObject, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! FakeWordCell
         let data = self[indexPath]
         cell.update(data: data)
-        cell.state = cellIsExpanded(at: indexPath) ? .expanded : .collapsed
-        cell.bottomView.alpha = cell.state == .expanded ? 1 : 0
+        cell.state = cellIsOpened(at: indexPath) ? .opened : .closed
+        cell.bottomView.alpha = cell.state == .opened ? 1 : 0
         return cell
     }
     
@@ -49,15 +49,15 @@ final class DataSource: NSObject, UITableViewDataSource {
 }
 
 extension DataSource {
-    func cellIsExpanded(at indexPath: IndexPath) -> Bool {
+    func cellIsOpened(at indexPath: IndexPath) -> Bool {
         return indexPaths.contains(indexPath)
     }
     
-    func addExpandedIndexPath(_ indexPath: IndexPath) {
+    func addOpenedIndexPath(_ indexPath: IndexPath) {
         indexPaths.insert(indexPath)
     }
     
-    func removeExpandedIndexPath(_ indexPath: IndexPath) {
+    func removeOpenedIndexPath(_ indexPath: IndexPath) {
         indexPaths.remove(indexPath)
     }
 }

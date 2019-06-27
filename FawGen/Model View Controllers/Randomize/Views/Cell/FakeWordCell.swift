@@ -16,14 +16,14 @@ class FakeWordCell: UITableViewCell {
     let algo = "Algo: "
     
     enum CellState {
-        case collapsed
-        case expanded
+        case closed
+        case opened
         
         var carretImage: UIImage {
             switch self {
-            case .collapsed:
+            case .closed:
                 return #imageLiteral(resourceName: "collapse")
-            case .expanded:
+            case .opened:
                 return #imageLiteral(resourceName: "expand")
             }
         }
@@ -58,8 +58,8 @@ class FakeWordCell: UITableViewCell {
     
     
     // MARK: - Properties
-    private let expandedViewIndex: Int = 1
-    var state: CellState = .collapsed { didSet { toggle() } }
+    private let openedViewIndex: Int = 1
+    var state: CellState = .closed { didSet { toggle() } }
     private(set) var currentFakeword = FakeWord()
     
     
@@ -189,12 +189,12 @@ class FakeWordCell: UITableViewCell {
     }
     
     private func toggle() {
-        stackView.arrangedSubviews[expandedViewIndex].isHidden = stateIsCollapsed()
+        stackView.arrangedSubviews[openedViewIndex].isHidden = stateIsClosed()
         carret.image = state.carretImage
     }
     
-    private func stateIsCollapsed() -> Bool {
-        return state == .collapsed
+    private func stateIsClosed() -> Bool {
+        return state == .closed
     }
     
     
