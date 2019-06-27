@@ -29,12 +29,9 @@ class FakeWordCell: UITableViewCell {
     @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var stackView: UIStackView!
     
-    
-    
-    
-    
+
     // Top View
-    @IBOutlet private weak var designBar: UIView!
+    @IBOutlet private weak var logoBackground: UIView!
     @IBOutlet private weak var madeUpLogo: UIImageView!
     @IBOutlet private weak var fakeWordLabel: UILabel!
     @IBOutlet private weak var carret: UIImageView!
@@ -43,11 +40,15 @@ class FakeWordCell: UITableViewCell {
     @IBOutlet private weak var textToSpeechButton: UIButton!
     
     // Bottom View
-    
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet private weak var fakeWordRootLabel: UILabel!
-    @IBOutlet private var socialViews: [SocialView]!
-    @IBOutlet private var domainViews: [DomainView]!
+    @IBOutlet private var socialViews: [CellSocialView]!
+    @IBOutlet private var domainViews: [CellDomainView]!
+    
+//    @IBOutlet var socialBackgroundViews: [UIView]!
+//    @IBOutlet var socialImages: [UIImageView]!
+//    @IBOutlet var domainBackgroundViews: [UIView]!
+//    @IBOutlet var domainLabels: [UILabel]!
     
     
     // DomainViews and SocialViews horizontal spacing constraints
@@ -61,8 +62,6 @@ class FakeWordCell: UITableViewCell {
     
     
 
-    
-    
     // MARK: - Actions
     @IBAction func tappedSave(_ sender: UIButton) {
         print("Save Fake Word")
@@ -94,10 +93,10 @@ class FakeWordCell: UITableViewCell {
     private func setupSocialDomain() {
         let orderdSocial = socialViews.sorted{ $0.tag < $1.tag }
         let orderedDomain = domainViews.sorted{ $0.tag < $1.tag }
-        
+
         for idx in 0..<4 {
-            orderdSocial[idx].layer.cornerRadius = 10
-            orderedDomain[idx].layer.cornerRadius = 10
+            //orderdSocial[idx].layer.cornerRadius = 10
+            //orderedDomain[idx].layer.cornerRadius = 10
             switch idx {
             case 0:
                 orderdSocial[idx].initialize(SocialNetwork.facebook.info)
@@ -124,25 +123,28 @@ class FakeWordCell: UITableViewCell {
     
     private func setupSave() {
         if currentFakeword.isSaved {
-            saveWordButton.setImage(#imageLiteral(resourceName: "SaveColorOn"), for: .normal)
+            saveWordButton.tintColor = .white
+            saveWordButton.backgroundColor = FawGenColors.primary.color
+            //saveWordButton.setImage(#imageLiteral(resourceName: "SaveColorOn"), for: .normal)
         } else {
-            saveWordButton.setImage(#imageLiteral(resourceName: "SaveOff"), for: .normal)
+           // saveWordButton.setImage(#imageLiteral(resourceName: "SaveOff"), for: .normal)
             saveWordButton.tintColor = .lightGray
+            saveWordButton.backgroundColor = .gray
         }
     }
     
     
     private func setupCell() {
-        textToSpeechButton.tintColor = FawGenColors.secondary.color
-        detailedReportButton.tintColor = FawGenColors.secondary.color
-        saveWordButton.layer.cornerRadius = 10
+        //textToSpeechButton.tintColor = FawGenColors.secondary.color
+        //detailedReportButton.tintColor = FawGenColors.secondary.color
+        saveWordButton.layer.cornerRadius = 15
     }
     
     public func update(data: FakeWord) {
         currentFakeword = data
         
         // Setup the cell
-        designBar.backgroundColor = data.designBarColor
+        logoBackground.backgroundColor = data.designBarColor
         madeUpLogo.image = data.logo
         fakeWordLabel.text = data.name
         fakeWordRootLabel.text = data.madeUpRoots

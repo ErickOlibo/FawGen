@@ -172,6 +172,10 @@
 		A722066F22A575FD00E1C256 /* RandomizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722066E22A575FD00E1C256 /* RandomizeViewController.swift */; };
 		A722067122A5765500E1C256 /* FakeWordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722067022A5765500E1C256 /* FakeWordCell.swift */; };
 		A7414F0A22C0668800E90AEA /* TEOGrowingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7414F0922C0668800E90AEA /* TEOGrowingTextView.swift */; };
+		A74DAFE322C451FC005ACAD0 /* CellSocialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74DAFE222C451FC005ACAD0 /* CellSocialView.swift */; };
+		A74DAFE522C453F3005ACAD0 /* CellSocialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A74DAFE422C453F3005ACAD0 /* CellSocialView.xib */; };
+		A74DAFE722C459D1005ACAD0 /* CellDomainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74DAFE622C459D1005ACAD0 /* CellDomainView.swift */; };
+		A74DAFE922C45AB5005ACAD0 /* CellDomainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A74DAFE822C45AB5005ACAD0 /* CellDomainView.xib */; };
 		A75C631E22C2911C00EB2333 /* SimpleAssistDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75C631D22C2911C00EB2333 /* SimpleAssistDelegate.swift */; };
 		A75C632122C2ED0400EB2333 /* NewSetHomeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75C632022C2ED0400EB2333 /* NewSetHomeDelegate.swift */; };
 		A76915B522A0DB7300FB616F /* DomainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A76915B422A0DB7300FB616F /* DomainView.xib */; };
@@ -180,7 +184,6 @@
 		A76915BB22A15F6A00FB616F /* FawGenColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76915BA22A15F6A00FB616F /* FawGenColors.swift */; };
 		A76915BD22A211D700FB616F /* WhoisAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76915BC22A211D700FB616F /* WhoisAPI.swift */; };
 		A76915BF22A218BA00FB616F /* TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76915BE22A218BA00FB616F /* TypeAlias.swift */; };
-		A79936E122A6234F0091C9CA /* RandomizeViewController+NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79936E022A6234F0091C9CA /* RandomizeViewController+NavBar.swift */; };
 		A7A1CB5222C127BC003CB1B8 /* SimpleAssistView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A1CB5122C127BC003CB1B8 /* SimpleAssistView+Extensions.swift */; };
 		A7B7E03C22B44AE700398289 /* RandomizeVCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7E03B22B44AE700398289 /* RandomizeVCExtension.swift */; };
 		A7B7E03E22B44E6600398289 /* FakeWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7E03D22B44E6600398289 /* FakeWord.swift */; };
@@ -377,6 +380,10 @@
 		A722066E22A575FD00E1C256 /* RandomizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomizeViewController.swift; sourceTree = "<group>"; };
 		A722067022A5765500E1C256 /* FakeWordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeWordCell.swift; sourceTree = "<group>"; };
 		A7414F0922C0668800E90AEA /* TEOGrowingTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TEOGrowingTextView.swift; sourceTree = "<group>"; };
+		A74DAFE222C451FC005ACAD0 /* CellSocialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellSocialView.swift; sourceTree = "<group>"; };
+		A74DAFE422C453F3005ACAD0 /* CellSocialView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CellSocialView.xib; sourceTree = "<group>"; };
+		A74DAFE622C459D1005ACAD0 /* CellDomainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellDomainView.swift; sourceTree = "<group>"; };
+		A74DAFE822C45AB5005ACAD0 /* CellDomainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CellDomainView.xib; sourceTree = "<group>"; };
 		A75C631D22C2911C00EB2333 /* SimpleAssistDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleAssistDelegate.swift; sourceTree = "<group>"; };
 		A75C632022C2ED0400EB2333 /* NewSetHomeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSetHomeDelegate.swift; sourceTree = "<group>"; };
 		A76915B422A0DB7300FB616F /* DomainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DomainView.xib; sourceTree = "<group>"; };
@@ -385,7 +392,6 @@
 		A76915BA22A15F6A00FB616F /* FawGenColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FawGenColors.swift; sourceTree = "<group>"; };
 		A76915BC22A211D700FB616F /* WhoisAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhoisAPI.swift; sourceTree = "<group>"; };
 		A76915BE22A218BA00FB616F /* TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAlias.swift; sourceTree = "<group>"; };
-		A79936E022A6234F0091C9CA /* RandomizeViewController+NavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RandomizeViewController+NavBar.swift"; sourceTree = "<group>"; };
 		A7A1CB5122C127BC003CB1B8 /* SimpleAssistView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SimpleAssistView+Extensions.swift"; sourceTree = "<group>"; };
 		A7B7E03B22B44AE700398289 /* RandomizeVCExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomizeVCExtension.swift; sourceTree = "<group>"; };
 		A7B7E03D22B44E6600398289 /* FakeWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeWord.swift; sourceTree = "<group>"; };
@@ -1207,7 +1213,6 @@
 			isa = PBXGroup;
 			children = (
 				A722066E22A575FD00E1C256 /* RandomizeViewController.swift */,
-				A79936E022A6234F0091C9CA /* RandomizeViewController+NavBar.swift */,
 				A7B7E03B22B44AE700398289 /* RandomizeVCExtension.swift */,
 			);
 			path = Controller;
@@ -1238,6 +1243,8 @@
 			children = (
 				A76915B422A0DB7300FB616F /* DomainView.xib */,
 				A76915B622A0DB8600FB616F /* DomainView.swift */,
+				A74DAFE622C459D1005ACAD0 /* CellDomainView.swift */,
+				A74DAFE822C45AB5005ACAD0 /* CellDomainView.xib */,
 			);
 			path = "Domain View";
 			sourceTree = "<group>";
@@ -1406,6 +1413,8 @@
 			children = (
 				A7FC862B229F4255002C386F /* SocialView.xib */,
 				A7FC862D229F4265002C386F /* SocialView.swift */,
+				A74DAFE222C451FC005ACAD0 /* CellSocialView.swift */,
+				A74DAFE422C453F3005ACAD0 /* CellSocialView.xib */,
 			);
 			path = "Social Network View";
 			sourceTree = "<group>";
@@ -1481,12 +1490,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7FC85EE229CEA82002C386F /* LaunchScreen.storyboard in Resources */,
+				A74DAFE522C453F3005ACAD0 /* CellSocialView.xib in Resources */,
 				A7FC862C229F4255002C386F /* SocialView.xib in Resources */,
 				A7B7E0DE22BEB73D00398289 /* NewSetHomeView.xib in Resources */,
 				A76915B522A0DB7300FB616F /* DomainView.xib in Resources */,
 				A7FC85EB229CEA82002C386F /* Assets.xcassets in Resources */,
 				A7FC85E9229CEA81002C386F /* Main.storyboard in Resources */,
 				A7B7E0DC22BEAB7A00398289 /* SimpleAssistView.xib in Resources */,
+				A74DAFE922C45AB5005ACAD0 /* CellDomainView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1585,11 +1596,13 @@
 				A70C4B1922AA0675001BD6CC /* SPAudioIconView.swift in Sources */,
 				A70C4B4922AA0675001BD6CC /* SPUINavigationControllerExtenshion.swift in Sources */,
 				A70C4AF222AA0675001BD6CC /* SPStorkPresentingAnimationController.swift in Sources */,
+				A74DAFE322C451FC005ACAD0 /* CellSocialView.swift in Sources */,
 				A70C4AF722AA0675001BD6CC /* SPStorkIndicatorView.swift in Sources */,
 				A70C4B2722AA0675001BD6CC /* SPFormMailTableViewCell.swift in Sources */,
 				A70C4B0E22AA0675001BD6CC /* SPImageView.swift in Sources */,
 				A70C4B1E22AA0675001BD6CC /* SPGradeBlurView.swift in Sources */,
 				A70C4B3822AA0675001BD6CC /* SPLocale.swift in Sources */,
+				A74DAFE722C459D1005ACAD0 /* CellDomainView.swift in Sources */,
 				A70C4B2522AA0675001BD6CC /* SPPromoTableViewCell.swift in Sources */,
 				A7EC016622A3667B0056E2C7 /* GlobalConstants.swift in Sources */,
 				A70C4B5F22AA0675001BD6CC /* SPAnimationAlpha.swift in Sources */,
@@ -1624,7 +1637,6 @@
 				A70C4B1022AA0675001BD6CC /* SPCollectionViewLayout.swift in Sources */,
 				A70C4B2D22AA0675001BD6CC /* SPMengTransformTableViewCell.swift in Sources */,
 				A7EC016922A36E510056E2C7 /* UIFont+BestFit.swift in Sources */,
-				A79936E122A6234F0091C9CA /* RandomizeViewController+NavBar.swift in Sources */,
 				A70C4B4F22AA0675001BD6CC /* SPUIButtonExtenshion.swift in Sources */,
 				A7FC8608229EF08D002C386F /* Colors.swift in Sources */,
 				A76915BD22A211D700FB616F /* WhoisAPI.swift in Sources */,
