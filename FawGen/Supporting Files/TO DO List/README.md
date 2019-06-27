@@ -1,5 +1,6 @@
 #  TO DO LIST for Version 1.0
 
+== DATE: 27th June 2019
 - Implement the cell domain and social queries
 - Create the logos from the files from Freepik
 - Get new batch of files from Freepik ( from letter L)

@@ -16,6 +16,8 @@ struct FakeWord {
     }
     
     var isSaved: Bool = false
+    var lastQueryUpdate: Date?
+    
     let name: String = {
         guard let rndWord = Constants.fakeWords.randomElement() else { return "No Fakes"}
         return rndWord.capitalized 
@@ -48,10 +50,11 @@ struct FakeWord {
         return image
     }()
     
+    
+    
     //let simpleSocialURLs: [SocialNetwork : String]
     
-    
-    // Text-To-Speech to do here
+
     
 }
 

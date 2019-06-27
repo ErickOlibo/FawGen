@@ -10,6 +10,11 @@ import UIKit
 
 class FakeWordCell: UITableViewCell {
     
+    // Properties
+    let newLine = "\n"
+    let root = "Root: "
+    let algo = "Algo: "
+    
     enum CellState {
         case collapsed
         case expanded
@@ -115,10 +120,15 @@ class FakeWordCell: UITableViewCell {
     
     private func toggleSave() {
         currentFakeword.isSaved = !currentFakeword.isSaved
-        setupSave()
+        updateSave()
     }
     
     private func setupSave() {
+        saveWordButton.layer.cornerRadius = 15
+        updateSave()
+    }
+    
+    private func updateSave() {
         if currentFakeword.isSaved {
             saveWordButton.tintColor = .white
             saveWordButton.backgroundColor = FawGenColors.primary.color
@@ -142,16 +152,40 @@ class FakeWordCell: UITableViewCell {
         logoBackground.backgroundColor = data.designBarColor
         madeUpLogo.image = data.logo
         fakeWordLabel.text = data.name
-        rootTextLabel.text = data.madeUpRoots
-
-        // AFTER getting the root, set the contrainst on the TopViewHeight
-        guard let rootFont = rootTextLabel.font else { return }
-        let width = topView.bounds.width - 10
+        let attributedRootText = formatRootText()
+        rootTextLabel.attributedText = attributedRootText
+        rootTextLabelHeight.constant = heightForRootLabel()
         
-        let height = heightForView(text: data.madeUpRoots, font: rootFont, width: width)
-        print("[\(data.name)] - HeightLabels [ \(rootTextLabel.bounds.height) | \(height) ]")
-        rootTextLabelHeight.constant = height
+    }
+    
+    private func formatRootText() -> NSMutableAttributedString {
+        let rootText = NSMutableAttributedString(string: currentFakeword.madeUpRoots)
+        let algoType = NSAttributedString(string: currentFakeword.madeUpType.rawValue)
+        let fontSize = rootTextLabel.font.pointSize
+        guard let boldFont = UIFont(name: "AvenirNext-Bold", size: fontSize) else { return rootText }
+        rootText.append(NSAttributedString(string: newLine))
+        let attrs = [NSAttributedString.Key.font : boldFont]
+        let attrsRoot = NSMutableAttributedString(string: root, attributes: attrs)
+        let attrsAlgo = NSMutableAttributedString(string: algo, attributes: attrs)
         
+        attrsRoot.append(rootText)
+        attrsRoot.append(attrsAlgo)
+        attrsRoot.append(algoType)
+        return attrsRoot
+    }
+    
+    private func heightForRootLabel() -> CGFloat {
+        guard let rootFont = rootTextLabel.font else { return 0.0 }
+        guard let attrText = rootTextLabel.attributedText?.string else { return 0.0 }
+        let rootWidth = rootTextLabel.bounds.width
+        let frame = CGRect(x: 0, y: 0, width: rootWidth, height: CGFloat.greatestFiniteMagnitude)
+        let label = UILabel(frame: frame)
+        label.numberOfLines = 0
+        label.lineBreakMode = .byTruncatingTail
+        label.font = rootFont
+        label.text = attrText
+        label.sizeToFit()
+        return label.frame.height
     }
     
     private func toggle() {
@@ -163,16 +197,9 @@ class FakeWordCell: UITableViewCell {
         return state == .collapsed
     }
     
-    private func heightForView(text: String, font: UIFont, width: CGFloat) -> CGFloat {
-        let frame = CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude)
-        let label = UILabel(frame: frame)
-        label.numberOfLines = 0
-        label.lineBreakMode = .byTruncatingTail
-        label.font = font
-        label.text = text
-        label.sizeToFit()
+    
+    private func queryDomainSocialChecker() {
         
-        return label.frame.height
     }
     
 }
