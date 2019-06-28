@@ -177,6 +177,7 @@
 		A74DAFE722C459D1005ACAD0 /* CellDomainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74DAFE622C459D1005ACAD0 /* CellDomainView.swift */; };
 		A74DAFE922C45AB5005ACAD0 /* CellDomainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A74DAFE822C45AB5005ACAD0 /* CellDomainView.xib */; };
 		A74DAFEC22C51B31005ACAD0 /* ToDoList.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A74DAFEB22C51B31005ACAD0 /* ToDoList.rtf */; };
+		A74DAFF322C6B5E4005ACAD0 /* CheckerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74DAFF222C6B5E4005ACAD0 /* CheckerViewController.swift */; };
 		A75C631E22C2911C00EB2333 /* SimpleAssistDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75C631D22C2911C00EB2333 /* SimpleAssistDelegate.swift */; };
 		A75C632122C2ED0400EB2333 /* NewSetHomeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75C632022C2ED0400EB2333 /* NewSetHomeDelegate.swift */; };
 		A76915B522A0DB7300FB616F /* DomainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A76915B422A0DB7300FB616F /* DomainView.xib */; };
@@ -190,7 +191,6 @@
 		A7B7E03E22B44E6600398289 /* FakeWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7E03D22B44E6600398289 /* FakeWord.swift */; };
 		A7B7E06322B4D3B000398289 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7E06222B4D3B000398289 /* DataSource.swift */; };
 		A7B7E0AF22B9EE2F00398289 /* TextToSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7E0AE22B9EE2F00398289 /* TextToSpeech.swift */; };
-		A7B7E0D222BBF94600398289 /* CheckerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7E0D122BBF94600398289 /* CheckerViewController.swift */; };
 		A7B7E0D522BC277800398289 /* KeywordsHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7E0D422BC277800398289 /* KeywordsHistoryViewController.swift */; };
 		A7B7E0DA22BEAB6500398289 /* SimpleAssistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7E0D922BEAB6500398289 /* SimpleAssistView.swift */; };
 		A7B7E0DC22BEAB7A00398289 /* SimpleAssistView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7B7E0DB22BEAB7A00398289 /* SimpleAssistView.xib */; };
@@ -387,6 +387,7 @@
 		A74DAFE822C45AB5005ACAD0 /* CellDomainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CellDomainView.xib; sourceTree = "<group>"; };
 		A74DAFEB22C51B31005ACAD0 /* ToDoList.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = ToDoList.rtf; sourceTree = "<group>"; };
 		A74DAFED22C51BCD005ACAD0 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		A74DAFF222C6B5E4005ACAD0 /* CheckerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckerViewController.swift; sourceTree = "<group>"; };
 		A75C631D22C2911C00EB2333 /* SimpleAssistDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleAssistDelegate.swift; sourceTree = "<group>"; };
 		A75C632022C2ED0400EB2333 /* NewSetHomeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSetHomeDelegate.swift; sourceTree = "<group>"; };
 		A76915B422A0DB7300FB616F /* DomainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DomainView.xib; sourceTree = "<group>"; };
@@ -400,7 +401,6 @@
 		A7B7E03D22B44E6600398289 /* FakeWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeWord.swift; sourceTree = "<group>"; };
 		A7B7E06222B4D3B000398289 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		A7B7E0AE22B9EE2F00398289 /* TextToSpeech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextToSpeech.swift; sourceTree = "<group>"; };
-		A7B7E0D122BBF94600398289 /* CheckerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckerViewController.swift; sourceTree = "<group>"; };
 		A7B7E0D422BC277800398289 /* KeywordsHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordsHistoryViewController.swift; sourceTree = "<group>"; };
 		A7B7E0D922BEAB6500398289 /* SimpleAssistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleAssistView.swift; sourceTree = "<group>"; };
 		A7B7E0DB22BEAB7A00398289 /* SimpleAssistView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimpleAssistView.xib; sourceTree = "<group>"; };
@@ -1100,6 +1100,7 @@
 		A70C4B8822ABFEB7001BD6CC /* Model View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A74DAFEE22C6B58D005ACAD0 /* Checker */,
 				A722066A22A5755600E1C256 /* Randomize */,
 				A70C4B8922ABFF66001BD6CC /* Filter */,
 				A70C4B7722AA081B001BD6CC /* Settings */,
@@ -1230,6 +1231,38 @@
 			path = "TO DO List";
 			sourceTree = "<group>";
 		};
+		A74DAFEE22C6B58D005ACAD0 /* Checker */ = {
+			isa = PBXGroup;
+			children = (
+				A74DAFF122C6B5B3005ACAD0 /* Model */,
+				A74DAFF022C6B5AA005ACAD0 /* Views */,
+				A74DAFEF22C6B5A0005ACAD0 /* Controller */,
+			);
+			path = Checker;
+			sourceTree = "<group>";
+		};
+		A74DAFEF22C6B5A0005ACAD0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A74DAFF222C6B5E4005ACAD0 /* CheckerViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		A74DAFF022C6B5AA005ACAD0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A74DAFF122C6B5B3005ACAD0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		A75C631F22C2ECBF00EB2333 /* NewSet Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -1281,7 +1314,6 @@
 			isa = PBXGroup;
 			children = (
 				A70C4B8322AB403A001BD6CC /* AboutViewController.swift */,
-				A7B7E0D122BBF94600398289 /* CheckerViewController.swift */,
 				A7B7E0D422BC277800398289 /* KeywordsHistoryViewController.swift */,
 			);
 			path = Childs;
@@ -1533,7 +1565,6 @@
 				A70C4B4222AA0675001BD6CC /* SPUIViewControllerExtenshion.swift in Sources */,
 				A70C4B3622AA0675001BD6CC /* SPNativeStyleKit.swift in Sources */,
 				A70C4AFE22AA0675001BD6CC /* SPSystemIconButton.swift in Sources */,
-				A7B7E0D222BBF94600398289 /* CheckerViewController.swift in Sources */,
 				A70C4B1522AA0675001BD6CC /* SPMengTransformCollectionView.swift in Sources */,
 				A70C4B4322AA0675001BD6CC /* SPStringExtenshion.swift in Sources */,
 				A70C4B4022AA0675001BD6CC /* SPArrayExtension.swift in Sources */,
@@ -1564,6 +1595,7 @@
 				A70C4B6722AA0675001BD6CC /* SPTelegram.swift in Sources */,
 				A76915B922A0DF2F00FB616F /* DomainChecker.swift in Sources */,
 				A70C4B0A22AA0675001BD6CC /* SPStatusBarManagerViewController.swift in Sources */,
+				A74DAFF322C6B5E4005ACAD0 /* CheckerViewController.swift in Sources */,
 				A70C4B2122AA0675001BD6CC /* SPGradientView.swift in Sources */,
 				A70C4B4C22AA0675001BD6CC /* SPCGSizeExtenshion.swift in Sources */,
 				A70C4B1222AA0675001BD6CC /* SPMengTransformCollectionViewCell.swift in Sources */,

@@ -57,10 +57,10 @@ class SettingsViewController: UITableViewController {
             print(UrlFor.explanation)
         }
         
-        if (segue.identifier == "Checker") {
-            guard let destination = segue.destination as? CheckerViewController else { return }
-            destination.navigationItem.title = "Checker"
-        }
+//        if (segue.identifier == "Checker") {
+//            guard let destination = segue.destination as? CheckerViewController else { return }
+//            destination.navigationItem.title = "Checker"
+//        }
         
         if (segue.identifier == "FAQ") {
             guard let destination = segue.destination as? AboutViewController else { return }

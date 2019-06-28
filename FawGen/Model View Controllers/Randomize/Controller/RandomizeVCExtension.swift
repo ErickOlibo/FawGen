@@ -13,8 +13,9 @@ extension RandomizeViewController {
     
     public func setupNavigationBarItems() {
         setupRemainingNavItems()
-        setupLeftNavItems()
+        //setupLeftNavItems()
         setupRightNavItems()
+        setupNewLeftNavItems()
     }
     
     /// Sets up FawGen logo as a navigation bar left tappable item
@@ -27,19 +28,30 @@ extension RandomizeViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: logoButton)
     }
     
+    private func setupNewLeftNavItems() {
+        let checkerButton = UIButton(type: .system)
+        checkerButton.translatesAutoresizingMaskIntoConstraints = false
+        checkerButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
+        checkerButton.setImage(UIImage(named: "checker")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        checkerButton.addTarget(self, action: #selector(presentCheckerViewController), for: .touchUpInside)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: checkerButton)
+        
+    }
+    
+    
     /// Sets the navigation bar 3 right items as listed in letf-to-right order:
     /// Favorite, Filter, Favorites.
     private func setupRightNavItems() {
-        let collection = [("settings_colored" , #selector(presentSettingsViewController)),
-                          ("filter_colored" , #selector(presentFilterViewController)),
-                          ("favorites_colored" , #selector(presentFavoritesViewController))]
+        let collection = [("Settings" , #selector(presentSettingsViewController)),
+                          ("Filter" , #selector(presentFilterViewController)),
+                          ("favorite" , #selector(presentFavoritesViewController))]
         var barButtonItems = [UIBarButtonItem]()
         for (imageName, selector) in collection {
             let itemButton = UIButton(type: .system)
             itemButton.translatesAutoresizingMaskIntoConstraints = false
             itemButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
             itemButton.setImage(UIImage(named: imageName)?.withRenderingMode(.alwaysOriginal), for: .normal)
-            itemButton.tintColor = FawGenColors.secondary.color
+            //itemButton.tintColor = FawGenColors.secondary.color
             itemButton.addTarget(self, action: selector, for: .touchUpInside)
             let itemBarButton = UIBarButtonItem(customView: itemButton)
             barButtonItems.append(itemBarButton)
@@ -55,6 +67,21 @@ extension RandomizeViewController {
     }
     
     // MARK: - Navigation Bar Button Actions
+    
+    // Presents as Stork transition and ViewController
+    @objc private func presentCheckerViewController() {
+        let checkerVC: CheckerViewController = {
+            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+            return storyBoard.instantiateViewController(withIdentifier: "CheckerVC") as! CheckerViewController
+        }()
+        let transitionDelegate = SPStorkTransitioningDelegate()
+        checkerVC.transitioningDelegate = transitionDelegate
+        checkerVC.modalPresentationStyle = .custom
+        checkerVC.modalPresentationCapturesStatusBarAppearance = true
+        self.present(checkerVC, animated: true, completion: nil)
+        print("Checker VC")
+    }
+    
     
     /// Presents as push transition the settings view controller
     /// - Note: SettingsViewController is access via its StoryBoard identifier
