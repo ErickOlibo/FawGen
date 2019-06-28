@@ -523,14 +523,14 @@
                                     <outlet property="stackView" destination="bLK-o4-RKw" id="MNV-OS-STU"/>
                                     <outlet property="textToSpeechButton" destination="4hx-Q7-zEy" id="IeV-9e-VOi"/>
                                     <outlet property="topView" destination="Kte-gh-cWx" id="bC6-p0-pYg"/>
-                                    <outletCollection property="socialViews" destination="LCq-dG-agZ" collectionClass="NSMutableArray" id="YdL-9H-meT"/>
-                                    <outletCollection property="socialViews" destination="C25-YO-oe4" collectionClass="NSMutableArray" id="BEa-Zv-ZIB"/>
-                                    <outletCollection property="socialViews" destination="Lqg-oW-AwL" collectionClass="NSMutableArray" id="HZ9-p0-q9c"/>
-                                    <outletCollection property="socialViews" destination="4QF-l0-pbK" collectionClass="NSMutableArray" id="jPG-18-pvk"/>
-                                    <outletCollection property="domainViews" destination="udL-Rj-hvA" collectionClass="NSMutableArray" id="R1a-A6-gfY"/>
-                                    <outletCollection property="domainViews" destination="NEM-q1-qN4" collectionClass="NSMutableArray" id="QyH-ez-PGk"/>
-                                    <outletCollection property="domainViews" destination="g1B-S5-i8B" collectionClass="NSMutableArray" id="HyQ-eK-Aow"/>
-                                    <outletCollection property="domainViews" destination="1bC-Ei-wcd" collectionClass="NSMutableArray" id="7d6-Y5-Tso"/>
+                                    <outletCollection property="cellSocialViews" destination="LCq-dG-agZ" collectionClass="NSMutableArray" id="aYL-cs-JCa"/>
+                                    <outletCollection property="cellSocialViews" destination="C25-YO-oe4" collectionClass="NSMutableArray" id="YYJ-1R-wiR"/>
+                                    <outletCollection property="cellSocialViews" destination="Lqg-oW-AwL" collectionClass="NSMutableArray" id="M8d-6z-lla"/>
+                                    <outletCollection property="cellSocialViews" destination="4QF-l0-pbK" collectionClass="NSMutableArray" id="6Lh-5c-NK9"/>
+                                    <outletCollection property="cellDomainViews" destination="udL-Rj-hvA" collectionClass="NSMutableArray" id="3a1-sV-Va2"/>
+                                    <outletCollection property="cellDomainViews" destination="NEM-q1-qN4" collectionClass="NSMutableArray" id="Scj-RW-Mnp"/>
+                                    <outletCollection property="cellDomainViews" destination="g1B-S5-i8B" collectionClass="NSMutableArray" id="Nb6-EO-OMR"/>
+                                    <outletCollection property="cellDomainViews" destination="1bC-Ei-wcd" collectionClass="NSMutableArray" id="3sw-Un-7sQ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

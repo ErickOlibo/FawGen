@@ -28,6 +28,13 @@ class FakeWordCell: UITableViewCell {
             }
         }
     }
+    
+    private enum DomainTag: Int {
+        case com = 1, net, org, co
+    }
+    private enum SocialTag: Int {
+        case facebook = 1, youtube, twitter, instagram
+    }
 
     // MARK: - Outlets
     // Container and Stack
@@ -48,8 +55,8 @@ class FakeWordCell: UITableViewCell {
     // Bottom View
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet private weak var rootTextLabel: UILabel!
-    @IBOutlet private var socialViews: [CellSocialView]!
-    @IBOutlet private var domainViews: [CellDomainView]!
+    @IBOutlet private var cellSocialViews: [CellSocialView]!
+    @IBOutlet private var cellDomainViews: [CellDomainView]!
     
     // DomainViews and SocialViews horizontal spacing constraints
     @IBOutlet weak var rootTextLabelHeight: NSLayoutConstraint!
@@ -61,6 +68,8 @@ class FakeWordCell: UITableViewCell {
     private let openedViewIndex: Int = 1
     var state: CellState = .closed { didSet { toggle() } }
     private(set) var currentFakeword = FakeWord()
+    private(set) var orderedSocialViews = [CellSocialView]()
+    private(set) var orderedDomainViews = [CellDomainView]()
     
     
     
@@ -95,23 +104,23 @@ class FakeWordCell: UITableViewCell {
     
     
     private func setupSocialDomain() {
-        let orderdSocial = socialViews.sorted{ $0.tag < $1.tag }
-        let orderedDomain = domainViews.sorted{ $0.tag < $1.tag }
+        orderedSocialViews = cellSocialViews.sorted{ $0.tag < $1.tag }
+        orderedDomainViews = cellDomainViews.sorted{ $0.tag < $1.tag }
 
         for idx in 0..<4 {
             switch idx {
             case 0:
-                orderdSocial[idx].initialize(SocialNetwork.facebook.info)
-                orderedDomain[idx].initialize(DomainExtension.com)
+                orderedSocialViews[idx].initialize(SocialNetwork.facebook.info)
+                orderedDomainViews[idx].initialize(DomainExtension.com)
             case 1:
-                orderdSocial[idx].initialize(SocialNetwork.youtube.info)
-                orderedDomain[idx].initialize(DomainExtension.net)
+                orderedSocialViews[idx].initialize(SocialNetwork.youtube.info)
+                orderedDomainViews[idx].initialize(DomainExtension.net)
             case 2:
-                orderdSocial[idx].initialize(SocialNetwork.twitter.info)
-                orderedDomain[idx].initialize(DomainExtension.org)
+                orderedSocialViews[idx].initialize(SocialNetwork.twitter.info)
+                orderedDomainViews[idx].initialize(DomainExtension.org)
             case 3:
-                orderdSocial[idx].initialize(SocialNetwork.instagram.info)
-                orderedDomain[idx].initialize(DomainExtension.co)
+                orderedSocialViews[idx].initialize(SocialNetwork.instagram.info)
+                orderedDomainViews[idx].initialize(DomainExtension.co)
             default:
                 break
             }
@@ -198,8 +207,105 @@ class FakeWordCell: UITableViewCell {
     }
     
     
-    private func queryDomainSocialChecker() {
-        
+    public func queryDomainSocialChecker() {
+        getSocialNetworkAvailability()
+        getDomainExtensionAvailability()
     }
+    
+    public func cancelQueryDomainSocialChecker() {
+        
+        print("NEED TO CANCEL THE QUERY")
+    }
+    
+    
+    private func getSocialNetworkAvailability() {
+        let socialOne = cellSocialViews.filter{ $0.tag == 1 }[0]
+        let socialTwo = cellSocialViews.filter{ $0.tag == 2 }[0]
+        let socialThree = cellSocialViews.filter{ $0.tag == 3 }[0]
+        let socialFour = cellSocialViews.filter{ $0.tag == 4 }[0]
+        
+        let socialNetViews = [SocialNetwork.facebook : socialOne,
+                              SocialNetwork.youtube : socialTwo,
+                              SocialNetwork.twitter : socialThree,
+                              SocialNetwork.instagram : socialFour]
+        
+        let handle = currentFakeword.name.lowercased()
+        let socialURLs = socialNetworkURLs(for: handle, completeList: false)
+
+        for (social, link) in socialURLs {
+            print("Link: \(link)")
+            guard let socialView = socialNetViews[social] else { continue }
+            guard let url = URL(string: link) else {
+                socialView.status = .taken
+                continue
+            }
+            
+            let request = URLRequest(url: url)
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                if let httpResponse = response as? HTTPURLResponse {
+                    DispatchQueue.main.async {
+                        socialView.status = httpResponse.statusCode == 404 ? .available : .taken
+                    }
+                } else {
+                    DispatchQueue.main.async { socialView.status = .taken }
+                }
+            }
+            task.resume()
+        }
+    }
+    
+    private func getDomainExtensionAvailability() {
+        let domainOne = cellDomainViews.filter{ $0.tag == 1 }[0]
+        let domainTwo = cellDomainViews.filter{ $0.tag == 2 }[0]
+        let domainThree = cellDomainViews.filter{ $0.tag == 3 }[0]
+        let domainFour = cellDomainViews.filter{ $0.tag == 4 }[0]
+        
+        let domainViews = [DomainExtension.com : domainOne,
+                           DomainExtension.net : domainTwo,
+                           DomainExtension.org : domainThree,
+                           DomainExtension.co : domainFour ]
+        let domainName = currentFakeword.name.lowercased()
+        let whoisQueryURLS = DomainChecker().whoisURLs(for: domainName, completeList: false)
+        
+        for (ext, queryURL) in whoisQueryURLS {
+            guard let domainView = domainViews[ext] else { continue }
+            guard let url = URL(string: queryURL) else {
+                domainView.status = .taken
+                print("URL Failed")
+                continue
+            }
+            
+            print("[\(ext.rawValue)] - tag[\(domainView.tag)] - WhoIs URL: \(queryURL)")
+            
+            let request = URLRequest(url: url)
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                if (error == nil) {
+                    
+                    if let result = String(data: data!, encoding: String.Encoding.utf8) {
+                        DispatchQueue.main.async {
+                            let comp = result.components(separatedBy: ", ")
+                            if comp.count == 2 {
+                                print("RESULT: \(comp[0]) - tag: \(domainView.tag)")
+                                domainView.status = (comp[1] == "AVAILABLE") ? .available : .taken
+                            }
+                            print("tag[\(domainView.tag)] - Ext: \(ext.description) - Response: \(result)")
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            domainView.status = .taken
+                            print("Data failed to parse!)")
+                        }
+                    }
+                } else {
+                    domainView.status = .taken
+                    print("Error: \(String(describing: error))")
+                }
+            }
+            task.resume()
+            
+        }
+    }
+    
+    
     
 }

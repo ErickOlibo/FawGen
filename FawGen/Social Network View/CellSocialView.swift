@@ -21,7 +21,7 @@ class CellSocialView: UIView {
         case taken
     }
     
-    public var currentStatus: AvailabilityStatus = .normal {
+    public var status: AvailabilityStatus = .normal {
         didSet {
             updateAvailabilityUI()
         }
@@ -70,13 +70,13 @@ class CellSocialView: UIView {
     public func initialize(_ info: SocialMedia, status: AvailabilityStatus = .normal) {
         self.socialInfo = info
         icon.image = info.icon
-        self.currentStatus = status
+        self.status = status
     }
     
     /// Updates the Availability status of the social view and updates the UI
     private func updateAvailabilityUI() {
         guard let info = socialInfo else { return }
-        switch currentStatus {
+        switch status {
         case .normal:
             icon.tintColor = .white
             icon.backgroundColor = info.color

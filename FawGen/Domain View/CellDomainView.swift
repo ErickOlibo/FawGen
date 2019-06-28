@@ -19,7 +19,7 @@ class CellDomainView: UIView {
         case taken
     }
     
-    public var currentStatus: AvailabilityStatus = .normal {
+    public var status: AvailabilityStatus = .normal {
         didSet {
             updateAvailabilityUI()
         }
@@ -68,13 +68,13 @@ class CellDomainView: UIView {
         let dot = "."
         extensionLabel.text = (info == .couk) ? ".co.uk" : dot + info.rawValue
         self.domainExt = info
-        self.currentStatus = status
+        self.status = status
     }
     
     
     /// Updates the Availability status of the Cell Domain View and updates the UI
     private func updateAvailabilityUI() {
-        switch currentStatus {
+        switch status {
         case .normal:
             extensionLabel.textColor = .white
             view.backgroundColor = FawGenColors.secondary.color

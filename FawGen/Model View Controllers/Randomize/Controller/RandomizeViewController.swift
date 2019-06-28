@@ -115,6 +115,8 @@ extension RandomizeViewController {
         UIView.animate(withDuration: 0.7) {
             cell.bottomView.alpha = 1
         }
+        cell.queryDomainSocialChecker()
+        
         tableView.endUpdates()
 
         
@@ -131,6 +133,8 @@ extension RandomizeViewController {
         UIView.animate(withDuration: 0.7) {
             cell.bottomView.alpha = 0
         }
+        cell.cancelQueryDomainSocialChecker()
+        
         tableView.endUpdates()
 
     }
