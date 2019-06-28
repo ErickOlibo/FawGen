@@ -19,6 +19,7 @@ class CellSocialView: UIView {
         case normal
         case available
         case taken
+        case unknown
     }
     
     public var status: AvailabilityStatus = .normal {
@@ -79,18 +80,22 @@ class CellSocialView: UIView {
         switch status {
         case .normal:
             icon.tintColor = .white
-            icon.backgroundColor = info.color
+            //icon.backgroundColor = info.color
             view.backgroundColor = info.color
             
         case .available:
             icon.tintColor = .white
-            icon.backgroundColor = FawGenColors.availableStatus.color
+            //icon.backgroundColor = FawGenColors.availableStatus.color
             view.backgroundColor = FawGenColors.availableStatus.color
             
         case .taken:
             icon.tintColor = .gray
-            icon.backgroundColor = .darkGray
+            //icon.backgroundColor = .darkGray
             view.backgroundColor = .darkGray
+            
+        case .unknown:
+            icon.tintColor = .white
+            view.backgroundColor = FawGenColors.unknown.color
         }
         
     }

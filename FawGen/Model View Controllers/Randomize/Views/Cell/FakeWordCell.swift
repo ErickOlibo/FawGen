@@ -11,9 +11,10 @@ import UIKit
 class FakeWordCell: UITableViewCell {
     
     // Properties
-    let newLine = "\n"
-    let root = "Root: "
-    let algo = "Algo: "
+    private let newLine = "\n"
+    private let root = "Root: "
+    private let algo = "Algo: "
+    
     
     enum CellState {
         case closed
@@ -27,13 +28,6 @@ class FakeWordCell: UITableViewCell {
                 return #imageLiteral(resourceName: "expand")
             }
         }
-    }
-    
-    private enum DomainTag: Int {
-        case com = 1, net, org, co
-    }
-    private enum SocialTag: Int {
-        case facebook = 1, youtube, twitter, instagram
     }
 
     // MARK: - Outlets
@@ -102,7 +96,7 @@ class FakeWordCell: UITableViewCell {
         setupSocialDomain()
     }
     
-    
+    /// Sets the default UI for the domainViews and socialViews
     private func setupSocialDomain() {
         orderedSocialViews = cellSocialViews.sorted{ $0.tag < $1.tag }
         orderedDomainViews = cellDomainViews.sorted{ $0.tag < $1.tag }
@@ -149,15 +143,14 @@ class FakeWordCell: UITableViewCell {
     
     
     private func setupCell() {
-        //textToSpeechButton.tintColor = FawGenColors.secondary.color
-        //detailedReportButton.tintColor = FawGenColors.secondary.color
         saveWordButton.layer.cornerRadius = 15
     }
     
+    /// Updates the cell with the correct FaveWord entity
+    /// - Parameter data: of type FakeWord containing the
+    /// name, icon, color and other information
     public func update(data: FakeWord) {
         currentFakeword = data
-        
-        // Setup the cell
         logoBackground.backgroundColor = data.designBarColor
         madeUpLogo.image = data.logo
         fakeWordLabel.text = data.name
@@ -167,6 +160,8 @@ class FakeWordCell: UITableViewCell {
         
     }
     
+    /// Formats the text of the roots of the creation of that word
+    /// with the appropriate formating for the rootTextLabel
     private func formatRootText() -> NSMutableAttributedString {
         let rootText = NSMutableAttributedString(string: currentFakeword.madeUpRoots)
         let algoType = NSAttributedString(string: currentFakeword.madeUpType.rawValue)
@@ -183,6 +178,9 @@ class FakeWordCell: UITableViewCell {
         return attrsRoot
     }
     
+    /// Determines the height of the rootTextLabel after the formating
+    /// as been applied. it allows to change the constraints on the height
+    /// of the Cell and therefore the height of the TopView (from StackView)
     private func heightForRootLabel() -> CGFloat {
         guard let rootFont = rootTextLabel.font else { return 0.0 }
         guard let attrText = rootTextLabel.attributedText?.string else { return 0.0 }
@@ -207,17 +205,29 @@ class FakeWordCell: UITableViewCell {
     }
     
     
+    /// Queries the availability of the fakeWord as an handle for the
+    /// social network sites and the domain extensions
+    /// - Note: This query is requested by the CellState open
+    /// from the tableView didSelectRowAt
     public func queryDomainSocialChecker() {
         getSocialNetworkAvailability()
         getDomainExtensionAvailability()
     }
     
+    /// Cancels any ongoing URL queries to the availability checkers
+    /// - Note: This method is trigger by the tableView didDeselectRowAt
     public func cancelQueryDomainSocialChecker() {
         
         print("NEED TO CANCEL THE QUERY")
     }
     
     
+    //private func listTaks
+    
+    /// Gets the availability from the handle (fakeword.name) and
+    /// return if the username is available or taken
+    /// - Note: There is only two states meaning that any failed
+    /// request will result in a taken state
     private func getSocialNetworkAvailability() {
         let socialOne = cellSocialViews.filter{ $0.tag == 1 }[0]
         let socialTwo = cellSocialViews.filter{ $0.tag == 2 }[0]
@@ -236,7 +246,7 @@ class FakeWordCell: UITableViewCell {
             print("Link: \(link)")
             guard let socialView = socialNetViews[social] else { continue }
             guard let url = URL(string: link) else {
-                socialView.status = .taken
+                socialView.status = .unknown
                 continue
             }
             
@@ -244,16 +254,30 @@ class FakeWordCell: UITableViewCell {
             let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
                 if let httpResponse = response as? HTTPURLResponse {
                     DispatchQueue.main.async {
-                        socialView.status = httpResponse.statusCode == 404 ? .available : .taken
+                        let name = socialView.socialInfo?.name
+                        print("Social: \(name ?? "N/A") - Response: \(httpResponse.statusCode)")
+                        switch httpResponse.statusCode {
+                        case 404:
+                            socialView.status = .available
+                        case 200:
+                            socialView.status = .taken
+                        default:
+                            socialView.status = .unknown
+                        }
+                        //socialView.status = httpResponse.statusCode == 404 ? .available : .taken
                     }
                 } else {
-                    DispatchQueue.main.async { socialView.status = .taken }
+                    DispatchQueue.main.async { socialView.status = .unknown }
                 }
             }
             task.resume()
         }
     }
     
+    /// Gets the availability from the domain (fakeword.name) and
+    /// return if the domain+extension is available or taken
+    /// - Note: There is only two states meaning that any failed
+    /// request will result in a taken state
     private func getDomainExtensionAvailability() {
         let domainOne = cellDomainViews.filter{ $0.tag == 1 }[0]
         let domainTwo = cellDomainViews.filter{ $0.tag == 2 }[0]
@@ -270,7 +294,7 @@ class FakeWordCell: UITableViewCell {
         for (ext, queryURL) in whoisQueryURLS {
             guard let domainView = domainViews[ext] else { continue }
             guard let url = URL(string: queryURL) else {
-                domainView.status = .taken
+                domainView.status = .unknown
                 print("URL Failed")
                 continue
             }
@@ -286,18 +310,26 @@ class FakeWordCell: UITableViewCell {
                             let comp = result.components(separatedBy: ", ")
                             if comp.count == 2 {
                                 print("RESULT: \(comp[0]) - tag: \(domainView.tag)")
-                                domainView.status = (comp[1] == "AVAILABLE") ? .available : .taken
+                                switch comp[1] {
+                                case "AVAILABLE":
+                                    domainView.status = .available
+                                case "TAKEN":
+                                    domainView.status = .taken
+                                default:
+                                    domainView.status = .unknown
+                                }
+                                //domainView.status = (comp[1] == "AVAILABLE") ? .available : .taken
                             }
                             print("tag[\(domainView.tag)] - Ext: \(ext.description) - Response: \(result)")
                         }
                     } else {
                         DispatchQueue.main.async {
-                            domainView.status = .taken
+                            domainView.status = .unknown
                             print("Data failed to parse!)")
                         }
                     }
                 } else {
-                    domainView.status = .taken
+                    domainView.status = .unknown
                     print("Error: \(String(describing: error))")
                 }
             }

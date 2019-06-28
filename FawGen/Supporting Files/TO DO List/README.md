@@ -1,23 +1,29 @@
 #  TO DO LIST for Version 1.0
 
+
 == DATE: 27th June 2019
-- Implement the cell domain and social queries
+-
+- Implement the cell domain and social queries --> DONE
+- Get new batch of files from Freepik ( from letter L) --> DONE
+
+
+== DATE: 28th June 2019
+- 
+- Clean and Document CellSocialView & CellDomainView
+- Change the left navigation Bar from the logo to the checker tool
+- Create a new icon for the filter to reflect the shape of the steppers
+- Create the CheckerViewController and present it as SPStork
+
+
+
+
+
+
+
+
+
+## LIST of Tasks To Do
 - Create the logos from the files from Freepik
-- Get new batch of files from Freepik ( from letter L)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

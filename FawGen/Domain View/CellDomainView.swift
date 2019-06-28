@@ -17,6 +17,7 @@ class CellDomainView: UIView {
         case normal
         case available
         case taken
+        case unknown
     }
     
     public var status: AvailabilityStatus = .normal {
@@ -82,9 +83,14 @@ class CellDomainView: UIView {
         case .available:
             extensionLabel.textColor = .white
             view.backgroundColor = FawGenColors.availableStatus.color
+            
         case .taken:
             extensionLabel.textColor = .gray
             view.backgroundColor = .darkGray
+            
+        case .unknown:
+            extensionLabel.textColor = .white
+            view.backgroundColor = FawGenColors.unknown.color
         }
     }
 

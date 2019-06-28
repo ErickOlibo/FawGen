@@ -15,18 +15,35 @@ import UIKit
 /// - ToDo: Make sure that all constant colors are defined here, even if you use
 /// the system default. Just to assure consstency across the App
 public enum FawGenColors: String, CustomStringConvertible, CaseIterable, Equatable, Hashable {
-    /// Of tint color Orange, name code: Orioles Orange
+    /// Of tint color Orange, The main color from the FawGen logo
+    /// Code Name: Orioles Orange
     case primary
-    /// Of tint color Blue, name code: Prussian Blue
+    
+    /// Of tint color Blue, The second colo from the FawGen logo
+    /// Code Name: Prussian Blue
     case secondary
-    /// Of tint color Yellow, name code: UCLA Gold
+    
+    /// Of tint color Yellow, the smallest color from the FawGen logo
+    /// Code Name: UCLA Gold
     case tertiary
-    /// Of tint color Green, name code: UFO Green
+    
+    /// Of tint color Green, Represent the availabilty tint for Domain/social views
+    /// Code Name: UFO Green
     case availableStatus
-    /// Of tint color Orange, name code: Darker Orioles Orange
+    
+    /// Of tint color Orange, used for the Steppers in the FilterViewController
+    /// to show the + and - keys.
+    /// Code Name: Darker Orioles Orange
     case primaryDark
-    /// Of tint very light gray, name code: Very Light Gray (for cell background)
+    
+    /// Of tint very light gray, used for the RandomizeCell as background
+    /// Code Name: Very Light Gray (for cell background)
     case cellGray
+    
+    /// Of tint color red, used for the unknown state from a URL request
+    /// to check the availability of either Domain or Social sites
+    /// Code Name: Alizarin Crimson
+    case unknown
     
     
     public var description: String {
@@ -48,6 +65,8 @@ public enum FawGenColors: String, CustomStringConvertible, CaseIterable, Equatab
             return Colors.primaryDark.rawValue.convertedToUIColor()!
         case .cellGray:
             return Colors.cellGray.rawValue.convertedToUIColor()!
+        case .unknown:
+            return Colors.unknown.rawValue.convertedToUIColor()!
         }
     }
 }
@@ -61,4 +80,5 @@ private enum Colors: String {
     case availableStatus = "3CD070" // UFO Green (for available Status)
     case primaryDark = "#BC3000" // Special darker Orange for Steppers
     case cellGray = "#EEEEEE" // Very Light gray color from the Design
+    case unknown = "#E32636" // Alizarin Crimson
 }
