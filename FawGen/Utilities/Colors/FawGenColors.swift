@@ -45,6 +45,11 @@ public enum FawGenColors: String, CustomStringConvertible, CaseIterable, Equatab
     /// Code Name: Alizarin Crimson
     case unknown
     
+    /// Of tint color gray, used for the checker and details view section
+    /// It is to separate group of info in to sections
+    /// Code Name: Section Gray
+    case sectionGray
+    
     
     public var description: String {
         return self.rawValue
@@ -67,6 +72,8 @@ public enum FawGenColors: String, CustomStringConvertible, CaseIterable, Equatab
             return Colors.cellGray.rawValue.convertedToUIColor()!
         case .unknown:
             return Colors.unknown.rawValue.convertedToUIColor()!
+        case .sectionGray:
+            return Colors.sectionGray.rawValue.convertedToUIColor()!
         }
     }
 }
@@ -81,4 +88,5 @@ private enum Colors: String {
     case primaryDark = "#BC3000" // Special darker Orange for Steppers
     case cellGray = "#EEEEEE" // Very Light gray color from the Design
     case unknown = "#E32636" // Alizarin Crimson
+    case sectionGray = "EFEEF3" // Gray light Section
 }

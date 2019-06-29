@@ -178,6 +178,8 @@
 		A74DAFE922C45AB5005ACAD0 /* CellDomainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A74DAFE822C45AB5005ACAD0 /* CellDomainView.xib */; };
 		A74DAFEC22C51B31005ACAD0 /* ToDoList.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A74DAFEB22C51B31005ACAD0 /* ToDoList.rtf */; };
 		A74DAFF322C6B5E4005ACAD0 /* CheckerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74DAFF222C6B5E4005ACAD0 /* CheckerViewController.swift */; };
+		A74DAFF622C6DDE0005ACAD0 /* TextFieldCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74DAFF522C6DDE0005ACAD0 /* TextFieldCounter.swift */; };
+		A74DAFF822C6DF6C005ACAD0 /* CheckerVCExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74DAFF722C6DF6C005ACAD0 /* CheckerVCExtensions.swift */; };
 		A75C631E22C2911C00EB2333 /* SimpleAssistDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75C631D22C2911C00EB2333 /* SimpleAssistDelegate.swift */; };
 		A75C632122C2ED0400EB2333 /* NewSetHomeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75C632022C2ED0400EB2333 /* NewSetHomeDelegate.swift */; };
 		A76915B522A0DB7300FB616F /* DomainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A76915B422A0DB7300FB616F /* DomainView.xib */; };
@@ -388,6 +390,8 @@
 		A74DAFEB22C51B31005ACAD0 /* ToDoList.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = ToDoList.rtf; sourceTree = "<group>"; };
 		A74DAFED22C51BCD005ACAD0 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		A74DAFF222C6B5E4005ACAD0 /* CheckerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckerViewController.swift; sourceTree = "<group>"; };
+		A74DAFF522C6DDE0005ACAD0 /* TextFieldCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCounter.swift; sourceTree = "<group>"; };
+		A74DAFF722C6DF6C005ACAD0 /* CheckerVCExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckerVCExtensions.swift; sourceTree = "<group>"; };
 		A75C631D22C2911C00EB2333 /* SimpleAssistDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleAssistDelegate.swift; sourceTree = "<group>"; };
 		A75C632022C2ED0400EB2333 /* NewSetHomeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSetHomeDelegate.swift; sourceTree = "<group>"; };
 		A76915B422A0DB7300FB616F /* DomainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DomainView.xib; sourceTree = "<group>"; };
@@ -1245,6 +1249,7 @@
 			isa = PBXGroup;
 			children = (
 				A74DAFF222C6B5E4005ACAD0 /* CheckerViewController.swift */,
+				A74DAFF722C6DF6C005ACAD0 /* CheckerVCExtensions.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1261,6 +1266,14 @@
 			children = (
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		A74DAFF422C6DDBD005ACAD0 /* Text Field Counter */ = {
+			isa = PBXGroup;
+			children = (
+				A74DAFF522C6DDE0005ACAD0 /* TextFieldCounter.swift */,
+			);
+			path = "Text Field Counter";
 			sourceTree = "<group>";
 		};
 		A75C631F22C2ECBF00EB2333 /* NewSet Home */ = {
@@ -1412,6 +1425,7 @@
 		A7FC85F7229DDA9F002C386F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A74DAFF422C6DDBD005ACAD0 /* Text Field Counter */,
 				A7B7E0E122BEFD1100398289 /* Growing Text View */,
 				A70C4BB222ADA9F3001BD6CC /* GMStepper */,
 				A70C4A2C22AA0655001BD6CC /* SPStork Source */,
@@ -1616,6 +1630,7 @@
 				A70C4BBF22AE19F4001BD6CC /* UserDefaultFawGenDataBase.swift in Sources */,
 				A722066722A4B56000E1C256 /* ColorGenerator.swift in Sources */,
 				A70C4B5522AA0675001BD6CC /* SPLayout.swift in Sources */,
+				A74DAFF622C6DDE0005ACAD0 /* TextFieldCounter.swift in Sources */,
 				A70C4B0622AA0675001BD6CC /* SPBaseViewController.swift in Sources */,
 				A70C4A2A22AA0611001BD6CC /* SPLarkTransitioningDelegate.swift in Sources */,
 				A70C4B7022AA0675001BD6CC /* SPPermissionDialogView.swift in Sources */,
@@ -1726,6 +1741,7 @@
 				A70C4B8222AA9626001BD6CC /* SettingsCell.swift in Sources */,
 				A70C4B5822AA0675001BD6CC /* SPCodeAudioIconPack.swift in Sources */,
 				A7FC85FB229DDB58002C386F /* FontsLister.swift in Sources */,
+				A74DAFF822C6DF6C005ACAD0 /* CheckerVCExtensions.swift in Sources */,
 				A70C4B0822AA0675001BD6CC /* SPConfirmActionViewController.swift in Sources */,
 				A70C4B6A22AA0675001BD6CC /* SPAudio.swift in Sources */,
 				A70C4B1722AA0675001BD6CC /* SPImagesLineCollectionView.swift in Sources */,
