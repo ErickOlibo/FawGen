@@ -18,6 +18,7 @@ class DomainView: UIView {
         case normal
         case available
         case taken
+        case unknown
     }
     
     public var currentStatus: AvailabilityStatus = .normal {
@@ -27,14 +28,14 @@ class DomainView: UIView {
     }
     
     private(set) var domainExt: DomainExtension = .com
-    
-    // MARK: - Outlets
-
-    @IBOutlet weak var extensionLabel: UILabel!
-    @IBOutlet weak var extensionTrailingSpace: NSLayoutConstraint!
-    @IBOutlet weak var extensionLeadingSpace: NSLayoutConstraint!
     private(set) var view: UIView!
     
+    
+    // MARK: - Outlets
+    @IBOutlet weak var extensionLabel: UILabel!
+
+    
+    // MARK: - Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInitialization()
@@ -54,13 +55,8 @@ class DomainView: UIView {
             UIView.AutoresizingMask.flexibleWidth,
             UIView.AutoresizingMask.flexibleHeight]
         
-        // Set the constraints
-        let viewCornerRadius = bounds.height * 0.2 // 20% of corner radius
-        let ratio: CGFloat = bounds.width * 0.1 // 10% of the view width
-        extensionLeadingSpace.constant = ratio
-        extensionTrailingSpace.constant = ratio
         view.addSubview(extensionLabel)
-        view.layer.cornerRadius = viewCornerRadius
+        view.layer.cornerRadius = 5
         self.view = view
         self.addSubview(view)
     }
@@ -88,9 +84,14 @@ class DomainView: UIView {
         case .available:
             extensionLabel.textColor = .white
             view.backgroundColor = FawGenColors.availableStatus.color
+            
         case .taken:
             extensionLabel.textColor = .gray
             view.backgroundColor = .darkGray
+            
+        case .unknown:
+            extensionLabel.textColor = .white
+            view.backgroundColor = FawGenColors.unknown.color
         }
     }
     

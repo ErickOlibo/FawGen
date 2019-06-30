@@ -59,3 +59,42 @@ extension UIDevice {
     }
 
 }
+
+extension CGFloat {
+    
+    /// splits a size in smaller pieces to accomodate a favorite viewWidth
+    /// to fill up the screen width
+    private func splitToSpacing(size: CGFloat, favWidth: CGFloat) -> [CGFloat] {
+        let minSpacing: CGFloat = 10
+        var leftSpace: CGFloat = 0
+        var viewSpace: CGFloat = 0
+        var rightSpace: CGFloat = 0
+        let remainder = size - favWidth * 5
+        let avgSpace = remainder / 6
+        if avgSpace < minSpacing {
+            return splitToSpacing(size: size, favWidth: favWidth - 1.0)
+        } else {
+            if  avgSpace.truncatingRemainder(dividingBy: 1) == 0 {
+                leftSpace = avgSpace
+                viewSpace = avgSpace
+                rightSpace = avgSpace
+                return [favWidth, leftSpace, viewSpace, rightSpace]
+            } else {
+                let floorAvg = avgSpace.rounded(.down)
+                viewSpace = floorAvg
+                let spaceRemainder = remainder -  (viewSpace * 4)
+                leftSpace = (spaceRemainder / 2).rounded(.up)
+                rightSpace = (spaceRemainder / 2).rounded(.down)
+                return [favWidth, leftSpace, viewSpace, rightSpace]
+            }
+        }
+    }
+    
+    /// Splits the CGFlot to an array of CGFloat to use in the
+    /// representation of the Domain and Social Views.
+    /// The 'self' is supposed to be the width of the view or
+    /// device screen
+    public var splitsSpacing: [CGFloat] {
+        return splitToSpacing(size: self, favWidth: 60)
+    }
+}

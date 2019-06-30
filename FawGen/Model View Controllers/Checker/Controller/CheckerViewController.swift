@@ -16,11 +16,32 @@ class CheckerViewController: UIViewController {
         return .lightContent
     }
     
+    var  widthConstants: [CGFloat] {
+        let deviceWidth = UIScreen.main.nativeBounds.width
+        let scale = UIScreen.main.nativeScale
+        return (deviceWidth / scale).splitsSpacing
+    }
+    
     // MARK: - Outlets
     @IBOutlet weak var textField: TextFieldCounter!
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var typedWord: UILabel!
+    @IBOutlet var domainViews: [DomainView]!
+    @IBOutlet var socialViews: [SocialView]!
+    
+    
+    // MARK: - Layout Constraints
+    @IBOutlet var leadingSpaces: [NSLayoutConstraint]!
+    @IBOutlet var trailingSpaces: [NSLayoutConstraint]!
+    @IBOutlet var domainSpaces: [NSLayoutConstraint]!
+    @IBOutlet var domainWidths: [NSLayoutConstraint]!
+    
+    @IBOutlet var socialLeadSpaces: [NSLayoutConstraint]!
+    @IBOutlet var socialTrailSpaces: [NSLayoutConstraint]!
+    @IBOutlet var socialSpaces: [NSLayoutConstraint]!
+    @IBOutlet var socialWidths: [NSLayoutConstraint]!
+    
     
     
     // MARK: - Actions
@@ -44,8 +65,11 @@ class CheckerViewController: UIViewController {
         modalPresentationCapturesStatusBarAppearance = true
         view.backgroundColor = .white
         setupNavBar()
-        setupSendButton()
-        setupTextfield()
+        setupTextfieldArea()
+        setupSaveTextToSeepechArea()
+        updateDomainSocialViewsConstraints()
+        setupDomainViews()
+        setupSocialViews()
         
         // Do any additional setup after loading the view.
     }
@@ -61,19 +85,64 @@ class CheckerViewController: UIViewController {
     
     }
     
-    private func setupTextfield() {
+    private func setupSocialViews() {
+        let orderedSocialViews = socialViews.sorted{ $0.tag < $1.tag }
+        
+        for (idx, socialView) in orderedSocialViews.enumerated() {
+            socialView.initialize(SocialNetwork.allCases[idx].info)
+            socialView.backgroundColor = .clear
+            
+        }
+        
+    }
+    
+    
+    
+    private func updateDomainSocialViewsConstraints() {
+        let faveWidth = widthConstants[0]
+        let leftSpace = widthConstants[1]
+        let viewSpace = widthConstants[2]
+        let rightSpace = widthConstants[3]
+        
+        for lead in leadingSpaces { lead.constant = leftSpace }
+        for trail in trailingSpaces { trail.constant = rightSpace }
+        for space in domainSpaces { space.constant = viewSpace }
+        for width in domainWidths { width.constant = faveWidth }
+
+        for lead in socialLeadSpaces { lead.constant = leftSpace }
+        for trail in socialTrailSpaces { trail.constant = rightSpace }
+        for space in socialSpaces { space.constant = viewSpace }
+        for width in socialWidths { width.constant = faveWidth }
+    }
+    
+    private func setupDomainViews() {
+        let orderedDomainViews = domainViews.sorted{ $0.tag < $1.tag }
+        
+        for (idx, domainView) in orderedDomainViews.enumerated() {
+            domainView.initialize(DomainExtension.allCases[idx])
+            domainView.backgroundColor = FawGenColors.secondary.color
+            domainView.layer.cornerRadius = 5.0
+        }
+    }
+    
+    private func setupTextfieldArea() {
+        // Text Field
         textField.animate = true
         textField.ascending = true
         textField.maxLength = 16
         textField.counterColor = .gray
         textField.limitColor = FawGenColors.primary.color
         textField.backgroundColor = FawGenColors.cellGray.color
+        
+        // Send Button (remember change of color with number of chars(min=6)
+        sendButton.layer.cornerRadius = 15.0
     }
     
-    private func setupSendButton() {
-        sendButton.layer.cornerRadius = 15.0
-        
-        // set the state of the button as darken for start but with the number of letter
+    private func setupSaveTextToSeepechArea() {
+        saveButton.layer.cornerRadius = 5.0
+        saveButton.backgroundColor = .lightGray
+        saveButton.setTitle("save")
+
         
     }
     

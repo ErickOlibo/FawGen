@@ -51,7 +51,7 @@ public class DomainChecker {
 /// List of all domain extensions chosen for this FawGen app to be run against
 /// the whois server set on defkut.com.
 public enum DomainExtension: String, CustomStringConvertible, CaseIterable, Equatable, Hashable {
-    case com, net, org, co, io, ai, couk, eu, info, app, biz, me, be, xyz, tech, club
+    case com, net, org, co, io, ai, couk, eu, info, app, biz, me, be, xyz, tech
     
     public var description: String {
         return self.rawValue

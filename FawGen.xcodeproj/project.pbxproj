@@ -1301,8 +1301,8 @@
 			children = (
 				A76915B422A0DB7300FB616F /* DomainView.xib */,
 				A76915B622A0DB8600FB616F /* DomainView.swift */,
-				A74DAFE622C459D1005ACAD0 /* CellDomainView.swift */,
 				A74DAFE822C45AB5005ACAD0 /* CellDomainView.xib */,
+				A74DAFE622C459D1005ACAD0 /* CellDomainView.swift */,
 			);
 			path = "Domain View";
 			sourceTree = "<group>";
@@ -1443,8 +1443,8 @@
 				A722066422A4139800E1C256 /* Colors */,
 				A7EC016422A366370056E2C7 /* Global Entities */,
 				A76915B222A0C32000FB616F /* Domain Checker */,
-				A7FC8606229EF055002C386F /* Helpers */,
 				A7FC85FC229DDC17002C386F /* Social Checker */,
+				A7FC8606229EF055002C386F /* Helpers */,
 				A7FC85F9229DDB33002C386F /* Fonts */,
 			);
 			path = Utilities;
@@ -1472,8 +1472,8 @@
 			children = (
 				A7FC862B229F4255002C386F /* SocialView.xib */,
 				A7FC862D229F4265002C386F /* SocialView.swift */,
-				A74DAFE222C451FC005ACAD0 /* CellSocialView.swift */,
 				A74DAFE422C453F3005ACAD0 /* CellSocialView.xib */,
+				A74DAFE222C451FC005ACAD0 /* CellSocialView.swift */,
 			);
 			path = "Social Network View";
 			sourceTree = "<group>";

@@ -33,7 +33,7 @@ public struct SocialMedia: CustomStringConvertible {
 
 extension String {
     
-    /// Returns the write way to write the trademark
+    /// Returns the right way to write the trademark
     /// with UpperCase Letters when needed
     fileprivate func brandified() -> String {
         switch self {
@@ -42,7 +42,7 @@ extension String {
         case SocialNetwork.bitbucket.rawValue:
             return "BitBucket"
         case SocialNetwork.producthunt.rawValue:
-            return "ProductHunt"
+            return "Prod. Hunt"
         case SocialNetwork.youtube.rawValue:
             return "YouTube"
         default:

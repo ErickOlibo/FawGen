@@ -42,7 +42,7 @@ public class SocialChecker {
 /// Enumeration of ALL social networks used in this app
 public enum SocialNetwork: String, CustomStringConvertible, CaseIterable, Equatable, Hashable {
     case facebook, youtube, twitter, instagram, github, producthunt, bitbucket, angellist
-    case vimeo, behance, medium, reddit, blogger, wordpress, slack, pinterest
+    case vimeo, behance, medium, reddit, blogger, wordpress, slack //, pinterest
 
     public var description: String {
         return self.rawValue
@@ -92,8 +92,8 @@ extension SocialNetwork {
             return SocialColor.wordpress.rawValue.convertedToUIColor()!
         case .slack:
             return SocialColor.slack.rawValue.convertedToUIColor()!
-        case .pinterest:
-            return SocialColor.pinterest.rawValue.convertedToUIColor()!
+//        case .pinterest:
+//            return SocialColor.pinterest.rawValue.convertedToUIColor()!
 
         }
     }
@@ -119,7 +119,7 @@ private enum SocialColor: String {
     case blogger = "#F57D00" // Giants Orange
     case wordpress = "#00749C" // CG Blue
     case slack = "#3AAE84" // Mint
-    case pinterest = "#F0002A" // Spanish Red
+    //case pinterest = "#F0002A" // Spanish Red
 }
 
 
@@ -208,8 +208,8 @@ public func socialNetworkURLs(for username: String, completeList: Bool = true) -
             urlUsername += handle + dot + item.rawValue + ".com/"
         case .slack:
             urlUsername += handle + dot + item.rawValue + ".com/"
-        case .pinterest:
-            urlUsername += www + item.rawValue + ".com/" + handle
+//        case .pinterest:
+//            urlUsername += www + item.rawValue + ".com/" + handle
         }
         urlsCollection[item] = urlUsername
     }

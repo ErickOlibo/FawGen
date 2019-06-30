@@ -33,12 +33,14 @@ class SocialView: UIView {
 
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var icon: UIImageView!
+    @IBOutlet weak var iconBackView: UIView!
     
-    @IBOutlet weak var iconTopSpace: NSLayoutConstraint!
-    @IBOutlet weak var titleBottomSpace: NSLayoutConstraint!
-    @IBOutlet weak var titleTrailingSpace: NSLayoutConstraint!
-    @IBOutlet weak var titleLeadingSpace: NSLayoutConstraint!
-    @IBOutlet weak var titleHeightSize: NSLayoutConstraint!
+//
+//    @IBOutlet weak var iconTopSpace: NSLayoutConstraint!
+//    @IBOutlet weak var titleBottomSpace: NSLayoutConstraint!
+//    @IBOutlet weak var titleTrailingSpace: NSLayoutConstraint!
+//    @IBOutlet weak var titleLeadingSpace: NSLayoutConstraint!
+//    @IBOutlet weak var titleHeightSize: NSLayoutConstraint!
     private(set) var view: UIView!
     
     
@@ -61,20 +63,11 @@ class SocialView: UIView {
         view.autoresizingMask = [
             UIView.AutoresizingMask.flexibleWidth,
             UIView.AutoresizingMask.flexibleHeight]
-        
-        // Set the constraints
-        let viewCornerRadius = bounds.width * 0.1 // 20% of corner radius
-        let ratio: CGFloat = bounds.width * 0.1 // 10% of the view width
-        let heightRatio: CGFloat = bounds.width * 0.3 // 30% of the view width
-        iconTopSpace.constant = ratio
-        titleBottomSpace.constant = ratio
-        titleTrailingSpace.constant = ratio
-        titleLeadingSpace.constant = ratio
-        titleHeightSize.constant = heightRatio
+        iconBackView.layer.cornerRadius = 5.0
         
         view.addSubview(icon)
         view.addSubview(title)
-        view.layer.cornerRadius = viewCornerRadius
+        //view.addSubview(iconBackView)
         self.view = view
         self.addSubview(view)
     }
@@ -99,22 +92,22 @@ class SocialView: UIView {
         guard let info = socialInfo else { return }
         switch currentStatus {
         case .normal:
-            title.textColor = .white
+            title.textColor = FawGenColors.secondary.color
             icon.tintColor = .white
-            icon.backgroundColor = info.color
-            view.backgroundColor = info.color
+            //icon.backgroundColor = info.color
+            iconBackView.backgroundColor = info.color
             
         case .available:
-            title.textColor = .white
+            title.textColor = FawGenColors.secondary.color
             icon.tintColor = .white
-            icon.backgroundColor = FawGenColors.availableStatus.color
-            view.backgroundColor = FawGenColors.availableStatus.color
+            //icon.backgroundColor = FawGenColors.availableStatus.color
+            iconBackView.backgroundColor = FawGenColors.availableStatus.color
             
         case .taken:
             title.textColor = .gray
             icon.tintColor = .gray
-            icon.backgroundColor = .darkGray
-            view.backgroundColor = .darkGray
+            //icon.backgroundColor = .darkGray
+            iconBackView.backgroundColor = .darkGray
         }
         
     }
