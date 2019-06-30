@@ -226,8 +226,6 @@ class FakeWordCell: UITableViewCell {
     
     /// Gets the availability from the handle (fakeword.name) and
     /// return if the username is available or taken
-    /// - Note: There is only two states meaning that any failed
-    /// request will result in a taken state
     private func getSocialNetworkAvailability() {
         let socialOne = cellSocialViews.filter{ $0.tag == 1 }[0]
         let socialTwo = cellSocialViews.filter{ $0.tag == 2 }[0]
@@ -276,8 +274,6 @@ class FakeWordCell: UITableViewCell {
     
     /// Gets the availability from the domain (fakeword.name) and
     /// return if the domain+extension is available or taken
-    /// - Note: There is only two states meaning that any failed
-    /// request will result in a taken state
     private func getDomainExtensionAvailability() {
         let domainOne = cellDomainViews.filter{ $0.tag == 1 }[0]
         let domainTwo = cellDomainViews.filter{ $0.tag == 2 }[0]

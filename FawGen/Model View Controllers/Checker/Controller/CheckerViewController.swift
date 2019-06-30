@@ -10,13 +10,22 @@ import UIKit
 
 class CheckerViewController: UIViewController {
     
+    // MARK: - Properties
     let navBar = SPFakeBarView.init(style: .stork)
+    public let safeCharacters: Set<Character> = {
+        return Set("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
+    }()
+    public var wasQueried: Bool = false
+    public var userEnteredWord = String()
+    public var isSaved: Bool = false
+    //public var wasReset: Bool = false
+    public var resetCount: Int = 0
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
-    var  widthConstants: [CGFloat] {
+    public var  widthConstants: [CGFloat] {
         let deviceWidth = UIScreen.main.nativeBounds.width
         let scale = UIScreen.main.nativeScale
         return (deviceWidth / scale).splitsSpacing
@@ -27,8 +36,12 @@ class CheckerViewController: UIViewController {
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var typedWord: UILabel!
+    @IBOutlet weak var textToSpeech: UIButton!
+    
     @IBOutlet var domainViews: [DomainView]!
     @IBOutlet var socialViews: [SocialView]!
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     
     
     // MARK: - Layout Constraints
@@ -46,15 +59,22 @@ class CheckerViewController: UIViewController {
     
     // MARK: - Actions
     @IBAction func tappedSend(_ sender: UIButton) {
-        print("tapped Send")
+        sender.pulse()
+        touchedSendButton()
     }
     
     @IBAction func tappedTextToSpeech(_ sender: UIButton) {
-        print("tapped textToSpeech")
+        sender.pulse()
+        touchedTextToSpeech()
     }
     
+    /// The Save word to Database will need to be done later..
+    /// There is a need to implement a data type for tha fake word
+    /// creation.
     @IBAction func tappedSave(_ sender: UIButton) {
         print("tapped Save")
+        sender.pulse()
+        toggleSaveRemove()
     }
     
     
@@ -64,12 +84,18 @@ class CheckerViewController: UIViewController {
         super.viewDidLoad()
         modalPresentationCapturesStatusBarAppearance = true
         view.backgroundColor = .white
+        textField.delegate = self
+        typedWord.text = String()
+        textField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         setupNavBar()
         setupTextfieldArea()
         setupSaveTextToSeepechArea()
         updateDomainSocialViewsConstraints()
         setupDomainViews()
         setupSocialViews()
+        setupTapGestureForScrollView()
+        setupSendButton()
+        setupTextToSpeechSaveButton()
         
         // Do any additional setup after loading the view.
     }
@@ -83,6 +109,32 @@ class CheckerViewController: UIViewController {
     @objc func hide() {
         dismiss(animated: true, completion: nil)
     
+    }
+    
+    public func setupTextToSpeechSaveButton() {
+        updateEnabledTextToSpeechSaveForSendQuery()
+
+    }
+    
+    public func setupSendButton() {
+        let textCount = textField.text?.count ?? 0
+        if textCount < 6 {
+            sendButton.tintColor = .white
+            sendButton.backgroundColor = .gray
+            if sendButton.isEnabled { sendButton.isEnabled = false }
+        } else {
+            sendButton.tintColor = .white
+            sendButton.backgroundColor = FawGenColors.primary.color
+            if !sendButton.isEnabled { sendButton.isEnabled = true }
+        }
+    }
+    
+    
+    private func setupTapGestureForScrollView() {
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(touchedScrollView))
+        recognizer.numberOfTapsRequired = 1
+        recognizer.numberOfTouchesRequired = 1
+        scrollView.addGestureRecognizer(recognizer)
     }
     
     private func setupSocialViews() {
@@ -168,3 +220,5 @@ class CheckerViewController: UIViewController {
     */
 
 }
+
+

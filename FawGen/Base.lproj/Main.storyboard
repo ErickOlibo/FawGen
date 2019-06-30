@@ -1020,7 +1020,7 @@
                                                 <rect key="frame" x="20" y="86" width="324" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="animate" value="YES"/>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="ascending" value="YES"/>
@@ -1568,8 +1568,10 @@
                     <size key="freeformSize" width="414" height="900"/>
                     <connections>
                         <outlet property="saveButton" destination="nKi-YO-SEr" id="hLO-mD-CTd"/>
+                        <outlet property="scrollView" destination="OOv-7g-fbO" id="Tcv-m9-Bkx"/>
                         <outlet property="sendButton" destination="8Ia-du-vgV" id="teP-UV-490"/>
                         <outlet property="textField" destination="XES-Aq-VIo" id="cEU-OT-hPQ"/>
+                        <outlet property="textToSpeech" destination="HJk-Eo-md2" id="PPb-Ur-vKw"/>
                         <outlet property="typedWord" destination="2Qr-kL-nmE" id="36a-QZ-CWT"/>
                         <outletCollection property="domainViews" destination="oOs-UQ-MLG" collectionClass="NSMutableArray" id="PBw-Na-eij"/>
                         <outletCollection property="domainViews" destination="33E-Zt-T3J" collectionClass="NSMutableArray" id="doi-eI-dPH"/>

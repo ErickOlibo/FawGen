@@ -182,6 +182,7 @@
 		A74DAFF822C6DF6C005ACAD0 /* CheckerVCExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74DAFF722C6DF6C005ACAD0 /* CheckerVCExtensions.swift */; };
 		A75C631E22C2911C00EB2333 /* SimpleAssistDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75C631D22C2911C00EB2333 /* SimpleAssistDelegate.swift */; };
 		A75C632122C2ED0400EB2333 /* NewSetHomeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75C632022C2ED0400EB2333 /* NewSetHomeDelegate.swift */; };
+		A764F62622C95FCC009151D6 /* CheckerVC+URLsRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A764F62522C95FCC009151D6 /* CheckerVC+URLsRequests.swift */; };
 		A76915B522A0DB7300FB616F /* DomainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A76915B422A0DB7300FB616F /* DomainView.xib */; };
 		A76915B722A0DB8600FB616F /* DomainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76915B622A0DB8600FB616F /* DomainView.swift */; };
 		A76915B922A0DF2F00FB616F /* DomainChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76915B822A0DF2F00FB616F /* DomainChecker.swift */; };
@@ -394,6 +395,7 @@
 		A74DAFF722C6DF6C005ACAD0 /* CheckerVCExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckerVCExtensions.swift; sourceTree = "<group>"; };
 		A75C631D22C2911C00EB2333 /* SimpleAssistDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleAssistDelegate.swift; sourceTree = "<group>"; };
 		A75C632022C2ED0400EB2333 /* NewSetHomeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSetHomeDelegate.swift; sourceTree = "<group>"; };
+		A764F62522C95FCC009151D6 /* CheckerVC+URLsRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CheckerVC+URLsRequests.swift"; sourceTree = "<group>"; };
 		A76915B422A0DB7300FB616F /* DomainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DomainView.xib; sourceTree = "<group>"; };
 		A76915B622A0DB8600FB616F /* DomainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainView.swift; sourceTree = "<group>"; };
 		A76915B822A0DF2F00FB616F /* DomainChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainChecker.swift; sourceTree = "<group>"; };
@@ -1250,6 +1252,7 @@
 			children = (
 				A74DAFF222C6B5E4005ACAD0 /* CheckerViewController.swift */,
 				A74DAFF722C6DF6C005ACAD0 /* CheckerVCExtensions.swift */,
+				A764F62522C95FCC009151D6 /* CheckerVC+URLsRequests.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1674,6 +1677,7 @@
 				A70C4A2222AA0611001BD6CC /* SPLarkController.swift in Sources */,
 				A70C4B3422AA0675001BD6CC /* SPLabel.swift in Sources */,
 				A7B7E0E022BEB75200398289 /* NewSetHomeView.swift in Sources */,
+				A764F62622C95FCC009151D6 /* CheckerVC+URLsRequests.swift in Sources */,
 				A70C4B5322AA0675001BD6CC /* SPMail.swift in Sources */,
 				A70C4B2B22AA0675001BD6CC /* SPFormTextInputTableViewCell.swift in Sources */,
 				A70C4B4522AA0675001BD6CC /* SPUIVisualEffectViewExtenshion.swift in Sources */,

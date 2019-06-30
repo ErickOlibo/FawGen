@@ -39,9 +39,9 @@ class RandomizeViewController: UITableViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidHide), name: UIResponder.keyboardDidHideNotification, object: nil)
     }
     
-    override func viewWillLayoutSubviews() {
-
-    }
+//    override func viewWillLayoutSubviews() {
+//
+//    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

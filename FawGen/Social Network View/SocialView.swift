@@ -18,9 +18,10 @@ class SocialView: UIView {
         case normal
         case available
         case taken
+        case unknown
     }
     
-    public var currentStatus: AvailabilityStatus = .normal {
+    public var status: AvailabilityStatus = .normal {
         didSet {
             updateAvailabilityUI()
         }
@@ -34,13 +35,7 @@ class SocialView: UIView {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var iconBackView: UIView!
-    
-//
-//    @IBOutlet weak var iconTopSpace: NSLayoutConstraint!
-//    @IBOutlet weak var titleBottomSpace: NSLayoutConstraint!
-//    @IBOutlet weak var titleTrailingSpace: NSLayoutConstraint!
-//    @IBOutlet weak var titleLeadingSpace: NSLayoutConstraint!
-//    @IBOutlet weak var titleHeightSize: NSLayoutConstraint!
+
     private(set) var view: UIView!
     
     
@@ -65,9 +60,10 @@ class SocialView: UIView {
             UIView.AutoresizingMask.flexibleHeight]
         iconBackView.layer.cornerRadius = 5.0
         
-        view.addSubview(icon)
-        view.addSubview(title)
+        //view.addSubview(icon)
+        //view.addSubview(title)
         //view.addSubview(iconBackView)
+        
         self.view = view
         self.addSubview(view)
     }
@@ -84,13 +80,13 @@ class SocialView: UIView {
         title.text = info.name
         icon.image = info.icon
         
-        self.currentStatus = status
+        self.status = status
     }
 
     /// Updates the Availability status of the social view and updates the UI
     private func updateAvailabilityUI() {
         guard let info = socialInfo else { return }
-        switch currentStatus {
+        switch status {
         case .normal:
             title.textColor = FawGenColors.secondary.color
             icon.tintColor = .white
@@ -108,6 +104,10 @@ class SocialView: UIView {
             icon.tintColor = .gray
             //icon.backgroundColor = .darkGray
             iconBackView.backgroundColor = .darkGray
+        case .unknown:
+            title.textColor = FawGenColors.secondary.color
+            icon.tintColor = .white
+            iconBackView.backgroundColor = FawGenColors.unknown.color
         }
         
     }

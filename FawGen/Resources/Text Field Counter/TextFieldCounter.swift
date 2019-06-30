@@ -232,7 +232,6 @@ open class TextFieldCounter: UITextField, UITextFieldDelegate {
     // MARK: - UITextFieldDelegate
     
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
         var shouldChange = false
         let charactersCount = textFieldCharactersCount(textField: textField, string: string, changeCharactersIn: range)
         

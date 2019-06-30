@@ -84,15 +84,15 @@ class ViewController: UIViewController {
     }
     
     private func resetAvailabilityViews() {
-        socialOne.currentStatus = .normal
-        socialTwo.currentStatus = .normal
-        socialThree.currentStatus = .normal
-        socialFour.currentStatus = .normal
+        socialOne.status = .normal
+        socialTwo.status = .normal
+        socialThree.status = .normal
+        socialFour.status = .normal
         
-        domainOne.currentStatus = .normal
-        domainTwo.currentStatus = .normal
-        domainThree.currentStatus = .normal
-        domainFour.currentStatus = .normal
+        domainOne.status = .normal
+        domainTwo.status = .normal
+        domainThree.status = .normal
+        domainFour.status = .normal
         
         print("Social: \(socialOne.bounds) - Domain: \(domainOne.bounds)")
     
@@ -114,7 +114,7 @@ class ViewController: UIViewController {
             guard let socialV = socialNetViews[social]  else { print("SocialV failed"); continue }
             guard let socialView = socialV else { print("SocialView failed"); continue }
             guard let url = URL(string: link) else {
-                socialView.currentStatus = .taken
+                socialView.status = .taken
                 print("URL failed");
                 continue
             }
@@ -123,11 +123,11 @@ class ViewController: UIViewController {
                 
                 if let httpResponse = response as? HTTPURLResponse {
                     DispatchQueue.main.async {
-                        socialView.currentStatus = httpResponse.statusCode == 404 ? .available : .taken
+                        socialView.status = httpResponse.statusCode == 404 ? .available : .taken
                     }
                 } else {
                     DispatchQueue.main.async {
-                        socialView.currentStatus = .taken
+                        socialView.status = .taken
                     }
                 }
             }
@@ -159,7 +159,7 @@ class ViewController: UIViewController {
             guard let domainV = domainViews[ext] else { print("DomainV failed"); continue }
             guard let domainView = domainV else { print("DomainView Failed"); continue }
             guard let url = URL(string: queryURL) else {
-                domainView.currentStatus = .taken
+                domainView.status = .taken
                 print("URL Failed")
                 continue
             }
@@ -172,18 +172,18 @@ class ViewController: UIViewController {
                             // handle result
                             let comp = result.components(separatedBy: ", ")
                             if comp.count == 2 {
-                                domainView.currentStatus = (comp[1] == "AVAILABLE") ? .available : .taken
+                                domainView.status = (comp[1] == "AVAILABLE") ? .available : .taken
                             }
                             print("Ext: \(ext.description) - Response: \(result)")
                         }
                     } else {
                         DispatchQueue.main.async {
-                            domainView.currentStatus = .taken
+                            domainView.status = .taken
                             print("Data failed to parse!)")
                         }
                     }
                 } else {
-                    domainView.currentStatus = .taken
+                    domainView.status = .taken
                     print("Error: \(String(describing: error))")
                 }
             }
