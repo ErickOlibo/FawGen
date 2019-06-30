@@ -78,6 +78,8 @@ extension CheckerViewController {
         for (social, link) in socialURLs {
             guard let socialView = socialNetViews[social] else { continue }
             guard let url = URL(string: link) else {
+                let name = socialView.socialInfo?.name ?? "N/A"
+                print("URL - Social: \(name) - FAILED to Create URL")
                 socialView.status = .unknown
                 continue
             }
@@ -87,7 +89,7 @@ extension CheckerViewController {
                 if let httpResponse = response as? HTTPURLResponse {
                     DispatchQueue.main.async {
                         let name = socialView.socialInfo?.name
-                        print("Social: \(name ?? "N/A") - Response: \(httpResponse.statusCode)")
+                        print("REPONSE - Social: \(name ?? "N/A") - Response: \(httpResponse.statusCode)")
                         switch httpResponse.statusCode {
                         case 404:
                             socialView.status = .available
@@ -99,7 +101,11 @@ extension CheckerViewController {
                         //socialView.status = httpResponse.statusCode == 404 ? .available : .taken
                     }
                 } else {
-                    DispatchQueue.main.async { socialView.status = .unknown }
+                    DispatchQueue.main.async {
+                        socialView.status = .unknown
+                        let name = socialView.socialInfo?.name ?? "N/A"
+                        print("ERROR - Social: \(name) - ERROR in the DataResponse \(url)")
+                    }
                 }
             }
             task.resume()

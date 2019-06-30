@@ -1432,7 +1432,7 @@
                                                             <constraint firstAttribute="height" constant="75" id="d1x-FX-p8v"/>
                                                         </constraints>
                                                     </view>
-                                                    <view tag="13" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ekD-cR-r8W" userLabel="blogger" customClass="SocialView" customModule="FawGen" customModuleProvider="target">
+                                                    <view tag="13" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ekD-cR-r8W" userLabel="pinterest" customClass="SocialView" customModule="FawGen" customModuleProvider="target">
                                                         <rect key="frame" x="177" y="180" width="60" height="75"/>
                                                         <color key="backgroundColor" red="0.96470588239999999" green="0.31764705879999999" blue="0.1137254902" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>

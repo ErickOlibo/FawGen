@@ -105,7 +105,7 @@ class SocialView: UIView {
             //icon.backgroundColor = .darkGray
             iconBackView.backgroundColor = .darkGray
         case .unknown:
-            title.textColor = FawGenColors.secondary.color
+            title.textColor = FawGenColors.unknown.color
             icon.tintColor = .white
             iconBackView.backgroundColor = FawGenColors.unknown.color
         }
