@@ -20,12 +20,10 @@ extension CheckerViewController {
     
     private func toggleSave() {
         if isSaved {
-            // It was saved, need to remove
             saveButton.backgroundColor = .lightGray
             saveButton.setTitle("save")
             isSaved = false
         } else {
-            // Was not in list need to be saved
             saveButton.backgroundColor = FawGenColors.primary.color
             saveButton.setTitle("saved")
             isSaved = true
@@ -35,6 +33,7 @@ extension CheckerViewController {
     
     public func touchedSendButton() {
         if textField.isFirstResponder { textField.resignFirstResponder() }
+        textField.isHidden = true
         textField.text = String()
         textField.counterLabel.text = String()
         setupSendButton()
@@ -69,7 +68,6 @@ extension CheckerViewController {
     public func updateDomainSocialStatus() {
         // wasReset is the bool
         if resetCount == 1 {
-            print("updateDomainSocialStatus - Was Reset")
             for domainView in domainViews {
                 domainView.status = .normal
             }
@@ -91,7 +89,6 @@ extension CheckerViewController: TextFieldCounterDelegate {
 
 extension CheckerViewController: UITextFieldDelegate {
     
-    // Dismiss keyboard at touch outside the textField
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if textField.isFirstResponder {
             textField.resignFirstResponder()
@@ -100,28 +97,21 @@ extension CheckerViewController: UITextFieldDelegate {
     }
     
     @objc public func editingChanged() {
-        print("editingChanged")
+        domainGroupIsDone = false
+        socialGroupIsDone = false
         wasQueried = false
         isSaved = false
-        //wasReset = true
         resetCount += 1
-        print("Reset Count: \(resetCount)")
         updateDomainSocialStatus()
         updateEnabledTextToSpeechSaveForSendQuery()
         guard let currentText = textField.text else { return }
-        print(currentText)
         let safeText = trimmedFromNoneAlphabetic(currentText)
         textField.text = safeText
         typedWord.text = safeText.uppercased()
         textField.counterLabel.text = String(safeText.count)
         setupSendButton()
     }
-    
-    private func updateSendButton() {
-        
-    }
-    
-    
+
     
     private func charactersCountColor(_ size: Int) {
         switch size {
@@ -143,7 +133,6 @@ extension CheckerViewController: UITextFieldDelegate {
                 safeString.append(char)
             } else {
                 fireHapticFeedback()
-                
             }
         }
         
@@ -157,24 +146,20 @@ extension CheckerViewController: UITextFieldDelegate {
     }
     
     public func textFieldDidBeginEditing(_ textField: UITextField) {
-        print("textFieldDidBeginEditing")
         
     }
 
     public func textFieldDidEndEditing(_ textField: UITextField) {
-        print("textFieldDidEndEditing")
         
     }
 
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print("textFieldShouldReturn")
         if sendButton.isEnabled { touchedSendButton() }
         textField.resignFirstResponder()
         return true
     }
 
     public func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        print("textFieldShouldClear")
         
         return true
     }

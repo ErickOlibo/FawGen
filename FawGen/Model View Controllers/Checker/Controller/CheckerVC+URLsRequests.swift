@@ -13,6 +13,7 @@ import UIKit
 extension CheckerViewController {
     
     public func getDomainExtensionsAvailability() {
+        let domainGroup = DispatchGroup()
         let orderedDomainViews = domainViews.sorted{ $0.tag < $1.tag }
         var domainViews = [DomainExtension : DomainView]()
         for (idx, domainView) in orderedDomainViews.enumerated() {
@@ -23,20 +24,20 @@ extension CheckerViewController {
         let whoisQueryURLs = DomainChecker().whoisURLs(for: domainName, completeList: true)
         
         for (ext, queryURL) in whoisQueryURLs {
+            domainGroup.enter()
             guard let domainView = domainViews[ext] else { continue }
             guard let url = URL(string: queryURL) else {
                 domainView.status = .unknown
                 continue
             }
             let request = URLRequest(url: url)
-            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            let task = session.dataTask(with: request) { (data, response, error) in
                 if (error == nil) {
                     
                     if let result = String(data: data!, encoding: String.Encoding.utf8) {
                         DispatchQueue.main.async {
                             let comp = result.components(separatedBy: ", ")
                             if comp.count == 2 {
-                                print("RESULT: \(comp[0]) - tag: \(domainView.tag)")
                                 switch comp[1] {
                                 case "AVAILABLE":
                                     domainView.status = .available
@@ -45,9 +46,7 @@ extension CheckerViewController {
                                 default:
                                     domainView.status = .unknown
                                 }
-                                //domainView.status = (comp[1] == "AVAILABLE") ? .available : .taken
                             }
-                            print("tag[\(domainView.tag)] - Ext: \(ext.description) - Response: \(result)")
                         }
                     } else {
                         DispatchQueue.main.async {
@@ -59,13 +58,22 @@ extension CheckerViewController {
                     domainView.status = .unknown
                     print("Error: \(String(describing: error))")
                 }
+                domainGroup.leave()
             }
+            domainDataTasks[ext] = task
             task.resume()
+        }
+        domainGroup.notify(queue: .main) {
+            self.socialGroupIsDone = true
+            print("Domain Group Tasks DONE")
+            self.cleanDataTasks(for: .domain)
+            self.readyToShowTextField()
         }
     }
     
     // New function
     public func getSocialNetworksAvailability() {
+        let socialGroup = DispatchGroup()
         let orderedSocialViews = socialViews.sorted{ $0.tag < $1.tag }
         var socialNetViews = [SocialNetwork : SocialView]()
         for (idx, socialView) in orderedSocialViews.enumerated() {
@@ -76,6 +84,7 @@ extension CheckerViewController {
         let socialURLs = socialNetworkURLs(for: handle, completeList: true)
         
         for (social, link) in socialURLs {
+            socialGroup.enter()
             guard let socialView = socialNetViews[social] else { continue }
             guard let url = URL(string: link) else {
                 let name = socialView.socialInfo?.name ?? "N/A"
@@ -83,13 +92,11 @@ extension CheckerViewController {
                 socialView.status = .unknown
                 continue
             }
-            
             let request = URLRequest(url: url)
-            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            let task = session.dataTask(with: request) { (data, response, error) in
                 if let httpResponse = response as? HTTPURLResponse {
                     DispatchQueue.main.async {
-                        let name = socialView.socialInfo?.name
-                        print("REPONSE - Social: \(name ?? "N/A") - Response: \(httpResponse.statusCode)")
+
                         switch httpResponse.statusCode {
                         case 404:
                             socialView.status = .available
@@ -98,7 +105,6 @@ extension CheckerViewController {
                         default:
                             socialView.status = .unknown
                         }
-                        //socialView.status = httpResponse.statusCode == 404 ? .available : .taken
                     }
                 } else {
                     DispatchQueue.main.async {
@@ -107,10 +113,46 @@ extension CheckerViewController {
                         print("ERROR - Social: \(name) - ERROR in the DataResponse \(url)")
                     }
                 }
+                socialGroup.leave()
             }
+            socialDataTasks[social] = task
             task.resume()
         }
+        socialGroup.notify(queue: .main) {
+            self.domainGroupIsDone = true
+            self.cleanDataTasks(for: .social)
+            self.readyToShowTextField()
+        }
         
+    }
+    
+    // Show TextField.isHidden = false after getting Done
+    // notification from DistachGroups
+    public func readyToShowTextField() {
+        if domainGroupIsDone && socialGroupIsDone {
+            textField.isHidden = false
+        }
+    }
+    
+    // Cleans dataTasks when all queries/ taks have returned
+    public func cleanDataTasks(for type: GroupType) {
+        switch type {
+        case .social:
+            socialDataTasks.removeAll()
+        case .domain:
+            domainDataTasks.removeAll()
+        }
+    }
+    
+    
+    // Cancels all tasks in dataTasks when view is dismiss or new
+    // search is initiated in editingChanged()
+    public func cancelTasks() {
+        print("Cancelling Tasks")
+        for (_, value) in socialDataTasks { value.cancel() }
+        for (_, value) in domainDataTasks { value.cancel() }
+        cleanDataTasks(for: .social)
+        cleanDataTasks(for: .domain)
     }
     
 }

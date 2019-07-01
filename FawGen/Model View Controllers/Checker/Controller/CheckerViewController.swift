@@ -21,6 +21,28 @@ class CheckerViewController: UIViewController {
     //public var wasReset: Bool = false
     public var resetCount: Int = 0
     
+    public var socialGroupIsDone: Bool = false
+    public var domainGroupIsDone: Bool = false
+    
+    // Dispatch Group for handling Task to Server
+    let myGroup = DispatchGroup()
+    let session = URLSession(configuration: .ephemeral)
+    var domainDataTasks = [DomainExtension : URLSessionDataTask]() {
+        didSet {
+            //print("Domain Data Tasks Size: \(domainDataTasks.count)")
+        }
+    }
+    var socialDataTasks = [SocialNetwork : URLSessionDataTask]() {
+        didSet {
+            //print("Social Data Tasks Size: \(socialDataTasks.count)")
+        }
+    }
+    
+    enum GroupType {
+        case social
+        case domain
+    }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
