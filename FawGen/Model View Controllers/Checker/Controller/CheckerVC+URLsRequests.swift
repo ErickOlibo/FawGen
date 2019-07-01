@@ -65,7 +65,6 @@ extension CheckerViewController {
         }
         domainGroup.notify(queue: .main) {
             self.socialGroupIsDone = true
-            print("Domain Group Tasks DONE")
             self.cleanDataTasks(for: .domain)
             self.readyToShowTextField()
         }
@@ -126,15 +125,18 @@ extension CheckerViewController {
         
     }
     
-    // Show TextField.isHidden = false after getting Done
-    // notification from DistachGroups
+
+    /// Determines if the textField is shown or hidden depending
+    /// on the status of the domainGroup and SocialGroup completion
+    /// notifications
     public func readyToShowTextField() {
         if domainGroupIsDone && socialGroupIsDone {
             textField.isHidden = false
         }
     }
     
-    // Cleans dataTasks when all queries/ taks have returned
+    
+    /// Cleans the socialDataTasks and domainDataTasks array before reuse
     public func cleanDataTasks(for type: GroupType) {
         switch type {
         case .social:
@@ -145,8 +147,9 @@ extension CheckerViewController {
     }
     
     
-    // Cancels all tasks in dataTasks when view is dismiss or new
-    // search is initiated in editingChanged()
+    /// Cancels all ongoing dataTasks.
+    /// - Note: This is not in used because it created issue with the URLSession
+    /// and breaks the UI/UX for the socialViews and DomainViews
     public func cancelTasks() {
         print("Cancelling Tasks")
         for (_, value) in socialDataTasks { value.cancel() }

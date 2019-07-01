@@ -189,6 +189,7 @@
 		A76915BB22A15F6A00FB616F /* FawGenColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76915BA22A15F6A00FB616F /* FawGenColors.swift */; };
 		A76915BD22A211D700FB616F /* WhoisAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76915BC22A211D700FB616F /* WhoisAPI.swift */; };
 		A76915BF22A218BA00FB616F /* TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76915BE22A218BA00FB616F /* TypeAlias.swift */; };
+		A7789A5C22CA56A100F0D9A2 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7789A5B22CA56A100F0D9A2 /* Reachability.swift */; };
 		A7A1CB5222C127BC003CB1B8 /* SimpleAssistView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A1CB5122C127BC003CB1B8 /* SimpleAssistView+Extensions.swift */; };
 		A7B7E03C22B44AE700398289 /* RandomizeVCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7E03B22B44AE700398289 /* RandomizeVCExtension.swift */; };
 		A7B7E03E22B44E6600398289 /* FakeWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7E03D22B44E6600398289 /* FakeWord.swift */; };
@@ -402,6 +403,7 @@
 		A76915BA22A15F6A00FB616F /* FawGenColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FawGenColors.swift; sourceTree = "<group>"; };
 		A76915BC22A211D700FB616F /* WhoisAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhoisAPI.swift; sourceTree = "<group>"; };
 		A76915BE22A218BA00FB616F /* TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAlias.swift; sourceTree = "<group>"; };
+		A7789A5B22CA56A100F0D9A2 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		A7A1CB5122C127BC003CB1B8 /* SimpleAssistView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SimpleAssistView+Extensions.swift"; sourceTree = "<group>"; };
 		A7B7E03B22B44AE700398289 /* RandomizeVCExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomizeVCExtension.swift; sourceTree = "<group>"; };
 		A7B7E03D22B44E6600398289 /* FakeWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeWord.swift; sourceTree = "<group>"; };
@@ -1310,6 +1312,14 @@
 			path = "Domain View";
 			sourceTree = "<group>";
 		};
+		A7789A5A22CA54A200F0D9A2 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				A7789A5B22CA56A100F0D9A2 /* Reachability.swift */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
 		A7B7E03F22B45B2900398289 /* Data Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -1440,6 +1450,7 @@
 		A7FC85F8229DDAAD002C386F /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				A7789A5A22CA54A200F0D9A2 /* Reachability */,
 				A70C4BB722ADE0CA001BD6CC /* Animations */,
 				A70C4B8F22ACB6AD001BD6CC /* Natural Language Processing */,
 				A70C4B8522AB4815001BD6CC /* Server URL */,
@@ -1689,6 +1700,7 @@
 				A70C4B9122ACB6DA001BD6CC /* NaturalLanguageProcessor.swift in Sources */,
 				A70C4B7522AA0675001BD6CC /* SPShare.swift in Sources */,
 				A70C4B4722AA0675001BD6CC /* SPTextFieldExtenshion.swift in Sources */,
+				A7789A5C22CA56A100F0D9A2 /* Reachability.swift in Sources */,
 				A70C4B6C22AA0675001BD6CC /* SPDevice.swift in Sources */,
 				A70C4B0122AA0675001BD6CC /* SPButton.swift in Sources */,
 				A70C4B1F22AA0675001BD6CC /* SPDownloadingUIImageView.swift in Sources */,

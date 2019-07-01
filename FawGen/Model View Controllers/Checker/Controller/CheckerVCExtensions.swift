@@ -11,6 +11,7 @@ import UIKit
 // MARK: - Action buttons
 extension CheckerViewController {
     
+    /// Toggles between Save and Remove to/from UserDataBase
     public func toggleSaveRemove() {
         // will need to implement the save and remove from DefaultDatabase
         
@@ -18,6 +19,7 @@ extension CheckerViewController {
         
     }
     
+    /// Toggles the UI/UX layout for the save button
     private func toggleSave() {
         if isSaved {
             saveButton.backgroundColor = .lightGray
@@ -31,7 +33,13 @@ extension CheckerViewController {
     }
     
     
+    
     public func touchedSendButton() {
+        whichInternetConnection()
+        guard reachability.networkStatus() != .unavailable else {
+            setUserNotificationForNoInternet()
+            return
+        }
         if textField.isFirstResponder { textField.resignFirstResponder() }
         textField.isHidden = true
         textField.text = String()
@@ -43,6 +51,16 @@ extension CheckerViewController {
         getDomainExtensionsAvailability()
         getSocialNetworksAvailability()
         resetCount = 0
+        
+    }
+    
+    private func setUserNotificationForNoInternet() {
+        print("setUserNotificationForNoInternet")
+    }
+    
+    public func whichInternetConnection() {
+        let status = reachability.networkStatus()
+        print("REACHABILITY: \(status.rawValue)")
         
     }
     
@@ -113,6 +131,10 @@ extension CheckerViewController: UITextFieldDelegate {
     }
 
     
+    /// Sets the color of the character counter with the proper
+    /// limits
+    /// - Parameter size: The number of characters in the string to
+    /// define the proper counter Text color
     private func charactersCountColor(_ size: Int) {
         switch size {
         case let size where size < 6:
@@ -126,6 +148,10 @@ extension CheckerViewController: UITextFieldDelegate {
         }
     }
 
+    /// Trims the none Alphabetic characters from the text being typed
+    /// in the TextField area.
+    /// - Parameter text: The text being currently entered in the text
+    /// field.
     private func trimmedFromNoneAlphabetic(_ text: String) -> String {
         var safeString = String()
         for char in text {

@@ -11,6 +11,7 @@ import UIKit
 class CheckerViewController: UIViewController {
     
     // MARK: - Properties
+    let reachability = Reachability()
     let navBar = SPFakeBarView.init(style: .stork)
     public let safeCharacters: Set<Character> = {
         return Set("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
@@ -18,7 +19,6 @@ class CheckerViewController: UIViewController {
     public var wasQueried: Bool = false
     public var userEnteredWord = String()
     public var isSaved: Bool = false
-    //public var wasReset: Bool = false
     public var resetCount: Int = 0
     
     public var socialGroupIsDone: Bool = false
@@ -27,16 +27,8 @@ class CheckerViewController: UIViewController {
     // Dispatch Group for handling Task to Server
     let myGroup = DispatchGroup()
     let session = URLSession(configuration: .ephemeral)
-    var domainDataTasks = [DomainExtension : URLSessionDataTask]() {
-        didSet {
-            //print("Domain Data Tasks Size: \(domainDataTasks.count)")
-        }
-    }
-    var socialDataTasks = [SocialNetwork : URLSessionDataTask]() {
-        didSet {
-            //print("Social Data Tasks Size: \(socialDataTasks.count)")
-        }
-    }
+    var domainDataTasks = [DomainExtension : URLSessionDataTask]()
+    var socialDataTasks = [SocialNetwork : URLSessionDataTask]()
     
     enum GroupType {
         case social
@@ -101,7 +93,7 @@ class CheckerViewController: UIViewController {
     
     
     
-
+    // MARK: - ViewController LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         modalPresentationCapturesStatusBarAppearance = true
@@ -118,8 +110,6 @@ class CheckerViewController: UIViewController {
         setupTapGestureForScrollView()
         setupSendButton()
         setupTextToSpeechSaveButton()
-        
-        // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -128,16 +118,20 @@ class CheckerViewController: UIViewController {
     }
     
 
+    /// Hides the modal view controller
     @objc func hide() {
         dismiss(animated: true, completion: nil)
     
     }
     
+    /// Sets the functionalities of the Speech button
     public func setupTextToSpeechSaveButton() {
         updateEnabledTextToSpeechSaveForSendQuery()
 
     }
     
+    
+    /// Sets the UI/UX for the Send Button
     public func setupSendButton() {
         let textCount = textField.text?.count ?? 0
         if textCount < 6 {
@@ -171,7 +165,8 @@ class CheckerViewController: UIViewController {
     }
     
     
-    
+    /// Updates the DomainViews and SocialViews constraints to
+    /// fit the size of the Device bounds
     private func updateDomainSocialViewsConstraints() {
         let faveWidth = widthConstants[0]
         let leftSpace = widthConstants[1]
@@ -231,15 +226,7 @@ class CheckerViewController: UIViewController {
         view.addSubview(navBar)
         print("NavBar Size: \(navBar.bounds)")
     }
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
