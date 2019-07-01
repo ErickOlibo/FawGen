@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol FakeWordCellDelegate {
+    func didTapShowDetails(fakeWord: FakeWord)
+}
+
 class FakeWordCell: UITableViewCell {
     
     // Properties
@@ -54,38 +58,27 @@ class FakeWordCell: UITableViewCell {
     
     // DomainViews and SocialViews horizontal spacing constraints
     @IBOutlet weak var rootTextLabelHeight: NSLayoutConstraint!
-    
-    
-    
-    
+
     // MARK: - Properties
     private let openedViewIndex: Int = 1
     var state: CellState = .closed { didSet { toggle() } }
     private(set) var currentFakeword = FakeWord()
-    private(set) var orderedSocialViews = [CellSocialView]()
-    private(set) var orderedDomainViews = [CellDomainView]()
-    
-    
-    
+    var delegate: FakeWordCellDelegate?
 
     // MARK: - Actions
     @IBAction func tappedSave(_ sender: UIButton) {
-        print("Save Fake Word")
         sender.pulse()
         toggleSave()
     }
     @IBAction func tappedDetailedReport(_ sender: UIButton) {
         sender.pulse()
-        print("Show Detailed Report")
+        delegate?.didTapShowDetails(fakeWord: currentFakeword)
     }
     @IBAction func tappedTextToSpeech(_ sender: UIButton) {
         sender.pulse()
         let tts = TextToSpeech()
         tts.speakFakeWord(currentFakeword.name, accent: .american)
-        print("Speak the fake word in English")
     }
-    
-    
 
     // MARK: - Others
     override func awakeFromNib() {
@@ -98,26 +91,15 @@ class FakeWordCell: UITableViewCell {
     
     /// Sets the default UI for the domainViews and socialViews
     private func setupSocialDomain() {
-        orderedSocialViews = cellSocialViews.sorted{ $0.tag < $1.tag }
-        orderedDomainViews = cellDomainViews.sorted{ $0.tag < $1.tag }
-
-        for idx in 0..<4 {
-            switch idx {
-            case 0:
-                orderedSocialViews[idx].initialize(SocialNetwork.facebook.info)
-                orderedDomainViews[idx].initialize(DomainExtension.com)
-            case 1:
-                orderedSocialViews[idx].initialize(SocialNetwork.youtube.info)
-                orderedDomainViews[idx].initialize(DomainExtension.net)
-            case 2:
-                orderedSocialViews[idx].initialize(SocialNetwork.twitter.info)
-                orderedDomainViews[idx].initialize(DomainExtension.org)
-            case 3:
-                orderedSocialViews[idx].initialize(SocialNetwork.instagram.info)
-                orderedDomainViews[idx].initialize(DomainExtension.co)
-            default:
-                break
-            }
+        let orderedSocialViews = cellSocialViews.sorted{ $0.tag < $1.tag }
+        let orderedDomainViews = cellDomainViews.sorted{ $0.tag < $1.tag }
+        
+        for (idx, socialView) in orderedSocialViews.enumerated() {
+            socialView.initialize(SocialNetwork.allCases[idx].info)
+        }
+        
+        for (idx, domainView) in orderedDomainViews.enumerated() {
+            domainView.initialize(DomainExtension.allCases[idx])
         }
     }
     
@@ -227,21 +209,16 @@ class FakeWordCell: UITableViewCell {
     /// Gets the availability from the handle (fakeword.name) and
     /// return if the username is available or taken
     private func getSocialNetworkAvailability() {
-        let socialOne = cellSocialViews.filter{ $0.tag == 1 }[0]
-        let socialTwo = cellSocialViews.filter{ $0.tag == 2 }[0]
-        let socialThree = cellSocialViews.filter{ $0.tag == 3 }[0]
-        let socialFour = cellSocialViews.filter{ $0.tag == 4 }[0]
-        
-        let socialNetViews = [SocialNetwork.facebook : socialOne,
-                              SocialNetwork.youtube : socialTwo,
-                              SocialNetwork.twitter : socialThree,
-                              SocialNetwork.instagram : socialFour]
-        
+        let orderedSocialViews = cellSocialViews.sorted{ $0.tag < $1.tag }
+        var socialNetViews = [SocialNetwork : CellSocialView]()
+        for (idx, socialView) in orderedSocialViews.enumerated() {
+            let net = SocialNetwork.allCases[idx]
+            socialNetViews[net] = socialView
+        }
         let handle = currentFakeword.name.lowercased()
         let socialURLs = socialNetworkURLs(for: handle, completeList: false)
 
         for (social, link) in socialURLs {
-            print("Link: \(link)")
             guard let socialView = socialNetViews[social] else { continue }
             guard let url = URL(string: link) else {
                 socialView.status = .unknown
@@ -252,8 +229,6 @@ class FakeWordCell: UITableViewCell {
             let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
                 if let httpResponse = response as? HTTPURLResponse {
                     DispatchQueue.main.async {
-                        let name = socialView.socialInfo?.name
-                        print("Social: \(name ?? "N/A") - Response: \(httpResponse.statusCode)")
                         switch httpResponse.statusCode {
                         case 404:
                             socialView.status = .available
@@ -262,7 +237,6 @@ class FakeWordCell: UITableViewCell {
                         default:
                             socialView.status = .unknown
                         }
-                        //socialView.status = httpResponse.statusCode == 404 ? .available : .taken
                     }
                 } else {
                     DispatchQueue.main.async { socialView.status = .unknown }
@@ -275,15 +249,14 @@ class FakeWordCell: UITableViewCell {
     /// Gets the availability from the domain (fakeword.name) and
     /// return if the domain+extension is available or taken
     private func getDomainExtensionAvailability() {
-        let domainOne = cellDomainViews.filter{ $0.tag == 1 }[0]
-        let domainTwo = cellDomainViews.filter{ $0.tag == 2 }[0]
-        let domainThree = cellDomainViews.filter{ $0.tag == 3 }[0]
-        let domainFour = cellDomainViews.filter{ $0.tag == 4 }[0]
+        let orderedDomainViews = cellDomainViews.sorted{ $0.tag < $1.tag }
+        var domainViews = [DomainExtension : CellDomainView]()
         
-        let domainViews = [DomainExtension.com : domainOne,
-                           DomainExtension.net : domainTwo,
-                           DomainExtension.org : domainThree,
-                           DomainExtension.co : domainFour ]
+        for (idx, domainView) in orderedDomainViews.enumerated() {
+            let ext = DomainExtension.allCases[idx]
+            domainViews[ext] = domainView
+        }
+        
         let domainName = currentFakeword.name.lowercased()
         let whoisQueryURLS = DomainChecker().whoisURLs(for: domainName, completeList: false)
         
@@ -294,9 +267,6 @@ class FakeWordCell: UITableViewCell {
                 print("URL Failed")
                 continue
             }
-            
-            print("[\(ext.rawValue)] - tag[\(domainView.tag)] - WhoIs URL: \(queryURL)")
-            
             let request = URLRequest(url: url)
             let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
                 if (error == nil) {
@@ -314,9 +284,7 @@ class FakeWordCell: UITableViewCell {
                                 default:
                                     domainView.status = .unknown
                                 }
-                                //domainView.status = (comp[1] == "AVAILABLE") ? .available : .taken
                             }
-                            print("tag[\(domainView.tag)] - Ext: \(ext.description) - Response: \(result)")
                         }
                     } else {
                         DispatchQueue.main.async {
@@ -330,10 +298,22 @@ class FakeWordCell: UITableViewCell {
                 }
             }
             task.resume()
-            
         }
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        print("This Fake word: \(currentFakeword.name) is [prepareForReuse]")
+    }
     
-    
+}
+
+
+// MARK: - Seque and Detail views
+extension FakeWordCell {
+//    public func presentDetailsViewController() {
+//        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+//        let settingsVC = storyBoard.instantiateViewController(withIdentifier: "DetailsVC")
+//        self.navigationController?.pushViewController(settingsVC, animated: true)
+//    }
 }

@@ -32,6 +32,7 @@ class RandomizeViewController: UITableViewController {
         super.viewDidLoad()
         setupNavigationBarItems()
         setupTableView()
+        dataSource.delegate = self
 
         // Add observers
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)

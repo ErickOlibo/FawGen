@@ -7,6 +7,10 @@
 //
 
 import UIKit
+
+protocol DataSourceDelegate {
+    func didTapShowDetailsReport(fakeWord: FakeWord)
+}
 final class DataSource: NSObject, UITableViewDataSource {
     private let cellIdentifier = "FakeWordCell"
     public var dataSize: Int = 0
@@ -27,7 +31,7 @@ final class DataSource: NSObject, UITableViewDataSource {
     }()
     
     
-    
+    var delegate: DataSourceDelegate?
     private var indexPaths: Set<IndexPath> = []
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -40,6 +44,7 @@ final class DataSource: NSObject, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! FakeWordCell
         let data = self[indexPath]
         cell.update(data: data)
+        cell.delegate = self
         cell.state = cellIsOpened(at: indexPath) ? .opened : .closed
         cell.bottomView.alpha = cell.state == .opened ? 1 : 0
         return cell
@@ -77,4 +82,12 @@ extension DataSource {
         }
         return collection
     }
+}
+
+extension DataSource: FakeWordCellDelegate {
+    func didTapShowDetails(fakeWord: FakeWord) {
+        delegate?.didTapShowDetailsReport(fakeWord: fakeWord)
+    }
+    
+    
 }

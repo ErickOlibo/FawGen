@@ -190,6 +190,8 @@
 		A76915BD22A211D700FB616F /* WhoisAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76915BC22A211D700FB616F /* WhoisAPI.swift */; };
 		A76915BF22A218BA00FB616F /* TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76915BE22A218BA00FB616F /* TypeAlias.swift */; };
 		A7789A5C22CA56A100F0D9A2 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7789A5B22CA56A100F0D9A2 /* Reachability.swift */; };
+		A7789A6222CA976500F0D9A2 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7789A6122CA976500F0D9A2 /* DetailsViewController.swift */; };
+		A7789A6422CAC08800F0D9A2 /* DetalsVC+URLsRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7789A6322CAC08800F0D9A2 /* DetalsVC+URLsRequests.swift */; };
 		A7A1CB5222C127BC003CB1B8 /* SimpleAssistView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A1CB5122C127BC003CB1B8 /* SimpleAssistView+Extensions.swift */; };
 		A7B7E03C22B44AE700398289 /* RandomizeVCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7E03B22B44AE700398289 /* RandomizeVCExtension.swift */; };
 		A7B7E03E22B44E6600398289 /* FakeWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7E03D22B44E6600398289 /* FakeWord.swift */; };
@@ -404,6 +406,8 @@
 		A76915BC22A211D700FB616F /* WhoisAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhoisAPI.swift; sourceTree = "<group>"; };
 		A76915BE22A218BA00FB616F /* TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAlias.swift; sourceTree = "<group>"; };
 		A7789A5B22CA56A100F0D9A2 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		A7789A6122CA976500F0D9A2 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		A7789A6322CAC08800F0D9A2 /* DetalsVC+URLsRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DetalsVC+URLsRequests.swift"; sourceTree = "<group>"; };
 		A7A1CB5122C127BC003CB1B8 /* SimpleAssistView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SimpleAssistView+Extensions.swift"; sourceTree = "<group>"; };
 		A7B7E03B22B44AE700398289 /* RandomizeVCExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomizeVCExtension.swift; sourceTree = "<group>"; };
 		A7B7E03D22B44E6600398289 /* FakeWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeWord.swift; sourceTree = "<group>"; };
@@ -1108,6 +1112,7 @@
 		A70C4B8822ABFEB7001BD6CC /* Model View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A7789A5D22CA96E600F0D9A2 /* Details */,
 				A74DAFEE22C6B58D005ACAD0 /* Checker */,
 				A722066A22A5755600E1C256 /* Randomize */,
 				A70C4B8922ABFF66001BD6CC /* Filter */,
@@ -1318,6 +1323,39 @@
 				A7789A5B22CA56A100F0D9A2 /* Reachability.swift */,
 			);
 			path = Reachability;
+			sourceTree = "<group>";
+		};
+		A7789A5D22CA96E600F0D9A2 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				A7789A5E22CA96F900F0D9A2 /* Model */,
+				A7789A5F22CA970200F0D9A2 /* Views */,
+				A7789A6022CA970E00F0D9A2 /* Controller */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		A7789A5E22CA96F900F0D9A2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A7789A5F22CA970200F0D9A2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A7789A6022CA970E00F0D9A2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A7789A6122CA976500F0D9A2 /* DetailsViewController.swift */,
+				A7789A6322CAC08800F0D9A2 /* DetalsVC+URLsRequests.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		A7B7E03F22B45B2900398289 /* Data Source */ = {
@@ -1601,6 +1639,7 @@
 				A70C4B6022AA0675001BD6CC /* SPAnimation.swift in Sources */,
 				A70C4A2B22AA0611001BD6CC /* SPLarkControllerExtenshion.swift in Sources */,
 				A70C4B1C22AA0675001BD6CC /* SPGolubevIconView.swift in Sources */,
+				A7789A6222CA976500F0D9A2 /* DetailsViewController.swift in Sources */,
 				A70C4AEE22AA0675001BD6CC /* SPStorkHaptic.swift in Sources */,
 				A70C4B4122AA0675001BD6CC /* SPUserDefaultsExtenshion.swift in Sources */,
 				A7B7E03E22B44E6600398289 /* FakeWord.swift in Sources */,
@@ -1755,6 +1794,7 @@
 				A70C4BBD22AE05F4001BD6CC /* FilterVCExtension.swift in Sources */,
 				A7EC016B22A36F1D0056E2C7 /* UILabel+BestFit.swift in Sources */,
 				A70C4B8222AA9626001BD6CC /* SettingsCell.swift in Sources */,
+				A7789A6422CAC08800F0D9A2 /* DetalsVC+URLsRequests.swift in Sources */,
 				A70C4B5822AA0675001BD6CC /* SPCodeAudioIconPack.swift in Sources */,
 				A7FC85FB229DDB58002C386F /* FontsLister.swift in Sources */,
 				A74DAFF822C6DF6C005ACAD0 /* CheckerVCExtensions.swift in Sources */,

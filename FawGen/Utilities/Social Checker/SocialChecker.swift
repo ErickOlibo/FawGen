@@ -42,7 +42,7 @@ public class SocialChecker {
 /// Enumeration of ALL social networks used in this app
 public enum SocialNetwork: String, CustomStringConvertible, CaseIterable, Equatable, Hashable {
     case facebook, youtube, twitter, instagram, github, producthunt, bitbucket, angellist
-    case vimeo, behance, medium, reddit, pinterest, wordpress, slack //, pinterest
+    case vimeo, behance, medium, reddit, pinterest, wordpress, slack
 
     public var description: String {
         return self.rawValue
@@ -52,6 +52,11 @@ public enum SocialNetwork: String, CustomStringConvertible, CaseIterable, Equata
     /// and dominant color.
     public var info: SocialMedia {
         return SocialMedia(self.rawValue, icon: UIImage(named: self.rawValue)!, color: self.color())
+    }
+    
+    /// Returns the simple Array for the 4 major Social Networks
+    public var simpleList: [SocialNetwork] {
+        return simple
     }
 }
 
@@ -88,9 +93,6 @@ extension SocialNetwork {
             return SocialColor.reddit.rawValue.convertedToUIColor()!
         case .pinterest:
             return SocialColor.pinterest.rawValue.convertedToUIColor()!
-            
-//        case .blogger:
-//            return SocialColor.blogger.rawValue.convertedToUIColor()!
         case .wordpress:
             return SocialColor.wordpress.rawValue.convertedToUIColor()!
         case .slack:
