@@ -34,6 +34,10 @@ class RandomizeViewController: UITableViewController {
         setupTableView()
         dataSource.delegate = self
 
+        // Print Fonts
+        FontsLister().printListToConsole()
+        
+        
         // Add observers
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)

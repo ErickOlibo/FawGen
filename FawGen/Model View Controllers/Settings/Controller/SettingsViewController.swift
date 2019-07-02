@@ -32,10 +32,12 @@ class SettingsViewController: UITableViewController {
     /// for the history list
     private func updateUI() {
         print("UpdateUI")
-        let random = (4...60).randomElement() ?? 0
-        let adjNumber = random < 51  ? String(random) : "50+"
-        print("Number: \(adjNumber)")
-        historyCount.text = adjNumber
+        var historyStoredCount = 0
+        if let history = DefaultDB.getValue(for: .history)! as KeywordsHistory? {
+            historyStoredCount = history.count
+        }
+
+        historyCount.text = String(historyStoredCount)
         historyCount.textColor = FawGenColors.primary.color
     }
     
