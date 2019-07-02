@@ -29,10 +29,10 @@ extension String {
     /// Converts a color from the HEX format to the UIColor format
     /// - Note: This method checks for the validity of the string format
     /// as HEX color
-    /// - Returns: UIColor from HEX format or nil
-    public func convertedToUIColor() -> UIColor? {
+    /// - Returns: UIColor from HEX format or clear color
+    public func convertedToUIColor() -> UIColor {
         var color = self.uppercased()
-        guard color.isValidHexColor() else { return nil }
+        guard color.isValidHexColor() else { return .clear }
         
         // Remove the starting hashtag if any
         color = color.hasPrefix("#") ? String(color.dropFirst()) : color

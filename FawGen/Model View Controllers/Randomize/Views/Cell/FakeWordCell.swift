@@ -133,12 +133,13 @@ class FakeWordCell: UITableViewCell {
     /// name, icon, color and other information
     public func update(data: FakeWord) {
         currentFakeword = data
-        logoBackground.backgroundColor = data.designBarColor
-        madeUpLogo.image = data.logo
+        logoBackground.backgroundColor = data.logoBackgroundHexColor.convertedToUIColor()
+        if let logoImage = UIImage(named: data.logoName) {
+            madeUpLogo.image = logoImage
+        }
         fakeWordLabel.text = data.name
         let fontSize = rootTextLabel.font.pointSize
         let attributedRootText = data.formatRootStoryText(fontSize: fontSize)
-        //let attributedRootText = formatRootText()
         rootTextLabel.attributedText = attributedRootText
         rootTextLabelHeight.constant = heightForRootLabel()
         

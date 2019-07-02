@@ -50,30 +50,30 @@ public enum FawGenColors: String, CustomStringConvertible, CaseIterable, Equatab
     /// Code Name: Section Gray
     case sectionGray
     
-    
     public var description: String {
         return self.rawValue
     }
+    
     
     /// returns the FawGen App Colors for consistency concern
     public var color: UIColor {
         switch self {
         case .primary:
-            return Colors.primary.rawValue.convertedToUIColor()!
+            return Colors.primary.rawValue.convertedToUIColor()
         case .secondary:
-            return Colors.secondary.rawValue.convertedToUIColor()!
+            return Colors.secondary.rawValue.convertedToUIColor()
         case .tertiary:
-            return Colors.tertiary.rawValue.convertedToUIColor()!
+            return Colors.tertiary.rawValue.convertedToUIColor()
         case .availableStatus:
-            return Colors.availableStatus.rawValue.convertedToUIColor()!
+            return Colors.availableStatus.rawValue.convertedToUIColor()
         case .primaryDark:
-            return Colors.primaryDark.rawValue.convertedToUIColor()!
+            return Colors.primaryDark.rawValue.convertedToUIColor()
         case .cellGray:
-            return Colors.cellGray.rawValue.convertedToUIColor()!
+            return Colors.cellGray.rawValue.convertedToUIColor()
         case .unknown:
-            return Colors.unknown.rawValue.convertedToUIColor()!
+            return Colors.unknown.rawValue.convertedToUIColor()
         case .sectionGray:
-            return Colors.sectionGray.rawValue.convertedToUIColor()!
+            return Colors.sectionGray.rawValue.convertedToUIColor()
         }
     }
 }
@@ -83,10 +83,10 @@ public enum FawGenColors: String, CustomStringConvertible, CaseIterable, Equatab
 private enum Colors: String {
     case primary = "#F6511D" // Orioles Orange
     case secondary = "#0D2C54" // Prussian Blue
-    case tertiary = "FFB400" // UCLA Gold
-    case availableStatus = "3CD070" // UFO Green (for available Status)
+    case tertiary = "#FFB400" // UCLA Gold
+    case availableStatus = "#3CD070" // UFO Green (for available Status)
     case primaryDark = "#BC3000" // Special darker Orange for Steppers
     case cellGray = "#EEEEEE" // Very Light gray color from the Design
     case unknown = "#E32636" // Alizarin Crimson
-    case sectionGray = "EFEEF3" // Gray light Section
+    case sectionGray = "#EFEEF3" // Gray light Section
 }

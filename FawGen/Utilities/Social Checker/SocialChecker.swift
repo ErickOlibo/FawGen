@@ -68,35 +68,35 @@ extension SocialNetwork {
     fileprivate func color() -> UIColor {
         switch self {
         case .facebook:
-            return SocialColor.facebook.rawValue.convertedToUIColor()!
+            return SocialColor.facebook.rawValue.convertedToUIColor()
         case .youtube:
-            return SocialColor.youtube.rawValue.convertedToUIColor()!
+            return SocialColor.youtube.rawValue.convertedToUIColor()
         case .twitter:
-            return SocialColor.twitter.rawValue.convertedToUIColor()!
+            return SocialColor.twitter.rawValue.convertedToUIColor()
         case .instagram:
-            return SocialColor.instagram.rawValue.convertedToUIColor()!
+            return SocialColor.instagram.rawValue.convertedToUIColor()
         case .github:
-            return SocialColor.github.rawValue.convertedToUIColor()!
+            return SocialColor.github.rawValue.convertedToUIColor()
         case .producthunt:
-            return SocialColor.producthunt.rawValue.convertedToUIColor()!
+            return SocialColor.producthunt.rawValue.convertedToUIColor()
         case .bitbucket:
-            return SocialColor.bitbucket.rawValue.convertedToUIColor()!
+            return SocialColor.bitbucket.rawValue.convertedToUIColor()
         case .angellist:
-            return SocialColor.angellist.rawValue.convertedToUIColor()!
+            return SocialColor.angellist.rawValue.convertedToUIColor()
         case .vimeo:
-            return SocialColor.vimeo.rawValue.convertedToUIColor()!
+            return SocialColor.vimeo.rawValue.convertedToUIColor()
         case .behance:
-            return SocialColor.behance.rawValue.convertedToUIColor()!
+            return SocialColor.behance.rawValue.convertedToUIColor()
         case .medium:
-            return SocialColor.medium.rawValue.convertedToUIColor()!
+            return SocialColor.medium.rawValue.convertedToUIColor()
         case .reddit:
-            return SocialColor.reddit.rawValue.convertedToUIColor()!
+            return SocialColor.reddit.rawValue.convertedToUIColor()
         case .pinterest:
-            return SocialColor.pinterest.rawValue.convertedToUIColor()!
+            return SocialColor.pinterest.rawValue.convertedToUIColor()
         case .wordpress:
-            return SocialColor.wordpress.rawValue.convertedToUIColor()!
+            return SocialColor.wordpress.rawValue.convertedToUIColor()
         case .slack:
-            return SocialColor.slack.rawValue.convertedToUIColor()!
+            return SocialColor.slack.rawValue.convertedToUIColor()
 
 
         }

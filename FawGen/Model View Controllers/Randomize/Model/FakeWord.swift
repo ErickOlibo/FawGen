@@ -8,15 +8,20 @@
 
 import UIKit
 
-struct FakeWord {
+struct FakeWord: Codable {
     
-    enum MadeUpType: String, CaseIterable {
+    enum MadeUpType: String, CaseIterable, Codable {
         case concat, markov, simple, startBlend, endBlend, vowelsBlend, substitute, flavor, failed
         
     }
     
     var isSaved: Bool = false
     var lastQueryUpdate: Date?
+    private(set) var created: Date
+    
+    init() {
+        self.created = Date()
+    }
     
     let name: String = {
         guard let rndWord = Constants.fakeWords.randomElement() else { return "No Fakes"}
@@ -39,18 +44,15 @@ struct FakeWord {
         return rndFont
     }()
     
-    let designBarColor: UIColor = {
-        guard let rndColor = Constants.thousandColors.randomElement()?.convertedToUIColor() else { return .white }
-        return rndColor
-    }()
     
-    let logo: UIImage = {
-        let imgName = iconNames.randomElement() ?? "swift"
-        guard let image = UIImage(named: imgName) else { return #imageLiteral(resourceName: "swift") }
-        return image
+    let logoBackgroundHexColor: String = {
+        return Constants.thousandColors.randomElement() ?? "#F6511D" // Not good but ok for now
     }()
     
     
+    let logoName: String = {
+        return iconNames.randomElement() ?? "swift"
+    }()
     
     //let simpleSocialURLs: [SocialNetwork : String]
     
@@ -59,3 +61,4 @@ struct FakeWord {
 }
 
 fileprivate let iconNames: Set = ["swift", "opengraph", "angular"]
+

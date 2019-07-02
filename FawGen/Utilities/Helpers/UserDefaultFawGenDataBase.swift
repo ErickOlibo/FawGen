@@ -17,7 +17,7 @@ private let maxEntries = 30 // maxim
 
 /// enumeration of the different type of data title to keep
 public enum LightDB: String, CustomStringConvertible, Equatable {
-    case history, length, lengthOnOff, type, typeOnOff, symbol, symbolOnOff
+    case history, length, lengthOnOff, type, typeOnOff, symbol, symbolOnOff, savedList
     
     public var description: String {
         return self.rawValue
