@@ -136,29 +136,31 @@ class FakeWordCell: UITableViewCell {
         logoBackground.backgroundColor = data.designBarColor
         madeUpLogo.image = data.logo
         fakeWordLabel.text = data.name
-        let attributedRootText = formatRootText()
+        let fontSize = rootTextLabel.font.pointSize
+        let attributedRootText = data.formatRootStoryText(fontSize: fontSize)
+        //let attributedRootText = formatRootText()
         rootTextLabel.attributedText = attributedRootText
         rootTextLabelHeight.constant = heightForRootLabel()
         
     }
     
-    /// Formats the text of the roots of the creation of that word
-    /// with the appropriate formating for the rootTextLabel
-    private func formatRootText() -> NSMutableAttributedString {
-        let rootText = NSMutableAttributedString(string: currentFakeword.madeUpRoots)
-        let algoType = NSAttributedString(string: currentFakeword.madeUpType.rawValue)
-        let fontSize = rootTextLabel.font.pointSize
-        guard let boldFont = UIFont(name: "AvenirNext-Bold", size: fontSize) else { return rootText }
-        rootText.append(NSAttributedString(string: newLine))
-        let attrs = [NSAttributedString.Key.font : boldFont]
-        let attrsRoot = NSMutableAttributedString(string: root, attributes: attrs)
-        let attrsAlgo = NSMutableAttributedString(string: algo, attributes: attrs)
-        
-        attrsRoot.append(rootText)
-        attrsRoot.append(attrsAlgo)
-        attrsRoot.append(algoType)
-        return attrsRoot
-    }
+//    /// Formats the text of the roots of the creation of that word
+//    /// with the appropriate formating for the rootTextLabel
+//    private func formatRootText() -> NSMutableAttributedString {
+//        let rootText = NSMutableAttributedString(string: currentFakeword.madeUpRoots)
+//        let algoType = NSAttributedString(string: currentFakeword.madeUpType.rawValue)
+//        let fontSize = rootTextLabel.font.pointSize
+//        guard let boldFont = UIFont(name: "AvenirNext-Bold", size: fontSize) else { return rootText }
+//        rootText.append(NSAttributedString(string: newLine))
+//        let attrs = [NSAttributedString.Key.font : boldFont]
+//        let attrsRoot = NSMutableAttributedString(string: root, attributes: attrs)
+//        let attrsAlgo = NSMutableAttributedString(string: algo, attributes: attrs)
+//        
+//        attrsRoot.append(rootText)
+//        attrsRoot.append(attrsAlgo)
+//        attrsRoot.append(algoType)
+//        return attrsRoot
+//    }
     
     /// Determines the height of the rootTextLabel after the formating
     /// as been applied. it allows to change the constraints on the height

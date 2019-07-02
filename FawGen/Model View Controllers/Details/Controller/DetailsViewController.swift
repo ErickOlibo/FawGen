@@ -28,6 +28,7 @@ class DetailsViewController: UIViewController {
     
     // MARK: - Outlets
     @IBOutlet weak var typedWord: UILabel!
+    @IBOutlet weak var rootStory: UILabel!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var textToSpeech: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -70,7 +71,7 @@ class DetailsViewController: UIViewController {
         view.backgroundColor = .white
         navigationItem.title = "Details"
         typedWord.text = fakeWord.name.uppercased()
-        
+        setRootStoryText()
         updateDomainSocialViewsConstraints()
         setupDomainViews()
         setupSocialViews()
@@ -106,6 +107,16 @@ class DetailsViewController: UIViewController {
     
     
     // MARK: - Methods
+    
+    // Set the text for root story
+    private func setRootStoryText() {
+        let fontSize = rootStory.font.pointSize
+        let attributedStory = fakeWord.formatRootStoryText(fontSize: fontSize)
+        rootStory.attributedText = attributedStory
+    }
+    
+    
+    
     /// Toggles the UI/UX layout for the save button
     private func toggleSave() {
         if isSaved {
