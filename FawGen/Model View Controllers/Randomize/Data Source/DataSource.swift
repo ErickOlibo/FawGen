@@ -32,10 +32,9 @@ final class DataSource: NSObject, UITableViewDataSource {
     
     
     var delegate: DataSourceDelegate?
-    private var indexPaths: Set<IndexPath> = []
+    public var indexPaths: Set<IndexPath> = []
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("tableView - numberOfRowsInSection: \(items.count)")
         return items.count
     }
     
@@ -43,7 +42,8 @@ final class DataSource: NSObject, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! FakeWordCell
         let data = self[indexPath]
-        cell.update(data: data)
+        cell.fakeword = data
+        //cell.update(data: data)
         cell.delegate = self
         cell.state = cellIsOpened(at: indexPath) ? .opened : .closed
         cell.bottomView.alpha = cell.state == .opened ? 1 : 0
@@ -53,6 +53,7 @@ final class DataSource: NSObject, UITableViewDataSource {
   
 }
 
+/// Add if the fakeword is the one having the open case
 extension DataSource {
     func cellIsOpened(at indexPath: IndexPath) -> Bool {
         return indexPaths.contains(indexPath)

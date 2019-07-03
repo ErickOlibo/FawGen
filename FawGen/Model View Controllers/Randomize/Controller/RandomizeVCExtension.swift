@@ -67,7 +67,6 @@ extension RandomizeViewController {
         checkerVC.modalPresentationStyle = .custom
         checkerVC.modalPresentationCapturesStatusBarAppearance = true
         self.present(checkerVC, animated: true, completion: nil)
-        print("Checker VC")
     }
     
     

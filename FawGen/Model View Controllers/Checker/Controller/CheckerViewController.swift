@@ -86,7 +86,6 @@ class CheckerViewController: UIViewController {
     /// There is a need to implement a data type for tha fake word
     /// creation.
     @IBAction func tappedSave(_ sender: UIButton) {
-        print("tapped Save")
         sender.pulse()
         toggleSaveRemove()
     }
@@ -114,7 +113,6 @@ class CheckerViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print("NavBar Size: \(navBar.bounds)")
     }
     
 
@@ -222,9 +220,7 @@ class CheckerViewController: UIViewController {
         navBar.rightButton.addTarget(self, action: #selector(hide), for: .touchUpInside)
         navBar.titleLabel.text = "Checker"
         navBar.titleLabel.textColor = FawGenColors.secondary.color
-        print("NavBar Size: \(navBar.bounds)")
         view.addSubview(navBar)
-        print("NavBar Size: \(navBar.bounds)")
     }
 
 

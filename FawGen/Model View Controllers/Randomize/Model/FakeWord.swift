@@ -8,20 +8,24 @@
 
 import UIKit
 
-struct FakeWord: Codable {
+public struct FakeWord: Codable {
     
     enum MadeUpType: String, CaseIterable, Codable {
-        case concat, markov, simple, startBlend, endBlend, vowelsBlend, substitute, flavor, failed
-        
+        case concat, markov, simple, startBlend
+        case endBlend, vowelsBlend, substitute, flavor, failed, userDefined
     }
     
-    var isSaved: Bool = false
-    var lastQueryUpdate: Date?
+    //var isSaved: Bool = false
+    //var lastQueryUpdate: Date?
     private(set) var created: Date
     
     init() {
         self.created = Date()
     }
+    
+//    init(_ isEmpty: Bool) {
+//        
+//    }
     
     let name: String = {
         guard let rndWord = Constants.fakeWords.randomElement() else { return "No Fakes"}
@@ -35,6 +39,7 @@ struct FakeWord: Codable {
     
     let madeUpType: MadeUpType = {
         guard let algo = MadeUpType.allCases.randomElement() else { return .failed }
+        if algo == .userDefined { return .concat }
         return algo
     }()
 
@@ -44,11 +49,9 @@ struct FakeWord: Codable {
         return rndFont
     }()
     
-    
-    let logoBackgroundHexColor: String = {
+    let logoBackColor: String = {
         return Constants.thousandColors.randomElement() ?? "#F6511D" // Not good but ok for now
     }()
-    
     
     let logoName: String = {
         return iconNames.randomElement() ?? "swift"

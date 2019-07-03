@@ -21,22 +21,9 @@ import UIKit
 
 
 public class SocialChecker {
+    // Maybe adding something here later
     
-    /// - Warning: This method might be useless as it requires all URLRequest
-    /// to finish before passing on the result.
-    /// This method must be improved or deleted
-    public static func simpleLookup(_ username: String) -> [SocialNetwork : Bool]? {
-        checkSocialNetworkURLs(for: username, isSimple: true)
-        return nil
-    }
-    
-    /// - Warning: This method might be useless as it requires all URLRequest
-    /// to finish before passing on the result.
-    /// This method must be improved or deleted
-    public static func completeLookup(_ username: String) -> [SocialNetwork : Bool]? {
-        checkSocialNetworkURLs(for: username, isSimple: false)
-        return nil
-    }
+
 }
 
 /// Enumeration of ALL social networks used in this app
@@ -127,38 +114,7 @@ private enum SocialColor: String {
 }
 
 
-/// - Warning: This method URLSession does not fit the current App
-/// It must be improve to allow dispatch to social view
-private func checkSocialNetworkURLs(for username: String, isSimple: Bool) {
-    let socialURLs = socialNetworkURLs(for: username)
-    let filteredURLs = isSimple ? socialURLs.filter{ simple.contains($0.key) } : socialURLs
-    let myGroup = DispatchGroup()
-    var result = [SocialNetwork : Bool]()
-    
-    for (social, link) in filteredURLs {
-        myGroup.enter()
-        guard let url = URL(string: link) else { return }
-        let request = URLRequest(url: url)
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            
-            if let httpResponse = response as? HTTPURLResponse {
-                DispatchQueue.main.async {
-                    result[social] = (httpResponse.statusCode == 404)
-                }
-            } else {
-                DispatchQueue.main.async {
-                    result[social] = false
-                }
-            }
-            myGroup.leave()
-        }
-        task.resume()
-    }
-    myGroup.notify(queue: .main) {
-        print(result)
-    }
-    
-}
+
 
 private var simple: [SocialNetwork] {
     return [.facebook, .youtube, .twitter, .instagram]
@@ -208,8 +164,6 @@ public func socialNetworkURLs(for username: String, completeList: Bool = true) -
             urlUsername += www + item.rawValue + ".com/user/" + handle
         case .pinterest:
             urlUsername += www + item.rawValue + ".com/" + handle
-//        case .blogger:
-//            urlUsername = "http://" + handle + ".blogspot.com/"
         case .wordpress:
             urlUsername += handle + dot + item.rawValue + ".com/"
         case .slack:

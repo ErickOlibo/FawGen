@@ -71,7 +71,6 @@ class ViewController: UIViewController {
         // reset all the views
         resetAvailabilityViews()
         let randFont = getNewFontName() ?? "Avenir-Medium"
-        print("FontName: \(randFont)")
         randomFontLabel.font = UIFont(name: randFont, size: 400)
         let rndWord = Constants.fakeWords.randomElement() ?? "Failed!"
         randomFontLabel.text = rndWord.capitalized
@@ -93,9 +92,6 @@ class ViewController: UIViewController {
         domainTwo.status = .normal
         domainThree.status = .normal
         domainFour.status = .normal
-        
-        print("Social: \(socialOne.bounds) - Domain: \(domainOne.bounds)")
-    
     }
     
     // Get Social Network Availability
@@ -110,12 +106,10 @@ class ViewController: UIViewController {
         let socialURLs = socialNetworkURLs(for: handle, completeList: false)
         
         for (social, link) in socialURLs {
-            print("Link: \(link)")
-            guard let socialV = socialNetViews[social]  else { print("SocialV failed"); continue }
-            guard let socialView = socialV else { print("SocialView failed"); continue }
+            guard let socialV = socialNetViews[social]  else { continue }
+            guard let socialView = socialV else { continue }
             guard let url = URL(string: link) else {
                 socialView.status = .taken
-                print("URL failed");
                 continue
             }
             let request = URLRequest(url: url)
@@ -136,15 +130,15 @@ class ViewController: UIViewController {
     }
     
 
-    // Testing the construction of URL
-    private func queryWhois(for domain: Domain) {
-        let whoisAPI = WhoisAPI()
-        
-        for ext in DomainExtension.simpleCollection {
-            let urlQuery = whoisAPI.createURL(domain, extension: ext)
-            print(urlQuery)
-        }
-    }
+//    // Testing the construction of URL
+//    private func queryWhois(for domain: Domain) {
+//        let whoisAPI = WhoisAPI()
+//
+//        for ext in DomainExtension.simpleCollection {
+//            let urlQuery = whoisAPI.createURL(domain, extension: ext)
+//            print(urlQuery)
+//        }
+//    }
     
     // Testing the Domain checker
     private func getDomainAvailability(for domain: Domain) {
@@ -156,11 +150,10 @@ class ViewController: UIViewController {
         let whoisQueryURLS = DomainChecker().whoisURLs(for: domainName, completeList: false)
         
         for (ext, queryURL) in whoisQueryURLS {
-            guard let domainV = domainViews[ext] else { print("DomainV failed"); continue }
-            guard let domainView = domainV else { print("DomainView Failed"); continue }
+            guard let domainV = domainViews[ext] else { continue }
+            guard let domainView = domainV else { continue }
             guard let url = URL(string: queryURL) else {
                 domainView.status = .taken
-                print("URL Failed")
                 continue
             }
             let request = URLRequest(url: url)
@@ -174,12 +167,10 @@ class ViewController: UIViewController {
                             if comp.count == 2 {
                                 domainView.status = (comp[1] == "AVAILABLE") ? .available : .taken
                             }
-                            print("Ext: \(ext.description) - Response: \(result)")
                         }
                     } else {
                         DispatchQueue.main.async {
                             domainView.status = .taken
-                            print("Data failed to parse!)")
                         }
                     }
                 } else {

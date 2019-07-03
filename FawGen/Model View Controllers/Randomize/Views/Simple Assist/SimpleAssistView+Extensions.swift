@@ -96,7 +96,6 @@ extension SimpleAssistView {
     /// toggles the UI from the open state to close state and
     /// the stackView
     public func toggle() {
-        print("Toggled() --> State is: \(state.rawValue)")
         updateCornerLetsGoButton()
         updateSimpleAssist()
         stackView.arrangedSubviews[openViewIndex].isHidden = isStateClosed()
@@ -149,7 +148,6 @@ extension SimpleAssistView: UITextViewDelegate {
             let wordRanges = text.ranges(of: word)
             for range in wordRanges {
                 endAttributedText.addAttributes(hightlightAttributes, range: NSRange(range, in: text))
-                print(text[range])
             }
         }
         return endAttributedText
@@ -178,11 +176,9 @@ extension SimpleAssistView: UITextViewDelegate {
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        print("textViewDidEndEditing")
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        print("textViewDidBeginEditing")
     }
 
 }
@@ -195,7 +191,6 @@ extension SimpleAssistView {
     /// the simple Model engine. This is performed by the ViewController
     /// (RandomizeViewController) via a delegation protocol
     public func letsGoSimple() {
-        print("Let's Go SIMPLE")
         simpleAssistDelegate?.querySimpleModel()
         // Send to model
     }
@@ -209,7 +204,6 @@ extension SimpleAssistView {
             if text.count == 0 {
                 letsGoSimple()
             } else {
-                print("Let's Go ASSIST")
                 let entry = String(text.prefix(textMaxLength))
                 saveToHistory(entry)
                 keywordsGrowningTextView.text = String()

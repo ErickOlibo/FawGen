@@ -25,3 +25,13 @@ public typealias Handle = String
 /// to the userDefaults. The keywords (or project description), and the time
 /// where the query was requested
 public typealias KeywordsHistory = [String : Date]
+
+
+/// This is the custom type to be saved in the savedList
+/// It is a dictionary with key, the word name as String and value
+/// is the custom type FakeWord
+public typealias SavedList = [String : Data]
+
+
+
+public typealias SaveableFakeWord = (Bool, Date, String, String, String, String, String, String)

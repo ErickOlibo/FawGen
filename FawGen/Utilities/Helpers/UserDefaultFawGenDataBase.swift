@@ -17,7 +17,7 @@ private let maxEntries = 30 // maxim
 
 /// enumeration of the different type of data title to keep
 public enum LightDB: String, CustomStringConvertible, Equatable {
-    case history, length, lengthOnOff, type, typeOnOff, symbol, symbolOnOff, savedList
+    case history, length, lengthOnOff, type, typeOnOff, symbol, symbolOnOff, list
     
     public var description: String {
         return self.rawValue
@@ -55,7 +55,6 @@ public struct DefaultDB {
             let (key, _) = sorted[0]
             history.removeValue(forKey: key)
         }
-        //print("History Count: \(history.count) --> \(history)")
         return history
     }
     

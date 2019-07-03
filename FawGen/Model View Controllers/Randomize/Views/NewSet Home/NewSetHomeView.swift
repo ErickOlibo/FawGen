@@ -21,13 +21,11 @@ class NewSetHomeView: UIView {
     
     // MARK: - Actions
     @IBAction func tappedHome(_ sender: UIButton) {
-        print("Tapped HOME")
         newSetHomeDelegate?.showSimpleAssist()
     }
     
     
     @IBAction func tappedNewSet(_ sender: UIButton) {
-        print("Tapped NEW SET")
         newSetHomeDelegate?.queryNewSetFromSimpleModel()
     }
     

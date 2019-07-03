@@ -48,17 +48,14 @@ class AboutViewController: UIViewController {
 extension AboutViewController: WKNavigationDelegate{
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        //print("Loading Done: [\(Date())]")
         
     }
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        //print("didStartProvisionalNavigation: [\(Date())]")
         
     }
     
     func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
-        //print("didCommit: [\(Date())]")
         spinner.stopAnimating()
         webView.backgroundColor = .white
     }
@@ -66,6 +63,5 @@ extension AboutViewController: WKNavigationDelegate{
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         spinner.stopAnimating()
         webView.backgroundColor = .white
-        print("Loading ERROR: [\(Date())]")
     }
 }

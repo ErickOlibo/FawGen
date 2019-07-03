@@ -62,7 +62,11 @@ class FakeWordCell: UITableViewCell {
     // MARK: - Properties
     private let openedViewIndex: Int = 1
     var state: CellState = .closed { didSet { toggle() } }
-    private(set) var currentFakeword = FakeWord()
+    var fakeword: FakeWord! {
+        didSet {
+            update()
+        }
+    }
     var delegate: FakeWordCellDelegate?
 
     // MARK: - Actions
@@ -72,12 +76,12 @@ class FakeWordCell: UITableViewCell {
     }
     @IBAction func tappedDetailedReport(_ sender: UIButton) {
         sender.pulse()
-        delegate?.didTapShowDetails(fakeWord: currentFakeword)
+        delegate?.didTapShowDetails(fakeWord: fakeword)
     }
     @IBAction func tappedTextToSpeech(_ sender: UIButton) {
         sender.pulse()
         let tts = TextToSpeech()
-        tts.speakFakeWord(currentFakeword.name, accent: .american)
+        tts.speakFakeWord(fakeword.name, accent: .american)
     }
 
     // MARK: - Others
@@ -85,8 +89,14 @@ class FakeWordCell: UITableViewCell {
         super.awakeFromNib()
         selectionStyle = .none
         setupCell()
-        setupSave()
         setupSocialDomain()
+    }
+    
+    
+    /// Updates all when the fakeWord is set
+    private func updateUI(){
+        update()
+        
     }
     
     /// Sets the default UI for the domainViews and socialViews
@@ -104,7 +114,12 @@ class FakeWordCell: UITableViewCell {
     }
     
     private func toggleSave() {
-        currentFakeword.isSaved = !currentFakeword.isSaved
+        if fakeword.isSaved() {
+            fakeword.removeFromList()
+        } else {
+            fakeword.addToList()
+        }
+        
         updateSave()
     }
     
@@ -114,7 +129,7 @@ class FakeWordCell: UITableViewCell {
     }
     
     private func updateSave() {
-        if currentFakeword.isSaved {
+        if fakeword.isSaved() {
             saveWordButton.tintColor = .white
             saveWordButton.backgroundColor = FawGenColors.primary.color
         } else {
@@ -131,37 +146,21 @@ class FakeWordCell: UITableViewCell {
     /// Updates the cell with the correct FaveWord entity
     /// - Parameter data: of type FakeWord containing the
     /// name, icon, color and other information
-    public func update(data: FakeWord) {
-        currentFakeword = data
-        logoBackground.backgroundColor = data.logoBackgroundHexColor.convertedToUIColor()
-        if let logoImage = UIImage(named: data.logoName) {
+    public func update() {
+        logoBackground.backgroundColor = fakeword.logoBackColor.convertedToUIColor()
+        if let logoImage = UIImage(named: fakeword.logoName) {
             madeUpLogo.image = logoImage
         }
-        fakeWordLabel.text = data.name
+        fakeWordLabel.text = fakeword.name
         let fontSize = rootTextLabel.font.pointSize
-        let attributedRootText = data.formatRootStoryText(fontSize: fontSize)
+        let attributedRootText = fakeword.formatRootStoryText(fontSize: fontSize)
         rootTextLabel.attributedText = attributedRootText
         rootTextLabelHeight.constant = heightForRootLabel()
         
+        setupSave()
+        updateSave()
+        
     }
-    
-//    /// Formats the text of the roots of the creation of that word
-//    /// with the appropriate formating for the rootTextLabel
-//    private func formatRootText() -> NSMutableAttributedString {
-//        let rootText = NSMutableAttributedString(string: currentFakeword.madeUpRoots)
-//        let algoType = NSAttributedString(string: currentFakeword.madeUpType.rawValue)
-//        let fontSize = rootTextLabel.font.pointSize
-//        guard let boldFont = UIFont(name: "AvenirNext-Bold", size: fontSize) else { return rootText }
-//        rootText.append(NSAttributedString(string: newLine))
-//        let attrs = [NSAttributedString.Key.font : boldFont]
-//        let attrsRoot = NSMutableAttributedString(string: root, attributes: attrs)
-//        let attrsAlgo = NSMutableAttributedString(string: algo, attributes: attrs)
-//        
-//        attrsRoot.append(rootText)
-//        attrsRoot.append(attrsAlgo)
-//        attrsRoot.append(algoType)
-//        return attrsRoot
-//    }
     
     /// Determines the height of the rootTextLabel after the formating
     /// as been applied. it allows to change the constraints on the height
@@ -202,8 +201,7 @@ class FakeWordCell: UITableViewCell {
     /// Cancels any ongoing URL queries to the availability checkers
     /// - Note: This method is trigger by the tableView didDeselectRowAt
     public func cancelQueryDomainSocialChecker() {
-        
-        print("NEED TO CANCEL THE QUERY")
+
     }
     
     
@@ -218,7 +216,7 @@ class FakeWordCell: UITableViewCell {
             let net = SocialNetwork.allCases[idx]
             socialNetViews[net] = socialView
         }
-        let handle = currentFakeword.name.lowercased()
+        let handle = fakeword.name.lowercased()
         let socialURLs = socialNetworkURLs(for: handle, completeList: false)
 
         for (social, link) in socialURLs {
@@ -260,14 +258,13 @@ class FakeWordCell: UITableViewCell {
             domainViews[ext] = domainView
         }
         
-        let domainName = currentFakeword.name.lowercased()
+        let domainName = fakeword.name.lowercased()
         let whoisQueryURLS = DomainChecker().whoisURLs(for: domainName, completeList: false)
         
         for (ext, queryURL) in whoisQueryURLS {
             guard let domainView = domainViews[ext] else { continue }
             guard let url = URL(string: queryURL) else {
                 domainView.status = .unknown
-                print("URL Failed")
                 continue
             }
             let request = URLRequest(url: url)
@@ -278,7 +275,6 @@ class FakeWordCell: UITableViewCell {
                         DispatchQueue.main.async {
                             let comp = result.components(separatedBy: ", ")
                             if comp.count == 2 {
-                                print("RESULT: \(comp[0]) - tag: \(domainView.tag)")
                                 switch comp[1] {
                                 case "AVAILABLE":
                                     domainView.status = .available
@@ -292,7 +288,6 @@ class FakeWordCell: UITableViewCell {
                     } else {
                         DispatchQueue.main.async {
                             domainView.status = .unknown
-                            print("Data failed to parse!)")
                         }
                     }
                 } else {
@@ -306,17 +301,8 @@ class FakeWordCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        print("This Fake word: \(currentFakeword.name) is [prepareForReuse]")
+        
     }
     
 }
 
-
-// MARK: - Seque and Detail views
-extension FakeWordCell {
-//    public func presentDetailsViewController() {
-//        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-//        let settingsVC = storyBoard.instantiateViewController(withIdentifier: "DetailsVC")
-//        self.navigationController?.pushViewController(settingsVC, animated: true)
-//    }
-}

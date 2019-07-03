@@ -35,7 +35,7 @@ class RandomizeViewController: UITableViewController {
         dataSource.delegate = self
 
         // Print Fonts
-        FontsLister().printListToConsole()
+        //FontsLister().printListToConsole()
         
         
         // Add observers
@@ -110,7 +110,6 @@ extension RandomizeViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! FakeWordCell
-        print("didSelectRowAt")
         
         cell.state = .opened
         dataSource.addOpenedIndexPath(indexPath)
@@ -129,7 +128,6 @@ extension RandomizeViewController {
     
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! FakeWordCell
-        print("didDeselectRowAt")
         cell.state = .closed
         dataSource.removeOpenedIndexPath(indexPath)
         
@@ -205,16 +203,15 @@ extension RandomizeViewController: SimpleAssistDelegate {
         }
         
         // Variable to be replaces by words from model
-        let newItems = dataSource.getRandomItems(count: 10)
+        let newItems = dataSource.getRandomItems(count: 20)
         
         tableView.beginUpdates()
         let rowsCount = tableView.numberOfRows(inSection: 0)
         let indexPaths = (0..<rowsCount).map { IndexPath(row: $0, section: 0)}
         
         tableView.deleteRows(at: indexPaths, with: .automatic)
-        print("IndexPaths Count: \(indexPaths.count) - Current Items Count: \(dataSource.items.count)")
         dataSource.items = newItems
-        print("New Items Count: \(dataSource.items.count)")
+        dataSource.indexPaths = Set<IndexPath>()
         var indexPathsNew = [IndexPath]()
         for idx in 0..<dataSource.items.count {
             let path = IndexPath(row: idx, section: 0)

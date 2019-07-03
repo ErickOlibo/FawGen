@@ -58,7 +58,6 @@ class DetailsViewController: UIViewController {
     /// There is a need to implement a data type for tha fake word
     /// creation.
     @IBAction func tappedSave(_ sender: UIButton) {
-        print("tapped Save")
         sender.pulse()
         toggleSave()
     }
@@ -82,25 +81,20 @@ class DetailsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("DETAILS VIEW WILL APPEAR!")
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print("DETAILS VIEW DID APPEAR!")
         getDomainExtensionsAvailability()
         getSocialNetworksAvailability()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        print("DETAILS VIEW WILL DISAPPEAR!")
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        print("DETAILS VIEW DID DISAPPEAR!")
-        //session.invalidateAndCancel()
     }
     
     

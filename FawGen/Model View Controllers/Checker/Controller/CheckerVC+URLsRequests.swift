@@ -51,7 +51,6 @@ extension CheckerViewController {
                     } else {
                         DispatchQueue.main.async {
                             domainView.status = .unknown
-                            print("Data failed to parse!)")
                         }
                     }
                 } else {
@@ -86,8 +85,6 @@ extension CheckerViewController {
             socialGroup.enter()
             guard let socialView = socialNetViews[social] else { continue }
             guard let url = URL(string: link) else {
-                let name = socialView.socialInfo?.name ?? "N/A"
-                print("URL - Social: \(name) - FAILED to Create URL")
                 socialView.status = .unknown
                 continue
             }
@@ -108,8 +105,6 @@ extension CheckerViewController {
                 } else {
                     DispatchQueue.main.async {
                         socialView.status = .unknown
-                        let name = socialView.socialInfo?.name ?? "N/A"
-                        print("ERROR - Social: \(name) - ERROR in the DataResponse \(url)")
                     }
                 }
                 socialGroup.leave()
@@ -151,7 +146,6 @@ extension CheckerViewController {
     /// - Note: This is not in used because it created issue with the URLSession
     /// and breaks the UI/UX for the socialViews and DomainViews
     public func cancelTasks() {
-        print("Cancelling Tasks")
         for (_, value) in socialDataTasks { value.cancel() }
         for (_, value) in domainDataTasks { value.cancel() }
         cleanDataTasks(for: .social)
