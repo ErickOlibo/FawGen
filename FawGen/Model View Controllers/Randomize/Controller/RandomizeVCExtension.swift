@@ -33,7 +33,7 @@ extension RandomizeViewController {
     private func setupRightNavItems() {
         let collection = [("Settings" , #selector(presentSettingsViewController)),
                           ("Filter" , #selector(presentFilterViewController)),
-                          ("favorite" , #selector(presentFavoritesViewController))]
+                          ("favorite" , #selector(presentSavedListViewController))]
         var barButtonItems = [UIBarButtonItem]()
         for (imageName, selector) in collection {
             let itemButton = UIButton(type: .system)
@@ -99,8 +99,11 @@ extension RandomizeViewController {
     
     /// Presents as push transition the FavoritesView controller
     /// - Warning: Missing implementation for FavoritesViewController
-    @objc private func presentFavoritesViewController() {
-        print("pushedFavoriteButton")
+    @objc private func presentSavedListViewController() {
+        print("pushedSavedListButton")
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let savedListVC = storyBoard.instantiateViewController(withIdentifier: "SavedListVC") as! SavedListViewController
+        self.navigationController?.pushViewController(savedListVC, animated: true)
     }
     
     /// Presents as push transition the DetailsView Controller

@@ -21,14 +21,23 @@ extension CheckerViewController {
     
     /// Toggles the UI/UX layout for the save button
     private func toggleSave() {
-        if isSaved {
-            saveButton.backgroundColor = .lightGray
-            saveButton.setTitle("save")
-            isSaved = false
+        if tmpFakeWord.isSaved() {
+            tmpFakeWord.removeFromList()
         } else {
+            tmpFakeWord.addToList()
+        }
+        updateSave()
+    }
+    
+    private func updateSave() {
+        if tmpFakeWord.isSaved() {
             saveButton.backgroundColor = FawGenColors.primary.color
             saveButton.setTitle("saved")
             isSaved = true
+        } else {
+            saveButton.backgroundColor = .lightGray
+            saveButton.setTitle("save")
+            isSaved = false
         }
     }
     
@@ -47,7 +56,10 @@ extension CheckerViewController {
         setupSendButton()
         wasQueried = true
         updateEnabledTextToSpeechSaveForSendQuery()
-        if let userText = typedWord.text, userText.count > 5 { userEnteredWord = userText }
+        if let userText = typedWord.text, userText.count > 5 { userEnteredWord = userText
+            tmpFakeWord = FakeWord(userText)
+            updateSave()
+        }
         getDomainExtensionsAvailability()
         getSocialNetworksAvailability()
         resetCount = 0

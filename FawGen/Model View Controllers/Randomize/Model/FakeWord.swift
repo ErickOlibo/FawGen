@@ -15,49 +15,66 @@ public struct FakeWord: Codable {
         case endBlend, vowelsBlend, substitute, flavor, failed, userDefined
     }
     
-    //var isSaved: Bool = false
-    //var lastQueryUpdate: Date?
+    
     private(set) var created: Date
+    private(set) var name: String
+    private(set) var madeUpRoots: String
+    private(set) var madeUpType: MadeUpType
+    private(set) var font: String
+    private(set) var logoBackColor: String
+    private(set) var logoName: String
     
     init() {
         self.created = Date()
+        self.name = _name
+        self.madeUpRoots = _madeUpRoots
+        self.madeUpType = _madeUpType
+        self.font = _font
+        self.logoBackColor = _logoBackColor
+        self.logoName = _logoName
     }
     
-//    init(_ isEmpty: Bool) {
-//        
-//    }
+
+    init(_ name: String, madeUpType: MadeUpType = .userDefined) {
+        self.created = Date()
+        self.name = name
+        self.madeUpRoots = String()
+        self.madeUpType = madeUpType
+        self.font = String()
+        self.logoBackColor = String() //"#EFEEF3"
+        self.logoName = String()
+    }
     
-    let name: String = {
+    private let _name: String = {
         guard let rndWord = Constants.fakeWords.randomElement() else { return "No Fakes"}
         return rndWord.capitalized 
     }()
     
-    let madeUpRoots: String = {
+    private let _madeUpRoots: String = {
         guard let story = Constants.hundredStatments.randomElement() else { return "N/A"}
         return story
     }()
     
-    let madeUpType: MadeUpType = {
+    private let _madeUpType: MadeUpType = {
         guard let algo = MadeUpType.allCases.randomElement() else { return .failed }
         if algo == .userDefined { return .concat }
         return algo
     }()
 
-    let font: String = {
+    private let _font: String = {
         let fontLister = FontsLister()
         guard let rndFont = fontLister.randomFont() else { return "AvenirNext-Bold" }
         return rndFont
     }()
     
-    let logoBackColor: String = {
+    private let _logoBackColor: String = {
         return Constants.thousandColors.randomElement() ?? "#F6511D" // Not good but ok for now
     }()
     
-    let logoName: String = {
+    private let _logoName: String = {
         return iconNames.randomElement() ?? "swift"
     }()
     
-    //let simpleSocialURLs: [SocialNetwork : String]
     
 
     

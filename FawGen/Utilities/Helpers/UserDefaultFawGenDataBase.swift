@@ -61,4 +61,21 @@ public struct DefaultDB {
     private static func convert(_ key: LightDB) -> String {
         return key.description
     }
+    
+    
+    
+    static func getSavedList() -> [FakeWord] {
+        var list = [FakeWord]()
+        guard let savedList = DefaultDB.getValue(for: .list)! as SavedList? else { return list }
+        for (_, data) in savedList {
+            do {
+                let fakeword = try PropertyListDecoder().decode(FakeWord.self, from: data)
+                list.append(fakeword)
+            } catch {
+                print("[getSavedList] Issue while Decoding Data with Error: \(error)")
+            }
+        }
+        
+        return list
+    }
 }

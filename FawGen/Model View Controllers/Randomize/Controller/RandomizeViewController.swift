@@ -26,6 +26,11 @@ class RandomizeViewController: UITableViewController {
     public let horizontalSpaceKeyboardLowerSimpleAssistView: CGFloat = 10
     public let halfHeightSimpleAssistView: CGFloat = 135
     public let heightButtonsToLetsGo: CGFloat = 60
+    public var alreadyFakewords = Set<String>() {
+        didSet {
+            print("ALREADY GENERATED: \(alreadyFakewords.count)")
+        }
+    }
     
 
     override func viewDidLoad() {
@@ -50,7 +55,9 @@ class RandomizeViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print("ViewWillAppear in [RandomizeViewController]")
         simpleAssistOrNewSetHomeUI()
+        tableView.reloadData()
     }
     
     
@@ -203,7 +210,8 @@ extension RandomizeViewController: SimpleAssistDelegate {
         }
         
         // Variable to be replaces by words from model
-        let newItems = dataSource.getRandomItems(count: 20)
+        //let newItems = dataSource.getRandomItems(count: 20)
+        let newItems = getNewRandomItems(count: 20)
         
         tableView.beginUpdates()
         let rowsCount = tableView.numberOfRows(inSection: 0)
@@ -226,5 +234,16 @@ extension RandomizeViewController: SimpleAssistDelegate {
         simpleAssistOrNewSetHomeUI()
     }
     
+    /// Makes sure the words were not used before
+    private func getNewRandomItems(count: Int) -> [FakeWord] {
+        var newList = [FakeWord]()
+        while newList.count < count {
+            let rand = dataSource.getRandomItems(count: 1)[0]
+            guard !alreadyFakewords.contains(rand.name) else { continue }
+            newList.append(rand)
+        }
+        alreadyFakewords.formUnion(newList.map{ $0.name } )
+        return newList
+    }
     
 }

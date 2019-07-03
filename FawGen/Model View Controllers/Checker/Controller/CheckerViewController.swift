@@ -24,6 +24,9 @@ class CheckerViewController: UIViewController {
     public var socialGroupIsDone: Bool = false
     public var domainGroupIsDone: Bool = false
     
+    // Temporare FakeWard to be initiated everytime checker is quering
+    public var tmpFakeWord: FakeWord!
+    
     // Dispatch Group for handling Task to Server
     let myGroup = DispatchGroup()
     let session = URLSession(configuration: .ephemeral)
