@@ -31,7 +31,7 @@
                                 <constraint firstAttribute="height" constant="40" id="Hbi-OD-EuD"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                            <state key="normal" title="Home"/>
+                            <state key="normal" image="BackHome"/>
                             <connections>
                                 <action selector="tappedHome:" destination="-1" eventType="touchUpInside" id="goV-R6-HLe"/>
                             </connections>
@@ -43,7 +43,7 @@
                                 <constraint firstAttribute="width" constant="70" id="do4-md-572"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                            <state key="normal" title="New Set"/>
+                            <state key="normal" image="NewSet"/>
                             <connections>
                                 <action selector="tappedNewSet:" destination="-1" eventType="touchUpInside" id="5I9-z3-Qsf"/>
                             </connections>
@@ -70,4 +70,8 @@
             <point key="canvasLocation" x="62" y="84"/>
         </view>
     </objects>
+    <resources>
+        <image name="BackHome" width="32" height="32"/>
+        <image name="NewSet" width="32" height="32"/>
+    </resources>
 </document>
