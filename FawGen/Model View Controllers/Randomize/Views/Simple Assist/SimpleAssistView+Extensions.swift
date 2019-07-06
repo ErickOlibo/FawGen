@@ -205,7 +205,7 @@ extension SimpleAssistView {
                 letsGoSimple()
             } else {
                 let entry = String(text.prefix(textMaxLength))
-                saveToHistory(entry)
+                dataBaseManager.addToHistory(entry)
                 keywordsGrowningTextView.text = String()
                 textLengthLabel.text = String()
                 simpleAssistDelegate?.queryAssistedModel(by: entry)
@@ -220,27 +220,14 @@ extension SimpleAssistView {
 }
 
 
-// MARK: - Keywords and Description History
+// MARK: - Keywords that are part of the Corpus (vocabulary)
 extension SimpleAssistView {
-    
-    /// Records the keywords query to the UserDefault Database. The keywords
-    /// and the date when it was queried is saved
-    /// - Parameter keywords: the string text to query against
-    public func saveToHistory(_ keywords: String) {
-        let now = Date()
-        if DefaultDB.getValue(for: .history)! as KeywordsHistory? == nil {
-            DefaultDB.save([keywords : now], for: .history)
-        } else {
-            var savedHistory = DefaultDB.getValue(for: .history)! as KeywordsHistory
-            savedHistory[keywords] = now
-            let sanitizedHistory = DefaultDB.sanitize(savedHistory)
-            DefaultDB.save(sanitizedHistory, for: .history)
-        }
-    }
     
     /// Returns the number of keywords that are part of the model's corpus
     /// As a Set is returned, the order and the repeatitiveness are not important
     /// - Parameter keywords: the text inserted or type by the user.
+    /// - Warning: This doesn't test against the REAL Corpus
+    /// - Note: Once the model is imcorporated this function must be updated
     private func listOfWordsInCorpus(for keywords: String) -> Set<String> {
         let wordsList = nlp.tokenizeByWords(keywords)
         return wordsList.filter { Constants.thousandWords.contains($0)}
@@ -249,6 +236,8 @@ extension SimpleAssistView {
     /// Returns the number of keywords that are part of the model's corpus
     /// As an Array is returned, the order and the repeatitiveness are crucial.
     /// - Parameter keywords: the text inserted or type by the user.
+    /// - Warning: This doesn't test against the REAL Corpus
+    /// - Note: Once the model is imcorporated this function must be updated
     private func listOfWordsInCorpusArray(for keywords: String) -> [String] {
         let list = nlp.tokenize(keywords).map{ $0.lowercased() }
         return list.filter { Constants.thousandWords.contains($0)}

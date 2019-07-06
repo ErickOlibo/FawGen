@@ -11,6 +11,7 @@ import UIKit
 class CheckerViewController: UIViewController {
     
     // MARK: - Properties
+    let dataBaseManager = DefaultDB()
     let reachability = Reachability()
     let navBar = SPFakeBarView.init(style: .stork)
     public let safeCharacters: Set<Character> = {

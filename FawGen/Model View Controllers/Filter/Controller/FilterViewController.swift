@@ -11,6 +11,7 @@ import UIKit
 class FilterViewController: UIViewController {
     
     public let closeButton = SPLarkSettingsCloseButton()
+    public var dataBaseManager = DefaultDB()
     public enum SettingCategory: Int, CaseIterable, Equatable, Hashable {
         case length = 1, type, symbol
     }
@@ -28,7 +29,6 @@ class FilterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
-        setupDataBase()
         setupCloseButton()
         setupSteppers()
         setupOnOffs()

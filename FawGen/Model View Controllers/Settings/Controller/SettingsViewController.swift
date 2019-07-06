@@ -11,7 +11,7 @@ import UIKit
 class SettingsViewController: UITableViewController {
     
     // MARK: - Properties
-    
+    let dataBaseManager = DefaultDB()
     
     // MARK: - Outlets
     @IBOutlet weak var historyCount: UILabel!
@@ -31,12 +31,8 @@ class SettingsViewController: UITableViewController {
     /// - Note: There is a need to implement a reset button
     /// for the history list
     private func updateUI() {
-        var historyStoredCount = 0
-        if let history = DefaultDB.getValue(for: .history)! as KeywordsHistory? {
-            historyStoredCount = history.count
-        }
-
-        historyCount.text = String(historyStoredCount)
+        let historySize = dataBaseManager.getHistory().count
+        historyCount.text = String(historySize)
         historyCount.textColor = FawGenColors.primary.color
     }
     

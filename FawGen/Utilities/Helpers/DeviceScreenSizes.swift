@@ -54,6 +54,12 @@ extension UIDevice {
         }
     }
     
+    public func currentScale() -> Int {
+        
+        return 0
+    }
+    
+    
     public func safeAreaBottomHeight() -> CGFloat {
         return hasSafeAreaBottomHeight() ? CGFloat(34.0) : CGFloat(0.0)
     }

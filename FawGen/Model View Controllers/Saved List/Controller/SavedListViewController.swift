@@ -12,6 +12,7 @@ class SavedListViewController: UITableViewController {
     
     // MARK: - Properties
     private let cellIdentifier = "SavedListCell"
+    private let dataBaseManager = DefaultDB()
     var savedList = [FakeWord]()
     var filteredList = [FakeWord]()
     let searchController = UISearchController(searchResultsController: nil)
@@ -19,7 +20,7 @@ class SavedListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSearchController()
-        savedList = DefaultDB.getSavedList().sorted{ $0.created > $1.created }
+        savedList = dataBaseManager.getSavedList().sorted{ $0.created > $1.created }
         navigationItem.title = "Saved List"
         tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
@@ -79,9 +80,11 @@ extension SavedListViewController {
         
         if editingStyle == .delete {
             if isFiltering() {
-                filteredList.remove(at: indexPath.row).removeFromList()
+                let removedFakeWord = filteredList.remove(at: indexPath.row)
+                dataBaseManager.removeFromList(removedFakeWord)
             } else {
-                savedList.remove(at: indexPath.row).removeFromList()
+                let removedFakeWord = savedList.remove(at: indexPath.row)
+                dataBaseManager.removeFromList(removedFakeWord)
             }
             
             tableView.deleteRows(at: [indexPath], with: .fade)
@@ -113,7 +116,7 @@ extension SavedListViewController {
         return searchController.searchBar.text?.isEmpty ?? true
     }
     
-    func filterContentForSearchText(_ searchText: String, scope: String = "All") {
+    func filterContentForSearchText(_ searchText: String) {
         filteredList = savedList.filter {$0.name.lowercased().contains(searchText.lowercased()) }.sorted{ $0.created > $1.created }
         tableView.reloadData()
     }

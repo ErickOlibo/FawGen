@@ -18,6 +18,7 @@ class FakeWordCell: UITableViewCell {
     private let newLine = "\n"
     private let root = "Root: "
     private let algo = "Algo: "
+    private let dataBaseManager = DefaultDB()
     
     
     enum CellState {
@@ -115,9 +116,9 @@ class FakeWordCell: UITableViewCell {
     
     private func toggleSave() {
         if fakeword.isSaved() {
-            fakeword.removeFromList()
+            dataBaseManager.removeFromList(fakeword)
         } else {
-            fakeword.addToList()
+            dataBaseManager.addToList(fakeword)
         }
         
         updateSave()

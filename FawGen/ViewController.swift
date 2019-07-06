@@ -141,12 +141,12 @@ class ViewController: UIViewController {
 //    }
     
     // Testing the Domain checker
-    private func getDomainAvailability(for domain: Domain) {
+    private func getDomainAvailability(for domain: String) {
         let domainViews = [DomainExtension.com : domainOne,
                            DomainExtension.net : domainTwo,
                            DomainExtension.org : domainThree,
                            DomainExtension.co : domainFour]
-        let domainName: Domain = domain.lowercased()
+        let domainName = domain.lowercased()
         let whoisQueryURLS = DomainChecker().whoisURLs(for: domainName, completeList: false)
         
         for (ext, queryURL) in whoisQueryURLS {

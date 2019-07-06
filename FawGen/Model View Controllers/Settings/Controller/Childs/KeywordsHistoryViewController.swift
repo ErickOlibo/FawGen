@@ -11,25 +11,17 @@ import UIKit
 class KeywordsHistoryViewController: UITableViewController {
     
     // MARK: - Properties
-    var historyList: [(String, Date)] {
-        var ordered = [(String, Date)]()
-        guard let list = DefaultDB.getValue(for: .history)! as KeywordsHistory?
-            else { return ordered }
-        ordered = list.sorted { $0.value > $1.value }
-        return ordered
+    let dataBaseManager = DefaultDB()
+    var historyList: [HistoryEntry] {
+        return dataBaseManager.getHistory().sorted { $0.value > $1.value }
     }
 
+    
+    // MARK: - ViewController LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
         tableView.delegate = self
         tableView.separatorStyle = .none
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
 }

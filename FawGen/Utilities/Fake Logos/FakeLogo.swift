@@ -8,9 +8,12 @@
 
 import UIKit
 
-struct FakeLogo {
+public struct FakeLogo {
+    
+    let scale = UIScreen.main.scale
     
     private(set) var name: String
+    private(set) var imageURL: URL?
     private(set) var backgroundColor: UIColor
     private(set) var primaryColor: UIColor
     private(set) var secondaryColor: UIColor
@@ -23,6 +26,7 @@ struct FakeLogo {
         self.primaryColor = colors[1]
         self.secondaryColor = colors[2]
         self.detailColor = colors[3]
+        self.imageURL = URL(string: UrlFor.fakeIconsFolder + "\(name)@\(Int(scale))x.png")
     }
     
     init() {
@@ -33,16 +37,16 @@ struct FakeLogo {
         self.detailColor = UIColor()
     }
     
-    public var allCases: [String : FakeLogo] {
-        var cases = [String : FakeLogo]()
-        for (name, _) in colorsData {
-            cases[name] = FakeLogo(name)
-        }
-        return cases
-    }
     
 }
 
+public func fakeLogoCollection() -> [String : FakeLogo] {
+    var cases = [String : FakeLogo]()
+    for (name, _) in colorsData {
+        cases[name] = FakeLogo(name)
+    }
+    return cases
+}
 
 
 private func logoColors(for name: String) -> [UIColor] {

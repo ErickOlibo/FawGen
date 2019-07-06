@@ -25,7 +25,7 @@ public class DomainChecker {
     ///     - completeList: Rather or not it should be the complete list of extensions
     /// or the simple list
     /// - Returns: a dictionary of the extension to the whoisURL query link
-    public func whoisURLs(for domain: Domain, completeList: Bool = true) -> [DomainExtension : String] {
+    public func whoisURLs(for domain: String, completeList: Bool = true) -> [DomainExtension : String] {
         var urlsCollection = [DomainExtension : String]()
         let lowDomain = domain.lowercased()
         
@@ -40,7 +40,7 @@ public class DomainChecker {
     ///     - domain: The domain name to query without its extension
     ///     - extension: the particular TLD extension to use
     /// - Returns: the whoisURL query to use against the whois server
-    public func whoisURL(for domain: Domain, extension ext: DomainExtension) -> String {
+    public func whoisURL(for domain: String, extension ext: DomainExtension) -> String {
         let lowDomain = domain.lowercased()
         return whoisAPI.createURL(lowDomain, extension: ext)
     }

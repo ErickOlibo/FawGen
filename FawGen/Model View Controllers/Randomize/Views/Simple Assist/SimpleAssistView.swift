@@ -12,6 +12,7 @@ class SimpleAssistView: UIView {
     
     // MARK: - Properties
     var simpleAssistDelegate: SimpleAssistDelegate?
+    let dataBaseManager = DefaultDB()
     enum StackViewState: String {
         case open
         case close

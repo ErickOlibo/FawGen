@@ -31,56 +31,7 @@ extension FakeWord {
         attrsRoot.append(algoType)
         return attrsRoot
     }
-    
-    
-//    /// Updates the list after a removeFromList has been performed
-//    private func updateSavedList(_ list: SavedList) {
-//        
-//        
-//    }
-    
-    /// Saves the current fakeWord to the SaveList in DefaultDatabase
-    public func addToList() {
-        do {
-            let encodeFakeWord = try PropertyListEncoder().encode(self)
-            if var savedList = DefaultDB.getValue(for: .list)! as SavedList? {
-                savedList[self.name] = encodeFakeWord
-                DefaultDB.save(savedList, for: .list)
-                print("[addToList] - LIST SIZE: \(savedList.count)")
-            } else {
-                DefaultDB.save([self.name : encodeFakeWord], for: .list)
-                print("SAVE LIST Initial Value")
-            }
-        } catch {
-            print("Encoding FakeWard failed with ERROR: \(error)")
-        }
-    }
-    
-    
-    /// Removes a fakeword from the list
-    public func removeFromList() {
-        guard var savedList = DefaultDB.getValue(for: .list)! as SavedList? else { return }
-        print("[removeFromList] - LIST BEFORE size: \(savedList.count)")
-        savedList.removeValue(forKey: self.name)
-        DefaultDB.save(savedList, for: .list)
-        print("[removeFromList] - LIST AFTER size: \(savedList.count)")
-        let list = savedList.map { $0.key }.sorted()
-        print(list)
-    }
-    
 
-    /// Returns if a fakeword is in the saveList by cheking if its name
-    /// is key to the dictionary
-    public func isSaved() -> Bool {
-        guard let savedList = DefaultDB.getValue(for: .list)! as SavedList? else { return false }
-        let saved = savedList[self.name] != nil
-        print("TESTING: [isSaved] for - \(self.name) ==> \(saved)")
-        return saved
-    }
-    
-    
-    
-    
     
 }
 

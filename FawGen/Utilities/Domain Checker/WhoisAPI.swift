@@ -14,7 +14,7 @@ public class WhoisAPI {
     /// - Parameters:
     ///     - domain: This is the domain name only without the extension
     ///     - extension: The domain extension to check for availability
-    public func createURL(_ domain: Domain, extension ext: DomainExtension) -> String {
+    public func createURL(_ domain: String, extension ext: DomainExtension) -> String {
         let lowDomain = domain.lowercased()
         let dot = "."
         let checkedExt = ext == .couk ? "co.uk" : ext.rawValue

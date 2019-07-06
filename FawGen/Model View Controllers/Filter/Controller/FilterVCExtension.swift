@@ -23,11 +23,11 @@ extension FilterViewController {
             stepper.maximumValue = minMax[1]
             switch category {
             case .length:
-                stepper.value = DefaultDB.getValue(for: .length)! as Double
+                stepper.value = dataBaseManager.lengthValue
             case .type:
-                stepper.value = DefaultDB.getValue(for: .type)! as Double
+                stepper.value = dataBaseManager.typeValue
             case .symbol:
-                stepper.value = DefaultDB.getValue(for: .symbol)! as Double
+                stepper.value = dataBaseManager.symbolValue
             }
             enabledStatus(for: stepper)
         }
@@ -40,11 +40,11 @@ extension FilterViewController {
             let currentValue = stepper.value
             switch stepper.tag {
             case 1:
-                DefaultDB.save(currentValue as Double, for: .length)
+                dataBaseManager.lengthValue = currentValue
             case 2:
-                DefaultDB.save(currentValue as Double, for: .type)
+                dataBaseManager.typeValue = currentValue
             case 3:
-                DefaultDB.save(currentValue as Double, for: .symbol)
+                dataBaseManager.symbolValue = currentValue
             default:
                 break
             }
@@ -130,11 +130,11 @@ extension FilterViewController {
         var onOffIsEnabled = false
         switch stepper.tag {
         case 1:
-            onOffIsEnabled = DefaultDB.getValue(for: .lengthOnOff)! as Bool
+            onOffIsEnabled = dataBaseManager.lengthStatus
         case 2:
-            onOffIsEnabled = DefaultDB.getValue(for: .typeOnOff)! as Bool
+            onOffIsEnabled = dataBaseManager.typeStatus
         case 3:
-            onOffIsEnabled = DefaultDB.getValue(for: .symbolOnOff)! as Bool
+            onOffIsEnabled = dataBaseManager.symbolStatus
         default:
             break
         }
@@ -162,11 +162,11 @@ extension FilterViewController {
     private func currentOnOffStatus(for sender: UIButton) -> Bool {
         switch sender.tag {
         case 1:
-            return DefaultDB.getValue(for: .lengthOnOff)! as Bool
+            return dataBaseManager.lengthStatus
         case 2:
-            return DefaultDB.getValue(for: .typeOnOff)! as Bool
+            return dataBaseManager.typeStatus
         case 3:
-            return DefaultDB.getValue(for: .symbolOnOff)! as Bool
+            return dataBaseManager.symbolStatus
         default:
             break
         }
@@ -181,13 +181,13 @@ extension FilterViewController {
         var stepper = TEOStepper()
         switch sender.tag {
         case 1:
-            DefaultDB.save(!status, for: .lengthOnOff)
+            dataBaseManager.lengthStatus = !status
             stepper = getStepper(for: .length)
         case 2:
-            DefaultDB.save(!status, for: .typeOnOff)
+            dataBaseManager.typeStatus = !status
             stepper = getStepper(for: .type)
         case 3:
-            DefaultDB.save(!status, for: .symbolOnOff)
+            dataBaseManager.symbolStatus = !status
             stepper = getStepper(for: .symbol)
         default:
             break
@@ -232,41 +232,6 @@ extension FilterViewController {
 }
 
 
-// MARK: - User Database
-// Extension for the UserDefaults initial state.
-// Should only be initialized at the first time FilterVC
-// is loaded.
-extension FilterViewController {
-    
-    /// Sets up the initial default values (at first run) for the Length, Type
-    /// and Symbol steppers and Buttons
-    public func setupDataBase() {
-        
-        if DefaultDB.getValue(for: .length)! as Double? == nil {
-            DefaultDB.save(8.0 as Double, for: .length)
-        }
-        
-        if DefaultDB.getValue(for: .lengthOnOff)! as Bool? == nil {
-            DefaultDB.save(false, for: .lengthOnOff)
-        }
-        
-        if DefaultDB.getValue(for: .type)! as Double? == nil {
-            DefaultDB.save(3.0 as Double, for: .type)
-        }
-        
-        if DefaultDB.getValue(for: .typeOnOff)! as Bool? == nil {
-            DefaultDB.save(false, for: .typeOnOff)
-        }
-        
-        if DefaultDB.getValue(for: .symbol)! as Double? == nil {
-            DefaultDB.save(3.0 as Double, for: .symbol)
-        }
-        
-        if DefaultDB.getValue(for: .symbolOnOff)! as Bool? == nil {
-            DefaultDB.save(false, for: .symbolOnOff)
-        }
-    }
-}
 
 
 // MARK: - Close Button
