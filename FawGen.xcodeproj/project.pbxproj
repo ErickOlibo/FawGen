@@ -210,6 +210,7 @@
 		A7B7E0DE22BEB73D00398289 /* NewSetHomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7B7E0DD22BEB73D00398289 /* NewSetHomeView.xib */; };
 		A7B7E0E022BEB75200398289 /* NewSetHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7E0DF22BEB75200398289 /* NewSetHomeView.swift */; };
 		A7B7E0E322BEFD3F00398289 /* GrowingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7E0E222BEFD3E00398289 /* GrowingTextView.swift */; };
+		A7E8576722D036E200E69846 /* FakeLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E8576622D036E200E69846 /* FakeLogo.swift */; };
 		A7EB4E2E22C39F9C007ED405 /* NewSetHomeView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EB4E2D22C39F9C007ED405 /* NewSetHomeView+Extension.swift */; };
 		A7EC016622A3667B0056E2C7 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC016522A3667B0056E2C7 /* GlobalConstants.swift */; };
 		A7EC016922A36E510056E2C7 /* UIFont+BestFit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC016822A36E510056E2C7 /* UIFont+BestFit.swift */; };
@@ -433,6 +434,7 @@
 		A7B7E0DD22BEB73D00398289 /* NewSetHomeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewSetHomeView.xib; sourceTree = "<group>"; };
 		A7B7E0DF22BEB75200398289 /* NewSetHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSetHomeView.swift; sourceTree = "<group>"; };
 		A7B7E0E222BEFD3E00398289 /* GrowingTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrowingTextView.swift; sourceTree = "<group>"; };
+		A7E8576622D036E200E69846 /* FakeLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeLogo.swift; sourceTree = "<group>"; };
 		A7EB4E2D22C39F9C007ED405 /* NewSetHomeView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewSetHomeView+Extension.swift"; sourceTree = "<group>"; };
 		A7EC016522A3667B0056E2C7 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
 		A7EC016822A36E510056E2C7 /* UIFont+BestFit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+BestFit.swift"; sourceTree = "<group>"; };
@@ -1460,6 +1462,14 @@
 			path = "Growing Text View";
 			sourceTree = "<group>";
 		};
+		A7E8576522D036B800E69846 /* Fake Logos */ = {
+			isa = PBXGroup;
+			children = (
+				A7E8576622D036E200E69846 /* FakeLogo.swift */,
+			);
+			path = "Fake Logos";
+			sourceTree = "<group>";
+		};
 		A7EC016422A366370056E2C7 /* Global Entities */ = {
 			isa = PBXGroup;
 			children = (
@@ -1545,6 +1555,7 @@
 		A7FC85F8229DDAAD002C386F /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				A7E8576522D036B800E69846 /* Fake Logos */,
 				A7789A5A22CA54A200F0D9A2 /* Reachability */,
 				A70C4BB722ADE0CA001BD6CC /* Animations */,
 				A70C4B8F22ACB6AD001BD6CC /* Natural Language Processing */,
@@ -1859,6 +1870,7 @@
 				A70C4AF922AA0675001BD6CC /* SPStorkControllerDelegate.swift in Sources */,
 				A70C4B2E22AA0675001BD6CC /* SPImageTableViewCell.swift in Sources */,
 				A70C4B3322AA0675001BD6CC /* SPVideoPlayer.swift in Sources */,
+				A7E8576722D036E200E69846 /* FakeLogo.swift in Sources */,
 				A70C4BBD22AE05F4001BD6CC /* FilterVCExtension.swift in Sources */,
 				A7EC016B22A36F1D0056E2C7 /* UILabel+BestFit.swift in Sources */,
 				A70C4B8222AA9626001BD6CC /* SettingsCell.swift in Sources */,

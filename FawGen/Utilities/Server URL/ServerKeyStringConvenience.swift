@@ -25,6 +25,7 @@ public struct UrlFor {
     static let privacy = UrlFor.webLink + "privacy.html"
     static let openSource = UrlFor.webLink + "open-source.html"
     static let disclaimer = UrlFor.webLink + "frequently.html"
+    static let fakeIconsFolder = UrlFor.fawgen + "Assets/xcassets/fakeIcons/"
     
     
 }

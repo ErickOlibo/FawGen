@@ -76,6 +76,7 @@ class DetailsViewController: UIViewController {
         setupSocialViews()
         setupSaveButton()
         
+        
         // Do any additional setup after loading the view.
     }
     
