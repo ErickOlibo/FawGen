@@ -33,6 +33,22 @@ public class FontsLister {
         printFonts()
     }
     
+    public func fontFamilyArray() -> [String] {
+        return UIFont.familyNames
+    }
+    
+    /// Collects all fontName and put them in an array
+    public func getAllFontNames() -> [String] {
+        var collection = [String]()
+        for family in UIFont.familyNames {
+            for fontName in UIFont.fontNames(forFamilyName: family) {
+                collection.append(fontName)
+            }
+        }
+        return collection
+    }
+    
+    
     
 }
 
@@ -44,11 +60,15 @@ private func pickRandomFont() -> String? {
 
 
 private func printFonts() {
-    print("Font name size: \(UIFont.familyNames.count)")
+    print("Font FamilyNames size: \(UIFont.familyNames.count)")
+    var count = 0
     for familyName in UIFont.familyNames {
-        print("\n-- \(familyName) \n")
+        
+        //print("\n-- \(familyName) \n")
         for fontName in UIFont.fontNames(forFamilyName: familyName) {
-            print(fontName)
+            count += 1
+            print("[\(count)] - Family: \(familyName) - Font: \(fontName)")
+            //print(fontName)
         }
     }
 }

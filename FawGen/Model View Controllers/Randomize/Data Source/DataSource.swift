@@ -83,6 +83,19 @@ extension DataSource {
         }
         return collection
     }
+    
+    public func getFontsToFakeword() -> [FakeWord] {
+        var collection = [FakeWord]()
+        let fontNames = FontsLister().getAllFontNames()
+        let listOfNames = randomListOfLogoNameOf(size: fontNames.count)
+        for idx in 0..<fontNames.count {
+            var fakeWord = FakeWord()
+            fakeWord.font = fontNames[idx]
+            fakeWord.logoName = listOfNames[idx]
+            collection.append(fakeWord)
+        }
+        return collection
+    }
 }
 
 extension DataSource: FakeWordCellDelegate {

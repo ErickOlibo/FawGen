@@ -21,9 +21,9 @@ public struct FakeWord: Codable {
     private(set) var name: String
     private(set) var madeUpRoots: String
     private(set) var madeUpType: MadeUpType
-    private(set) var font: String
+    public var font: String
     private(set) var logoBackColor: String
-    private(set) var logoName: String
+    public var logoName: String
     
     init() {
         self.created = Date()

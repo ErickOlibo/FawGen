@@ -42,7 +42,7 @@ class FakeWordCell: UITableViewCell {
 
     // Top View
     @IBOutlet weak var topView: UIView!
-    @IBOutlet private weak var logoBackground: UIView!
+    //@IBOutlet private weak var logoBackground: UIView!
     @IBOutlet private weak var madeUpLogo: CustomImageView!
     @IBOutlet private weak var fakeWordLabel: UILabel!
     @IBOutlet private weak var carret: UIImageView!
@@ -61,10 +61,10 @@ class FakeWordCell: UITableViewCell {
 
     // MARK: - Properties
     private let openedViewIndex: Int = 1
-    lazy var fakeLogo: FakeLogo = {
-        let logoName = fakeword.logoName
-        return FakeLogo(logoName)
-    }()
+//    lazy var fakeLogo: FakeLogo = {
+//        let logoName = fakeword.logoName
+//        return FakeLogo(logoName)
+//    }()
     
     var state: CellState = .closed { didSet { toggle() } }
     var fakeword: FakeWord! { didSet { update() } }
@@ -140,16 +140,21 @@ class FakeWordCell: UITableViewCell {
     /// - Parameter data: of type FakeWord containing the
     /// name, icon, color and other information
     public func update() {
-        
-        logoBackground.backgroundColor = .clear
-        print("LOGO NAME: \(fakeword.logoName)")
-        if let imageUrl = fakeLogo.imageURL {
-            madeUpLogo.loadImageUsing(imageUrl)
+        let fakeLogo = FakeLogo(fakeword.logoName)
+        //logoBackground.backgroundColor = .clear
+        if let logoUrl = fakeLogo.imageURL {
+            madeUpLogo.loadImageUsing(logoUrl)
         }
+
         if let logoImage = UIImage(named: fakeword.logoName) {
             madeUpLogo.image = logoImage
         }
+        let fakeWordFontSize = fakeWordLabel.font.pointSize
+        fakeWordLabel.font = UIFont(name: fakeword.font, size: fakeWordFontSize)
         fakeWordLabel.text = fakeword.name
+        // Test primary color for text
+        fakeWordLabel.textColor = fakeLogo.backgroundColor
+        
         let fontSize = rootTextLabel.font.pointSize
         let attributedRootText = fakeword.formatRootStoryText(fontSize: fontSize)
         rootTextLabel.attributedText = attributedRootText
@@ -157,6 +162,7 @@ class FakeWordCell: UITableViewCell {
         
         setupSave()
         updateSave()
+        print("DEFKUT --> \(fakeword.name) ==> [\(fakeword.font)] ==> \(fakeword.logoName)")
         
     }
     
