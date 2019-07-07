@@ -31,7 +31,37 @@ extension FakeWord {
         attrsRoot.append(algoType)
         return attrsRoot
     }
-
-    
 }
 
+
+let imageCache = NSCache<AnyObject, AnyObject>()
+
+class CustomImageView: UIImageView {
+    
+    var imageUrl: URL?
+    
+    public func loadImageUsing(_ url: URL) {
+        imageUrl = url
+        
+        image = nil
+        if let imageFromCache = imageCache.object(forKey: url as AnyObject) as? UIImage {
+            self.image = imageFromCache
+        }
+        
+        //guard let url = URL(string: urlString) else { return }
+        URLSession.shared.dataTask(with: url) { (data, reponses, error) in
+            if error != nil {
+                print(error!)
+                return
+            }
+            
+            DispatchQueue.main.async {
+                let imageToCache = UIImage(data: data!)
+                if self.imageUrl == url {
+                    self.image = imageToCache
+                }
+                imageCache.setObject(imageToCache!, forKey: url as AnyObject)
+            }
+        }.resume()
+    }
+}

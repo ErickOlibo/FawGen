@@ -11,7 +11,8 @@ import UIKit
 class DetailsViewController: UIViewController {
     
     // MARK: - Properties
-    public var isSaved: Bool = false
+    //public var isSaved: Bool = false
+    let dataBaseManager = DefaultDB()
     public let session = URLSession(configuration: .ephemeral)
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -69,12 +70,15 @@ class DetailsViewController: UIViewController {
         modalPresentationCapturesStatusBarAppearance = true
         view.backgroundColor = .white
         navigationItem.title = "Details"
+        saveButton.layer.cornerRadius = 5.0
         typedWord.text = fakeWord.name.uppercased()
         setRootStoryText()
         updateDomainSocialViewsConstraints()
         setupDomainViews()
         setupSocialViews()
-        setupSaveButton()
+        //setupSaveButton()
+        
+        updateSaveButtonUI()
         
         
         // Do any additional setup after loading the view.
@@ -114,24 +118,25 @@ class DetailsViewController: UIViewController {
     
     /// Toggles the UI/UX layout for the save button
     private func toggleSave() {
-        if isSaved {
-            saveButton.backgroundColor = .lightGray
-            saveButton.setTitle("save")
-            isSaved = false
+        if fakeWord.isSaved() {
+            dataBaseManager.removeFromList(fakeWord)
         } else {
+            dataBaseManager.addToList(fakeWord)
+        }
+        updateSaveButtonUI()
+    }
+    
+    private func updateSaveButtonUI() {
+        if fakeWord.isSaved() {
             saveButton.backgroundColor = FawGenColors.primary.color
             saveButton.setTitle("saved")
-            isSaved = true
+        } else {
+            saveButton.backgroundColor = .lightGray
+            saveButton.setTitle("save")
         }
     }
     
-    private func setupSaveButton() {
-        // Set up the state of button (save or not)
-        // depending on the situation in the Database
-        saveButton.layer.cornerRadius = 5.0
-        saveButton.backgroundColor = .lightGray
-        saveButton.setTitle("save")
-    }
+    
     private func setupDomainViews() {
         let orderedDomainViews = domainViews.sorted{ $0.tag < $1.tag }
         for (idx, domainView) in orderedDomainViews.enumerated() {

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+private var dataBaseManager = DefaultDB()
 
 public struct FakeWord: Codable {
     
@@ -72,7 +73,7 @@ public struct FakeWord: Codable {
     }()
     
     private let _logoName: String = {
-        return iconNames.randomElement() ?? "swift"
+        return dataBaseManager.randomFakeLogoName()
     }()
     
     

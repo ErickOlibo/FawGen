@@ -20,7 +20,6 @@ class FakeWordCell: UITableViewCell {
     private let algo = "Algo: "
     private let dataBaseManager = DefaultDB()
     
-    
     enum CellState {
         case closed
         case opened
@@ -44,7 +43,7 @@ class FakeWordCell: UITableViewCell {
     // Top View
     @IBOutlet weak var topView: UIView!
     @IBOutlet private weak var logoBackground: UIView!
-    @IBOutlet private weak var madeUpLogo: UIImageView!
+    @IBOutlet private weak var madeUpLogo: CustomImageView!
     @IBOutlet private weak var fakeWordLabel: UILabel!
     @IBOutlet private weak var carret: UIImageView!
     @IBOutlet private weak var saveWordButton: UIButton!
@@ -62,12 +61,13 @@ class FakeWordCell: UITableViewCell {
 
     // MARK: - Properties
     private let openedViewIndex: Int = 1
+    lazy var fakeLogo: FakeLogo = {
+        let logoName = fakeword.logoName
+        return FakeLogo(logoName)
+    }()
+    
     var state: CellState = .closed { didSet { toggle() } }
-    var fakeword: FakeWord! {
-        didSet {
-            update()
-        }
-    }
+    var fakeword: FakeWord! { didSet { update() } }
     var delegate: FakeWordCellDelegate?
 
     // MARK: - Actions
@@ -89,16 +89,11 @@ class FakeWordCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
-        setupCell()
+        saveWordButton.layer.cornerRadius = 15
         setupSocialDomain()
     }
     
-    
-    /// Updates all when the fakeWord is set
-    private func updateUI(){
-        update()
-        
-    }
+
     
     /// Sets the default UI for the domainViews and socialViews
     private func setupSocialDomain() {
@@ -139,16 +134,18 @@ class FakeWordCell: UITableViewCell {
         }
     }
     
-    
-    private func setupCell() {
-        saveWordButton.layer.cornerRadius = 15
-    }
+
     
     /// Updates the cell with the correct FaveWord entity
     /// - Parameter data: of type FakeWord containing the
     /// name, icon, color and other information
     public func update() {
-        logoBackground.backgroundColor = fakeword.logoBackColor.convertedToUIColor()
+        
+        logoBackground.backgroundColor = .clear
+        print("LOGO NAME: \(fakeword.logoName)")
+        if let imageUrl = fakeLogo.imageURL {
+            madeUpLogo.loadImageUsing(imageUrl)
+        }
         if let logoImage = UIImage(named: fakeword.logoName) {
             madeUpLogo.image = logoImage
         }

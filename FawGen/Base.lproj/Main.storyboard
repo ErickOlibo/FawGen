@@ -224,7 +224,7 @@
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6X1-D3-Eew" userLabel="Logo Background">
                                                                     <rect key="frame" x="0.0" y="0.0" width="60" height="80"/>
                                                                     <subviews>
-                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="swift" translatesAutoresizingMaskIntoConstraints="NO" id="0Xq-Zq-HTX" userLabel="Made Up Logo">
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="swift" translatesAutoresizingMaskIntoConstraints="NO" id="0Xq-Zq-HTX" userLabel="Made Up Logo" customClass="CustomImageView" customModule="FawGen" customModuleProvider="target">
                                                                             <rect key="frame" x="5" y="15" width="50" height="50"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="50" id="beb-0q-89J"/>

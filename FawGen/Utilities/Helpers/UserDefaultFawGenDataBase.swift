@@ -214,26 +214,14 @@ extension DefaultDB {
 }
 
 
-// MARK: - Steppers Length, Type, Symbol
+// MARK: - Random Logo Name and type
 extension DefaultDB {
-    
-//    public var lengthValue: Double {
-//
-//
-//    }
-    
-    public func getLengthValue() -> Double {
-        
-        return 0.0
+    /// This should in the future get a fake logo name by checking if the
+    /// name is already in the used one or the saved one
+    /// - Warning: Need to be updated later
+    public func randomFakeLogoName() -> String {
+        let idx = Int.random(in: 1...20)
+        return "A_\(idx)"
     }
     
-    public func getTypeValue() -> Double {
-        
-        return 0.0
-    }
-    
-    public func getSymbolValue() -> Double {
-        
-        return 0.0
-    }
 }
