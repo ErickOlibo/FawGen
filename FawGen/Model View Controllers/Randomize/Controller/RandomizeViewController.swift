@@ -19,6 +19,8 @@ class RandomizeViewController: UITableViewController {
         case assist
     }
     
+    public var isDisplacedUp: Bool = false
+    
     /// Represents the vertical displacement height when a child view
     /// controller is presented by the Parent. This height takes into
     /// consideration the SafeArea Bottom height (34px) find in all

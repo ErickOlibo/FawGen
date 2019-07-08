@@ -124,23 +124,28 @@ extension RandomizeViewController {
     /// Notifies when the keyboard is about to show in order the displace the view
     /// accordingly of the keyboard height
     @objc func keyboardWillShow(notification: NSNotification) {
-        printConsole("[keyboardWillShow]")
         guard let userInfo = notification.userInfo else { return }
-        printConsole("[keyboardWillShow] - userInfo")
         guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
-        printConsole("[keyboardWillShow] - keyboardSize")
         keyboardFrame = keyboardSize.cgRectValue
-        printConsole("[keyboardWillShow] - About to Displace")
-        view.frame.origin.y -= SimpleAssistDisplacement()
+        printConsole("[keyboardWillShow] - About to Displace UP")
+        if !isDisplacedUp {
+            view.frame.origin.y -= SimpleAssistDisplacement()
+            isDisplacedUp = true
+        }
+        
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-        printConsole("[keyboardWillHide]")
-        view.frame.origin.y += SimpleAssistDisplacement()
+        printConsole("[keyboardWillHide] - About to Displace DOWN")
+        if isDisplacedUp {
+            view.frame.origin.y += SimpleAssistDisplacement()
+            isDisplacedUp = false
+        }
+        
     }
     
     @objc func keyboardDidHide(notification: NSNotification) {
-        printConsole("[keyboardDidHide]")
+        printConsole("[keyboardDidHide] JUST HIDE!")
     }
     
     /// Displaces the SimpleAssistView in order to place it in respect of the
