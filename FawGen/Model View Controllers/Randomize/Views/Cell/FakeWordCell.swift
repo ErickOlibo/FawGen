@@ -42,7 +42,6 @@ class FakeWordCell: UITableViewCell {
 
     // Top View
     @IBOutlet weak var topView: UIView!
-    //@IBOutlet private weak var logoBackground: UIView!
     @IBOutlet private weak var madeUpLogo: CustomImageView!
     @IBOutlet private weak var fakeWordLabel: UILabel!
     @IBOutlet private weak var carret: UIImageView!
@@ -61,10 +60,6 @@ class FakeWordCell: UITableViewCell {
 
     // MARK: - Properties
     private let openedViewIndex: Int = 1
-//    lazy var fakeLogo: FakeLogo = {
-//        let logoName = fakeword.logoName
-//        return FakeLogo(logoName)
-//    }()
     
     var state: CellState = .closed { didSet { toggle() } }
     var fakeword: FakeWord! { didSet { update() } }
@@ -141,7 +136,6 @@ class FakeWordCell: UITableViewCell {
     /// name, icon, color and other information
     public func update() {
         let fakeLogo = FakeLogo(fakeword.logoName)
-        //logoBackground.backgroundColor = .clear
         if let logoUrl = fakeLogo.imageURL {
             madeUpLogo.loadImageUsing(logoUrl)
         }

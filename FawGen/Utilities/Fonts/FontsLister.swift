@@ -8,6 +8,8 @@
 
 import UIKit
 
+private let wrongFonts: Set<String> = ["BodoniOrnamentsITCTT", "FontAwesome"]
+
 /// Serves to list the system fonts and added fonts to the console
 /// and select a random font to use inside the application
 /// - Warning: The added font part is not implemented yet and
@@ -42,6 +44,7 @@ public class FontsLister {
         var collection = [String]()
         for family in UIFont.familyNames {
             for fontName in UIFont.fontNames(forFamilyName: family) {
+                guard !wrongFonts.contains(fontName) else { continue }
                 collection.append(fontName)
             }
         }

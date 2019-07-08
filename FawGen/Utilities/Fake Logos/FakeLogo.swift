@@ -8,6 +8,10 @@
 
 import UIKit
 
+private var takenLogoNames = Set<String>()
+private let abstract = "_Abstract"
+private let iteration = 10
+
 public struct FakeLogo {
     
     let scale = UIScreen.main.scale
@@ -67,6 +71,42 @@ public func randomListOfLogoNameOf(size: Int) -> [String] {
     let selected = listOfFakeLogoNames.shuffle().prefix(size)
     collection = Array(selected)
     return collection
+}
+
+public func updateWithLogoNames(_ collection: [FakeWord]) -> [FakeWord] {
+    var result = [FakeWord]()
+    for fakeWord in collection {
+        var fake = fakeWord
+        fake.logoName = randomLogoName(for: fake)
+        result.append(fake)
+    }
+    return result
+}
+
+private func randomLogoName(for fakeWord: FakeWord) -> String {
+    let firstL = fakeWord.name.prefix(1).uppercased()
+    guard let size = fakeLogoSpace[firstL] else { return abstract + "_1" }
+    guard let sizeAbs = fakeLogoSpace[abstract] else { return abstract + "_1" }
+    var numbIteration = 0
+    while numbIteration <= iteration {
+        numbIteration += 1
+        var name = String()
+        
+        if Bool.random() {
+            let rndInt = Int.random(in: 1...size)
+            name = firstL + "_\(rndInt)"
+            guard !takenLogoNames.contains(name) else { continue }
+            takenLogoNames.insert(name)
+        } else {
+            let rndInt = Int.random(in: 1...sizeAbs)
+            name = abstract + "_\(rndInt)"
+            guard !takenLogoNames.contains(name) else { continue }
+            takenLogoNames.insert(name)
+        }
+        return name
+    }
+    
+    return abstract + "_1"
 }
 
 private var listOfFakeLogoNames: [String] {
