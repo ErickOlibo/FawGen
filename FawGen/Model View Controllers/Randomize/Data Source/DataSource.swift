@@ -42,6 +42,7 @@ final class DataSource: NSObject, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! FakeWordCell
         let data = self[indexPath]
         cell.fakeword = data
+        cell.tag = indexPath.row
         //cell.update(data: data)
         cell.delegate = self
         cell.state = cellIsOpened(at: indexPath) ? .opened : .closed

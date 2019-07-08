@@ -8,7 +8,8 @@
 
 import UIKit
 
-private let wrongFonts: Set<String> = ["BodoniOrnamentsITCTT", "FontAwesome"]
+private let wrongFonts: Set<String> = ["BodoniOrnamentsITCTT", "FontAwesome", "PartyLetPlain", "SavoyeLetPlain", "Zapfino"]
+private let wrongFamily: Set<String> = ["Snell Roundhand", "Bodoni Ornaments", "FontAwesome", "Party LET", "Savoye LET", "Zapfino"]
 
 /// Serves to list the system fonts and added fonts to the console
 /// and select a random font to use inside the application
@@ -30,16 +31,12 @@ public class FontsLister {
     public func getAllFontNames() -> [String] {
         var collection = [String]()
         for family in UIFont.familyNames {
-
+            guard !wrongFamily.contains(family) else { continue }
             for fontName in UIFont.fontNames(forFamilyName: family) {
-                guard !wrongFonts.contains(fontName) else {
-                    print("WRONG FONT NAMED: \(fontName)")
-                    continue
-
-                }
                 collection.append(fontName)
             }
         }
+        
         print("[getAllFontNames] COLLECTION SIZE: \(collection.count)")
         var count = 0
         for item in collection {
