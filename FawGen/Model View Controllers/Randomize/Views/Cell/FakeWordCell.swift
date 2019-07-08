@@ -15,9 +15,9 @@ protocol FakeWordCellDelegate {
 class FakeWordCell: UITableViewCell {
     
     // Properties
-    private let newLine = "\n"
-    private let root = "Root: "
-    private let algo = "Algo: "
+    //private let newLine = "\n"
+    //private let root = "Root: "
+    //private let algo = "Algo: "
     private let dataBaseManager = DefaultDB()
     
     enum CellState {
@@ -147,7 +147,8 @@ class FakeWordCell: UITableViewCell {
         fakeWordLabel.font = UIFont(name: fakeword.font, size: fakeWordFontSize)
         fakeWordLabel.text = fakeword.name
         // Test primary color for text
-        fakeWordLabel.textColor = fakeLogo.backgroundColor
+        
+        fakeWordLabel.textColor = fakeword.themeColor.convertedToUIColor() //fakeLogo.backgroundColor
         
         let fontSize = rootTextLabel.font.pointSize
         let attributedRootText = fakeword.formatRootStoryText(fontSize: fontSize)
@@ -156,7 +157,8 @@ class FakeWordCell: UITableViewCell {
         
         setupSave()
         updateSave()
-        print("DEFKUT --> \(fakeword.name) ==> [\(fakeword.font)] ==> \(fakeword.logoName)")
+        let cellNum = self.tag
+        print("DEFKUT[\(cellNum)] --> \(fakeword.name) ==> [\(fakeword.font)] ==> \(fakeword.logoName)")
         
     }
     

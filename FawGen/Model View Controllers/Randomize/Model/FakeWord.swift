@@ -22,7 +22,7 @@ public struct FakeWord: Codable {
     private(set) var madeUpRoots: String
     private(set) var madeUpType: MadeUpType
     public var font: String
-    private(set) var logoBackColor: String
+    public var themeColor: String
     public var logoName: String
     
     init() {
@@ -31,7 +31,7 @@ public struct FakeWord: Codable {
         self.madeUpRoots = _madeUpRoots
         self.madeUpType = _madeUpType
         self.font = _font
-        self.logoBackColor = _logoBackColor
+        self.themeColor = _themeColor
         self.logoName = _logoName
     }
     
@@ -42,7 +42,7 @@ public struct FakeWord: Codable {
         self.madeUpRoots = String()
         self.madeUpType = madeUpType
         self.font = String()
-        self.logoBackColor = String() //"#EFEEF3"
+        self.themeColor = String() //"#EFEEF3"
         self.logoName = String()
     }
     
@@ -63,17 +63,19 @@ public struct FakeWord: Codable {
     }()
 
     private let _font: String = {
-        let fontLister = FontsLister()
-        guard let rndFont = fontLister.randomFont() else { return "AvenirNext-Bold" }
-        return rndFont
+//        let fontLister = FontsLister()
+//        guard let rndFont = fontLister.randomFont() else { return "AvenirNext-Bold" }
+        return "AvenirNext-Bold"
     }()
     
-    private let _logoBackColor: String = {
-        return Constants.thousandColors.randomElement() ?? "#F6511D" // Not good but ok for now
+    private let _themeColor: String = {
+        return "#F6511D"
+        //return Constants.thousandColors.randomElement() ?? "#F6511D" // Not good but ok for now
     }()
     
     private let _logoName: String = {
-        return dataBaseManager.randomFakeLogoName()
+        //return dataBaseManager.randomFakeLogoName()
+        return "_Abstract_1"
     }()
     
     

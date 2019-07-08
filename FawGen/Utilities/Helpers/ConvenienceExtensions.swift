@@ -14,8 +14,9 @@ extension FakeWord {
     /// Formats the text of the roots of the creation of that word
     /// with the appropriate formating for the rootTextLabel
     func formatRootStoryText(fontSize: CGFloat) -> NSMutableAttributedString {
+        let info = "[\(self.logoName) - \(self.font)] --> "
         let newLine = "\n"
-        let root = "Root: "
+        let root = info + "Root: "
         let algo = "Algo: "
         let rootText = NSMutableAttributedString(string: self.madeUpRoots)
         let algoType = NSAttributedString(string: self.madeUpType.rawValue)

@@ -36,7 +36,7 @@ class SavedListCell: UITableViewCell {
     
     /// Updates all that is necessary
     private func update() {
-        verticalBarView.backgroundColor = fakeword.logoBackColor.convertedToUIColor()
+        verticalBarView.backgroundColor = fakeword.themeColor.convertedToUIColor()
         fakeWordLabel.text = fakeword.name.uppercased()
         algoAndTimeLabel.text = fakeword.madeUpType.rawValue.capitalized
         guard let iconTime = FAType.FAClockO.text else { return }

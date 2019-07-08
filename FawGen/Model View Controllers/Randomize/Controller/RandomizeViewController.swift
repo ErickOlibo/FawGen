@@ -166,7 +166,7 @@ extension RandomizeViewController: NewSetHomeDelegate {
     
     
     private func prepareForShowingSimpleAssist() {
-        let newItems = dataSource.getRandomItems(count: 0)
+        let newItems = dataSource.getEmptyItems()
         tableView.beginUpdates()
         let rowsCount = tableView.numberOfRows(inSection: 0)
         let indexPaths = (0..<rowsCount).map { IndexPath(row: $0, section: 0)}
@@ -213,7 +213,6 @@ extension RandomizeViewController: SimpleAssistDelegate {
         }
         
         // Variable to be replaces by words from model
-        //let newItems = dataSource.getRandomItems(count: 20)
         // Used to be 20
         let size = fontNamesList.count
         let newItems = getNewRandomItems(count: size)
@@ -241,17 +240,7 @@ extension RandomizeViewController: SimpleAssistDelegate {
     
     /// Makes sure the words were not used before
     private func getNewRandomItems(count: Int) -> [FakeWord] {
-        
-//        var newList = [FakeWord]()
-//        while newList.count < count {
-//            let rand = dataSource.getRandomItems(count: 1)[0]
-//            guard !alreadyFakewords.contains(rand.name) else { continue }
-//            newList.append(rand)
-//        }
-//        alreadyFakewords.formUnion(newList.map{ $0.name } )
-//        return newList
-        
-        // New implementation
+
         return dataSource.getFontsToFakeword()
         
     }

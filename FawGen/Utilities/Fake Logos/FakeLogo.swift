@@ -66,6 +66,12 @@ private func logoColors(for name: String) -> [UIColor] {
     return colors
 }
 
+private func logoColorsHex(for name: String) -> [String] {
+    let colors = logoColors(for: name)
+    let colorsInHex = colors.map{ $0.convertedToHEXColor() }
+    return colorsInHex
+}
+
 public func randomListOfLogoNameOf(size: Int) -> [String] {
     var collection = [String]()
     let selected = listOfFakeLogoNames.shuffle().prefix(size)
@@ -78,10 +84,16 @@ public func updateWithLogoNames(_ collection: [FakeWord]) -> [FakeWord] {
     for fakeWord in collection {
         var fake = fakeWord
         fake.logoName = randomLogoName(for: fake)
+        let colors = logoColorsHex(for: fake.logoName)
+        if colors[0] != String() {
+            fake.themeColor = colors[0]
+        }
         result.append(fake)
     }
     return result
 }
+
+
 
 private func randomLogoName(for fakeWord: FakeWord) -> String {
     let firstL = fakeWord.name.prefix(1).uppercased()

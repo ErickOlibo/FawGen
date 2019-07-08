@@ -63,8 +63,8 @@ class ViewController: UIViewController {
     }
     
     private func getNewFontName() -> String? {
-        let fontLister = FontsLister()
-        return fontLister.randomFont()
+
+        return nil
     }
     
     private func updateUItext() {

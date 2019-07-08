@@ -38,7 +38,6 @@ final class DataSource: NSObject, UITableViewDataSource {
         return items.count
     }
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! FakeWordCell
         let data = self[indexPath]
@@ -76,38 +75,24 @@ extension DataSource {
 
 
 extension DataSource {
-    public func getRandomItems(count: Int) -> [FakeWord] {
+    public func getEmptyItems() -> [FakeWord] {
+        return [FakeWord]()
+    }
+
+    public func getFontsToFakeword() -> [FakeWord] {
+        let fontNames = FontsLister().getAllFontNames()
         var collection = [FakeWord]()
-        for _ in 0..<count {
+        for _ in 0..<fontNames.count {
             collection.append(FakeWord())
         }
-        return collection
-    }
-    
-    public func getFontsToFakeword() -> [FakeWord] {
-        //var collection = [FakeWord]()
-        
-        let fontNames = FontsLister().getAllFontNames()
-        //var fakeWordCollection = Array(repeating: FakeWord(), count: fontNames.count)
-        var tmpCollection: [FakeWord] {
-            var collection = [FakeWord]()
-            for _ in 0..<fontNames.count {
-                collection.append(FakeWord())
-            }
-            return collection
-        }
-        
-        var fakeWordCollection = updateWithLogoNames(tmpCollection)
-        //let listOfNames = randomListOfLogoNameOf(size: fontNames.count)
-        for idx in 0..<fontNames.count {
-            var fakeWord = fakeWordCollection[idx]
-            fakeWord.font = fontNames[idx]
-            //fakeWord.logoName = listOfNames[idx]
-            //collection.append(fakeWord)
+        var fakeWordCollection = updateWithLogoNames(collection)
+        for (idx, _) in fakeWordCollection.enumerated() {
+            fakeWordCollection[idx].font =  fontNames[idx]
         }
         return fakeWordCollection
     }
 }
+
 
 extension DataSource: FakeWordCellDelegate {
     func didTapShowDetails(fakeWord: FakeWord) {

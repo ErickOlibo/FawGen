@@ -16,17 +16,7 @@ private let wrongFonts: Set<String> = ["BodoniOrnamentsITCTT", "FontAwesome"]
 /// requires some investigation
 public class FontsLister {
     
-    init () {
-        
-    }
-    /// randomizes the selection of an unique font from the font present in
-    /// the system.
-    /// - Returns: an optional String as the font name
-    /// - Remarks: the font name includes the type (normal, italic, regular, etc..),
-    /// therefore this method does not give the opion to choose its type
-    public func randomFont() -> String? {
-        return pickRandomFont()
-    }
+
     
     /// prints the list of font currently register by the system to the xcode console
     /// - Note: This is not a method that has any use for distribution environment
@@ -35,18 +25,26 @@ public class FontsLister {
         printFonts()
     }
     
-    public func fontFamilyArray() -> [String] {
-        return UIFont.familyNames
-    }
     
     /// Collects all fontName and put them in an array
     public func getAllFontNames() -> [String] {
         var collection = [String]()
         for family in UIFont.familyNames {
+
             for fontName in UIFont.fontNames(forFamilyName: family) {
-                guard !wrongFonts.contains(fontName) else { continue }
+                guard !wrongFonts.contains(fontName) else {
+                    print("WRONG FONT NAMED: \(fontName)")
+                    continue
+
+                }
                 collection.append(fontName)
             }
+        }
+        print("[getAllFontNames] COLLECTION SIZE: \(collection.count)")
+        var count = 0
+        for item in collection {
+            count += 1
+            print("[\(count)] - FontName: \(item)")
         }
         return collection
     }
@@ -55,11 +53,11 @@ public class FontsLister {
     
 }
 
-private func pickRandomFont() -> String? {
-    guard let randomFamily = UIFont.familyNames.randomElement() else { return nil }
-    guard let randomFontName = UIFont.fontNames(forFamilyName: randomFamily).randomElement() else { return nil }
-    return randomFontName
-}
+//private func pickRandomFont() -> String? {
+//    guard let randomFamily = UIFont.familyNames.randomElement() else { return nil }
+//    guard let randomFontName = UIFont.fontNames(forFamilyName: randomFamily).randomElement() else { return nil }
+//    return randomFontName
+//}
 
 
 private func printFonts() {
