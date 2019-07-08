@@ -158,7 +158,7 @@ class FakeWordCell: UITableViewCell {
         setupSave()
         updateSave()
         let cellNum = self.tag
-        print("DEFKUT[\(cellNum)] --> \(fakeword.name) ==> [\(fakeword.font)] ==> \(fakeword.logoName)")
+        printConsole("DEFKUT[\(cellNum)] --> \(fakeword.name) ==> [\(fakeword.font)] ==> \(fakeword.logoName)")
         
     }
     
@@ -292,7 +292,7 @@ class FakeWordCell: UITableViewCell {
                     }
                 } else {
                     domainView.status = .unknown
-                    print("Error: \(String(describing: error))")
+                    printConsole("Error: \(String(describing: error))")
                 }
             }
             task.resume()

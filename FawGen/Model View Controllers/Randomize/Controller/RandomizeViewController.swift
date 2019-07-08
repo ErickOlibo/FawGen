@@ -9,6 +9,10 @@
 import UIKit
 
 class RandomizeViewController: UITableViewController {
+    private enum ObserverState {
+        case add
+        case remove
+    }
     
     public enum LetsGoType: String {
         case simple
@@ -28,7 +32,7 @@ class RandomizeViewController: UITableViewController {
     public let heightButtonsToLetsGo: CGFloat = 60
     public var alreadyFakewords = Set<String>() {
         didSet {
-            print("ALREADY GENERATED: \(alreadyFakewords.count)")
+            printConsole("ALREADY GENERATED: \(alreadyFakewords.count)")
         }
     }
     
@@ -46,37 +50,29 @@ class RandomizeViewController: UITableViewController {
         // Print Fonts
         //FontsLister().printListToConsole()
 
-        // Add observers
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidHide), name: UIResponder.keyboardDidHideNotification, object: nil)
     }
     
-//    override func viewWillLayoutSubviews() {
-//
-//    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("ViewWillAppear in [RandomizeViewController]")
+        printConsole("ViewWillAppear in [RandomizeViewController]")
         simpleAssistOrNewSetHomeUI()
+        keyboardNotificationHandler(.add)
         tableView.reloadData()
     }
     
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        // remove all views from theh footerView
+        printConsole("viewWillDisappear in [RandomizeViewController]")
         if let subViews = tableView.tableFooterView?.subviews {
             for view in subViews {
                 view.removeFromSuperview()
             }
         }
+        keyboardNotificationHandler(.remove)
         
-        // Remove Observers
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidHideNotification, object: nil)
     }
     
     private func setupTableView() {
@@ -95,11 +91,30 @@ class RandomizeViewController: UITableViewController {
 
 extension RandomizeViewController {
     
+    /// Place to remove or add keyboard notification handler
+    private func keyboardNotificationHandler(_ state: ObserverState) {
+        
+        switch state {
+        case .add:
+            // Add observers
+            NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidHide), name: UIResponder.keyboardDidHideNotification, object: nil)
+        case .remove:
+            // Remove Observers
+            NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+            NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+            NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidHideNotification, object: nil)
+            
+        }
+    }
+    
     /// Selects the right TableFooterView to present. Depending on the
     /// size of the DataSource Items count. If 0 then AssistHome, else
     /// NewSetHome
     private func simpleAssistOrNewSetHomeUI() {
         if dataSource.items.count > 0 {
+            tableView.isScrollEnabled = true
             let viewBounds = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 60)
             let newSetHomeView = NewSetHomeView(frame: viewBounds)
             newSetHomeView.newSetHomeDelegate = self
@@ -109,6 +124,8 @@ extension RandomizeViewController {
             let simpleAssistView = SimpleAssistView(frame: tableView.bounds)
             simpleAssistView.simpleAssistDelegate = self
             tableView.tableFooterView = simpleAssistView
+            tableView.isScrollEnabled = false
+            printConsole("[FooterView Bounds] - \(tableView.tableFooterView!.bounds)")
         }
     }
 }
@@ -205,11 +222,11 @@ extension RandomizeViewController: SimpleAssistDelegate {
         case .simple:
             // Get the New Items from the DataShource to Display
             // This is the random one
-            print("Get X random words from model")
+            printConsole("Get X random words from model")
         case .assist:
             // Get the new Items from the Keyboards and vector space from
             // Model
-            print("With KEYWORDS, get X random words from model")
+            printConsole("With KEYWORDS, get X random words from model")
         }
         
         // Variable to be replaces by words from model

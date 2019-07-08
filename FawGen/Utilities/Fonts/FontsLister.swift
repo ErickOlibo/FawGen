@@ -11,6 +11,8 @@ import UIKit
 private let wrongFonts: Set<String> = ["BodoniOrnamentsITCTT", "FontAwesome", "PartyLetPlain", "SavoyeLetPlain", "Zapfino"]
 private let wrongFamily: Set<String> = ["Snell Roundhand", "Bodoni Ornaments", "FontAwesome", "Party LET", "Savoye LET", "Zapfino"]
 
+private let maxListSize = 30
+
 /// Serves to list the system fonts and added fonts to the console
 /// and select a random font to use inside the application
 /// - Warning: The added font part is not implemented yet and
@@ -37,13 +39,15 @@ public class FontsLister {
             }
         }
         
-        print("[getAllFontNames] COLLECTION SIZE: \(collection.count)")
+        printConsole("[getAllFontNames] COLLECTION SIZE: \(collection.count)")
         var count = 0
         for item in collection {
             count += 1
-            print("[\(count)] - FontName: \(item)")
+            printConsole("[\(count)] - FontName: \(item)")
         }
-        return collection
+        collection.shuffle()
+        let sample = collection.prefix(maxListSize)
+        return Array(sample)
     }
     
     
@@ -58,14 +62,14 @@ public class FontsLister {
 
 
 private func printFonts() {
-    print("Font FamilyNames size: \(UIFont.familyNames.count)")
+    printConsole("Font FamilyNames size: \(UIFont.familyNames.count)")
     var count = 0
     for familyName in UIFont.familyNames {
         
         //print("\n-- \(familyName) \n")
         for fontName in UIFont.fontNames(forFamilyName: familyName) {
             count += 1
-            print("[\(count)] - Family: \(familyName) - Font: \(fontName)")
+            printConsole("[\(count)] - Family: \(familyName) - Font: \(fontName)")
             //print(fontName)
         }
     }

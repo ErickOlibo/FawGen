@@ -27,7 +27,7 @@ class SavedListViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("ViewWillAppear")
+        printConsole("ViewWillAppear")
     }
 
     // MARK: - Table view data source

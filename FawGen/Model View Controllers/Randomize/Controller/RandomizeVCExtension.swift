@@ -100,7 +100,7 @@ extension RandomizeViewController {
     /// Presents as push transition the FavoritesView controller
     /// - Warning: Missing implementation for FavoritesViewController
     @objc private func presentSavedListViewController() {
-        print("pushedSavedListButton")
+        printConsole("pushedSavedListButton")
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let savedListVC = storyBoard.instantiateViewController(withIdentifier: "SavedListVC") as! SavedListViewController
         self.navigationController?.pushViewController(savedListVC, animated: true)
@@ -124,35 +124,48 @@ extension RandomizeViewController {
     /// Notifies when the keyboard is about to show in order the displace the view
     /// accordingly of the keyboard height
     @objc func keyboardWillShow(notification: NSNotification) {
+        printConsole("[keyboardWillShow]")
         guard let userInfo = notification.userInfo else { return }
+        printConsole("[keyboardWillShow] - userInfo")
         guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+        printConsole("[keyboardWillShow] - keyboardSize")
         keyboardFrame = keyboardSize.cgRectValue
+        printConsole("[keyboardWillShow] - About to Displace")
         view.frame.origin.y -= SimpleAssistDisplacement()
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
+        printConsole("[keyboardWillHide]")
         view.frame.origin.y += SimpleAssistDisplacement()
     }
     
-    @objc func keyboardDidHide(notification: NSNotification) {}
+    @objc func keyboardDidHide(notification: NSNotification) {
+        printConsole("[keyboardDidHide]")
+    }
     
     /// Displaces the SimpleAssistView in order to place it in respect of the
     /// newly displayed keyboard
     private func SimpleAssistDisplacement() -> CGFloat {
+        printConsole("FooterView in SimpleAssistDisplacement")
         let displacement = 0.0 + (UIDevice().safeAreaBottomHeight() / 2)
         let keyboardHeight = keyboardFrame.height
         guard let footer = tableView.tableFooterView?.bounds else { return displacement }
+        
         let heightBelow = (footer.height / 2) - halfHeightSimpleAssistView - 10.0
         switch  keyboardHeight {
         case let height where height == heightBelow:
+            printConsole("[A-SADisplacement] FooterView Bounds: \(footer) - Displacement: \(displacement) - HeightBelow: \(heightBelow)")
             return displacement
         case let height where height < heightBelow:
+            printConsole("[B-SADisplacement] FooterView Bounds: \(footer) - Displacement: \(displacement) - HeightBelow: \(heightBelow)")
             return heightBelow - height + displacement
         case let height where height > heightBelow:
+            printConsole("[C-SADisplacement] FooterView Bounds: \(footer) - Displacement: \(displacement) - HeightBelow: \(heightBelow)")
             return height - heightBelow + displacement
         default:
             break
         }
+        printConsole("[D-SADisplacement] FooterView Bounds: \(footer) - Displacement: \(displacement) - HeightBelow: \(heightBelow)")
         return displacement
     }
     
@@ -162,7 +175,7 @@ extension RandomizeViewController {
 extension RandomizeViewController: DataSourceDelegate {
     func didTapShowDetailsReport(fakeWord: FakeWord) {
         presentDetailsViewController(fakeWord)
-        print("[RandomizeViewController: DataSourceDelegate] Forward Tapped Report \(fakeWord.name)")
+        printConsole("[RandomizeViewController: DataSourceDelegate] Forward Tapped Report \(fakeWord.name)")
     }
     
    

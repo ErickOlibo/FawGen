@@ -54,14 +54,14 @@ extension DetailsViewController {
                     }
                 } else {
                     domainView.status = .unknown
-                    print("Error: \(String(describing: error))")
+                    printConsole("Error: \(String(describing: error))")
                 }
                 domainGroup.leave()
             }
             task.resume()
         }
         domainGroup.notify(queue: .main) {
-            print("DOMAIN Lookup DONE!")
+            printConsole("DOMAIN Lookup DONE!")
 
         }
     }
@@ -109,7 +109,7 @@ extension DetailsViewController {
             task.resume()
         }
         socialGroup.notify(queue: .main) {
-            print("SOCIAL Lookup DONE!")
+            printConsole("SOCIAL Lookup DONE!")
 
         }
         

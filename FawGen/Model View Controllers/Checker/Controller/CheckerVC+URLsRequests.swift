@@ -55,7 +55,7 @@ extension CheckerViewController {
                     }
                 } else {
                     domainView.status = .unknown
-                    print("Error: \(String(describing: error))")
+                    printConsole("Error: \(String(describing: error))")
                 }
                 domainGroup.leave()
             }

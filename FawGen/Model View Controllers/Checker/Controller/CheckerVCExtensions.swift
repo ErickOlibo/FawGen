@@ -67,12 +67,12 @@ extension CheckerViewController {
     }
     
     private func setUserNotificationForNoInternet() {
-        print("setUserNotificationForNoInternet")
+        printConsole("setUserNotificationForNoInternet")
     }
     
     public func whichInternetConnection() {
         let status = reachability.networkStatus()
-        print("REACHABILITY: \(status.rawValue)")
+        printConsole("REACHABILITY: \(status.rawValue)")
         
     }
     
@@ -111,7 +111,7 @@ extension CheckerViewController {
 
 extension CheckerViewController: TextFieldCounterDelegate {
     func didReachMaxLength(textField: TextFieldCounter) {
-        print("didReachMaxLength")
+        printConsole("didReachMaxLength")
     }
 }
 

@@ -52,7 +52,7 @@ class CustomImageView: UIImageView {
         //guard let url = URL(string: urlString) else { return }
         URLSession.shared.dataTask(with: url) { (data, reponses, error) in
             if error != nil {
-                print(error!)
+                printConsole("\(error!)")
                 return
             }
             
@@ -65,4 +65,9 @@ class CustomImageView: UIImageView {
             }
         }.resume()
     }
+}
+
+public func printConsole(_ text: String) {
+    let filter = " |||"
+    print(text + filter)
 }

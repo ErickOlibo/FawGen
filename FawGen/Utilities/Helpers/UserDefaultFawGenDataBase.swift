@@ -125,7 +125,7 @@ extension DefaultDB {
                 let fakeword = try PropertyListDecoder().decode(FakeWord.self, from: data)
                 list.append(fakeword)
             } catch {
-                print("[getSavedList] Issue while Decoding Data with Error: \(error)")
+                printConsole("[getSavedList] Issue while Decoding Data with Error: \(error)")
             }
         }
         return list
@@ -141,7 +141,7 @@ extension DefaultDB {
                 DefaultDB.save([fakeWord.name : encodeFakeWord], for: .list)
             }
         } catch {
-            print("Encoding FakeWard failed with ERROR: \(error)")
+            printConsole("Encoding FakeWard failed with ERROR: \(error)")
         }
     }
     
@@ -152,7 +152,7 @@ extension DefaultDB {
         
         // Print to console list for checking purpose
         let list = savedList.map { $0.key }.sorted()
-        print(list)
+        printConsole("\(list)")
     }
     
     

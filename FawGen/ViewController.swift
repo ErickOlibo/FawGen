@@ -175,7 +175,7 @@ class ViewController: UIViewController {
                     }
                 } else {
                     domainView.status = .taken
-                    print("Error: \(String(describing: error))")
+                    printConsole("Error: \(String(describing: error))")
                 }
             }
             task.resume()
