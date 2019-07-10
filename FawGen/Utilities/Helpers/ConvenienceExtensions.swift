@@ -44,7 +44,7 @@ class CustomImageView: UIImageView {
     public func loadImageUsing(_ url: URL) {
         imageUrl = url
         
-        image = nil
+        image = #imageLiteral(resourceName: "MissingLogo")
         if let imageFromCache = imageCache.object(forKey: url as AnyObject) as? UIImage {
             self.image = imageFromCache
         }

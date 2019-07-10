@@ -140,9 +140,9 @@ class FakeWordCell: UITableViewCell {
             madeUpLogo.loadImageUsing(logoUrl)
         }
 
-        if let logoImage = UIImage(named: fakeword.logoName) {
-            madeUpLogo.image = logoImage
-        }
+//        if let logoImage = UIImage(named: fakeword.logoName) {
+//            madeUpLogo.image = logoImage
+//        }
         let fakeWordFontSize = fakeWordLabel.font.pointSize
         fakeWordLabel.font = UIFont(name: fakeword.font, size: fakeWordFontSize)
         fakeWordLabel.text = fakeword.name
