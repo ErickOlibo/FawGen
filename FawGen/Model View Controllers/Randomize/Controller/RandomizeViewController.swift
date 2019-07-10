@@ -20,6 +20,7 @@ class RandomizeViewController: UITableViewController {
     }
     
     public var isDisplacedUp: Bool = false
+    public let reachability = Reachability()
     
     /// Represents the vertical displacement height when a child view
     /// controller is presented by the Parent. This height takes into

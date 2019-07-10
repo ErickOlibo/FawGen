@@ -122,7 +122,7 @@ class CheckerViewController: UIViewController {
         // Check for reachability
         if reachability.networkStatus() == .unavailable {
             printConsole("internet IS NOT available")
-            let controller = UIAlertController(title: "No Internet Detected", message: "FawGen app requires an Internet connection to check handles and domains availabilities", preferredStyle: .alert)
+            let controller = UIAlertController(title: "No Internet Detected!", message: "FawGen app requires an Internet connection to check handles and domains availabilities", preferredStyle: .alert)
             let ok = UIAlertAction(title: "OK", style: .default) { (alert) in self.hide() }
             let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (alert) in self.hide() }
             

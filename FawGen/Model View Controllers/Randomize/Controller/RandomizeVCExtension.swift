@@ -179,9 +179,15 @@ extension RandomizeViewController {
 
 extension RandomizeViewController: DataSourceDelegate {
     func didTapShowDetailsReport(fakeWord: FakeWord) {
-        presentDetailsViewController(fakeWord)
-        printConsole("[RandomizeViewController: DataSourceDelegate] Forward Tapped Report \(fakeWord.name)")
+        if reachability.networkStatus() == .unavailable {
+            if let controller = reachability.internetConnectionAlertController() {
+                present(controller, animated: true, completion: nil)
+            }
+        } else {
+            presentDetailsViewController(fakeWord)
+        }
     }
+    
     
    
 }

@@ -19,6 +19,7 @@ class FakeWordCell: UITableViewCell {
     //private let root = "Root: "
     //private let algo = "Algo: "
     private let dataBaseManager = DefaultDB()
+    private let reachability = Reachability()
     
     enum CellState {
         case closed
@@ -70,10 +71,12 @@ class FakeWordCell: UITableViewCell {
         sender.pulse()
         toggleSave()
     }
+    
     @IBAction func tappedDetailedReport(_ sender: UIButton) {
         sender.pulse()
         delegate?.didTapShowDetails(fakeWord: fakeword)
     }
+    
     @IBAction func tappedTextToSpeech(_ sender: UIButton) {
         sender.pulse()
         let tts = TextToSpeech()
@@ -140,16 +143,10 @@ class FakeWordCell: UITableViewCell {
             madeUpLogo.loadImageUsing(logoUrl)
         }
 
-//        if let logoImage = UIImage(named: fakeword.logoName) {
-//            madeUpLogo.image = logoImage
-//        }
         let fakeWordFontSize = fakeWordLabel.font.pointSize
         fakeWordLabel.font = UIFont(name: fakeword.font, size: fakeWordFontSize)
         fakeWordLabel.text = fakeword.name
-        // Test primary color for text
-        
-        fakeWordLabel.textColor = fakeword.themeColor.convertedToUIColor() //fakeLogo.backgroundColor
-        
+        fakeWordLabel.textColor = fakeword.themeColor.convertedToUIColor()
         let fontSize = rootTextLabel.font.pointSize
         let attributedRootText = fakeword.formatRootStoryText(fontSize: fontSize)
         rootTextLabel.attributedText = attributedRootText
