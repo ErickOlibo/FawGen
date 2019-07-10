@@ -6,7 +6,7 @@
 //  Copyright © 2019 DEFKUT Creations OU. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import SystemConfiguration
 
 class Reachability {
@@ -40,10 +40,50 @@ class Reachability {
             return .mobileData
         }
         #endif
-        
-        
         return .wifi
+    }
+    
+    public func isInternetReachableAlertAction(viewController view: UIViewController) -> Bool {
+        switch networkStatus() {
+        case .unavailable:
+            printConsole("[getAlertAction] - Unavailable")
+            let controller = UIAlertController(title: "No Internet Detected", message: "Fawgen app requires an Internet connection to check handles and domains availabilities", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            controller.addAction(ok)
+            controller.addAction(cancel)
+            view.present(controller, animated: true, completion: nil)
+            return false
+            
+        case .mobileData:
+            printConsole("[getAlertAction] - Internet Connection OK: Mobile data")
+            return true
+            
+        case .wifi:
+            printConsole("[getAlertAction] - Internet Connection OK: WIFI")
+            return true
+            
+        }
+    }
+    
+    public func internetConnectionAlertController() -> UIAlertController? {
+        switch networkStatus() {
+        case .unavailable:
+            printConsole("[internetConnectionAlertController] - Unavailable")
+            let controller = UIAlertController(title: "No Internet Detected", message: "Fawgen app requires an Internet connection to check handles and domains availabilities", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            controller.addAction(ok)
+            controller.addAction(cancel)
+        case .mobileData:
+            printConsole("")
+        case .wifi:
+            printConsole("")
+        }
+        
+        return nil
     }
     
     
 }
+

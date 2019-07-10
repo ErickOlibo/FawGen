@@ -113,17 +113,39 @@ class CheckerViewController: UIViewController {
         setupTapGestureForScrollView()
         setupSendButton()
         setupTextToSpeechSaveButton()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        // Check for reachability
+        if reachability.networkStatus() == .unavailable {
+            printConsole("internet IS NOT available")
+            let controller = UIAlertController(title: "No Internet Detected", message: "FawGen app requires an Internet connection to check handles and domains availabilities", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .default) { (alert) in self.hide() }
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (alert) in self.hide() }
+            
+            controller.addAction(cancel)
+            controller.addAction(ok)
+            present(controller, animated: true, completion: nil)
+            
+        }
+
+        
     }
     
 
     /// Hides the modal view controller
     @objc func hide() {
+        printConsole("Hide method")
         dismiss(animated: true, completion: nil)
     
+    }
+    
+    private func hidePresented() {
+        printConsole("hidePresented")
+        dismiss(animated: true, completion: nil)
     }
     
     /// Sets the functionalities of the Speech button
