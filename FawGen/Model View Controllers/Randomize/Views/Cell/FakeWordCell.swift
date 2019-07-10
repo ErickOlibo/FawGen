@@ -191,6 +191,7 @@ class FakeWordCell: UITableViewCell {
     /// - Note: This query is requested by the CellState open
     /// from the tableView didSelectRowAt
     public func queryDomainSocialChecker() {
+        printConsole("queryDomainSocialChecker")
         getSocialNetworkAvailability()
         getDomainExtensionAvailability()
     }

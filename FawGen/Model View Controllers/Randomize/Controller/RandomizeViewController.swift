@@ -140,7 +140,6 @@ extension RandomizeViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! FakeWordCell
-        
         cell.state = .opened
         dataSource.addOpenedIndexPath(indexPath)
         
@@ -150,9 +149,7 @@ extension RandomizeViewController {
             cell.bottomView.alpha = 1
         }
         cell.queryDomainSocialChecker()
-        
         tableView.endUpdates()
-
         
     }
     
@@ -166,11 +163,23 @@ extension RandomizeViewController {
         UIView.animate(withDuration: 0.7) {
             cell.bottomView.alpha = 0
         }
-        cell.cancelQueryDomainSocialChecker()
-        
         tableView.endUpdates()
 
     }
+    
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        printConsole("WILL SELECT at row: \(indexPath.row)")
+        if reachability.networkStatus() == .unavailable {
+            if let controller = reachability.internetConnectionAlertController() {
+                present(controller, animated: true, completion: nil)
+            }
+            return nil
+        } else {
+            return indexPath
+        }
+    }
+    
+    
 }
 
 
