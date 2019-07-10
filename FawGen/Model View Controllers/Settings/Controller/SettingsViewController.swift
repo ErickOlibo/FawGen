@@ -12,6 +12,10 @@ class SettingsViewController: UITableViewController {
     
     // MARK: - Properties
     let dataBaseManager = DefaultDB()
+    let reachability = Reachability()
+    var indexPaths = [IndexPath]()
+    let titles = ["Fields Explanation", "F.A.Q.", "Feedback", "FawGen Story", "Terms of Use", "Privacy Policy", "Open-source Libraries", "Disclamer"]
+    var indexPathsCollection = [IndexPath : String]()
     
     // MARK: - Outlets
     @IBOutlet weak var historyCount: UILabel!
@@ -21,9 +25,33 @@ class SettingsViewController: UITableViewController {
         super.viewDidLoad()
         navigationItem.title = "Settings"
         updateUI()
+        setIndexPaths()
+        
         
     }
     
+    
+    private func setIndexPaths() {
+        let explanation = IndexPath(row: 1, section: 0)
+        let faq = IndexPath(row: 0, section: 1)
+        let feedback = IndexPath(row: 1, section: 1)
+        let story = IndexPath(row: 0, section: 2)
+        let terms = IndexPath(row: 1, section: 2)
+        let policy = IndexPath(row: 2, section: 2)
+        let openSource = IndexPath(row: 3, section: 2)
+        let disclamer = IndexPath(row: 4, section: 2)
+        indexPaths.append(explanation)
+        indexPaths.append(faq)
+        indexPaths.append(feedback)
+        indexPaths.append(story)
+        indexPaths.append(terms)
+        indexPaths.append(policy)
+        indexPaths.append(openSource)
+        indexPaths.append(disclamer)
+        for (idx, indexPath) in indexPaths.enumerated() {
+            indexPathsCollection[indexPath] = titles[idx]
+        }
+    }
     
     // Update the UI specially for the History list count
     /// Updates the number of keywords hitory query performed
@@ -53,7 +81,6 @@ class SettingsViewController: UITableViewController {
             destination.navigationItem.title = "Explanation"
         }
         
-        
         if (segue.identifier == "FAQ") {
             guard let destination = segue.destination as? AboutViewController else { return }
             destination.aboutURL = URL(string: UrlFor.faq)
@@ -64,6 +91,12 @@ class SettingsViewController: UITableViewController {
             guard let destination = segue.destination as? AboutViewController else { return }
             destination.aboutURL = URL(string: UrlFor.feedback)
             destination.navigationItem.title = "Feedback"
+        }
+        
+        if (segue.identifier == "FawGen Story") {
+            guard let destination = segue.destination as? AboutViewController else { return }
+            destination.aboutURL = URL(string: UrlFor.fawgenStory)
+            destination.navigationItem.title = "FawGen Story"
         }
         
         if (segue.identifier == "Terms of Use") {
@@ -92,5 +125,20 @@ class SettingsViewController: UITableViewController {
         
     }
     
-    
+    // TableView delegate
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        if reachability.networkStatus() == .unavailable {
+            var title = String()
+            if let tmpTitle = indexPathsCollection[indexPath] {
+                title = "the \(tmpTitle)"
+            } else {
+                title = "this"
+            }
+            if let controller = reachability.internetConnectionAlertController(for: title) {
+                present(controller, animated: true, completion: nil)
+            }
+            return nil
+        }
+        return indexPath
+    }
 }

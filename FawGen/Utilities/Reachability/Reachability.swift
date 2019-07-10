@@ -85,7 +85,23 @@ class Reachability {
         return nil
     }
     
-    
+    public func internetConnectionAlertController(for title: String) -> UIAlertController? {
+        switch networkStatus() {
+        case .unavailable:
+            let controller = UIAlertController(title: "No Internet Detected!", message: "FawGen app requires an Internet connection to show \(title) section", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            controller.addAction(ok)
+            controller.addAction(cancel)
+            return controller
+        case .mobileData:
+            printConsole("")
+        case .wifi:
+            printConsole("")
+        }
+        
+        return nil
+    }
     
     
 }
