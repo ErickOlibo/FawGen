@@ -140,6 +140,7 @@ extension RandomizeViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! FakeWordCell
+        cell.setDomainSocialViewsToNormal()
         cell.state = .opened
         dataSource.addOpenedIndexPath(indexPath)
         
@@ -148,8 +149,8 @@ extension RandomizeViewController {
         UIView.animate(withDuration: 0.7) {
             cell.bottomView.alpha = 1
         }
-        cell.queryDomainSocialChecker()
         tableView.endUpdates()
+        cell.queryDomainSocialChecker()
         
     }
     

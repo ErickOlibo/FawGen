@@ -202,6 +202,11 @@ class FakeWordCell: UITableViewCell {
 
     }
     
+    /// Clear the query and sets the potition to .normal
+    public func setDomainSocialViewsToNormal() {
+        setupSocialDomain()
+    }
+    
     
     //private func listTaks
     
