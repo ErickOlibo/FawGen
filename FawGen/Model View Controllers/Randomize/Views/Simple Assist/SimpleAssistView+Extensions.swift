@@ -115,6 +115,7 @@ extension SimpleAssistView {
 
 // MARK: - Text View Delegate
 extension SimpleAssistView: UITextViewDelegate {
+    
     func textViewDidChange(_ textView: UITextView) {
         if let attributedText = keywordsGrowningTextView.attributedText {
             textLimitUI(for: attributedText.length)
@@ -230,7 +231,9 @@ extension SimpleAssistView {
     /// - Note: Once the model is imcorporated this function must be updated
     private func listOfWordsInCorpus(for keywords: String) -> Set<String> {
         let wordsList = nlp.tokenizeByWords(keywords)
-        return wordsList.filter { Constants.thousandWords.contains($0)}
+        
+        //return wordsList.filter { Constants.thousandWords.contains($0)}
+        return wordsList.filter { !combinedCorpus.contains($0)}
     }
     
     /// Returns the number of keywords that are part of the model's corpus
@@ -240,7 +243,8 @@ extension SimpleAssistView {
     /// - Note: Once the model is imcorporated this function must be updated
     private func listOfWordsInCorpusArray(for keywords: String) -> [String] {
         let list = nlp.tokenize(keywords).map{ $0.lowercased() }
-        return list.filter { Constants.thousandWords.contains($0)}
+        //return list.filter { Constants.thousandWords.contains($0)}
+        return list.filter { !combinedCorpus.contains($0)}
     }
     
 }

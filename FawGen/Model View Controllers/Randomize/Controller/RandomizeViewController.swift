@@ -19,6 +19,7 @@ class RandomizeViewController: UITableViewController {
     public var kNN: KNearestNeighbors!
     public var launchView: StartingEngine!
     public var launchBackground = UIView()
+    let dataBaseManager = DefaultDB()
     
     // MARK: - properties
     public enum ObserverState {
@@ -60,7 +61,6 @@ class RandomizeViewController: UITableViewController {
         setupNavigationBarItems()
         setupTableView()
         dataSource.delegate = self
-        
         // About Starting the engine
         printDeviceInfo()
         setUpBackground()

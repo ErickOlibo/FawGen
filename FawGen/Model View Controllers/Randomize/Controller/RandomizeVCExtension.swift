@@ -163,6 +163,7 @@ extension RandomizeViewController: SimpleAssistDelegate {
         var results = [FakeWord]()
         
         // Get the Quality options:
+        toolBox.requestedQuality = dataBaseManager.getRequestedQuality()
         
         // Get the fakeWords from the Model
         switch type {

@@ -12,6 +12,9 @@ private let defaults = UserDefaults.standard
 private let maxEntries = 30 // maxim
 private let maxTakenIconName = 1000 // There are 2239 icons on the server
 
+//private enum Qualities {
+//    case bothNil, lengthNil, algoNil, noneNil
+//}
 
 /// enumeration of the different type of data title to keep
 public enum LightDB: String, CustomStringConvertible, Equatable {
@@ -132,6 +135,27 @@ extension DefaultDB {
         // Print to console list for checking purpose
         let list = savedList.map { $0.key }.sorted()
         printConsole("\(list)")
+    }
+    
+    
+}
+
+// MARK: - Quality Option for the app
+extension DefaultDB {
+    
+    public func getRequestedQuality() -> (Double?, Double?) {
+        if lengthStatus == false && algoStatus == false {
+            return (nil, nil)
+        }
+        
+        if lengthStatus == false {
+            return (nil, algoValue)
+        }
+        
+        if algoStatus == false {
+            return (lengthValue, nil)
+        }
+        return (lengthValue, algoValue)
     }
     
     
