@@ -158,14 +158,16 @@ extension RandomizeViewController: SimpleAssistDelegate {
     /// - Parameters:
     ///     - type: between simple and assist or without keywords or with
     ///     - keywords: string entered by the user
-    private func letsGoQuery(_ type: LetsGoType, with keywords: String = String()){
+    private func letsGoQuery(_ type: LetsGoType, with keywords: String = String()) {
         tableView.tableFooterView = UIView(frame: CGRect.zero)
-        
+        var results = [FakeWord]()
         // Get the fakeWords from the Model
         switch type {
         case .simple:
             // Get the New Items from the DataShource to Display
             // This is the random one
+            guard let madeUpwords = toolBox.generateMadeUpWords() else { return }
+            results = madeUpwords.map{ FakeWord($0) }
             printConsole("Get X random words from model")
         case .assist:
             // Get the new Items from the Keyboards and vector space from
@@ -173,17 +175,18 @@ extension RandomizeViewController: SimpleAssistDelegate {
             printConsole("With KEYWORDS, get X random words from model")
         }
         
+        let updResults = dataSource.updatedFakeWordsResults(results)
         // Variable to be replaces by words from model
         // Used to be 20
-        let size = fontNamesList.count
-        let newItems = getNewRandomItems(count: size)
+//        let size = fontNamesList.count
+//        let newItems = getNewRandomItems(count: size)
         
         tableView.beginUpdates()
         let rowsCount = tableView.numberOfRows(inSection: 0)
         let indexPaths = (0..<rowsCount).map { IndexPath(row: $0, section: 0)}
         
         tableView.deleteRows(at: indexPaths, with: .automatic)
-        dataSource.items = newItems
+        dataSource.items = updResults
         dataSource.indexPaths = Set<IndexPath>()
         var indexPathsNew = [IndexPath]()
         for idx in 0..<dataSource.items.count {
@@ -205,6 +208,8 @@ extension RandomizeViewController: SimpleAssistDelegate {
         return dataSource.getFontsToFakeword()
         
     }
+    
+    
     
 }
 

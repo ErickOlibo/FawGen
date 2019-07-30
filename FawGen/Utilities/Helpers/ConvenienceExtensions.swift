@@ -12,7 +12,26 @@ import UIKit
 extension MadeUpWord {
     
     public var rootsStory: String {
-        return ""
+        let elements = self.elements
+        let algo = self.madeUpAlgo
+        switch algo {
+        case .concat:
+            return "\(algo.description) => \(elements)"
+        case .markovChain:
+            return "\(algo.description) => \(elements)"
+        case .simpleSwap:
+            return "\(algo.description) => \(elements)"
+        case .startBlendSwap:
+            return "\(algo.description) => \(elements)"
+        case .endBlendSwap:
+            return "\(algo.description) => \(elements)"
+        case .vowelsBlendSwap:
+            return "\(algo.description) => \(elements)"
+        case .substitute:
+            return "\(algo.description) => \(elements)"
+        case .flavor:
+            return "\(algo.description) => \(elements)"
+        }
     }
     
 }

@@ -95,6 +95,30 @@ extension DataSource {
 }
 
 
+// Should handle the FakeWords generated from the MadeUpwords and ToolBox
+extension DataSource {
+    
+    public func updatedFakeWordsResults(_ results: [FakeWord]) -> [FakeWord] {
+        var collection = [FakeWord]()
+        // gets the logoName and ThemeColor
+        let tmpCollection = updateWithLogoNames(results)
+        
+        // gets the font
+        let fontNames = FontsLister().getAllFontNames()
+        var tmpFontList = fontNames.shuffle()
+        for fakeWord in tmpCollection {
+            if tmpFontList.count == 0 { tmpFontList = fontNames.shuffle() }
+            let fontName = tmpFontList.removeFirst()
+            var tmpFakeWord = fakeWord
+            tmpFakeWord.font = fontName
+            collection.append(tmpFakeWord)
+        }
+        return collection
+    }
+}
+
+
+
 extension DataSource: FakeWordCellDelegate {
     func didTapShowDetails(fakeWord: FakeWord) {
         delegate?.didTapShowDetailsReport(fakeWord: fakeWord)

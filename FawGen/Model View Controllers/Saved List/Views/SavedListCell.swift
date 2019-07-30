@@ -42,7 +42,9 @@ class SavedListCell: UITableViewCell {
         guard let iconTime = FAType.FAClockO.text else { return }
         let space = " "
         let attributeOne = [NSAttributedString.Key.font : UIFont(name: "FontAwesome", size: 15.0)!]
-        let algo = "#\(fakeword.algoName.capitalized)" + space + space
+        let firstL = fakeword.algoName.prefix(1).capitalized
+        let rest = fakeword.algoName.dropFirst()
+        let algo = "#\(firstL + rest)" + space + space
         let attrsAlgo = NSMutableAttributedString(string: algo)
         let time = NSAttributedString(string: iconTime, attributes: attributeOne)
         let timeAgo = space + fakeword.created.timeAgoSinceNow()
