@@ -9,14 +9,24 @@
 import UIKit
 
 class RandomizeViewController: UITableViewController {
+    
+    // MARK: - Properties for Loading
+    public var difference = CGFloat()
+    public var start = Date()
+    
+    public var model: Model!
+    public var toolBox: ToolBox!
+    public var kNN: KNearestNeighbors!
+    public var launchView: StartingEngine!
+    public var launchBackground = UIView()
+    
+    // MARK: - properties
     public enum ObserverState {
-        case add
-        case remove
+        case add, remove
     }
     
     public enum LetsGoType: String {
-        case simple
-        case assist
+        case simple, assist
     }
     
     public var isDisplacedUp: Bool = false
@@ -44,13 +54,17 @@ class RandomizeViewController: UITableViewController {
     }
     
 
+    // MAKR: - ViewController LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBarItems()
         setupTableView()
         dataSource.delegate = self
-        // Print Fonts
-        //FontsLister().printListToConsole()
+        
+        // About Starting the engine
+        printDeviceInfo()
+        setUpBackground()
+        loadModelToMemory()
     }
     
 

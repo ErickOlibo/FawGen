@@ -553,6 +553,7 @@
 		A7D4123722F0800C002ADAE8 /* TypeAliasModelAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D410DF22F0800B002ADAE8 /* TypeAliasModelAPI.swift */; };
 		A7D4123822F0800C002ADAE8 /* UIDeviceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D410E022F0800B002ADAE8 /* UIDeviceExtensions.swift */; };
 		A7D4123922F0800C002ADAE8 /* RankedModelCorpus.txt in Resources */ = {isa = PBXBuildFile; fileRef = A7D410E222F0800B002ADAE8 /* RankedModelCorpus.txt */; };
+		A7D4123B22F0B142002ADAE8 /* RandomizeVC+ModelLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D4123A22F0B142002ADAE8 /* RandomizeVC+ModelLoading.swift */; };
 		A7E8576722D036E200E69846 /* FakeLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E8576622D036E200E69846 /* FakeLogo.swift */; };
 		A7EB4E2E22C39F9C007ED405 /* NewSetHomeView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EB4E2D22C39F9C007ED405 /* NewSetHomeView+Extension.swift */; };
 		A7EC016622A3667B0056E2C7 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC016522A3667B0056E2C7 /* GlobalConstants.swift */; };
@@ -1119,6 +1120,7 @@
 		A7D410DF22F0800B002ADAE8 /* TypeAliasModelAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeAliasModelAPI.swift; sourceTree = "<group>"; };
 		A7D410E022F0800B002ADAE8 /* UIDeviceExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDeviceExtensions.swift; sourceTree = "<group>"; };
 		A7D410E222F0800B002ADAE8 /* RankedModelCorpus.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RankedModelCorpus.txt; sourceTree = "<group>"; };
+		A7D4123A22F0B142002ADAE8 /* RandomizeVC+ModelLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RandomizeVC+ModelLoading.swift"; sourceTree = "<group>"; };
 		A7E8576622D036E200E69846 /* FakeLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeLogo.swift; sourceTree = "<group>"; };
 		A7EB4E2D22C39F9C007ED405 /* NewSetHomeView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewSetHomeView+Extension.swift"; sourceTree = "<group>"; };
 		A7EC016522A3667B0056E2C7 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
@@ -1932,6 +1934,7 @@
 			children = (
 				A722066E22A575FD00E1C256 /* RandomizeViewController.swift */,
 				A7B7E03B22B44AE700398289 /* RandomizeVCExtension.swift */,
+				A7D4123A22F0B142002ADAE8 /* RandomizeVC+ModelLoading.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3258,6 +3261,7 @@
 				A70C4B3122AA0675001BD6CC /* SPTableViewCell.swift in Sources */,
 				A7789A6622CAD89400F0D9A2 /* FontAwesome.swift in Sources */,
 				A70C4B2222AA0675001BD6CC /* SPEmptyProposeLabel.swift in Sources */,
+				A7D4123B22F0B142002ADAE8 /* RandomizeVC+ModelLoading.swift in Sources */,
 				A70C4B0022AA0675001BD6CC /* SPDownloadingButton.swift in Sources */,
 				A70C4BC122B07E36001BD6CC /* DeviceScreenSizes.swift in Sources */,
 				A70C4A2622AA0611001BD6CC /* SPLarkSettingsCollectionView.swift in Sources */,

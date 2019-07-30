@@ -9,41 +9,46 @@
 import UIKit
 
 
+// MARK: - Notification Handler
 extension RandomizeViewController {
     
     /// Place to get notification for UIApplication Active state
     public func applicationNotificationHandler(_ state: ObserverState) {
-        
         switch state {
         case .add:
             NotificationCenter.default.addObserver(self, selector: #selector(applicationWillResignActive), name: UIApplication.willResignActiveNotification, object: nil)
             NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
-        //print("add")
         case .remove:
             NotificationCenter.default.removeObserver(self, name: UIApplication.willResignActiveNotification, object: nil)
             NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
-            //print("remove")
         }
-        
     }
     
     /// Place to remove or add keyboard notification handler
     public func keyboardNotificationHandler(_ state: ObserverState) {
-        
         switch state {
         case .add:
-            // Add observers
             NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
             NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
             NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidHide), name: UIResponder.keyboardDidHideNotification, object: nil)
         case .remove:
-            // Remove Observers
             NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
             NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
             NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidHideNotification, object: nil)
-            
         }
     }
+    
+    @objc func applicationWillResignActive(_ notification : NSNotification) {
+        if let simpleAssistView = tableView.tableFooterView as? SimpleAssistView {
+            simpleAssistView.keywordsGrowningTextView.resignFirstResponder()
+        }
+        keyboardNotificationHandler(.remove)
+    }
+    
+    @objc func applicationDidBecomeActive(_ notification : NSNotification) {
+        keyboardNotificationHandler(.add)
+    }
+    
     
     /// Selects the right TableFooterView to present. Depending on the
     /// size of the DataSource Items count. If 0 then AssistHome, else
@@ -66,28 +71,7 @@ extension RandomizeViewController {
     }
 }
 
-// MARK: - Application Active Notifications
-extension RandomizeViewController {
-    @objc func applicationWillResignActive(_ notification : NSNotification) {
-        if let simpleAssistView = tableView.tableFooterView as? SimpleAssistView {
-            printConsole("RESIGN SimpleAssistView Keyboard from RandomView")
-            simpleAssistView.keywordsGrowningTextView.resignFirstResponder()
-        }
-        keyboardNotificationHandler(.remove)
-        printConsole("[RandomizeVCExtension] ==> applicationWillResignActive")
-    }
-    
-    @objc func applicationDidBecomeActive(_ notification : NSNotification) {
-        keyboardNotificationHandler(.add)
-        printConsole("[RandomizeVCExtension] ==> applicationDidBecomeActive")
-    }
-    
-    
-}
-
-
-
-
+// MARK: - TableView RowAt
 extension RandomizeViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -103,7 +87,6 @@ extension RandomizeViewController {
         }
         tableView.endUpdates()
         cell.queryDomainSocialChecker()
-        
     }
     
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -117,7 +100,6 @@ extension RandomizeViewController {
             cell.bottomView.alpha = 0
         }
         tableView.endUpdates()
-        
     }
     
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
@@ -132,11 +114,10 @@ extension RandomizeViewController {
         }
     }
     
-    
 }
 
 
-// Comforming to NewSetHomeDelegate
+// MARK: - Comforming to NewSetHomeDelegate
 extension RandomizeViewController: NewSetHomeDelegate {
     func showSimpleAssist() {
         prepareForShowingSimpleAssist()
@@ -145,7 +126,6 @@ extension RandomizeViewController: NewSetHomeDelegate {
     func queryNewSetFromSimpleModel() {
         letsGoQuery(.simple)
     }
-    
     
     private func prepareForShowingSimpleAssist() {
         let newItems = dataSource.getEmptyItems()
@@ -162,7 +142,7 @@ extension RandomizeViewController: NewSetHomeDelegate {
 }
 
 
-// Conforming to SimpleAssistDelegate
+// MARK: - Conforming to SimpleAssistDelegate
 extension RandomizeViewController: SimpleAssistDelegate {
     
     func querySimpleModel() {
@@ -172,7 +152,6 @@ extension RandomizeViewController: SimpleAssistDelegate {
     func queryAssistedModel(by keywords: String) {
         letsGoQuery(.assist, with: keywords)
     }
-    
     
     /// Queries the model after the user has pressed Let's Go button. Depending
     /// on the type (simple or assit) a different Model Engine will be queried
@@ -230,12 +209,6 @@ extension RandomizeViewController: SimpleAssistDelegate {
 }
 
 
-
-
-
-
-
-
 // MARK: - Navigation Bar
 extension RandomizeViewController {
     
@@ -245,7 +218,6 @@ extension RandomizeViewController {
         setupNewLeftNavItems()
     }
 
-    
     private func setupNewLeftNavItems() {
         let checkerButton = UIButton(type: .system)
         checkerButton.translatesAutoresizingMaskIntoConstraints = false
@@ -393,26 +365,21 @@ extension RandomizeViewController {
         let heightBelow = (footer.height / 2) - halfHeightSimpleAssistView - 10.0
         switch  keyboardHeight {
         case let height where height == heightBelow:
-            printConsole("[A-SADisplacement] FooterView Bounds: \(footer) - Displacement: \(displacement) - HeightBelow: \(heightBelow)")
             return displacement
         case let height where height < heightBelow:
-            printConsole("[B-SADisplacement] FooterView Bounds: \(footer) - Displacement: \(displacement) - HeightBelow: \(heightBelow)")
             return heightBelow - height + displacement
         case let height where height > heightBelow:
-            printConsole("[C-SADisplacement] FooterView Bounds: \(footer) - Displacement: \(displacement) - HeightBelow: \(heightBelow)")
             return height - heightBelow + displacement
         default:
             break
         }
-        printConsole("[D-SADisplacement] FooterView Bounds: \(footer) - Displacement: \(displacement) - HeightBelow: \(heightBelow)")
         return displacement
     }
     
 }
 
 
-
-
+// MARK: - DataSource Delegate
 extension RandomizeViewController: DataSourceDelegate {
     func didTapShowDetailsReport(fakeWord: FakeWord) {
         if reachability.networkStatus() == .unavailable {
@@ -423,7 +390,5 @@ extension RandomizeViewController: DataSourceDelegate {
             presentDetailsViewController(fakeWord)
         }
     }
-    
-    
-   
+
 }
