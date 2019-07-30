@@ -175,7 +175,7 @@ public enum SimilarityType {
 
 
 /// Tells the type of Algorithm that was used to create a madeUpWord
-public enum MadeUpAlgo: String, CaseIterable, CustomStringConvertible {
+public enum MadeUpAlgo: String, CaseIterable, CustomStringConvertible, Codable {
     case concat, markovChain, simpleSwap, startBlendSwap, endBlendSwap, vowelsBlendSwap, substitute, flavor
     
     public var description: String {

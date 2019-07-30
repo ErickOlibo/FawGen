@@ -554,6 +554,7 @@
 		A7D4123822F0800C002ADAE8 /* UIDeviceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D410E022F0800B002ADAE8 /* UIDeviceExtensions.swift */; };
 		A7D4123922F0800C002ADAE8 /* RankedModelCorpus.txt in Resources */ = {isa = PBXBuildFile; fileRef = A7D410E222F0800B002ADAE8 /* RankedModelCorpus.txt */; };
 		A7D4123B22F0B142002ADAE8 /* RandomizeVC+ModelLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D4123A22F0B142002ADAE8 /* RandomizeVC+ModelLoading.swift */; };
+		A7D4123E22F0CEE5002ADAE8 /* FawGenWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D4123D22F0CEE5002ADAE8 /* FawGenWord.swift */; };
 		A7E8576722D036E200E69846 /* FakeLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E8576622D036E200E69846 /* FakeLogo.swift */; };
 		A7EB4E2E22C39F9C007ED405 /* NewSetHomeView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EB4E2D22C39F9C007ED405 /* NewSetHomeView+Extension.swift */; };
 		A7EC016622A3667B0056E2C7 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC016522A3667B0056E2C7 /* GlobalConstants.swift */; };
@@ -1121,6 +1122,7 @@
 		A7D410E022F0800B002ADAE8 /* UIDeviceExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDeviceExtensions.swift; sourceTree = "<group>"; };
 		A7D410E222F0800B002ADAE8 /* RankedModelCorpus.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RankedModelCorpus.txt; sourceTree = "<group>"; };
 		A7D4123A22F0B142002ADAE8 /* RandomizeVC+ModelLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RandomizeVC+ModelLoading.swift"; sourceTree = "<group>"; };
+		A7D4123D22F0CEE5002ADAE8 /* FawGenWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FawGenWord.swift; sourceTree = "<group>"; };
 		A7E8576622D036E200E69846 /* FakeLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeLogo.swift; sourceTree = "<group>"; };
 		A7EB4E2D22C39F9C007ED405 /* NewSetHomeView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewSetHomeView+Extension.swift"; sourceTree = "<group>"; };
 		A7EC016522A3667B0056E2C7 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
@@ -1903,6 +1905,7 @@
 		A722066A22A5755600E1C256 /* Randomize */ = {
 			isa = PBXGroup;
 			children = (
+				A7D4123C22F0CEB9002ADAE8 /* FawGen Word */,
 				A7B7E03F22B45B2900398289 /* Data Source */,
 				A722066B22A5756900E1C256 /* Model */,
 				A722066C22A5757700E1C256 /* Views */,
@@ -2659,6 +2662,14 @@
 			path = Vocabulary;
 			sourceTree = "<group>";
 		};
+		A7D4123C22F0CEB9002ADAE8 /* FawGen Word */ = {
+			isa = PBXGroup;
+			children = (
+				A7D4123D22F0CEE5002ADAE8 /* FawGenWord.swift */,
+			);
+			path = "FawGen Word";
+			sourceTree = "<group>";
+		};
 		A7E8576522D036B800E69846 /* Fake Logos */ = {
 			isa = PBXGroup;
 			children = (
@@ -3369,6 +3380,7 @@
 				A76915BD22A211D700FB616F /* WhoisAPI.swift in Sources */,
 				A70C4B2F22AA0675001BD6CC /* SPProposeTableViewCell.swift in Sources */,
 				A70C4B3C22AA0675001BD6CC /* SPUIFontExtenshion.swift in Sources */,
+				A7D4123E22F0CEE5002ADAE8 /* FawGenWord.swift in Sources */,
 				A70C4B4B22AA0675001BD6CC /* SPUILabelExtenshion.swift in Sources */,
 				A70C4B2822AA0675001BD6CC /* SPFormLabelTableViewCell.swift in Sources */,
 				A70C4B0922AA0675001BD6CC /* SPNativeTableViewController.swift in Sources */,

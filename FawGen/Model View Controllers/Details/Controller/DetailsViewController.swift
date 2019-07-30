@@ -71,7 +71,7 @@ class DetailsViewController: UIViewController {
         view.backgroundColor = .white
         navigationItem.title = "Details"
         saveButton.layer.cornerRadius = 5.0
-        typedWord.text = fakeWord.name.uppercased()
+        typedWord.text = fakeWord.title.uppercased()
         setRootStoryText()
         updateDomainSocialViewsConstraints()
         setupDomainViews()

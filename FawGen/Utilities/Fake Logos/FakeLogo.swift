@@ -97,7 +97,7 @@ public func updateWithLogoNames(_ collection: [FakeWord]) -> [FakeWord] {
 
 
 private func randomLogoName(for fakeWord: FakeWord) -> String {
-    let firstL = fakeWord.name.prefix(1).uppercased()
+    let firstL = fakeWord.title.prefix(1).uppercased()
     guard let size = fakeLogoSpace[firstL] else { return abstract + "_1" }
     guard let sizeAbs = fakeLogoSpace[abstract] else { return abstract + "_1" }
     var numbIteration = 0

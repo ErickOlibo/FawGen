@@ -80,7 +80,7 @@ class FakeWordCell: UITableViewCell {
     @IBAction func tappedTextToSpeech(_ sender: UIButton) {
         sender.pulse()
         let tts = TextToSpeech()
-        tts.speakFakeWord(fakeword.name, accent: .american)
+        tts.speakFakeWord(fakeword.title, accent: .american)
     }
 
     // MARK: - Others
@@ -134,7 +134,7 @@ class FakeWordCell: UITableViewCell {
     
 
     
-    /// Updates the cell with the correct FaveWord entity
+    /// Updates the cell with the correct FakeWord entity
     /// - Parameter data: of type FakeWord containing the
     /// name, icon, color and other information
     public func update() {
@@ -145,7 +145,7 @@ class FakeWordCell: UITableViewCell {
 
         let fakeWordFontSize = fakeWordLabel.font.pointSize
         fakeWordLabel.font = UIFont(name: fakeword.font, size: fakeWordFontSize)
-        fakeWordLabel.text = fakeword.name
+        fakeWordLabel.text = fakeword.title
         fakeWordLabel.textColor = fakeword.themeColor.convertedToUIColor()
         let fontSize = rootTextLabel.font.pointSize
         let attributedRootText = fakeword.formatRootStoryText(fontSize: fontSize)
@@ -155,7 +155,7 @@ class FakeWordCell: UITableViewCell {
         setupSave()
         updateSave()
         let cellNum = self.tag
-        printConsole("DEFKUT[\(cellNum)] --> \(fakeword.name) ==> [\(fakeword.font)] ==> \(fakeword.logoName)")
+        printConsole("DEFKUT[\(cellNum)] --> \(fakeword.title) ==> [\(fakeword.font)] ==> \(fakeword.logoName)")
         
     }
     
@@ -219,7 +219,7 @@ class FakeWordCell: UITableViewCell {
             let net = SocialNetwork.allCases[idx]
             socialNetViews[net] = socialView
         }
-        let handle = fakeword.name.lowercased()
+        let handle = fakeword.title.lowercased()
         let socialURLs = socialNetworkURLs(for: handle, completeList: false)
 
         for (social, link) in socialURLs {
@@ -261,7 +261,7 @@ class FakeWordCell: UITableViewCell {
             domainViews[ext] = domainView
         }
         
-        let domainName = fakeword.name.lowercased()
+        let domainName = fakeword.title.lowercased()
         let whoisQueryURLS = DomainChecker().whoisURLs(for: domainName, completeList: false)
         
         for (ext, queryURL) in whoisQueryURLS {

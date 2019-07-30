@@ -19,7 +19,7 @@ extension DetailsViewController {
             let ext = DomainExtension.allCases[idx]
             domainViews[ext] = domainView
         }
-        let domainName = fakeWord.name.lowercased()
+        let domainName = fakeWord.title.lowercased()
         let whoisQueryURLs = DomainChecker().whoisURLs(for: domainName, completeList: true)
         
         for (ext, queryURL) in whoisQueryURLs {
@@ -75,7 +75,7 @@ extension DetailsViewController {
             let net = SocialNetwork.allCases[idx]
             socialNetViews[net] = socialView
         }
-        let handle = fakeWord.name.lowercased()
+        let handle = fakeWord.title.lowercased()
         let socialURLs = socialNetworkURLs(for: handle, completeList: true)
         
         for (social, link) in socialURLs {

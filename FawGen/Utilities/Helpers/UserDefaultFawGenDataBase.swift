@@ -114,10 +114,10 @@ extension DefaultDB {
         do {
             let encodeFakeWord = try PropertyListEncoder().encode(fakeWord)
             if var savedList = DefaultDB.getValue(for: .list)! as SavedList? {
-                savedList[fakeWord.name] = encodeFakeWord
+                savedList[fakeWord.title] = encodeFakeWord
                 DefaultDB.save(savedList, for: .list)
             } else {
-                DefaultDB.save([fakeWord.name : encodeFakeWord], for: .list)
+                DefaultDB.save([fakeWord.title : encodeFakeWord], for: .list)
             }
         } catch {
             printConsole("Encoding FakeWard failed with ERROR: \(error)")
@@ -126,7 +126,7 @@ extension DefaultDB {
     
     public func removeFromList(_ fakeWord: FakeWord) {
         guard var savedList = DefaultDB.getValue(for: .list)! as SavedList? else { return }
-        savedList.removeValue(forKey: fakeWord.name)
+        savedList.removeValue(forKey: fakeWord.title)
         DefaultDB.save(savedList, for: .list)
         
         // Print to console list for checking purpose
@@ -144,7 +144,7 @@ extension FakeWord {
     /// is key to the dictionary
     public func isSaved() -> Bool {
         guard let savedList = DefaultDB.getValue(for: .list)! as SavedList? else { return false }
-        return savedList[self.name] != nil
+        return savedList[self.title] != nil
     }
 }
 

@@ -11,77 +11,120 @@ private var dataBaseManager = DefaultDB()
 
 public struct FakeWord: Codable {
     
-    enum MadeUpType: String, CaseIterable, Codable {
-        case concat, markov, simple, startBlend
-        case endBlend, vowelsBlend, substitute, flavor, failed, userDefined
-    }
-    
+//    enum MadeUpType: String, CaseIterable, Codable {
+//        case swaps, subs, concat, chains, flavor
+//        case userDefined, undefined
+//    }
     
     private(set) var created: Date
-    private(set) var name: String
-    private(set) var madeUpRoots: String
-    private(set) var madeUpType: MadeUpType
-    public var font: String
-    public var themeColor: String
-    public var logoName: String
+    private(set) var title: String
+    private(set) var elements: [String]
+    private(set) var roots: String
+    private(set) var algoName: String
+    private(set) var algoNumber: Double
     
-    init() {
+    //private(set) var madeUpType: MadeUpType
+    
+    public var font = String()
+    public var themeColor = String()
+    public var logoName = String()
+    
+    // From a MadeUpWord result of the Model
+    init(_ madeUpWord: MadeUpWord) {
         self.created = Date()
-        self.name = _name
-        self.madeUpRoots = _madeUpRoots
-        self.madeUpType = _madeUpType
-        self.font = _font
-        self.themeColor = _themeColor
-        self.logoName = _logoName
+        self.title = madeUpWord.title
+        self.elements = madeUpWord.elements
+        self.roots = madeUpWord.rootsStory
+        self.algoName = madeUpWord.madeUpQuality.algoName
+        self.algoNumber = madeUpWord.madeUpQuality.algoNumber
     }
     
-
-    init(_ name: String, madeUpType: MadeUpType = .userDefined) {
+    // A UserDefined FakeWord initializer or empty if nothing 
+    init(_ userTitle: String = String()) {
         self.created = Date()
-        self.name = name
-        self.madeUpRoots = String()
-        self.madeUpType = madeUpType
-        self.font = String()
-        self.themeColor = String() //"#EFEEF3"
-        self.logoName = String()
+        self.title = userTitle
+        self.elements = [String]()
+        self.roots = String()
+        self.algoName = String()
+        self.algoNumber = Double()
     }
     
-    private let _name: String = {
-        guard let rndWord = Constants.fakeWords.randomElement() else { return "No Fakes"}
-        return rndWord.capitalized 
-    }()
+    // An empty FakeWord
+//    init() {
+//        self.created = Date()
+//        self.title = String()
+//        self.elements = [String]()
+//    }
     
-    private let _madeUpRoots: String = {
-        guard let story = Constants.hundredStatments.randomElement() else { return "N/A"}
-        return story
-    }()
     
-    private let _madeUpType: MadeUpType = {
-        guard let algo = MadeUpType.allCases.randomElement() else { return .failed }
-        if algo == .userDefined { return .concat }
-        return algo
-    }()
+    
+    
+    private func createRootsStory() -> String {
+        
+        // Switch with all 5 algos with their elements and then if none of them,
+        // it means that elements is empty and it was a userDefined word
+        return ""
+    }
+    
+//    // Empty FakeWord
+//    init() {
+//        self.created = Date()
+//        self.title = _name
+//        self.roots = _madeUpRoots
+//        //self.madeUpType = _madeUpType
+//        self.font = _font
+//        self.themeColor = _themeColor
+//        self.logoName = _logoName
+//    }
+    
 
-    private let _font: String = {
-//        let fontLister = FontsLister()
-//        guard let rndFont = fontLister.randomFont() else { return "AvenirNext-Bold" }
-        return "AvenirNext-Bold"
-    }()
+//    // UserDefined
+//    init(_ name: String, madeUpType: MadeUpType = .userDefined) {
+//        self.created = Date()
+//        self.title = name
+//        //self.roots = String()
+//        //self.madeUpType = madeUpType
+//        self.font = String()
+//        self.themeColor = String() //"#EFEEF3"
+//        self.logoName = String()
+//    }
     
-    private let _themeColor: String = {
-        return "#F6511D"
-        //return Constants.thousandColors.randomElement() ?? "#F6511D" // Not good but ok for now
-    }()
-    
-    private let _logoName: String = {
-        //return dataBaseManager.randomFakeLogoName()
-        return "_Abstract_1"
-    }()
-    
+//    private let _name: String = {
+//        guard let rndWord = Constants.fakeWords.randomElement() else { return "No Fakes"}
+//        return rndWord.capitalized
+//    }()
+//
+//    private let _madeUpRoots: String = {
+//        guard let story = Constants.hundredStatments.randomElement() else { return "N/A"}
+//        return story
+//    }()
+//
+//    private let _madeUpType: MadeUpType = {
+//        guard let algo = MadeUpType.allCases.randomElement() else { return .undefined }
+//        if algo == .userDefined { return .concat }
+//        return algo
+//    }()
+//
+//    private let _font: String = {
+////        let fontLister = FontsLister()
+////        guard let rndFont = fontLister.randomFont() else { return "AvenirNext-Bold" }
+//        return "AvenirNext-Bold"
+//    }()
+//
+//    private let _themeColor: String = {
+//        return "#F6511D"
+//        //return Constants.thousandColors.randomElement() ?? "#F6511D" // Not good but ok for now
+//    }()
+//
+//    private let _logoName: String = {
+//        //return dataBaseManager.randomFakeLogoName()
+//        return "_Abstract_1"
+//    }()
+//
     
 
     
 }
 
-fileprivate let iconNames: Set = ["swift", "opengraph", "angular"]
+//fileprivate let iconNames: Set = ["swift", "opengraph", "angular"]
 

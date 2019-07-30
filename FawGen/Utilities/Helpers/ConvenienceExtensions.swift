@@ -9,6 +9,17 @@
 import UIKit
 
 
+extension MadeUpWord {
+    
+    public var rootsStory: String {
+        return ""
+    }
+    
+}
+
+
+
+
 extension FakeWord {
     
     /// Formats the text of the roots of the creation of that word
@@ -18,8 +29,8 @@ extension FakeWord {
         let newLine = "\n"
         let root = info + "Root: "
         let algo = "Algo: "
-        let rootText = NSMutableAttributedString(string: self.madeUpRoots)
-        let algoType = NSAttributedString(string: self.madeUpType.rawValue)
+        let rootText = NSMutableAttributedString(string: self.roots)
+        let algoType = NSAttributedString(string: self.algoName)
         //let fontSize = rootTextLabel.font.pointSize
         guard let boldFont = UIFont(name: "AvenirNext-Bold", size: fontSize) else { return rootText }
         rootText.append(NSAttributedString(string: newLine))

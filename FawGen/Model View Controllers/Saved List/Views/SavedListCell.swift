@@ -37,12 +37,12 @@ class SavedListCell: UITableViewCell {
     /// Updates all that is necessary
     private func update() {
         verticalBarView.backgroundColor = fakeword.themeColor.convertedToUIColor()
-        fakeWordLabel.text = fakeword.name.uppercased()
-        algoAndTimeLabel.text = fakeword.madeUpType.rawValue.capitalized
+        fakeWordLabel.text = fakeword.title.uppercased()
+        algoAndTimeLabel.text = fakeword.algoName.capitalized
         guard let iconTime = FAType.FAClockO.text else { return }
         let space = " "
         let attributeOne = [NSAttributedString.Key.font : UIFont(name: "FontAwesome", size: 15.0)!]
-        let algo = "#\(fakeword.madeUpType.rawValue.capitalized)" + space + space
+        let algo = "#\(fakeword.algoName.capitalized)" + space + space
         let attrsAlgo = NSMutableAttributedString(string: algo)
         let time = NSAttributedString(string: iconTime, attributes: attributeOne)
         let timeAgo = space + fakeword.created.timeAgoSinceNow()
@@ -59,7 +59,7 @@ class SavedListCell: UITableViewCell {
     /// Speak the word
     private func speakWord() {
         let tts = TextToSpeech()
-        tts.speakFakeWord(fakeword.name, accent: .american)
+        tts.speakFakeWord(fakeword.title, accent: .american)
     }
     
     

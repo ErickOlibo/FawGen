@@ -117,7 +117,7 @@ extension SavedListViewController {
     }
     
     func filterContentForSearchText(_ searchText: String) {
-        filteredList = savedList.filter {$0.name.lowercased().contains(searchText.lowercased()) }.sorted{ $0.created > $1.created }
+        filteredList = savedList.filter {$0.title.lowercased().contains(searchText.lowercased()) }.sorted{ $0.created > $1.created }
         tableView.reloadData()
     }
 }

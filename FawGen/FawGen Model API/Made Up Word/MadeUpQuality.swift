@@ -11,7 +11,7 @@ import Foundation
 
 /// Class To keep a hold on the quality of the madeUpWords generated
 ///
-class MadeUpQuality: Hashable, CustomStringConvertible {
+class MadeUpQuality: Hashable, CustomStringConvertible, Codable {
     
     
     private(set) var title = String()
