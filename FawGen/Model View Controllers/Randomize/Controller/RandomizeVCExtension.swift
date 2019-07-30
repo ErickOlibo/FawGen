@@ -124,24 +124,30 @@ extension RandomizeViewController {
     /// Notifies when the keyboard is about to show in order the displace the view
     /// accordingly of the keyboard height
     @objc func keyboardWillShow(notification: NSNotification) {
-        guard let userInfo = notification.userInfo else { return }
-        guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
-        keyboardFrame = keyboardSize.cgRectValue
-        printConsole("[keyboardWillShow] - About to Displace UP")
-        if !isDisplacedUp {
-            view.frame.origin.y -= SimpleAssistDisplacement()
-            isDisplacedUp = true
+        if let simpleAssistView = tableView.tableFooterView as? SimpleAssistView,
+            simpleAssistView.keywordsGrowningTextView.isFirstResponder {
+            //printConsole("In KEYBOARD WILL SHOW, Growing is First Responder")
+            guard let userInfo = notification.userInfo else { return }
+            guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+            keyboardFrame = keyboardSize.cgRectValue
+            printConsole("[keyboardWillShow] - About to Displace UP")
+            if !isDisplacedUp {
+                view.frame.origin.y -= SimpleAssistDisplacement()
+                isDisplacedUp = true
+            }
         }
-        
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-        printConsole("[keyboardWillHide] - About to Displace DOWN")
-        if isDisplacedUp {
-            view.frame.origin.y += SimpleAssistDisplacement()
-            isDisplacedUp = false
+        if let simpleAssistView = tableView.tableFooterView as? SimpleAssistView,
+            simpleAssistView.keywordsGrowningTextView.isFirstResponder {
+            //printConsole("In KEYBOARD WILL HIDE, Growing is First Responder")
+            printConsole("[keyboardWillHide] - About to Displace DOWN")
+            if isDisplacedUp {
+                view.frame.origin.y += SimpleAssistDisplacement()
+                isDisplacedUp = false
+            }
         }
-        
     }
     
     @objc func keyboardDidHide(notification: NSNotification) {
@@ -175,6 +181,8 @@ extension RandomizeViewController {
     }
     
 }
+
+
 
 
 extension RandomizeViewController: DataSourceDelegate {

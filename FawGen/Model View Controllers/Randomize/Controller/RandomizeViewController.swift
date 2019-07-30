@@ -62,6 +62,7 @@ class RandomizeViewController: UITableViewController {
         printConsole("ViewWillAppear in [RandomizeViewController]")
         simpleAssistOrNewSetHomeUI()
         keyboardNotificationHandler(.add)
+        applicationNotificationHandler(.add)
         tableView.reloadData()
     }
     
@@ -75,6 +76,7 @@ class RandomizeViewController: UITableViewController {
             }
         }
         keyboardNotificationHandler(.remove)
+        applicationNotificationHandler(.remove)
         
     }
     
@@ -93,6 +95,22 @@ class RandomizeViewController: UITableViewController {
 }
 
 extension RandomizeViewController {
+    
+    /// Place to get notification for UIApplication Active state
+    private func applicationNotificationHandler(_ state: ObserverState) {
+        
+        switch state {
+        case .add:
+            NotificationCenter.default.addObserver(self, selector: #selector(applicationWillResignActive), name: UIApplication.willResignActiveNotification, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
+            //print("add")
+        case .remove:
+            NotificationCenter.default.removeObserver(self, name: UIApplication.willResignActiveNotification, object: nil)
+            NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
+            //print("remove")
+        }
+        
+    }
     
     /// Place to remove or add keyboard notification handler
     private func keyboardNotificationHandler(_ state: ObserverState) {
@@ -131,6 +149,25 @@ extension RandomizeViewController {
             printConsole("[FooterView Bounds] - \(tableView.tableFooterView!.bounds)")
         }
     }
+}
+
+// MARK: - Application Active Notifications
+extension RandomizeViewController {
+    @objc func applicationWillResignActive(_ notification : NSNotification) {
+        if let simpleAssistView = tableView.tableFooterView as? SimpleAssistView {
+            printConsole("RESIGN SimpleAssistView Keyboard from RandomView")
+            simpleAssistView.keywordsGrowningTextView.resignFirstResponder()
+        }
+        keyboardNotificationHandler(.remove)
+        printConsole("[RandomizeVCExtension] ==> applicationWillResignActive")
+    }
+    
+    @objc func applicationDidBecomeActive(_ notification : NSNotification) {
+        keyboardNotificationHandler(.add)
+        printConsole("[RandomizeVCExtension] ==> applicationDidBecomeActive")
+    }
+    
+    
 }
 
 

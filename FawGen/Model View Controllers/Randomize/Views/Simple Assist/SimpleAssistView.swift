@@ -66,11 +66,13 @@ class SimpleAssistView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInitialization()
+        printConsole("SimpleAssistView -> FRAME")
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInitialization()
+        printConsole("SimpleAssistView -> FRAME")
     }
  
 }
