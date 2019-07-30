@@ -216,7 +216,6 @@
 		A7EC016922A36E510056E2C7 /* UIFont+BestFit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC016822A36E510056E2C7 /* UIFont+BestFit.swift */; };
 		A7EC016B22A36F1D0056E2C7 /* UILabel+BestFit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC016A22A36F1D0056E2C7 /* UILabel+BestFit.swift */; };
 		A7FC85E4229CEA81002C386F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FC85E3229CEA81002C386F /* AppDelegate.swift */; };
-		A7FC85E6229CEA81002C386F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FC85E5229CEA81002C386F /* ViewController.swift */; };
 		A7FC85E9229CEA81002C386F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7FC85E7229CEA81002C386F /* Main.storyboard */; };
 		A7FC85EB229CEA82002C386F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7FC85EA229CEA82002C386F /* Assets.xcassets */; };
 		A7FC85EE229CEA82002C386F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7FC85EC229CEA82002C386F /* LaunchScreen.storyboard */; };
@@ -441,7 +440,6 @@
 		A7EC016A22A36F1D0056E2C7 /* UILabel+BestFit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+BestFit.swift"; sourceTree = "<group>"; };
 		A7FC85E0229CEA81002C386F /* FawGen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FawGen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7FC85E3229CEA81002C386F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A7FC85E5229CEA81002C386F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A7FC85E8229CEA81002C386F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A7FC85EA229CEA82002C386F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A7FC85ED229CEA82002C386F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -1506,7 +1504,6 @@
 		A7FC85E2229CEA81002C386F /* FawGen */ = {
 			isa = PBXGroup;
 			children = (
-				A7FC85E5229CEA81002C386F /* ViewController.swift */,
 				A7FC85E7229CEA81002C386F /* Main.storyboard */,
 				A70C4B8822ABFEB7001BD6CC /* Model View Controllers */,
 				A76915B322A0DB2D00FB616F /* Domain View */,
@@ -1698,7 +1695,6 @@
 				A70C4A2422AA0611001BD6CC /* SPLarkSettingsCollectionViewCell.swift in Sources */,
 				A7EB4E2E22C39F9C007ED405 /* NewSetHomeView+Extension.swift in Sources */,
 				A70C4B0B22AA0675001BD6CC /* SPNativeLoginCodeViewController.swift in Sources */,
-				A7FC85E6229CEA81002C386F /* ViewController.swift in Sources */,
 				A70C4A2722AA0611001BD6CC /* SPLarkPresentingAnimationController.swift in Sources */,
 				A70C4B5222AA0675001BD6CC /* SPLocalNotification.swift in Sources */,
 				A70C4B4222AA0675001BD6CC /* SPUIViewControllerExtenshion.swift in Sources */,

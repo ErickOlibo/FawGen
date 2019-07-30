@@ -10,7 +10,7 @@ import Foundation
 
 
 
-/// Instantiate a class that allows to query the whois site for domain name
+/// Instantiates a class that allows to query the whois site for domain name
 /// and the extensions.
 /// - Note: There are 2 public methods available:
 ///     - whoisURLs: Checks a domain name with complete or simple extension type
