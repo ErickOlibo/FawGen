@@ -24,10 +24,9 @@ extension FilterViewController {
             switch category {
             case .length:
                 stepper.value = dataBaseManager.lengthValue
-            case .type:
-                stepper.value = dataBaseManager.typeValue
-            case .symbol:
-                stepper.value = dataBaseManager.symbolValue
+            case .algo:
+                stepper.value = dataBaseManager.algoValue
+
             }
             enabledStatus(for: stepper)
         }
@@ -42,9 +41,7 @@ extension FilterViewController {
             case 1:
                 dataBaseManager.lengthValue = currentValue
             case 2:
-                dataBaseManager.typeValue = currentValue
-            case 3:
-                dataBaseManager.symbolValue = currentValue
+                dataBaseManager.algoValue = currentValue
             default:
                 break
             }
@@ -66,15 +63,14 @@ extension FilterViewController {
     /// - Returns: the right collection [Double : String] for Stepper setup
     private func getStepperCollection(for category: SettingCategory) -> [Double : String] {
         let lengthCollection: [Double : String] = [6 : "6 letters", 7 : "7 letters", 8 : "8 letters", 9 : "9 letters", 10 : "10 letters", 11 : "11 letters", 12 : "12 letters", 13 : "13 letters", 14 : "14 letters", 15 : "15 letters", 16 : "16 letters" ]
-        let typeCollection: [Double : String] = [1 : "alpha", 2 : "beta", 3 : "gamma", 4 : "delta", 5 : "epsilon", 6 : "zeta"]
-        let symbolCollection: [Double : String] = [1 : "popular", 2 : "common", 3 : "average", 4 : "uncommon", 5 : "rare"]
+        let algoCollection: [Double : String] = [1 : "swaps", 2 : "subs", 3 : "concat", 4 : "chains", 5 : "flavor"]
+
         switch category {
         case .length:
             return lengthCollection
-        case .type:
-            return typeCollection
-        case .symbol:
-            return symbolCollection
+        case .algo:
+            return algoCollection
+
         }
     }
     
@@ -86,9 +82,7 @@ extension FilterViewController {
         switch category {
         case .length:
             return [6, 16]
-        case .type:
-            return [1, 6]
-        case .symbol:
+        case .algo:
             return [1, 5]
         }
     }
@@ -112,10 +106,8 @@ extension FilterViewController {
         switch category {
         case .length:
             button = getOnOffButton(for: .length)
-        case .type:
-            button = getOnOffButton(for: .type)
-        case .symbol:
-            button = getOnOffButton(for: .symbol)
+        case .algo:
+            button = getOnOffButton(for: .algo)
         }
         button.contentHorizontalAlignment = .center
         let status = currentOnOffStatus(for: button)
@@ -132,9 +124,7 @@ extension FilterViewController {
         case 1:
             onOffIsEnabled = dataBaseManager.lengthStatus
         case 2:
-            onOffIsEnabled = dataBaseManager.typeStatus
-        case 3:
-            onOffIsEnabled = dataBaseManager.symbolStatus
+            onOffIsEnabled = dataBaseManager.algoStatus
         default:
             break
         }
@@ -164,9 +154,7 @@ extension FilterViewController {
         case 1:
             return dataBaseManager.lengthStatus
         case 2:
-            return dataBaseManager.typeStatus
-        case 3:
-            return dataBaseManager.symbolStatus
+            return dataBaseManager.algoStatus
         default:
             break
         }
@@ -184,11 +172,8 @@ extension FilterViewController {
             dataBaseManager.lengthStatus = !status
             stepper = getStepper(for: .length)
         case 2:
-            dataBaseManager.typeStatus = !status
-            stepper = getStepper(for: .type)
-        case 3:
-            dataBaseManager.symbolStatus = !status
-            stepper = getStepper(for: .symbol)
+            dataBaseManager.algoStatus = !status
+            stepper = getStepper(for: .algo)
         default:
             break
         }

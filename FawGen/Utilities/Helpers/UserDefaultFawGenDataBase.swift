@@ -15,8 +15,8 @@ private let maxTakenIconName = 1000 // There are 2239 icons on the server
 
 /// enumeration of the different type of data title to keep
 public enum LightDB: String, CustomStringConvertible, Equatable {
-    case history, length, lengthOnOff, type, typeOnOff
-    case symbol, symbolOnOff, list, takenLogoName, usedLogoNameInSaveList
+    case length, lengthOnOff, algo, algoOnOff
+    case history, list, takenLogoName, usedLogoNameInSaveList
     
     public var description: String {
         return self.rawValue
@@ -29,7 +29,7 @@ public enum LightDB: String, CustomStringConvertible, Equatable {
 /// - Note: This is a great example on how to use generic method
 public struct DefaultDB {
     
-    // Properties
+    // Length Value and Status
     public var lengthValue: Double {
         get {
             if DefaultDB.getValue(for: .length)! as Double? == nil {
@@ -40,29 +40,6 @@ public struct DefaultDB {
         }
         set(newLength) { DefaultDB.save(newLength, for: .length) }
     }
-    
-    public var typeValue: Double {
-        get {
-            if DefaultDB.getValue(for: .type)! as Double? == nil {
-                DefaultDB.save(3.0 as Double, for: .type)
-                return 3.0
-            }
-            return DefaultDB.getValue(for: .type)! as Double
-        }
-        set(newLength) { DefaultDB.save(newLength, for: .type) }
-    }
-    
-    public var symbolValue: Double {
-        get {
-            if DefaultDB.getValue(for: .symbol)! as Double? == nil {
-                DefaultDB.save(3.0 as Double, for: .symbol)
-                return 3.0
-            }
-            return DefaultDB.getValue(for: .symbol)! as Double
-        }
-        set(newLength) { DefaultDB.save(newLength, for: .symbol) }
-    }
-    
     
     public var lengthStatus: Bool {
         get {
@@ -75,28 +52,30 @@ public struct DefaultDB {
         set { DefaultDB.save(newValue, for: .lengthOnOff) }
     }
     
-    public var typeStatus: Bool {
+    
+    // Algo Value and Status
+    public var algoValue: Double {
         get {
-            if DefaultDB.getValue(for: .typeOnOff)! as Bool? == nil {
-                DefaultDB.save(false, for: .typeOnOff)
-                return false
+            if DefaultDB.getValue(for: .algo)! as Double? == nil {
+                DefaultDB.save(3.0 as Double, for: .algo)
+                return 3.0
             }
-            return DefaultDB.getValue(for: .typeOnOff)! as Bool
+            return DefaultDB.getValue(for: .algo)! as Double
         }
-        set { DefaultDB.save(newValue, for: .typeOnOff) }
+        set(newLength) { DefaultDB.save(newLength, for: .algo) }
     }
     
-    public var symbolStatus: Bool {
+    public var algoStatus: Bool {
         get {
-            if DefaultDB.getValue(for: .symbolOnOff)! as Bool? == nil {
-                DefaultDB.save(false, for: .symbolOnOff)
+            if DefaultDB.getValue(for: .algoOnOff)! as Bool? == nil {
+                DefaultDB.save(false, for: .algoOnOff)
                 return false
             }
-            return DefaultDB.getValue(for: .symbolOnOff)! as Bool
+            return DefaultDB.getValue(for: .algoOnOff)! as Bool
         }
-        set { DefaultDB.save(newValue, for: .symbolOnOff) }
+        set { DefaultDB.save(newValue, for: .algoOnOff) }
     }
-    
+
     
     static func save<T: Equatable>(_ value: T, for key: LightDB) {
         defaults.setValue(value, forKey: convert(key))

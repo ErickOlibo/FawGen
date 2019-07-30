@@ -13,7 +13,7 @@ class FilterViewController: UIViewController {
     public let closeButton = SPLarkSettingsCloseButton()
     public var dataBaseManager = DefaultDB()
     public enum SettingCategory: Int, CaseIterable, Equatable, Hashable {
-        case length = 1, type, symbol
+        case length = 1, algo
     }
     
     @IBOutlet var steppers: [TEOStepper]!
