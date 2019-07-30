@@ -161,6 +161,9 @@ extension RandomizeViewController: SimpleAssistDelegate {
     private func letsGoQuery(_ type: LetsGoType, with keywords: String = String()) {
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         var results = [FakeWord]()
+        
+        // Get the Quality options:
+        
         // Get the fakeWords from the Model
         switch type {
         case .simple:
@@ -172,14 +175,13 @@ extension RandomizeViewController: SimpleAssistDelegate {
         case .assist:
             // Get the new Items from the Keyboards and vector space from
             // Model
+            guard let madeUpwords = toolBox.generateMadeUpWords(from: keywords) else { return }
+            results = madeUpwords.map{ FakeWord($0) }
             printConsole("With KEYWORDS, get X random words from model")
         }
         
         let updResults = dataSource.updatedFakeWordsResults(results)
-        // Variable to be replaces by words from model
-        // Used to be 20
-//        let size = fontNamesList.count
-//        let newItems = getNewRandomItems(count: size)
+
         
         tableView.beginUpdates()
         let rowsCount = tableView.numberOfRows(inSection: 0)

@@ -79,7 +79,8 @@ extension CheckerViewController {
     public func touchedTextToSpeech() {
         guard let text = typedWord.text else { return }
         let tts = TextToSpeech()
-        tts.speakFakeWord(text, accent: .american)
+        let toSpeak = text.lowercased().capitalized
+        tts.speakFakeWord(toSpeak, accent: .american)
     }
     
     
