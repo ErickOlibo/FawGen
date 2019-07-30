@@ -12,7 +12,7 @@ import UIKit
 // MARK: - Steppers
 extension FilterViewController {
     
-    /// Initializes the Steppers for the Length, Type and Symbol sliders
+    /// Initializes the Steppers for the Length and Algo sliders
     public func setupSteppers() {
         for category in SettingCategory.allCases {
             let collection = getStepperCollection(for: category)
@@ -26,7 +26,6 @@ extension FilterViewController {
                 stepper.value = dataBaseManager.lengthValue
             case .algo:
                 stepper.value = dataBaseManager.algoValue
-
             }
             enabledStatus(for: stepper)
         }
@@ -58,19 +57,17 @@ extension FilterViewController {
     
     
     /// Gets the right collection [Double : String] in order to set the right
-    /// steppers label for the length, type or symbol
+    /// steppers label for the length or algo
     /// - Parameter category: a SettingCategory enum case
     /// - Returns: the right collection [Double : String] for Stepper setup
     private func getStepperCollection(for category: SettingCategory) -> [Double : String] {
         let lengthCollection: [Double : String] = [6 : "6 letters", 7 : "7 letters", 8 : "8 letters", 9 : "9 letters", 10 : "10 letters", 11 : "11 letters", 12 : "12 letters", 13 : "13 letters", 14 : "14 letters", 15 : "15 letters", 16 : "16 letters" ]
         let algoCollection: [Double : String] = [1 : "swaps", 2 : "subs", 3 : "concat", 4 : "chains", 5 : "flavor"]
-
         switch category {
         case .length:
             return lengthCollection
         case .algo:
             return algoCollection
-
         }
     }
     
@@ -179,24 +176,14 @@ extension FilterViewController {
         }
         enabledStatus(for: stepper)
         updateOnOff(for: sender, with: !status)
-        
     }
-    
-    
-    /// Returns the text that should be displayed inside the OnOff buttons
-    /// - Parameter sender: UIButton from OnOffs button collection
-    private func onOfftext(for sender: UIButton) -> String {
-        let onOffLabels = ["Length\n", "Type\n", "Symbol\n"]
-        return onOffLabels[sender.tag - 1]
-    }
-    
     
     /// updates the OnOff button to a chosen status Bool
     /// - Parameters:
     ///     - sender: UIButton from OnOffs button collection
     ///     - status: update the OnOff button to rather On or Off
     private func updateOnOff(for sender: UIButton, with status: Bool) {
-        let normal = "" //onOfftext(for: sender)
+        let normal = ""
         let isOn = status ? "On" : "Off"
         let attributedLength = NSMutableAttributedString(string: normal)
         let attrs = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 22)]
@@ -212,11 +199,7 @@ extension FilterViewController {
             sender.backgroundColor = .darkGray
         }
     }
-    
-    
 }
-
-
 
 
 // MARK: - Close Button
