@@ -64,6 +64,7 @@ extension RandomizeViewController {
         } else {
             let simpleAssistView = SimpleAssistView(frame: tableView.bounds)
             simpleAssistView.simpleAssistDelegate = self
+            //letsGoBtn = simpleAssistView.letsGoButton
             tableView.tableFooterView = simpleAssistView
             tableView.isScrollEnabled = false
             printConsole("[FooterView Bounds] - \(tableView.tableFooterView!.bounds)")
@@ -124,6 +125,7 @@ extension RandomizeViewController: NewSetHomeDelegate {
     }
     
     func queryNewSetFromSimpleModel() {
+        isRepeatSimpleSet = true
         letsGoQuery(.simple)
     }
     
@@ -138,6 +140,9 @@ extension RandomizeViewController: NewSetHomeDelegate {
         simpleAssistOrNewSetHomeUI()
     }
     
+    @objc func resetSimpleAssistAfterAlert() {
+        
+    }
     
 }
 
@@ -147,7 +152,7 @@ extension RandomizeViewController {
     private func showAlertForNoResults() {
         printConsole("NO RESULTS for this Query")
         let controller = UIAlertController(title: "No New Words Generated!", message: "The Engine couldn't generate new words. Please change the filters or keywords and try again!", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "OK", style: .default) { (alert) in self.showSimpleAssist() }
+        let ok = UIAlertAction(title: "OK", style: .default) { (alert) in self.resetSimpleAssistAfterAlert() }
         
         controller.addAction(ok)
         present(controller, animated: true, completion: nil)
@@ -160,6 +165,7 @@ extension RandomizeViewController {
 extension RandomizeViewController: SimpleAssistDelegate {
     
     func querySimpleModel() {
+        
         letsGoQuery(.simple)
     }
     
@@ -173,57 +179,91 @@ extension RandomizeViewController: SimpleAssistDelegate {
     ///     - type: between simple and assist or without keywords or with
     ///     - keywords: string entered by the user
     private func letsGoQuery(_ type: LetsGoType, with keywords: String = String()) {
-        tableView.tableFooterView = UIView(frame: CGRect.zero)
-        var results = [FakeWord]()
+        let spinner = UIActivityIndicatorView(style: .whiteLarge)
         
-        // Get the Quality options:
+        if isRepeatSimpleSet {
+            if let newSetHomeView = tableView.tableFooterView as? NewSetHomeView {
+                printConsole("NEW SET HOME VIEW BOUNDS: \(newSetHomeView.bounds)")
+                let spinnerX = newSetHomeView.center.x
+                let spinnerY = newSetHomeView.homeButton.center.y - 10
+                spinner.color = FawGenColors.primary.color
+                spinner.startAnimating()
+                spinner.center = CGPoint(x: spinnerX, y: spinnerY)
+                printConsole("Spinner Center: \(spinner.center)")
+                newSetHomeView.addSubview(spinner)
+                newSetHomeView.bringSubviewToFront(spinner)
+                isRepeatSimpleSet = false
+            }
+            
+        } else {
+            if let simpleAssistView = tableView.tableFooterView as? SimpleAssistView {
+                let spinnerY = simpleAssistView.center.y + 45.0 // Magic Numbers
+                let spinnerX = simpleAssistView.bounds.width - 57.0 // Magic number
+                let spinnerCenter = CGPoint(x: spinnerX, y: spinnerY)
+                spinner.startAnimating()
+                spinner.center = spinnerCenter
+                simpleAssistView.addSubview(spinner)
+                simpleAssistView.bringSubviewToFront(spinner)
+            }
+        }
+
+        var results = [FakeWord]()
         toolBox.requestedQuality = dataBaseManager.getRequestedQuality()
         
-        // Get the fakeWords from the Model
-        switch type {
-        case .simple:
-            // Get the New Items from the DataShource to Display
-            // This is the random one
-            guard let madeUpwords = toolBox.generateMadeUpWords() else {
-                showAlertForNoResults()
-                return
+        // ******* Background Queue
+
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            printConsole("DISPATCH GLOBAL")
+            
+            guard let self = self else { return }
+            var tmpResults = [FakeWord]()
+            switch type {
+            case .simple:
+                if let madeUpwords = self.toolBox.generateMadeUpWords() {
+                    tmpResults = madeUpwords.map{ FakeWord($0) }
+                }
+            case .assist:
+                if let madeUpwords = self.toolBox.generateMadeUpWords(from: keywords) {
+                    tmpResults = madeUpwords.map{ FakeWord($0) }
+                }
             }
-            results = madeUpwords.map{ FakeWord($0) }
-            printConsole("Get X random words from model")
-        case .assist:
-            // Get the new Items from the Keyboards and vector space from
-            // Model
-            printConsole("KEYWORDS entered: \(keywords)")
-            guard let madeUpwords = toolBox.generateMadeUpWords(from: keywords) else {
-                showAlertForNoResults()
-                return
+            tmpResults = self.dataSource.updatedFakeWordsResults(tmpResults)
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                printConsole("DISPATCH MAIN")
+                spinner.stopAnimating()
+                guard tmpResults.count != 0  else {
+                    printConsole("DISPATCH MAIN ==> EMPTY ZERO words")
+                    printConsole("KEYWORDS FOR ZERO: \(keywords)")
+                    self.showAlertForNoResults()
+                    return
+                }
+                
+                results = tmpResults
+                self.tableView.tableFooterView = UIView(frame: CGRect.zero)
+                self.tableView.beginUpdates()
+                let rowsCount = self.tableView.numberOfRows(inSection: 0)
+                let indexPaths = (0..<rowsCount).map { IndexPath(row: $0, section: 0)}
+                
+                self.tableView.deleteRows(at: indexPaths, with: .automatic)
+                self.dataSource.items = results
+                self.dataSource.indexPaths = Set<IndexPath>()
+                var indexPathsNew = [IndexPath]()
+                for idx in 0..<self.dataSource.items.count {
+                    let path = IndexPath(row: idx, section: 0)
+                    indexPathsNew.append(path)
+                }
+                self.tableView.insertRows(at: indexPathsNew, with: .automatic)
+                self.tableView.endUpdates()
+                
+                if let firstIndex = indexPathsNew.first {
+                    self.tableView.scrollToRow(at: firstIndex, at: .top, animated: true)
+                }
+                self.simpleAssistOrNewSetHomeUI()
             }
-            results = madeUpwords.map{ FakeWord($0) }
-            printConsole("With KEYWORDS, get X random words from model")
         }
-        
-        let updResults = dataSource.updatedFakeWordsResults(results)
 
         
-        tableView.beginUpdates()
-        let rowsCount = tableView.numberOfRows(inSection: 0)
-        let indexPaths = (0..<rowsCount).map { IndexPath(row: $0, section: 0)}
-        
-        tableView.deleteRows(at: indexPaths, with: .automatic)
-        dataSource.items = updResults
-        dataSource.indexPaths = Set<IndexPath>()
-        var indexPathsNew = [IndexPath]()
-        for idx in 0..<dataSource.items.count {
-            let path = IndexPath(row: idx, section: 0)
-            indexPathsNew.append(path)
-        }
-        tableView.insertRows(at: indexPathsNew, with: .automatic)
-        tableView.endUpdates()
-        
-        if let firstIndex = indexPathsNew.first {
-            tableView.scrollToRow(at: firstIndex, at: .top, animated: true)
-        }
-        simpleAssistOrNewSetHomeUI()
     }
     
     /// Makes sure the words were not used before

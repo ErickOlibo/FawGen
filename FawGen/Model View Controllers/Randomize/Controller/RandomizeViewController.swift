@@ -18,6 +18,7 @@ class RandomizeViewController: UITableViewController {
     public var toolBox: ToolBox!
     public var kNN: KNearestNeighbors!
     public var launchView: StartingEngine!
+    //public var letsGoBtn: UIButton!
     public var launchBackground = UIView()
     let dataBaseManager = DefaultDB()
     
@@ -30,6 +31,7 @@ class RandomizeViewController: UITableViewController {
         case simple, assist
     }
     
+    public var isRepeatSimpleSet: Bool = false
     public var isDisplacedUp: Bool = false
     public let reachability = Reachability()
     

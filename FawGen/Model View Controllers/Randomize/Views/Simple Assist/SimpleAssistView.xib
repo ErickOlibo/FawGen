@@ -48,7 +48,7 @@
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Keywords or Describe Project"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Keywords..."/>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
                                                             <integer key="value" value="200"/>
                                                         </userDefinedRuntimeAttribute>

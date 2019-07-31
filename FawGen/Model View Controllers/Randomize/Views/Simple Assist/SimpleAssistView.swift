@@ -44,6 +44,7 @@ class SimpleAssistView: UIView {
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var letsGoButton: UIButton! { didSet { letsGoButtonSetup() } }
     
+    
     @IBOutlet weak var simpleButton: UIButton!
     @IBOutlet weak var assistButton: UIButton!
     
@@ -54,13 +55,16 @@ class SimpleAssistView: UIView {
             keywordsGrowningTextView.resignFirstResponder()
         }
         sender.pulse()
-        if state == .open { closeStack() } }
+        if state == .open { closeStack() }
+    }
 
     @IBAction func tappedAssit(_ sender: UIButton) {
         sender.pulse()
-        if state == .close { openStack() } }
+        if state == .close { openStack() }
+    }
     
     @IBAction func tappedLetsGo(_ sender: UIButton) {
+        printConsole("tappedLetsGo -> Ready for SPINNER")
         keywordsGrowningTextView.resignFirstResponder()
         state == .close ? letsGoSimple() : letsGoAssist()
     }
