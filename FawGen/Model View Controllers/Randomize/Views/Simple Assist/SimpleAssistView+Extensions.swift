@@ -129,7 +129,7 @@ extension SimpleAssistView: UITextViewDelegate {
     /// Words Vector Space to define similarities
     private func formatEntered(_ attributedText: NSAttributedString) -> NSMutableAttributedString {
         let hightlightAttributes: [NSAttributedString.Key: Any] = [
-            .backgroundColor: FawGenColors.primary.color,
+            .backgroundColor: UIColor.lightGray,
             .foregroundColor: UIColor.white]
         let normalAttributes: [NSAttributedString.Key: Any] = [
             .backgroundColor: UIColor.clear,
@@ -140,15 +140,18 @@ extension SimpleAssistView: UITextViewDelegate {
         let fullRange = NSRange(location: 0, length: endAttributedText.length)
         endAttributedText.addAttributes(normalAttributes, range: fullRange)
         let wordsInText = nlp.tokenize(text)
-        let wordsInCorpus = listOfWordsInCorpusArray(for: text) // Lowercased
-        let corpusSet = Set(wordsInCorpus)
+        let wordsNotInCorpus = listOfWordsNotInCorpusArray(for: text) // Lowercased
+        let corpusSet = Set(wordsNotInCorpus)
         let textSet = Set(wordsInText)
         
         for word in textSet {
             guard corpusSet.contains(word.lowercased()) else { continue }
             let wordRanges = text.ranges(of: word)
-            for range in wordRanges {
-                endAttributedText.addAttributes(hightlightAttributes, range: NSRange(range, in: text))
+            for (idx, range) in wordRanges.enumerated() {
+                if idx == (wordRanges.count - 1) {
+                    endAttributedText.addAttributes(hightlightAttributes, range: NSRange(range, in: text))
+                }
+                
             }
         }
         return endAttributedText
@@ -193,7 +196,6 @@ extension SimpleAssistView {
     /// (RandomizeViewController) via a delegation protocol
     public func letsGoSimple() {
         simpleAssistDelegate?.querySimpleModel()
-        // Send to model
     }
     
     /// Executes the request for the creation of random words using
@@ -211,10 +213,7 @@ extension SimpleAssistView {
                 textLengthLabel.text = String()
                 simpleAssistDelegate?.queryAssistedModel(by: entry)
             }
-            
         }
-        // Send to model
-        
     }
     
     
@@ -224,26 +223,11 @@ extension SimpleAssistView {
 // MARK: - Keywords that are part of the Corpus (vocabulary)
 extension SimpleAssistView {
     
-    /// Returns the number of keywords that are part of the model's corpus
-    /// As a Set is returned, the order and the repeatitiveness are not important
-    /// - Parameter keywords: the text inserted or type by the user.
-    /// - Warning: This doesn't test against the REAL Corpus
-    /// - Note: Once the model is imcorporated this function must be updated
-    private func listOfWordsInCorpus(for keywords: String) -> Set<String> {
-        let wordsList = nlp.tokenizeByWords(keywords)
-        
-        //return wordsList.filter { Constants.thousandWords.contains($0)}
-        return wordsList.filter { !combinedCorpus.contains($0)}
-    }
-    
-    /// Returns the number of keywords that are part of the model's corpus
+    /// Returns the number of keywords that are NOT part of the model's corpus
     /// As an Array is returned, the order and the repeatitiveness are crucial.
     /// - Parameter keywords: the text inserted or type by the user.
-    /// - Warning: This doesn't test against the REAL Corpus
-    /// - Note: Once the model is imcorporated this function must be updated
-    private func listOfWordsInCorpusArray(for keywords: String) -> [String] {
+    private func listOfWordsNotInCorpusArray(for keywords: String) -> [String] {
         let list = nlp.tokenize(keywords).map{ $0.lowercased() }
-        //return list.filter { Constants.thousandWords.contains($0)}
         return list.filter { !combinedCorpus.contains($0)}
     }
     

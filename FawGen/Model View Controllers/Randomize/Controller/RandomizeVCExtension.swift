@@ -176,6 +176,7 @@ extension RandomizeViewController: SimpleAssistDelegate {
         case .assist:
             // Get the new Items from the Keyboards and vector space from
             // Model
+            printConsole("KEYWORDS entered: \(keywords)")
             guard let madeUpwords = toolBox.generateMadeUpWords(from: keywords) else { return }
             results = madeUpwords.map{ FakeWord($0) }
             printConsole("With KEYWORDS, get X random words from model")
@@ -207,9 +208,7 @@ extension RandomizeViewController: SimpleAssistDelegate {
     
     /// Makes sure the words were not used before
     private func getNewRandomItems(count: Int) -> [FakeWord] {
-        
         return dataSource.getFontsToFakeword()
-        
     }
     
     

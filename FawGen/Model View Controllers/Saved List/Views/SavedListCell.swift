@@ -61,7 +61,6 @@ class SavedListCell: UITableViewCell {
     /// Speak the word
     private func speakWord() {
         let tts = TextToSpeech()
-        printConsole("[SavedListCell] TTS -> FakeWord.Title: \(fakeWord.title)")
         tts.speakFakeWord(fakeWord.title, accent: .american)
     }
     
