@@ -48,7 +48,14 @@ extension SimpleAssistView {
     /// Sets the attributes of the growing UITextView
     public func keywordsGrowningTextSetup() {
         keywordsGrowningTextView.delegate = self
+        keywordsGrowningTextView.autocapitalizationType = .none
+        keywordsGrowningTextView.autocorrectionType = .no
+        keywordsGrowningTextView.smartDashesType = .no
         keywordsGrowningTextView.smartInsertDeleteType = .no
+        keywordsGrowningTextView.smartQuotesType = .no
+        keywordsGrowningTextView.spellCheckingType = .no
+        keywordsGrowningTextView.returnKeyType = .go
+        
         keywordsGrowningTextView.attributedText = NSAttributedString()
         keywordsGrowningTextView.textColor = FawGenColors.secondary.color
         textMaxLength = keywordsGrowningTextView.maxLength
