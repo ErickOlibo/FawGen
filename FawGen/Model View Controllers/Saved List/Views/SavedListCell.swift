@@ -11,7 +11,7 @@ import UIKit
 class SavedListCell: UITableViewCell {
     
     // MARK: - Properties
-    var fakeword: FakeWord! { didSet { update() } }
+    var fakeWord: FakeWord! { didSet { update() } }
     
     // MARK: - Outlets
     @IBOutlet weak var verticalBarView: UIView!
@@ -36,18 +36,18 @@ class SavedListCell: UITableViewCell {
     
     /// Updates all that is necessary
     private func update() {
-        verticalBarView.backgroundColor = fakeword.themeColor.convertedToUIColor()
-        fakeWordLabel.text = fakeword.title.uppercased()
-        algoAndTimeLabel.text = fakeword.algoName.capitalized
+        verticalBarView.backgroundColor = fakeWord.themeColor.convertedToUIColor()
+        fakeWordLabel.text = fakeWord.title.uppercased()
+        algoAndTimeLabel.text = fakeWord.algoName.capitalized
         guard let iconTime = FAType.FAClockO.text else { return }
         let space = " "
         let attributeOne = [NSAttributedString.Key.font : UIFont(name: "FontAwesome", size: 15.0)!]
-        let firstL = fakeword.algoName.prefix(1).capitalized
-        let rest = fakeword.algoName.dropFirst()
+        let firstL = fakeWord.algoName.prefix(1).capitalized
+        let rest = fakeWord.algoName.dropFirst()
         let algo = "#\(firstL + rest)" + space + space
         let attrsAlgo = NSMutableAttributedString(string: algo)
         let time = NSAttributedString(string: iconTime, attributes: attributeOne)
-        let timeAgo = space + fakeword.created.timeAgoSinceNow()
+        let timeAgo = space + fakeWord.created.timeAgoSinceNow()
         let attrsTimeAgo = NSAttributedString(string: timeAgo)
         attrsAlgo.append(time)
         attrsAlgo.append(attrsTimeAgo)
@@ -61,7 +61,8 @@ class SavedListCell: UITableViewCell {
     /// Speak the word
     private func speakWord() {
         let tts = TextToSpeech()
-        tts.speakFakeWord(fakeword.title, accent: .american)
+        printConsole("[SavedListCell] TTS -> FakeWord.Title: \(fakeWord.title)")
+        tts.speakFakeWord(fakeWord.title, accent: .american)
     }
     
     

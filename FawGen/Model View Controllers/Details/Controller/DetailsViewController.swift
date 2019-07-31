@@ -155,9 +155,9 @@ class DetailsViewController: UIViewController {
     }
     
     private func touchedTextToSpeech() {
-        guard let text = typedWord.text else { return }
         let tts = TextToSpeech()
-        tts.speakFakeWord(text, accent: .american)
+        printConsole("[DetailsViewController] TTS -> FakeWord.Title: \(fakeWord.title)")
+        tts.speakFakeWord(fakeWord.title, accent: .american)
     }
     
     /// Updates the DomainViews and SocialViews constraints to

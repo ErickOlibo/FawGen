@@ -18,15 +18,17 @@ class CheckerViewController: UIViewController {
         return Set("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
     }()
     public var wasQueried: Bool = false
-    public var userEnteredWord = String()
     public var isSaved: Bool = false
     public var resetCount: Int = 0
     
     public var socialGroupIsDone: Bool = false
     public var domainGroupIsDone: Bool = false
     
+    
+    
     // Temporare FakeWard to be initiated everytime checker is quering
     public var tmpFakeWord: FakeWord!
+    public var tmpTitle = String()
     
     // Dispatch Group for handling Task to Server
     let myGroup = DispatchGroup()

@@ -71,7 +71,7 @@ extension SavedListViewController {
         } else {
             fakeWord = savedList[indexPath.row]
         }
-        cell.fakeword = fakeWord
+        cell.fakeWord = fakeWord
         
         return cell
     }

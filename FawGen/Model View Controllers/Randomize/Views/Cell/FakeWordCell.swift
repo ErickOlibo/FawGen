@@ -63,7 +63,7 @@ class FakeWordCell: UITableViewCell {
     private let openedViewIndex: Int = 1
     
     var state: CellState = .closed { didSet { toggle() } }
-    var fakeword: FakeWord! { didSet { update() } }
+    var fakeWord: FakeWord! { didSet { update() } }
     var delegate: FakeWordCellDelegate?
 
     // MARK: - Actions
@@ -74,13 +74,14 @@ class FakeWordCell: UITableViewCell {
     
     @IBAction func tappedDetailedReport(_ sender: UIButton) {
         sender.pulse()
-        delegate?.didTapShowDetails(fakeWord: fakeword)
+        delegate?.didTapShowDetails(fakeWord: fakeWord)
     }
     
     @IBAction func tappedTextToSpeech(_ sender: UIButton) {
         sender.pulse()
         let tts = TextToSpeech()
-        tts.speakFakeWord(fakeword.title, accent: .american)
+        printConsole("[FakeWordCell] TTS -> FakeWord.Title: \(fakeWord.title)")
+        tts.speakFakeWord(fakeWord.title, accent: .american)
     }
 
     // MARK: - Others
@@ -108,10 +109,10 @@ class FakeWordCell: UITableViewCell {
     }
     
     private func toggleSave() {
-        if fakeword.isSaved() {
-            dataBaseManager.removeFromList(fakeword)
+        if fakeWord.isSaved() {
+            dataBaseManager.removeFromList(fakeWord)
         } else {
-            dataBaseManager.addToList(fakeword)
+            dataBaseManager.addToList(fakeWord)
         }
         
         updateSave()
@@ -123,7 +124,7 @@ class FakeWordCell: UITableViewCell {
     }
     
     private func updateSave() {
-        if fakeword.isSaved() {
+        if fakeWord.isSaved() {
             saveWordButton.tintColor = .white
             saveWordButton.backgroundColor = FawGenColors.primary.color
         } else {
@@ -138,24 +139,24 @@ class FakeWordCell: UITableViewCell {
     /// - Parameter data: of type FakeWord containing the
     /// name, icon, color and other information
     public func update() {
-        let fakeLogo = FakeLogo(fakeword.logoName)
+        let fakeLogo = FakeLogo(fakeWord.logoName)
         if let logoUrl = fakeLogo.imageURL {
             madeUpLogo.loadImageUsing(logoUrl)
         }
 
         let fakeWordFontSize = fakeWordLabel.font.pointSize
-        fakeWordLabel.font = UIFont(name: fakeword.font, size: fakeWordFontSize)
-        fakeWordLabel.text = fakeword.title
-        fakeWordLabel.textColor = fakeword.themeColor.convertedToUIColor()
+        fakeWordLabel.font = UIFont(name: fakeWord.font, size: fakeWordFontSize)
+        fakeWordLabel.text = fakeWord.title
+        fakeWordLabel.textColor = fakeWord.themeColor.convertedToUIColor()
         let fontSize = rootTextLabel.font.pointSize
-        let attributedRootText = fakeword.formatRootStoryText(fontSize: fontSize)
+        let attributedRootText = fakeWord.formatRootStoryText(fontSize: fontSize)
         rootTextLabel.attributedText = attributedRootText
         rootTextLabelHeight.constant = heightForRootLabel()
         
         setupSave()
         updateSave()
-        let cellNum = self.tag
-        printConsole("DEFKUT[\(cellNum)] --> \(fakeword.title) ==> [\(fakeword.font)] ==> \(fakeword.logoName)")
+//        let cellNum = self.tag
+//        printConsole("DEFKUT[\(cellNum)] --> \(fakeword.title) ==> [\(fakeword.font)] ==> \(fakeword.logoName)")
         
     }
     
@@ -219,7 +220,7 @@ class FakeWordCell: UITableViewCell {
             let net = SocialNetwork.allCases[idx]
             socialNetViews[net] = socialView
         }
-        let handle = fakeword.title.lowercased()
+        let handle = fakeWord.title.lowercased()
         let socialURLs = socialNetworkURLs(for: handle, completeList: false)
 
         for (social, link) in socialURLs {
@@ -261,7 +262,7 @@ class FakeWordCell: UITableViewCell {
             domainViews[ext] = domainView
         }
         
-        let domainName = fakeword.title.lowercased()
+        let domainName = fakeWord.title.lowercased()
         let whoisQueryURLS = DomainChecker().whoisURLs(for: domainName, completeList: false)
         
         for (ext, queryURL) in whoisQueryURLS {

@@ -40,11 +40,11 @@ public class FontsLister {
         }
         
         printConsole("[getAllFontNames] COLLECTION SIZE: \(collection.count)")
-        var count = 0
-        for item in collection {
-            count += 1
-            printConsole("[\(count)] - FontName: \(item)")
-        }
+//        var count = 0
+//        for item in collection {
+//            count += 1
+//            printConsole("[\(count)] - FontName: \(item)")
+//        }
         collection.shuffle()
         let sample = collection.prefix(maxListSize)
         return Array(sample)

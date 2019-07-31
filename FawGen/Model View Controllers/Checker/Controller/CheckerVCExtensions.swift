@@ -56,8 +56,8 @@ extension CheckerViewController {
         setupSendButton()
         wasQueried = true
         updateEnabledTextToSpeechSaveForSendQuery()
-        if let userText = typedWord.text, userText.count > 5 { userEnteredWord = userText
-            tmpFakeWord = FakeWord(userText)
+        if let userText = typedWord.text, userText.count > 5 {
+            tmpFakeWord = FakeWord(tmpTitle)
             updateSave()
         }
         getDomainExtensionsAvailability()
@@ -77,10 +77,8 @@ extension CheckerViewController {
     }
     
     public func touchedTextToSpeech() {
-        guard let text = typedWord.text else { return }
         let tts = TextToSpeech()
-        let toSpeak = text.lowercased().capitalized
-        tts.speakFakeWord(toSpeak, accent: .american)
+        tts.speakFakeWord(tmpFakeWord.title, accent: .american)
     }
     
     
@@ -138,7 +136,9 @@ extension CheckerViewController: UITextFieldDelegate {
         guard let currentText = textField.text else { return }
         let safeText = trimmedFromNoneAlphabetic(currentText)
         textField.text = safeText
+        tmpTitle = safeText
         typedWord.text = safeText.uppercased()
+        
         textField.counterLabel.text = String(safeText.count)
         setupSendButton()
     }
