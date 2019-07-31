@@ -18,7 +18,6 @@ class RandomizeViewController: UITableViewController {
     public var toolBox: ToolBox!
     public var kNN: KNearestNeighbors!
     public var launchView: StartingEngine!
-    //public var letsGoBtn: UIButton!
     public var launchBackground = UIView()
     let dataBaseManager = DefaultDB()
     
@@ -64,8 +63,6 @@ class RandomizeViewController: UITableViewController {
         setupTableView()
         dataSource.delegate = self
         // About Starting the engine
-        printDeviceInfo()
-        setUpBackground()
         loadModelToMemory()
     }
     

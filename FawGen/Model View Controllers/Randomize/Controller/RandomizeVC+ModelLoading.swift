@@ -8,50 +8,14 @@
 
 import UIKit
 
-// MARK: - Starting Engine
+// MARK: - Extension for animations Setup and running
 extension RandomizeViewController {
     
-    public func printDeviceInfo() {
+    private func printDeviceInfo() {
         let device = UIDevice.current
         printConsole("Model Name: \(device.modelName) - Power: \(device.processingPower.rawValue)")
     }
     
-    // UNIQUE Methods that returns all type of MadeUpWords for Keywords or None (Assist & Simple)
-    private func getAllTypesOfRandomWords() {
-        
-        toolBox.requestedQuality = (nil, nil)
-        let words = "defkut, water, hotel, solder, president, startup"
-        let defkut = "defkut"
-        let empty = String()
-        guard let allWords = toolBox.generateMadeUpWords(from: empty) else { return }
-        
-        var collection = [MadeUpAlgo : Set<MadeUpWord>]()
-        for type in MadeUpAlgo.allCases {
-            let group = allWords.filter { $0.madeUpAlgo == type }
-            guard group.count != 0 else { continue }
-            collection[type] = group
-        }
-        
-        for (type, list) in collection {
-            print("type: \(type.rawValue) ==> ListCount: \(list.count)")
-        }
-        printResult(list: Array(allWords))
-    }
-    
-    private func printResult(list: [MadeUpWord]) {
-        print("PRINTSIZE OF LIST: \(list.count)")
-        //let titlesList = list.map{ $0.title }.joined(separator: " - ")
-        let _ = list.map{ print($0.madeUpQuality.algoName)}
-    }
-    
-    
-    
-    
-    
-}
-
-// MARK: - Extension for animations Setup and running
-extension RandomizeViewController {
     private func enableNavigationItems() {
         navigationItem.leftBarButtonItem?.isEnabled = true
         guard let rightButtons = navigationItem.rightBarButtonItems else { return }
@@ -66,6 +30,8 @@ extension RandomizeViewController {
     
     public func loadModelToMemory() {
         start = Date()
+        printDeviceInfo()
+        setUpBackground()
         setupLaunchView()
         animateAppear()
         disableNavigationItems()
@@ -90,7 +56,7 @@ extension RandomizeViewController {
     }
     
     
-    public func setUpBackground() {
+    private func setUpBackground() {
         launchBackground = UIView(frame: self.view.bounds)
         launchBackground.backgroundColor = .white
         launchBackground.center = self.view.center
@@ -100,13 +66,15 @@ extension RandomizeViewController {
     private func setupLaunchView() {
         let launchFrame = CGRect(x: 0, y: 0, width: 200, height: 300)
         launchView = StartingEngine(frame: launchFrame)
-        
+    
         // Set the view offSet
         let launchViewCenterX = self.view.center.x
         printConsole("View Center = \(self.view.center) - View bound: \(self.view.bounds)")
         let launchViewCenterY = self.view.bounds.height + (launchFrame.height / 2) + 10
         let launchViewCenter = CGPoint(x: launchViewCenterX, y: launchViewCenterY)
         launchView.center = launchViewCenter
+        launchView.progressBar.trackColor = FawGenColors.primary.color
+        launchView.progressBar.progressColor = FawGenColors.secondary.color
         self.view.addSubview(launchView)
     }
     
@@ -132,7 +100,6 @@ extension RandomizeViewController {
             self.launchView.removeFromSuperview()
         }
     }
-    
     
 }
 
