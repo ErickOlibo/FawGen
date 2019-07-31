@@ -555,6 +555,8 @@
 		A7D4123922F0800C002ADAE8 /* RankedModelCorpus.txt in Resources */ = {isa = PBXBuildFile; fileRef = A7D410E222F0800B002ADAE8 /* RankedModelCorpus.txt */; };
 		A7D4123B22F0B142002ADAE8 /* RandomizeVC+ModelLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D4123A22F0B142002ADAE8 /* RandomizeVC+ModelLoading.swift */; };
 		A7D4123E22F0CEE5002ADAE8 /* FawGenWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D4123D22F0CEE5002ADAE8 /* FawGenWord.swift */; };
+		A7D4124122F1B89A002ADAE8 /* FGAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D4124022F1B89A002ADAE8 /* FGAlertView.swift */; };
+		A7D4124322F1B8B3002ADAE8 /* FGAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7D4124222F1B8B3002ADAE8 /* FGAlertView.xib */; };
 		A7E8576722D036E200E69846 /* FakeLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E8576622D036E200E69846 /* FakeLogo.swift */; };
 		A7EB4E2E22C39F9C007ED405 /* NewSetHomeView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EB4E2D22C39F9C007ED405 /* NewSetHomeView+Extension.swift */; };
 		A7EC016622A3667B0056E2C7 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC016522A3667B0056E2C7 /* GlobalConstants.swift */; };
@@ -1123,6 +1125,8 @@
 		A7D410E222F0800B002ADAE8 /* RankedModelCorpus.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RankedModelCorpus.txt; sourceTree = "<group>"; };
 		A7D4123A22F0B142002ADAE8 /* RandomizeVC+ModelLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RandomizeVC+ModelLoading.swift"; sourceTree = "<group>"; };
 		A7D4123D22F0CEE5002ADAE8 /* FawGenWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FawGenWord.swift; sourceTree = "<group>"; };
+		A7D4124022F1B89A002ADAE8 /* FGAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FGAlertView.swift; sourceTree = "<group>"; };
+		A7D4124222F1B8B3002ADAE8 /* FGAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FGAlertView.xib; sourceTree = "<group>"; };
 		A7E8576622D036E200E69846 /* FakeLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeLogo.swift; sourceTree = "<group>"; };
 		A7EB4E2D22C39F9C007ED405 /* NewSetHomeView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewSetHomeView+Extension.swift"; sourceTree = "<group>"; };
 		A7EC016522A3667B0056E2C7 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
@@ -1816,6 +1820,7 @@
 		A70C4B8822ABFEB7001BD6CC /* Model View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A7D4123F22F1B84E002ADAE8 /* Alert Views */,
 				A7918C5222CC4A040002DCC9 /* Saved List */,
 				A7789A5D22CA96E600F0D9A2 /* Details */,
 				A74DAFEE22C6B58D005ACAD0 /* Checker */,
@@ -2670,6 +2675,15 @@
 			path = "FawGen Word";
 			sourceTree = "<group>";
 		};
+		A7D4123F22F1B84E002ADAE8 /* Alert Views */ = {
+			isa = PBXGroup;
+			children = (
+				A7D4124022F1B89A002ADAE8 /* FGAlertView.swift */,
+				A7D4124222F1B8B3002ADAE8 /* FGAlertView.xib */,
+			);
+			path = "Alert Views";
+			sourceTree = "<group>";
+		};
 		A7E8576522D036B800E69846 /* Fake Logos */ = {
 			isa = PBXGroup;
 			children = (
@@ -3020,6 +3034,7 @@
 				A7D411E222F0800C002ADAE8 /* ThreeGears_21@3x.png in Resources */,
 				A7D410E822F0800B002ADAE8 /* MarkovTriGramStart.txt in Resources */,
 				A7D4119E22F0800C002ADAE8 /* Cluster_140.txt in Resources */,
+				A7D4124322F1B8B3002ADAE8 /* FGAlertView.xib in Resources */,
 				A7D4119722F0800C002ADAE8 /* Cluster_182.txt in Resources */,
 				A7D4121F22F0800C002ADAE8 /* ThreeGears_18@3x.png in Resources */,
 				A7D411AB22F0800C002ADAE8 /* Cluster_194.txt in Resources */,
@@ -3294,6 +3309,7 @@
 				A70C4B7022AA0675001BD6CC /* SPPermissionDialogView.swift in Sources */,
 				A70C4B6E22AA0675001BD6CC /* SPRandom.swift in Sources */,
 				A70C4B2322AA0675001BD6CC /* SPTableView.swift in Sources */,
+				A7D4124122F1B89A002ADAE8 /* FGAlertView.swift in Sources */,
 				A70C4A2922AA0611001BD6CC /* SPLarkDismissingAnimationController.swift in Sources */,
 				A70C4B5E22AA0675001BD6CC /* SPAnimationSpring.swift in Sources */,
 				A70C4B1A22AA0675001BD6CC /* SPSocialIconView.swift in Sources */,

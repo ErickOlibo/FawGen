@@ -119,7 +119,7 @@ extension RandomizeViewController {
 
 // MARK: - Comforming to NewSetHomeDelegate
 extension RandomizeViewController: NewSetHomeDelegate {
-    func showSimpleAssist() {
+    @objc func showSimpleAssist() {
         prepareForShowingSimpleAssist()
     }
     
@@ -141,6 +141,20 @@ extension RandomizeViewController: NewSetHomeDelegate {
     
 }
 
+// MARK: - Alert for NO RESULTS
+extension RandomizeViewController {
+    
+    private func showAlertForNoResults() {
+        printConsole("NO RESULTS for this Query")
+        let controller = UIAlertController(title: "No New Words Generated!", message: "The Engine couldn't generate new words. Please change the filters or keywords and try again!", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default) { (alert) in self.showSimpleAssist() }
+        
+        controller.addAction(ok)
+        present(controller, animated: true, completion: nil)
+    }
+    
+    
+}
 
 // MARK: - Conforming to SimpleAssistDelegate
 extension RandomizeViewController: SimpleAssistDelegate {
@@ -170,14 +184,20 @@ extension RandomizeViewController: SimpleAssistDelegate {
         case .simple:
             // Get the New Items from the DataShource to Display
             // This is the random one
-            guard let madeUpwords = toolBox.generateMadeUpWords() else { return }
+            guard let madeUpwords = toolBox.generateMadeUpWords() else {
+                showAlertForNoResults()
+                return
+            }
             results = madeUpwords.map{ FakeWord($0) }
             printConsole("Get X random words from model")
         case .assist:
             // Get the new Items from the Keyboards and vector space from
             // Model
             printConsole("KEYWORDS entered: \(keywords)")
-            guard let madeUpwords = toolBox.generateMadeUpWords(from: keywords) else { return }
+            guard let madeUpwords = toolBox.generateMadeUpWords(from: keywords) else {
+                showAlertForNoResults()
+                return
+            }
             results = madeUpwords.map{ FakeWord($0) }
             printConsole("With KEYWORDS, get X random words from model")
         }
