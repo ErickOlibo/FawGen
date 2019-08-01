@@ -110,9 +110,9 @@ class FakeWordCell: UITableViewCell {
     
     private func toggleSave() {
         if fakeWord.isSaved() {
-            dataBaseManager.removeFromList(fakeWord)
+            dataBaseManager.removeFromSavedList(fakeWord)
         } else {
-            dataBaseManager.addToList(fakeWord)
+            dataBaseManager.addToSavedList(fakeWord)
         }
         
         updateSave()

@@ -48,9 +48,13 @@ class SavedListViewController: UITableViewController {
     private func setupSearchController() {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search!"
+        searchController.searchBar.placeholder = "Search..."
         navigationItem.searchController = searchController
         definesPresentationContext = true
+        
+        // New Stuff
+        searchController.dimsBackgroundDuringPresentation = false
+        //navigationItem.hidesSearchBarWhenScrolling = false
     }
     
     /// Returns a bool if we are currently filtering
@@ -72,6 +76,7 @@ extension SavedListViewController {
             fakeWord = savedList[indexPath.row]
         }
         cell.fakeWord = fakeWord
+        cell.searchText = searchController.searchBar.text
         
         return cell
     }
@@ -81,10 +86,10 @@ extension SavedListViewController {
         if editingStyle == .delete {
             if isFiltering() {
                 let removedFakeWord = filteredList.remove(at: indexPath.row)
-                dataBaseManager.removeFromList(removedFakeWord)
+                dataBaseManager.removeFromSavedList(removedFakeWord)
             } else {
                 let removedFakeWord = savedList.remove(at: indexPath.row)
-                dataBaseManager.removeFromList(removedFakeWord)
+                dataBaseManager.removeFromSavedList(removedFakeWord)
             }
             
             tableView.deleteRows(at: [indexPath], with: .fade)

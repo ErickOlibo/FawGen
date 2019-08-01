@@ -22,9 +22,9 @@ extension CheckerViewController {
     /// Toggles the UI/UX layout for the save button
     private func toggleSave() {
         if tmpFakeWord.isSaved() {
-            dataBaseManager.removeFromList(tmpFakeWord)
+            dataBaseManager.removeFromSavedList(tmpFakeWord)
         } else {
-            dataBaseManager.addToList(tmpFakeWord)
+            dataBaseManager.addToSavedList(tmpFakeWord)
         }
         updateSave()
     }

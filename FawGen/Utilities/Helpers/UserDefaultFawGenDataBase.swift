@@ -9,7 +9,7 @@
 import Foundation
 
 private let defaults = UserDefaults.standard
-private let maxEntries = 30 // maxim
+private let maxEntries = 50 // maxim
 private let maxTakenIconName = 1000 // There are 2239 icons on the server
 
 //private enum Qualities {
@@ -113,7 +113,7 @@ extension DefaultDB {
         return list
     }
     
-    public func addToList(_ fakeWord: FakeWord) {
+    public func addToSavedList(_ fakeWord: FakeWord) {
         do {
             let encodeFakeWord = try PropertyListEncoder().encode(fakeWord)
             if var savedList = DefaultDB.getValue(for: .list)! as SavedList? {
@@ -127,7 +127,7 @@ extension DefaultDB {
         }
     }
     
-    public func removeFromList(_ fakeWord: FakeWord) {
+    public func removeFromSavedList(_ fakeWord: FakeWord) {
         guard var savedList = DefaultDB.getValue(for: .list)! as SavedList? else { return }
         savedList.removeValue(forKey: fakeWord.title)
         DefaultDB.save(savedList, for: .list)
@@ -187,6 +187,14 @@ extension DefaultDB {
             let sanitizedHistory = DefaultDB.sanitize(savedHistory)
             DefaultDB.save(sanitizedHistory, for: .history)
         }
+    }
+    
+    
+    /// removed an entry from the keywords history
+    public func removeFromHistory(_ keywords: String) {
+        guard var historyList = DefaultDB.getValue(for: .history)! as KeywordsHistory? else { return }
+        historyList.removeValue(forKey: keywords)
+        DefaultDB.save(historyList, for: .history)
     }
     
     

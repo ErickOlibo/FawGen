@@ -12,6 +12,7 @@ class SavedListCell: UITableViewCell {
     
     // MARK: - Properties
     var fakeWord: FakeWord! { didSet { update() } }
+    var searchText: String? { didSet { updateAttributedSearch() } }
     
     // MARK: - Outlets
     @IBOutlet weak var verticalBarView: UIView!
@@ -54,6 +55,22 @@ class SavedListCell: UITableViewCell {
         algoAndTimeLabel.attributedText = attrsAlgo
         
         
+    }
+    
+    /// Updates the FakeWordLabel to Attributed if the Search Text is present
+    private func updateAttributedSearch() {
+        guard var currentSearchText = searchText else { return }
+        currentSearchText = currentSearchText.lowercased()
+        let title = fakeWord.title.lowercased()
+        let updatedAttributedTitle = NSMutableAttributedString(string: fakeWord.title)
+        let attributes: [NSAttributedString.Key: Any] = [.foregroundColor : FawGenColors.primary.color]
+        
+        let searchRanges = title.ranges(of: currentSearchText)
+        for (_, range) in searchRanges.enumerated() {
+            updatedAttributedTitle.addAttributes(attributes, range: NSRange(range, in: fakeWord.title))
+        }
+        
+        fakeWordLabel.attributedText = updatedAttributedTitle
     }
     
 

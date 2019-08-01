@@ -119,9 +119,9 @@ class DetailsViewController: UIViewController {
     /// Toggles the UI/UX layout for the save button
     private func toggleSave() {
         if fakeWord.isSaved() {
-            dataBaseManager.removeFromList(fakeWord)
+            dataBaseManager.removeFromSavedList(fakeWord)
         } else {
-            dataBaseManager.addToList(fakeWord)
+            dataBaseManager.addToSavedList(fakeWord)
         }
         updateSaveButtonUI()
     }
