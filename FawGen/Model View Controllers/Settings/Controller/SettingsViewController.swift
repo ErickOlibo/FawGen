@@ -24,10 +24,13 @@ class SettingsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Settings"
-        updateUI()
+        updateHistoryUI()
         setIndexPaths()
-        
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateHistoryUI()
     }
     
     
@@ -58,7 +61,7 @@ class SettingsViewController: UITableViewController {
     /// during the lifespan of the app
     /// - Note: There is a need to implement a reset button
     /// for the history list
-    private func updateUI() {
+    private func updateHistoryUI() {
         let historySize = dataBaseManager.getHistory().count
         historyCount.text = String(historySize)
         historyCount.textColor = FawGenColors.primary.color

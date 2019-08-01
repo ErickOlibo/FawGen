@@ -12,9 +12,7 @@ class KeywordsHistoryViewController: UITableViewController {
     
     // MARK: - Properties
     let dataBaseManager = DefaultDB()
-    var historyList: [HistoryEntry] {
-        return dataBaseManager.getHistory().sorted { $0.value > $1.value }
-    }
+    var historyList: [HistoryEntry]!
 
     
     // MARK: - ViewController LifeCycle
@@ -22,7 +20,14 @@ class KeywordsHistoryViewController: UITableViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.separatorStyle = .none
+        historyList = fetchHistoryList()
     }
+    
+    // Fetches the history list from database
+    private func fetchHistoryList() -> [HistoryEntry] {
+        return dataBaseManager.getHistory().sorted { $0.value > $1.value }
+    }
+    
 
 }
 
@@ -63,5 +68,17 @@ extension KeywordsHistoryViewController {
         
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            let removedEntry = historyList.remove(at: indexPath.row)
+            dataBaseManager.removeFromHistory(removedEntry.0)
+        }
+        
+        tableView.deleteRows(at: [indexPath], with: .fade)
+        
+    }
+    
     
 }

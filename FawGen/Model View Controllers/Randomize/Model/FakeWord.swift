@@ -44,8 +44,8 @@ public struct FakeWord: Codable {
         self.created = Date()
         self.title = userTitle
         self.elements = [String]()
-        self.roots = String()
-        self.algoName = "userDefined"
+        self.roots = "Not Available..."
+        self.algoName = "user defined"
         self.algoNumber = Double()
     }
     
