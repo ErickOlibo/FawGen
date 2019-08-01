@@ -11,6 +11,7 @@ import UIKit
 class DetailsViewController: UIViewController {
     
     // MARK: - Properties
+    public var isFromSavedList: Bool = false
     //public var isSaved: Bool = false
     let dataBaseManager = DefaultDB()
     public let session = URLSession(configuration: .ephemeral)
@@ -80,7 +81,9 @@ class DetailsViewController: UIViewController {
         
         updateSaveButtonUI()
         
-        
+        if isFromSavedList {
+            saveButton.isHidden = true
+        }
         // Do any additional setup after loading the view.
     }
     

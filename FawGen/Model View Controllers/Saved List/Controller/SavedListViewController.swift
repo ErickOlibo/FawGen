@@ -29,6 +29,8 @@ class SavedListViewController: UITableViewController {
         super.viewWillAppear(animated)
         printConsole("ViewWillAppear")
     }
+    
+
 
     // MARK: - Table view data source
 
@@ -91,13 +93,21 @@ extension SavedListViewController {
                 let removedFakeWord = savedList.remove(at: indexPath.row)
                 dataBaseManager.removeFromSavedList(removedFakeWord)
             }
-            
             tableView.deleteRows(at: [indexPath], with: .fade)
             //fakeWord.removeFromList()
         }
     }
     
-    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        var fakeWord = FakeWord()
+        if isFiltering() {
+            fakeWord = filteredList[indexPath.row]
+        } else {
+            fakeWord = savedList[indexPath.row]
+        }
+        printConsole("[\(indexPath.row)] - \(fakeWord.title)")
+        presentDetailsViewController(fakeWord)
+    }
     
 }
 
@@ -125,4 +135,20 @@ extension SavedListViewController {
         filteredList = savedList.filter {$0.title.lowercased().contains(searchText.lowercased()) }.sorted{ $0.created > $1.created }
         tableView.reloadData()
     }
+}
+
+// MARK: - Seque to DetailsViewController
+extension SavedListViewController {
+    /// Presents as push transition the DetailsView Controller
+    /// - Note: DetailsViewController is access via its StoryBoard identifier
+    private func presentDetailsViewController(_ fakeWord: FakeWord) {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let detailsVC = storyBoard.instantiateViewController(withIdentifier: "DetailsVC") as! DetailsViewController
+        detailsVC.fakeWord = fakeWord
+        detailsVC.isFromSavedList = true
+        
+        self.navigationController?.pushViewController(detailsVC, animated: true)
+    }
+    
+    
 }
