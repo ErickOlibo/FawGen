@@ -54,7 +54,6 @@ extension SimpleAssistView {
         keywordsGrowningTextView.smartInsertDeleteType = .no
         keywordsGrowningTextView.smartQuotesType = .no
         keywordsGrowningTextView.spellCheckingType = .no
-        keywordsGrowningTextView.returnKeyType = .go
         
         keywordsGrowningTextView.attributedText = NSAttributedString()
         keywordsGrowningTextView.textColor = FawGenColors.secondary.color
@@ -191,6 +190,7 @@ extension SimpleAssistView: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
     }
+    
 
 }
 
