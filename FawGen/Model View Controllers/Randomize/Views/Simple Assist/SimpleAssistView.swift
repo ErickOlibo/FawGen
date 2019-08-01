@@ -64,7 +64,7 @@ class SimpleAssistView: UIView {
     }
     
     @IBAction func tappedLetsGo(_ sender: UIButton) {
-        printConsole("tappedLetsGo -> Ready for SPINNER")
+        //printConsole("tappedLetsGo -> Ready for SPINNER")
         keywordsGrowningTextView.resignFirstResponder()
         state == .close ? letsGoSimple() : letsGoAssist()
     }
@@ -74,13 +74,13 @@ class SimpleAssistView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInitialization()
-        printConsole("SimpleAssistView -> FRAME")
+        //printConsole("SimpleAssistView -> FRAME")
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInitialization()
-        printConsole("SimpleAssistView -> FRAME")
+        //printConsole("SimpleAssistView -> FRAME")
     }
  
 }

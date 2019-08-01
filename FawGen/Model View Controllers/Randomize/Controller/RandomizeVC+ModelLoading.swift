@@ -69,7 +69,7 @@ extension RandomizeViewController {
     
         // Set the view offSet
         let launchViewCenterX = self.view.center.x
-        printConsole("View Center = \(self.view.center) - View bound: \(self.view.bounds)")
+        //printConsole("View Center = \(self.view.center) - View bound: \(self.view.bounds)")
         let launchViewCenterY = self.view.bounds.height + (launchFrame.height / 2) + 10
         let launchViewCenter = CGPoint(x: launchViewCenterX, y: launchViewCenterY)
         launchView.center = launchViewCenter
@@ -112,7 +112,7 @@ extension RandomizeViewController: ModelDelegate, ToolBoxDelegate {
     }
     
     func toolBoxResultsReady(for task: TaskType) {
-        printConsole("ToolBox Results for \(task.rawValue) are ready!")
+        //printConsole("ToolBox Results for \(task.rawValue) are ready!")
     }
     
 }

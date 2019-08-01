@@ -39,7 +39,7 @@ public class FontsLister {
             }
         }
         
-        printConsole("[getAllFontNames] COLLECTION SIZE: \(collection.count)")
+        //printConsole("[getAllFontNames] COLLECTION SIZE: \(collection.count)")
 //        var count = 0
 //        for item in collection {
 //            count += 1

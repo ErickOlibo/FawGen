@@ -22,6 +22,7 @@ class RandomizeViewController: UITableViewController {
     let dataBaseManager = DefaultDB()
     
     // MARK: - properties
+    public let maxIterations = 3
     public enum ObserverState {
         case add, remove
     }
@@ -30,8 +31,14 @@ class RandomizeViewController: UITableViewController {
         case simple, assist
     }
     
+    public var alreadyDisplayedFakeWordsTitles = Set<String>() {
+        didSet {
+            printConsole("Already Diplayed size: \(alreadyDisplayedFakeWordsTitles.count)")
+        }
+    }
     public var isRepeatSimpleSet: Bool = false
     public var isDisplacedUp: Bool = false
+    public var currentKeywords = String()
     public let reachability = Reachability()
     
     /// Represents the vertical displacement height when a child view

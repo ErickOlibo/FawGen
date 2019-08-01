@@ -67,7 +67,7 @@ extension RandomizeViewController {
             //letsGoBtn = simpleAssistView.letsGoButton
             tableView.tableFooterView = simpleAssistView
             tableView.isScrollEnabled = false
-            printConsole("[FooterView Bounds] - \(tableView.tableFooterView!.bounds)")
+            //printConsole("[FooterView Bounds] - \(tableView.tableFooterView!.bounds)")
         }
     }
 }
@@ -125,6 +125,7 @@ extension RandomizeViewController: NewSetHomeDelegate {
     }
     
     func queryNewSetFromSimpleModel() {
+        printConsole("From Footer NewSetHome: Current keywords is: \(currentKeywords)")
         isRepeatSimpleSet = true
         letsGoQuery(.simple)
     }
@@ -165,11 +166,12 @@ extension RandomizeViewController {
 extension RandomizeViewController: SimpleAssistDelegate {
     
     func querySimpleModel() {
-        
+        currentKeywords = String()
         letsGoQuery(.simple)
     }
     
     func queryAssistedModel(by keywords: String) {
+        currentKeywords = keywords
         letsGoQuery(.assist, with: keywords)
     }
     
@@ -181,6 +183,7 @@ extension RandomizeViewController: SimpleAssistDelegate {
     private func letsGoQuery(_ type: LetsGoType, with keywords: String = String()) {
         let spinner = UIActivityIndicatorView(style: .whiteLarge)
         
+        // Footer is rather the SimpleAssistView or NewSetHomeView
         if isRepeatSimpleSet {
             if let newSetHomeView = tableView.tableFooterView as? NewSetHomeView {
                 printConsole("NEW SET HOME VIEW BOUNDS: \(newSetHomeView.bounds)")
@@ -207,26 +210,45 @@ extension RandomizeViewController: SimpleAssistDelegate {
             }
         }
 
+        // Trying to unify the simple and assist
+        let newType: LetsGoType = currentKeywords == String() ? .simple : .assist
+        printConsole("******* TYPE: \(newType.rawValue) - KEYWORDS: \(currentKeywords)")
         var results = [FakeWord]()
         toolBox.requestedQuality = dataBaseManager.getRequestedQuality()
         
         // ******* Background Queue
 
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            printConsole("DISPATCH GLOBAL")
-            
             guard let self = self else { return }
+            printConsole("DISPATCH GLOBAL")
             var tmpResults = [FakeWord]()
-            switch type {
-            case .simple:
-                if let madeUpwords = self.toolBox.generateMadeUpWords() {
-                    tmpResults = madeUpwords.map{ FakeWord($0) }
+            var counter = 0
+            
+            while counter < 3 && tmpResults.count == 0 {
+                counter += 1
+                switch newType {
+                case .simple:
+                    if let madeUpwords = self.toolBox.generateMadeUpWords() {
+                        tmpResults = madeUpwords.map{ FakeWord($0) }
+                    }
+                case .assist:
+                    if let madeUpwords = self.toolBox.generateMadeUpWords(from: self.currentKeywords) {
+                        tmpResults = madeUpwords.map{ FakeWord($0) }
+                    }
                 }
-            case .assist:
-                if let madeUpwords = self.toolBox.generateMadeUpWords(from: keywords) {
-                    tmpResults = madeUpwords.map{ FakeWord($0) }
-                }
+                
+                // Make sure words are not already in the seen words
+                let filteredResult = tmpResults.filter {!self.alreadyDisplayedFakeWordsTitles.contains($0.title) }
+                printConsole("ROUND \(counter) - Size RESULT: \(filteredResult.count)")
+                tmpResults = filteredResult
             }
+            
+            // Add new fake words to list
+            let toDisplayWordList = tmpResults.map { $0.title }
+            self.alreadyDisplayedFakeWordsTitles.formUnion(toDisplayWordList)
+            
+            // ****** END the 3 iterations if zero.
+            printConsole("Results from Query: \(tmpResults.count) FakeWords")
             tmpResults = self.dataSource.updatedFakeWordsResults(tmpResults)
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
@@ -418,13 +440,13 @@ extension RandomizeViewController {
     }
     
     @objc func keyboardDidHide(notification: NSNotification) {
-        printConsole("[keyboardDidHide] JUST HIDE!")
+        //printConsole("[keyboardDidHide] JUST HIDE!")
     }
     
     /// Displaces the SimpleAssistView in order to place it in respect of the
     /// newly displayed keyboard
     private func SimpleAssistDisplacement() -> CGFloat {
-        printConsole("FooterView in SimpleAssistDisplacement")
+        //printConsole("FooterView in SimpleAssistDisplacement")
         let displacement = 0.0 + (UIDevice().safeAreaBottomHeight() / 2)
         let keyboardHeight = keyboardFrame.height
         guard let footer = tableView.tableFooterView?.bounds else { return displacement }

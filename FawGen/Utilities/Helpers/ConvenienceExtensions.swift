@@ -97,7 +97,14 @@ class CustomImageView: UIImageView {
     }
 }
 
+
+private let isPrintingOn = true
+
+/// Prints to console, it is a way to silence other console logged.
 public func printConsole(_ text: String) {
-    let filter = " |||"
-    print(text + filter)
+    if isPrintingOn {
+        let filter = " |||"
+        print(text + filter)
+    }
+    
 }
