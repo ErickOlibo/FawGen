@@ -113,10 +113,10 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d34-MM-4sU">
-                                    <rect key="frame" x="107" y="80" width="70" height="40"/>
+                                    <rect key="frame" x="87" y="80" width="90" height="40"/>
                                     <color key="backgroundColor" red="0.23529411759999999" green="0.34901960780000002" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="70" id="aWA-Sf-ixU"/>
+                                        <constraint firstAttribute="width" constant="90" id="aWA-Sf-ixU"/>
                                         <constraint firstAttribute="height" constant="40" id="jKg-1Y-APV"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
@@ -131,14 +131,14 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ek9-Ji-FxD">
-                                    <rect key="frame" x="197" y="80" width="70" height="40"/>
+                                    <rect key="frame" x="197" y="80" width="90" height="40"/>
                                     <color key="backgroundColor" red="0.23529411759999999" green="0.34901960780000002" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="70" id="72k-Ld-Q6D"/>
+                                        <constraint firstAttribute="width" constant="90" id="72k-Ld-Q6D"/>
                                         <constraint firstAttribute="height" constant="40" id="bcP-Z1-bma"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                                    <state key="normal" title="Assist"/>
+                                    <state key="normal" title="Assisted"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                             <integer key="value" value="5"/>
@@ -151,9 +151,9 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstItem="d34-MM-4sU" firstAttribute="centerX" secondItem="LEW-oq-BMs" secondAttribute="centerX" constant="-45" id="7qK-cx-P1m"/>
+                                <constraint firstItem="d34-MM-4sU" firstAttribute="centerX" secondItem="LEW-oq-BMs" secondAttribute="centerX" constant="-55" id="7qK-cx-P1m"/>
                                 <constraint firstItem="wrR-BQ-Q65" firstAttribute="leading" secondItem="LEW-oq-BMs" secondAttribute="leading" id="Bob-o3-rsf"/>
-                                <constraint firstItem="ek9-Ji-FxD" firstAttribute="centerX" secondItem="LEW-oq-BMs" secondAttribute="centerX" constant="45" id="Hvl-0X-8B0"/>
+                                <constraint firstItem="ek9-Ji-FxD" firstAttribute="centerX" secondItem="LEW-oq-BMs" secondAttribute="centerX" constant="55" id="Hvl-0X-8B0"/>
                                 <constraint firstAttribute="bottom" secondItem="wrR-BQ-Q65" secondAttribute="bottom" constant="60" id="Mxa-pe-2nV"/>
                                 <constraint firstAttribute="bottom" secondItem="ek9-Ji-FxD" secondAttribute="bottom" id="NyN-NE-0NB"/>
                                 <constraint firstAttribute="height" constant="120" id="QoV-4K-tQC"/>

@@ -66,6 +66,7 @@ class RandomizeViewController: UITableViewController {
     // MAKR: - ViewController LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        //let _ = fontNamesList.map { printConsole("\($0)") }
         setupNavigationBarItems()
         setupTableView()
         dataSource.delegate = self

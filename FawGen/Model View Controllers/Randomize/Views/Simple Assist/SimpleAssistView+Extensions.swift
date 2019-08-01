@@ -92,9 +92,9 @@ extension SimpleAssistView {
         switch state {
         case . close:
             simpleButton.backgroundColor = FawGenColors.secondary.color
-            assistButton.backgroundColor = .darkGray
+            assistButton.backgroundColor = .lightGray
         case .open:
-            simpleButton.backgroundColor = .darkGray
+            simpleButton.backgroundColor = .lightGray
             assistButton.backgroundColor = FawGenColors.secondary.color
         }
     }
