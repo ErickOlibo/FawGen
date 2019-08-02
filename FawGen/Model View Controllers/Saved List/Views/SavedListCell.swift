@@ -53,7 +53,7 @@ class SavedListCell: UITableViewCell {
         attrsAlgo.append(time)
         attrsAlgo.append(attrsTimeAgo)
         algoAndTimeLabel.attributedText = attrsAlgo
-        
+        printConsole("SAVED LIST: \(fakeWord.title) - \(fakeWord.logoName) - \(fakeWord.themeColor)")
         
     }
     

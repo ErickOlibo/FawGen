@@ -53,8 +53,8 @@ extension FakeWord {
         
         // Here is the one that should be changed
         
-        let rootText = NSMutableAttributedString(string: self.roots)
-        //let rootText = attributedRootStory(self, fontSize)
+        //let rootText = NSMutableAttributedString(string: self.roots)
+        let rootText = attributedRootStory(self, fontSize)
         
         let algoType = NSAttributedString(string: self.algoName)
         guard let boldFont = UIFont(name: "AvenirNext-Bold", size: fontSize) else { return rootText }
@@ -120,9 +120,34 @@ extension FakeWord {
             return attributedWord
 
         case 4:
-            print("")
+            let list = fakeWord.elements.joined(separator: ".")
+            let attributedWord = NSMutableAttributedString(string: list)
+            return attributedWord
+            
         case 5:
-            print("")
+            var attrsItems = [NSAttributedString]()
+            let result = NSMutableAttributedString()
+            for item in fakeWord.elements {
+                let comp = item.components(separatedBy: .whitespaces)
+                if comp.count == 2 {
+                    let word = comp[0]
+                    let gram = comp[1]
+                    let attributedWord = NSMutableAttributedString(string: word)
+                    let ranges = word.ranges(of: gram)
+                    for (idx, range) in ranges.enumerated() {
+                        if idx == 0 {
+                            attributedWord.addAttributes(attributes, range: NSRange(range, in: word))
+                            attrsItems.append(attributedWord)
+                        }
+                    }
+                    result.append(attributedWord)
+                    if attrsItems.count < fakeWord.elements.count {
+                        result.append(separation)
+                    }
+                }
+            }
+            return result
+
         default:
             return NSMutableAttributedString(string: fakeWord.roots)
         }
