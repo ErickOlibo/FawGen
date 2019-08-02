@@ -10,6 +10,7 @@ import UIKit
 
 class FilterViewController: UIViewController {
     
+    public var delegate: FilterViewControllerDelegate?
     public let closeButton = SPLarkSettingsCloseButton()
     public var dataBaseManager = DefaultDB()
     public enum SettingCategory: Int, CaseIterable, Equatable, Hashable {
@@ -37,5 +38,10 @@ class FilterViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         saveSteppersValues()
+        delegate?.filterViewControllerWillDisappear()
     }
+}
+
+protocol FilterViewControllerDelegate {
+    func filterViewControllerWillDisappear()
 }

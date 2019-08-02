@@ -66,18 +66,15 @@ class RandomizeViewController: UITableViewController {
     // MAKR: - ViewController LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        //let _ = fontNamesList.map { printConsole("\($0)") }
         setupNavigationBarItems()
         setupTableView()
         dataSource.delegate = self
-        // About Starting the engine
         loadModelToMemory()
     }
     
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //printConsole("ViewWillAppear in [RandomizeViewController]")
         simpleAssistOrNewSetHomeUI()
         keyboardNotificationHandler(.add)
         applicationNotificationHandler(.add)
@@ -86,7 +83,6 @@ class RandomizeViewController: UITableViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        //printConsole("viewWillDisappear in [RandomizeViewController]")
         if let subViews = tableView.tableFooterView?.subviews {
             for view in subViews {
                 view.removeFromSuperview()
@@ -96,15 +92,7 @@ class RandomizeViewController: UITableViewController {
         applicationNotificationHandler(.remove)
     }
     
-    private func setupTableView() {
-        tableView.delegate = self
-        tableView.dataSource = dataSource
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 200.0
-        tableView.separatorStyle = .none
-        tableView.tableFooterView = UIView(frame: CGRect.zero)
-        //tableView.backgroundColor = FawGenColors.secondary.color
-    }
+    
 
 
 

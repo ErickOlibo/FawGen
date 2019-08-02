@@ -1,5 +1,5 @@
 //
-//  RandomizeVC+ModelLoading.swift
+//  RVC+ModelLoading.swift
 //  FawGen
 //
 //  Created by Erick Olibo on 30/07/2019.
@@ -86,7 +86,6 @@ extension RandomizeViewController {
         }) { (_) in
             
         }
-        
     }
     
     private func animateDissapear() {
@@ -104,7 +103,6 @@ extension RandomizeViewController {
 }
 
 extension RandomizeViewController: ModelDelegate, ToolBoxDelegate {
-    
     func modelLoadingCompletion(at percent: Int) {
         DispatchQueue.main.async { [weak self] in
             self?.launchView.progressBar.setProgressWithAnimationTo(percent)
