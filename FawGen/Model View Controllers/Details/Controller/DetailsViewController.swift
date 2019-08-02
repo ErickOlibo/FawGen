@@ -9,7 +9,7 @@
 import UIKit
 
 class DetailsViewController: UIViewController {
-    
+
     // MARK: - Properties
     public var isFromSavedList: Bool = false
     //public var isSaved: Bool = false

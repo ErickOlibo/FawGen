@@ -9,7 +9,7 @@
 import UIKit
 
 class RandomizeViewController: UITableViewController {
-    
+
     // MARK: - Properties for Loading
     public var difference = CGFloat()
     public var start = Date()

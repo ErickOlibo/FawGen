@@ -10,7 +10,7 @@ import UIKit
 import WebKit
 
 class AboutViewController: UIViewController {
-    
+
     // MARK: - Properties
     var aboutURL: URL?
     
