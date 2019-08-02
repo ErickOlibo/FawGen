@@ -38,10 +38,17 @@ class FilterViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         saveSteppersValues()
-        delegate?.filterViewControllerWillDisappear()
+        //delegate?.filterViewControllerWillDisappear()
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        delegate?.filterViewControllerDidDisappear()
+    }
+    
 }
 
 protocol FilterViewControllerDelegate {
-    func filterViewControllerWillDisappear()
+    //func filterViewControllerWillDisappear()
+    func filterViewControllerDidDisappear()
 }

@@ -9,7 +9,7 @@
 import UIKit
 private var dataBaseManager = DefaultDB()
 
-public struct FakeWord: Codable {
+public struct FakeWord: Codable, Equatable {
     
 
     
@@ -19,6 +19,7 @@ public struct FakeWord: Codable {
     private(set) var roots: String
     private(set) var algoName: String
     private(set) var algoNumber: Double
+    private(set) var titleLength: Double
     
     //private(set) var madeUpType: MadeUpType
     
@@ -34,6 +35,7 @@ public struct FakeWord: Codable {
         self.roots = madeUpWord.rootsStory
         self.algoName = madeUpWord.madeUpQuality.algoName
         self.algoNumber = madeUpWord.madeUpQuality.algoNumber
+        self.titleLength = Double(madeUpWord.title.count)
     }
     
     // A UserDefined FakeWord initializer or empty if nothing 
@@ -44,8 +46,29 @@ public struct FakeWord: Codable {
         self.roots = "Not Available..."
         self.algoName = "user defined"
         self.algoNumber = Double()
+        self.titleLength = Double()
     }
 
 }
 
 
+extension FakeWord {
+    
+    /// Returns if a fakeword is of the current Filters (quality) settings
+    /// - Note: As this is reserved for a filtered on FakeWords that are already compliant
+    /// to the App requirement, the check is only made on the All or nothing basis.
+    /// Meaning that checking if Length and Algo are nil or equal to filters
+    public func isOfCurrentFiltersQuality() -> Bool {
+        let quality = dataBaseManager.getRequestedQuality()
+        let reqLength = quality.length
+        let reqAlgo = quality.algo
+        
+        if reqLength == nil && reqAlgo == nil { return true }
+        if reqLength == self.titleLength && reqAlgo == nil { return true }
+        if reqLength == nil && self.algoNumber == reqAlgo { return true }
+        if reqLength == self.titleLength && reqAlgo == self.algoNumber { return true }
+        
+        return false
+    }
+    
+}

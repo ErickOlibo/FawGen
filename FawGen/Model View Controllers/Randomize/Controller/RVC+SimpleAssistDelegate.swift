@@ -107,6 +107,7 @@ extension RandomizeViewController: SimpleAssistDelegate {
                 
                 self.tableView.deleteRows(at: indexPaths, with: .automatic)
                 self.dataSource.items = results
+                self.currentRoundItems = results
                 self.dataSource.indexPaths = Set<IndexPath>()
                 var indexPathsNew = [IndexPath]()
                 for idx in 0..<self.dataSource.items.count {

@@ -143,7 +143,7 @@ extension DefaultDB {
 // MARK: - Quality Option for the app
 extension DefaultDB {
     
-    public func getRequestedQuality() -> (Double?, Double?) {
+    public func getRequestedQuality() -> (length: Double?, algo: Double?) {
         if lengthStatus == false && algoStatus == false {
             return (nil, nil)
         }

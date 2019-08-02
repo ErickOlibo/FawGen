@@ -26,6 +26,7 @@ extension RandomizeViewController: NewSetHomeDelegate {
         let indexPaths = (0..<rowsCount).map { IndexPath(row: $0, section: 0)}
         tableView.deleteRows(at: indexPaths, with: .automatic)
         dataSource.items = newItems
+        currentRoundItems = newItems
         tableView.endUpdates()
         simpleAssistOrNewSetHomeUI()
     }

@@ -21,6 +21,9 @@ class RandomizeViewController: UITableViewController {
     public var launchBackground = UIView()
     let dataBaseManager = DefaultDB()
     
+    // Holding Fakewords Result for the current round
+    public var currentRoundItems = [FakeWord]()
+    
     // MARK: - properties
     public let maxIterations = 3
     public enum ObserverState {
