@@ -352,7 +352,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
-                            <tableViewSection headerTitle="FILTERS" id="13h-ca-yZx">
+                            <tableViewSection headerTitle="INFORMATION" id="13h-ca-yZx">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="eWB-t8-8og" detailTextLabel="ETG-fl-mNj" imageView="VcQ-fh-cr4" style="IBUITableViewCellStyleValue1" id="jrZ-zV-YnE" userLabel="Keywords History">
                                         <rect key="frame" x="0.0" y="55.333333333333343" width="414" height="44"/>
@@ -600,6 +600,27 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="write_review" id="OZF-Tt-t3g">
+                                                    <rect key="frame" x="20" y="7" width="28" height="28"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" textLabel="uD2-Kr-IaI" imageView="UQD-fa-MOs" style="IBUITableViewCellStyleDefault" id="U0f-Jg-B3V" userLabel="Share This App">
+                                        <rect key="frame" x="0.0" y="607.33333333333337" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="U0f-Jg-B3V" id="wcX-Vm-GsR">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Share This App" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uD2-Kr-IaI">
+                                                    <rect key="frame" x="63" y="0.0" width="331" height="43.666666666666664"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="share_app" id="UQD-fa-MOs">
                                                     <rect key="frame" x="20" y="7" width="28" height="28"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
@@ -2279,6 +2300,7 @@
         <image name="privacy_policy" width="28" height="28"/>
         <image name="report" width="28" height="28"/>
         <image name="sendSmall" width="28" height="28"/>
+        <image name="share_app" width="28" height="28"/>
         <image name="social" width="28" height="28"/>
         <image name="swift" width="60" height="60"/>
         <image name="terms_of_use" width="28" height="28"/>

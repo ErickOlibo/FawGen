@@ -11,10 +11,28 @@ import UIKit
 class SettingsViewController: UITableViewController {
     
     // MARK: - Properties
+    private let isFawGen = false
+    private let pathFawGen = "https://itunes.apple.com/app/id1475236378"
+    private let pathInroze = "https://itunes.apple.com/app/id1343541599"
+    
+    private struct AppIndexPath {
+        static let explanation = IndexPath(row: 1, section: 0)
+        static let faq = IndexPath(row: 0, section: 1)
+        static let feedback = IndexPath(row: 1, section: 1)
+        static let story = IndexPath(row: 0, section: 2)
+        static let terms = IndexPath(row: 1, section: 2)
+        static let policy = IndexPath(row: 2, section: 2)
+        static let openSource = IndexPath(row: 3, section: 2)
+        static let disclamer = IndexPath(row: 4, section: 2)
+        static let writeReview = IndexPath(row: 5, section: 2)
+        static let shareApp = IndexPath(row: 6, section: 2)
+    }
+    
+    
     let dataBaseManager = DefaultDB()
     let reachability = Reachability()
     var indexPaths = [IndexPath]()
-    let titles = ["Fields Explanation", "F.A.Q.", "Feedback", "FawGen Story", "Terms of Use", "Privacy Policy", "Open-source Libraries", "Disclamer"]
+    let titles = ["Fields Explanation", "F.A.Q.", "Feedback", "FawGen Story", "Terms of Use", "Privacy Policy", "Open-source Libraries", "Disclamer", "Write a Review"]
     var indexPathsCollection = [IndexPath : String]()
     
     // MARK: - Outlets
@@ -35,22 +53,15 @@ class SettingsViewController: UITableViewController {
     
     
     private func setIndexPaths() {
-        let explanation = IndexPath(row: 1, section: 0)
-        let faq = IndexPath(row: 0, section: 1)
-        let feedback = IndexPath(row: 1, section: 1)
-        let story = IndexPath(row: 0, section: 2)
-        let terms = IndexPath(row: 1, section: 2)
-        let policy = IndexPath(row: 2, section: 2)
-        let openSource = IndexPath(row: 3, section: 2)
-        let disclamer = IndexPath(row: 4, section: 2)
-        indexPaths.append(explanation)
-        indexPaths.append(faq)
-        indexPaths.append(feedback)
-        indexPaths.append(story)
-        indexPaths.append(terms)
-        indexPaths.append(policy)
-        indexPaths.append(openSource)
-        indexPaths.append(disclamer)
+        indexPaths.append(AppIndexPath.explanation)
+        indexPaths.append(AppIndexPath.faq)
+        indexPaths.append(AppIndexPath.feedback)
+        indexPaths.append(AppIndexPath.story)
+        indexPaths.append(AppIndexPath.terms)
+        indexPaths.append(AppIndexPath.policy)
+        indexPaths.append(AppIndexPath.openSource)
+        indexPaths.append(AppIndexPath.disclamer)
+        indexPaths.append(AppIndexPath.writeReview)
         for (idx, indexPath) in indexPaths.enumerated() {
             indexPathsCollection[indexPath] = titles[idx]
         }
@@ -130,12 +141,11 @@ class SettingsViewController: UITableViewController {
     
     // TableView delegate
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        
         if reachability.networkStatus() == .unavailable {
-            var title = String()
+            var title = "this"
             if let tmpTitle = indexPathsCollection[indexPath] {
                 title = "the \(tmpTitle)"
-            } else {
-                title = "this"
             }
             if let controller = reachability.internetConnectionAlertController(for: title) {
                 present(controller, animated: true, completion: nil)
@@ -144,4 +154,48 @@ class SettingsViewController: UITableViewController {
         }
         return indexPath
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        printConsole("[didSelectRowAt] TABLE VIEW IndexPath: \(indexPath)")
+        
+        if indexPath == AppIndexPath.writeReview {
+            writeReview()
+        }
+        
+        if indexPath == AppIndexPath.shareApp {
+            shareApp()
+        }
+        
+    }
+    
+    
+}
+
+extension SettingsViewController {
+    
+    /// Get the Product URL
+    private func getProductURL() -> URL? {
+        let path = isFawGen ? pathFawGen : pathInroze
+        return URL(string: path)
+    }
+    
+    /// Sends the user to the App Store to wwrite a review about the app
+    private func writeReview() {
+        //guard let productURL = getProductURL() else { return }
+        guard let productURL = URL(string: pathFawGen) else { return }
+        var compenents = URLComponents(url: productURL, resolvingAgainstBaseURL: false)
+        compenents?.queryItems = [ URLQueryItem(name: "action", value: "write-review") ]
+        
+        guard let writeReviewURL = compenents?.url else { return }
+        UIApplication.shared.open(writeReviewURL)
+    }
+    
+    
+    /// Opens the pop menu to give options on sharing the app with friends
+    private func shareApp() {
+        guard let productURL = getProductURL() else { return }
+        let activityViewController = UIActivityViewController(activityItems: [productURL], applicationActivities: nil)
+        present(activityViewController, animated: true, completion: nil)
+    }
+    
 }
