@@ -14,9 +14,12 @@ class RandomizeViewController: UITableViewController {
     public var difference = CGFloat()
     public var start = Date()
     
-    public var model: Model!
-    public var toolBox: ToolBox!
-    public var kNN: KNearestNeighbors!
+//    public var model: Model!
+//    public var toolBox: ToolBox!
+//    public var kNN: KNearestNeighbors!
+    
+    public var persistent: Persistent!
+    
     public var launchView: StartingEngine!
     public var launchBackground = UIView()
     let dataBaseManager = DefaultDB()

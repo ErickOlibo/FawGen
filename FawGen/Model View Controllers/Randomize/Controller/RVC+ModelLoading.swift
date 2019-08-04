@@ -38,16 +38,20 @@ extension RandomizeViewController {
         
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else { return }
-            let _model = PersistentModel.shared.model
-            _model.delegate = self
-            _model.initialize()
-            let _kNN = PersistentKNN.shared.kNN
-            let _toolBox = ToolBox()
+            let model = FawGenModel()
+            model.delegate = self
+            model.initialize()
+//            let _model = PersistentModel.shared.model
+//            _model.delegate = self
+//            _model.initialize()
+//            let _kNN = PersistentKNN.shared.kNN
+//            let _toolBox = ToolBox()
             DispatchQueue.main.async { [weak self] in
-                self?.model = _model
-                self?.kNN = _kNN
-                self?.toolBox = _toolBox
-                self?.toolBox.delegate = self
+                let grams = Grams(model)
+                let kNN = KNearestNeighbors(model)
+                let toolBox = ToolBox(model, grams: grams, kNN: kNN)
+                self?.persistent = Persistent(model, kNN, toolBox, grams)
+                
                 printConsole("from Queue to model: \(self!.start.toNowProcessDuration)")
                 self?.animateDissapear()
                 self?.enableNavigationItems()
@@ -102,15 +106,28 @@ extension RandomizeViewController {
     
 }
 
-extension RandomizeViewController: ModelDelegate, ToolBoxDelegate {
-    func modelLoadingCompletion(at percent: Int) {
+
+
+extension RandomizeViewController: FawGenModelDelegate {
+    func FawGenModelLoadingCompletion(at percent: Int) {
         DispatchQueue.main.async { [weak self] in
             self?.launchView.progressBar.setProgressWithAnimationTo(percent)
         }
     }
     
-    func toolBoxResultsReady(for task: TaskType) {
-        //printConsole("ToolBox Results for \(task.rawValue) are ready!")
-    }
-    
 }
+
+
+//extension RandomizeViewController: ModelDelegate, ToolBoxDelegate {
+//    func modelLoadingCompletion(at percent: Int) {
+//        DispatchQueue.main.async { [weak self] in
+//            self?.launchView.progressBar.setProgressWithAnimationTo(percent)
+//        }
+//    }
+//
+//    func toolBoxResultsReady(for task: TaskType) {
+//        //printConsole("ToolBox Results for \(task.rawValue) are ready!")
+//    }
+//
+//}
+

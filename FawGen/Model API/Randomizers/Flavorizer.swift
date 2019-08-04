@@ -1,13 +1,12 @@
 //
 //  Flavorizer.swift
-//  ModelForFawGen
+//  FawGenModelAPI
 //
-//  Created by Erick Olibo on 17/07/2019.
+//  Created by Erick Olibo on 04/08/2019.
 //  Copyright © 2019 DEFKUT Creations OU. All rights reserved.
 //
 
 import Foundation
-
 
 class Flavorizer {
     
@@ -18,14 +17,10 @@ class Flavorizer {
         case vc = "VC"
     }
     
-    private let model = PersistentModel.shared.model
-    private let grams = PersistentModel.shared.model.grams
     private let vows = ModelConstants.vows
     private let cons = ModelConstants.cons
     private let vowels = ModelConstants.vowels
-    private let statements = PersistentModel.shared.model.statements
     private let consonants = ModelConstants.consonants
-    private var length = Int()
     
     private var quality: QualityOptions = (nil, nil)
     private var list = Set<String>()
@@ -40,8 +35,22 @@ class Flavorizer {
     private var center = Set<WordBreak>()
     private var right = Set<WordBreak>()
     
+    private var combinedVocabulary: Set<String>
+    private weak var model: FawGenModel!
+    private weak var grams: Grams!
     
-    // MARK: - Public methods
+    init(_ model: FawGenModel, grams: Grams) {
+        combinedVocabulary = model.combinedVocabulary
+        self.grams = grams
+        print("[Flavorizer] Combined Vocab size: \(combinedVocabulary.count)")
+    }
+    
+    
+    
+}
+
+// MARK: - Public methods
+extension Flavorizer {
     
     /// Generates all possible MadeUpWords using the Flavorizer Algorithm, and retuns a set of
     /// MadeUpwords
@@ -59,8 +68,8 @@ class Flavorizer {
         self.uniqueMadeUpWords = Set<String>()
         return allPossibilities()
     }
-    
 }
+
 
 
 // MARK: - Private methods
@@ -107,7 +116,7 @@ extension Flavorizer {
         }
         return results.count == 0 ? nil : results
     }
-
+    
     
     /// Returns an array of WordBreak from a list of words
     /// The list is coming from the user or selected randomly from the statements
@@ -120,14 +129,14 @@ extension Flavorizer {
         return collection.count == 0 ? nil : collection
     }
     
-
+    
     /// Returns an array of WordBreak from a single word
     /// - Parameter word: the word to create the left, center and right
     /// WordBreak from.
     private func flavoredBreakDownOf(_ word: String) -> [WordBreak]? {
         var results = [WordBreak]()
         guard let breaks = breakDown(of: word) else { return nil }
-
+        
         guard breaks.count > 1 else { return nil }
         if breaks.count == 2 {
             results.append(WordBreak(word, gram: breaks[0], side: .left))
@@ -141,7 +150,7 @@ extension Flavorizer {
         return results
     }
     
-
+    
     /// Breaks down a word into defined Symbol forms such as VCV, CV, VC
     /// - Parameter word: a word of length larger than 2 letters
     /// - Returns: a breaks in flavored syllabels
@@ -191,10 +200,11 @@ extension Flavorizer {
         guard word.isOfRequestedLengthQuality(quality.length) else { return false }
         guard !uniqueMadeUpWords.contains(word) else { return false }
         guard grams.hasPassedGramsChecker(word) else { return false }
-        guard !model.vocab.combinedVocabulary.contains(word) else { return false }
+        guard !combinedVocabulary.contains(word) else { return false }
         return true
     }
     
     
     
 }
+

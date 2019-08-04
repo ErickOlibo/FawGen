@@ -57,7 +57,7 @@ extension RandomizeViewController: SimpleAssistDelegate {
         let newType: LetsGoType = currentKeywords == String() ? .simple : .assist
         printConsole("******* TYPE: \(newType.rawValue) - KEYWORDS: \(currentKeywords)")
         var results = [FakeWord]()
-        toolBox.requestedQuality = dataBaseManager.getRequestedQuality()
+        persistent.toolBox.requestedQuality = dataBaseManager.getRequestedQuality()
 
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else { return }
@@ -69,11 +69,11 @@ extension RandomizeViewController: SimpleAssistDelegate {
                 counter += 1
                 switch newType {
                 case .simple:
-                    if let madeUpwords = self.toolBox.generateMadeUpWords() {
+                    if let madeUpwords = self.persistent.toolBox.generateMadeUpWords() {
                         tmpResults = madeUpwords.map{ FakeWord($0) }
                     }
                 case .assist:
-                    if let madeUpwords = self.toolBox.generateMadeUpWords(from: self.currentKeywords) {
+                    if let madeUpwords = self.persistent.toolBox.generateMadeUpWords(from: self.currentKeywords) {
                         tmpResults = madeUpwords.map{ FakeWord($0) }
                     }
                 }

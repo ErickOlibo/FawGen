@@ -1,8 +1,8 @@
 //
 //  ToolBox.swift
-//  ModelForFawGen
+//  FawGenModelAPI
 //
-//  Created by Erick Olibo on 12/07/2019.
+//  Created by Erick Olibo on 04/08/2019.
 //  Copyright © 2019 DEFKUT Creations OU. All rights reserved.
 //
 
@@ -11,34 +11,52 @@ import UIKit
 
 class ToolBox {
     
-    public var delegate: ToolBoxDelegate?
     public var requestedQuality: QualityOptions = (nil, nil)
     
-    // MARK: - Private constants
+    // MARK: - Properties
     private let device = UIDevice.current
-    private let model = PersistentModel.shared.model
-    private let simpleAssistModel: SimpleAssistModel
-    private let nlp: NLProcessor
-    private let synonymsFinder: SynonymsFinder
+    private weak var model: FawGenModel!
+    private weak var grams: Grams!
+    private weak var kNN: KNearestNeighbors!
+    private let nlp: NLProcessor!
     
+    // *** NOTE: are the variable below supposed to be public? (i.e. private(set))
+    private(set) var statements: Set<String>
+    private(set) var nameToVector: [String : Vector]
+    private(set) var synonymsCorpus: Set<String>
+    private(set) var synonymsWordsRank: [String : [String]]
+    private(set) var combinedVocabulary: Set<String>
+    
+    // Public Randomizers
     private(set) var swapper: Swapper
+    private(set) var substituter: Substituter
     private(set) var concatenater: Concatenater
     private(set) var markovChainer: MarkovChainer
-    private(set) var subsituter: Substituter
     private(set) var flavorizer: Flavorizer
+    
+    private let simpleAssistModel: SimpleAssistModel
+    private let synonymsFinder: SynonymsFinder
     
     private var list = Set<String>()
     private var keywords = String()
     
-    init() {
-        self.swapper = Swapper()
-        self.concatenater = Concatenater()
-        self.markovChainer = MarkovChainer()
-        self.subsituter = Substituter()
-        self.flavorizer = Flavorizer()
-        self.nlp = NLProcessor()
-        self.simpleAssistModel = SimpleAssistModel()
-        self.synonymsFinder = SynonymsFinder()
+    
+    init(_ model: FawGenModel, grams: Grams, kNN: KNearestNeighbors) {
+        
+        statements = model.statements
+        nameToVector = model.nameToVector
+        synonymsCorpus = model.synonymsCorpus
+        synonymsWordsRank = model.synonymsWordsRank
+        combinedVocabulary = model.combinedVocabulary
+        simpleAssistModel = SimpleAssistModel(model, kNN: kNN)
+        synonymsFinder = SynonymsFinder(model)
+        swapper = Swapper(model, grams: grams)
+        substituter = Substituter(model, grams: grams)
+        concatenater = Concatenater(model, grams: grams)
+        markovChainer = MarkovChainer(model, grams: grams)
+        flavorizer = Flavorizer(model, grams: grams)
+        nlp = NLProcessor()
+        
     }
     
 }
@@ -59,34 +77,32 @@ extension ToolBox {
     }
 }
 
+
+
 // MARK: - Private methods
 extension ToolBox {
     
     /// Collects all the neighbors for the list of keywords and synonyms
     private func getAllNeighbors(from synAndKey: String) -> Set<String> {
-        let start = Date()
         guard let list = simpleAssistModel.getNeighbors(from: synAndKey) else { return Set<String>() }
-        printModelAPI("NEIGHBORS [\(list.count)]: \(list.sorted())")
-        delegate?.toolBoxResultsReady(for: .neighbors)
-        printModelAPI("ToolBox ==> [generateMadeUpWords / getNeighbors] - \(start.toNowProcessDuration)")
         return list
         
     }
     
     /// Collects all Keywords, and Synonyms from the entered keywords or random statement
     private func getAllKeywordsAndSynonyms(from keywords: String) -> String {
-        let start = Date()
         let space = " "
-        self.keywords = (keywords == String()) ? model.statements.randomOne() : keywords
-        printModelAPI("KEYWORDS: \(self.keywords)")
+        self.keywords = (keywords == String()) ? getOneRandomStatement() : keywords
+        print("KEYWORDS: \(self.keywords)")
         
-  
         let synonyms = getAllSynonyms()?.joined(separator: " ") ?? String()
         let synAndKey = synonyms == String() ?  self.keywords : self.keywords + space + synonyms
-        delegate?.toolBoxResultsReady(for: .synonyms)
-        printModelAPI("ToolBox ==> [generateMadeUpWords / getAllSynonyms] - \(start.toNowProcessDuration)")
-        
         return synAndKey
+    }
+    
+    // Because the file is in the Bundle, there should not be a problem with forced unwraping
+    private func getOneRandomStatement() -> String {
+        return statements.randomElement()!
     }
     
     
@@ -99,11 +115,11 @@ extension ToolBox {
             if let syno = synonymsFinder.getSynonyms(of: item) {
                 result.append(contentsOf: syno)
             }
-
-        } as! [String]
+            
+            } as! [String]
         let synonymsAsSet = Set(synonyms)
         let extra = synonymsAsSet.subtracting(tokens)
-        printModelAPI("TOKENS: [\(tokens.count)] - RESULT: [\(synonymsAsSet.count)] - EXTRA: [\(extra.count)]")
+        print("TOKENS: [\(tokens.count)] - RESULT: [\(synonymsAsSet.count)] - EXTRA: [\(extra.count)]")
         if maxListSize - tokens.count <= 0 {
             tmpList = Set(tmpList.shuffled().prefix(maxListSize))
         } else {
@@ -111,7 +127,7 @@ extension ToolBox {
         }
         
         if tmpList.count == 0 { return nil }
-        printModelAPI("SYN AND KEY [\(tmpList.count)]: \(tmpList.sorted())")
+        print("SYN AND KEY [\(tmpList.count)]: \(tmpList.sorted())")
         return tmpList
     }
     
@@ -119,79 +135,48 @@ extension ToolBox {
     /// The returning MadeUpWords are complying to the QualityOptions
     private func queryAllRandomizers() -> Set<MadeUpWord>? {
         var collection = Set<MadeUpWord>()
-        var start = Date()
         
-        // Swapper --> Quality algo value = 1.0
         if requestedQuality.algo == nil || requestedQuality.algo! == 1.0 {
-            start = Date()
             if let swapperResults = swapperResults() { collection.formUnion(swapperResults) }
-            delegate?.toolBoxResultsReady(for: .swap)
-            printModelAPI("queryAllRandomizers ==> [SWAPPER] - \(start.toNowProcessDuration)")
         }
         
-        
-        // Subsituter --> Quality algo value = 2.0
         if requestedQuality.algo == nil || requestedQuality.algo! == 2.0 {
-            start = Date()
             if let substituterResults = substituterResults() { collection.formUnion(substituterResults) }
-            delegate?.toolBoxResultsReady(for: .substitute)
-            printModelAPI("queryAllRandomizers ==> [SUBSTITUTER] - \(start.toNowProcessDuration)")
         }
         
-        
-        // Concatenater --> Quality algo value = 3.0
         if requestedQuality.algo == nil || requestedQuality.algo! == 3.0 {
-            start = Date()
             if let concatenaterResults = concatenaterResults() { collection.formUnion(concatenaterResults) }
-            delegate?.toolBoxResultsReady(for: .concat)
-            printModelAPI("queryAllRandomizers ==> [CONCATENATER] - \(start.toNowProcessDuration)")
         }
         
-        
-        // MarkovChainer --> Quality algo value = 4.0
         if requestedQuality.algo == nil || requestedQuality.algo! == 4.0 {
-            start = Date()
             if let markovChainerResults = markovChainerResults() { collection.formUnion(markovChainerResults) }
-            delegate?.toolBoxResultsReady(for: .chain)
-            printModelAPI("queryAllRandomizers ==> [MARKOVCHAINER] - \(start.toNowProcessDuration)")
         }
         
-        
-        // Flavorizer --> Quality algo value = 5.0
         if requestedQuality.algo == nil || requestedQuality.algo! == 5.0 {
-            start = Date()
             if let flavorizerResults = flavorizerResults() { collection.formUnion(flavorizerResults) }
-            delegate?.toolBoxResultsReady(for: .flavorize)
-            printModelAPI("queryAllRandomizers ==> [FLAVORIZER] - \(start.toNowProcessDuration)")
         }
-        
         
         return collection.count == 0 ? nil : collection
     }
     
-    // Swapper
     private func swapperResults() -> Set<MadeUpWord>? {
         return swapper.generatesAllPossibilities(from: list, with: requestedQuality)
     }
     
-    // Substituter
     private func substituterResults() -> Set<MadeUpWord>? {
-        return subsituter.generatesAllPossibilities(from: list, with: requestedQuality)
+        return substituter.generatesAllPossibilities(from: list, with: requestedQuality)
     }
     
-    // Concatenater
     private func concatenaterResults() -> Set<MadeUpWord>? {
         return concatenater.generatesAllPossibilities(from: list, with: requestedQuality)
     }
     
-    // MarkovChainer
     private func markovChainerResults() -> Set<MadeUpWord>? {
         return markovChainer.generatesAllPossibilities(from: list, with: requestedQuality)
     }
     
-    // Flavorizer
     private func flavorizerResults() -> Set<MadeUpWord>? {
         return flavorizer.generatesAllPossibilities(from: list, with: requestedQuality)
     }
-
+    
 }

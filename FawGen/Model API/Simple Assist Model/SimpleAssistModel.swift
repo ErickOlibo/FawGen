@@ -1,33 +1,44 @@
 //
 //  SimpleAssistModel.swift
-//  ModelForFawGen
+//  FawGenModelAPI
 //
-//  Created by Erick Olibo on 19/07/2019.
+//  Created by Erick Olibo on 04/08/2019.
 //  Copyright © 2019 DEFKUT Creations OU. All rights reserved.
 //
 
 import Foundation
 
-
-
 class SimpleAssistModel {
     
     // MARK: - Properties
-    private(set) var model = PersistentModel.shared.model
-    private(set) var nlp = NLProcessor()
-    private(set) var kNN = PersistentKNN.shared.kNN
+    private(set) var nlp: NLProcessor!
     private(set) var keywords = String()
+    private(set) var nameToVector: [String : Vector]
+    private weak var kNN: KNearestNeighbors!
+    private weak var model: FawGenModel!
     
-    // Supposed to return MadeUpWord array
-    public func getNeighbors(from keywords: String = String()) -> Set<String>? {
-        self.keywords = keywords
-        return listOfNeighbors()
+    init(_ model: FawGenModel, kNN: KNearestNeighbors) {
+        nlp = NLProcessor()
+        self.model = model
+        self.kNN = kNN
+        nameToVector = model.nameToVector
+        
     }
     
 }
 
 
+// MARK: - Public Methods
+extension SimpleAssistModel {
+    
+    public func getNeighbors(from keywords: String = String()) -> Set<String>? {
+        self.keywords = keywords
+        return listOfNeighbors()
+    }
+}
 
+
+// MARK: - Private methods
 extension SimpleAssistModel {
     
     private func listOfNeighbors() -> Set<String>? {
@@ -36,7 +47,7 @@ extension SimpleAssistModel {
         let tokens = nlp.tokenizeByWords(keywords)
         neighbors.formUnion(tokens)
         
-        let tokensInNameToVector = tokens.compactMap { model.nameToVector[$0] }
+        let tokensInNameToVector = tokens.compactMap { nameToVector[$0] }
         let size = tokensInNameToVector.count
         switch size {
         case 0:
@@ -50,7 +61,7 @@ extension SimpleAssistModel {
         }
         
         for token in tokens {
-            guard let vector = model.nameToVector[token] else { continue }
+            guard let vector = nameToVector[token] else { continue }
             let nearNeighbors = kNN.similarNearestNeighborsTo(vector, numberOfNeighbors: numbOfNeighbors).reduce(into: []) { result, vector in
                 result.append(vector.0.name)
             }
@@ -58,5 +69,4 @@ extension SimpleAssistModel {
         }
         return neighbors
     }
-    
 }

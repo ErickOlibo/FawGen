@@ -1,29 +1,38 @@
 //
-//  SwapperTwo.swift
-//  ModelForFawGen
+//  Swapper.swift
+//  FawGenModelAPI
 //
-//  Created by Erick Olibo on 14/07/2019.
+//  Created by Erick Olibo on 04/08/2019.
 //  Copyright © 2019 DEFKUT Creations OU. All rights reserved.
 //
 
 import Foundation
 
 
-// This Class does not need a SubModel or SimpleModel and AssistModel.
-// Only operates with list of words as input
 class Swapper {
     
     // MARK: - Properties
-    private let model = PersistentModel.shared.model
-    private let grams = PersistentModel.shared.model.grams
     private var quality: QualityOptions = (nil, nil)
     private var list = Set<String>()
     private var uniqueMadeUpWords = Set<String>()
     private let maxMadeUpWordsByInstance = 1
     private let maxResultsPerType = ModelConstants.maxResultsPerTypeOfAlgorithm
-    private var start = Date()
     
-    // MARK: - Public Methods
+    private var combinedVocabulary: Set<String>
+    private weak var model: FawGenModel!
+    private weak var grams: Grams!
+    
+    init(_ model: FawGenModel, grams: Grams) {
+        combinedVocabulary = model.combinedVocabulary
+        self.grams = grams
+        print("[Swapper] Combined Vocab size: \(combinedVocabulary.count)")
+    }
+    
+    
+}
+
+// MARK: - Public methods
+extension Swapper {
     /// Generates all possible MadeUpWords using the Swapper Algorithm. It goes through the list
     /// and swaps using the 4 current algorithms and returns a filter list with a max results per type of 10
     /// - Parameters:
@@ -36,16 +45,16 @@ class Swapper {
         return allPossibilities()
     }
     
+    
 }
 
 
-// MARK: - Private Methods
+// MARK: - Private methods
 extension Swapper {
-
+    
     /// Goes through each type of swap and generates every possible MadeUpWords.
     /// It is then filter to comply to maxResultsPerType
     private func allPossibilities() -> Set<MadeUpWord>? {
-        start = Date()
         var results = Set<MadeUpWord>()
         for word in list {
             guard quality.length == nil ? word.isOfCorrectInAppLength : word.isOfCorrectLength else { continue }
@@ -66,7 +75,6 @@ extension Swapper {
         return randomTenResults.count == 0 ? nil : randomTenResults
     }
     
-    
     /// Returns a true if the madeUpWord as passed the qualifying test. Length quality, a uniqueness,
     /// a biGram and triGram, and a corpus tests.
     /// - Parameter word: the newWord to be tester
@@ -74,7 +82,7 @@ extension Swapper {
         guard word.isOfRequestedLengthQuality(quality.length) else { return false }
         guard !uniqueMadeUpWords.contains(word) else { return false }
         guard grams.hasPassedGramsChecker(word) else { return false }
-        guard !model.vocab.combinedVocabulary.contains(word) else { return false }
+        guard !combinedVocabulary.contains(word) else { return false }
         return true
     }
     
@@ -184,4 +192,3 @@ extension Swapper {
     }
     
 }
-

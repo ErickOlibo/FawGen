@@ -1,33 +1,39 @@
 //
 //  KNearestNeighbors.swift
-//  FawGen
+//  FawGenModelAPI
 //
-//  Created by Erick Olibo on 04/04/2019.
+//  Created by Erick Olibo on 04/08/2019.
 //  Copyright © 2019 DEFKUT Creations OU. All rights reserved.
 //
 
 import Foundation
 
+
 class KNearestNeighbors {
     
     // MARK: - Properties
-    private var testInit = String() 
-    private let model = PersistentModel.shared.model
+    private weak var model: FawGenModel!
+    
     private(set) var centroids = [Vector]()
     private(set) var classificationByCentroids = [[Vector]]()
     private(set) var collectionOfVectors = [Vector]()
-    private(set) var name: String
+    
     private let type: SimilarityType = .euclidean
     
     
     // MARK: - Initialization
-    init(_ name: String) {
-        self.centroids = model.centroids
-        self.classificationByCentroids = model.classificationByCentroids
-        self.collectionOfVectors = model.collectionOfVectors
-        self.name = name
+    init(_ model: FawGenModel) {
+        self.model = model
+        centroids = model.centroids
+        classificationByCentroids = model.classificationByCentroids
+        collectionOfVectors = model.collectionOfVectors
     }
+    
+}
 
+
+// MARK: - Public methods
+extension KNearestNeighbors {
     
     /// Returns the K-Nearest Neighbor using Euclidean Similarity as default.
     /// - Parameters:
@@ -68,8 +74,11 @@ class KNearestNeighbors {
         }
     }
     
+}
+
+// MARK: - Private methods
+extension KNearestNeighbors {
     
-    // MARK: - Private Methods
     /// Returns the index of the K-Nearest Centroids to a vector point
     /// - Parameters:
     ///     - point: a vector point insite the word2vec space
@@ -87,6 +96,5 @@ class KNearestNeighbors {
         }
         return indices
     }
-    
     
 }

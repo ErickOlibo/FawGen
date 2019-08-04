@@ -13,9 +13,10 @@ class SimpleAssistView: UIView {
     // MARK: - Properties
     var simpleAssistDelegate: SimpleAssistDelegate?
     let dataBaseManager = DefaultDB()
-    let model = PersistentModel.shared.model
+    var persistent: Persistent!
+
     lazy var combinedCorpus: Set<String> = {
-        return model.vocab.combinedVocabulary
+        return persistent.model.combinedVocabulary
     }()
     enum StackViewState: String {
         case open

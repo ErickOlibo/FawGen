@@ -1,35 +1,42 @@
 //
 //  MarkovChainer.swift
-//  ModelForFawGen
+//  FawGenModelAPI
 //
-//  Created by Erick Olibo on 15/07/2019.
+//  Created by Erick Olibo on 04/08/2019.
 //  Copyright © 2019 DEFKUT Creations OU. All rights reserved.
 //
 
 import Foundation
 
 class MarkovChainer {
-
-    
-    // MARK: - TypeAlias
-    private typealias Chains = [String : [String]]
-    private typealias Elements = [String]
     
     // MARK: - Properties
-    private let model = PersistentModel.shared.model
-    private let grams = PersistentModel.shared.model.grams
-    private var biGramsChains = [String : [String]]()
-    private var biGramsStarts = Set<String>()
-    private var length = Int()
     private var quality: QualityOptions = (nil, nil)
     private var list = Set<String>()
+    private var biGramsChains = [String : [String]]() // from list
+    private var biGramsStarts = Set<String>() // from list
     private var uniqueMadeUpWords = Set<String>()
     private let maxResultsPerType = ModelConstants.maxResultsPerTypeOfAlgorithm * 2
     private let maxIterations = ModelConstants.maxIterations
     private let listMinCount = 20
-
     
-    // MARK: - Public Methods
+    private var combinedVocabulary: Set<String>
+    private weak var model: FawGenModel!
+    private weak var grams: Grams!
+    
+    init(_ model: FawGenModel, grams: Grams) {
+        combinedVocabulary = model.combinedVocabulary
+        self.grams = grams
+        print("[MarkovChainer] Combined Vocab size: \(combinedVocabulary.count)")
+    }
+    
+    
+}
+
+
+// MARK: - Public methods
+extension MarkovChainer {
+    
     /// Generates all possible MadeUpWords using the Swapper Algorithm. It goes through the list
     /// and swaps using the 4 current algorithms and returns a filter list with a max results per type of 10
     /// - Parameters:
@@ -44,11 +51,11 @@ class MarkovChainer {
         if biGramsChains.count == 0 { return nil } // number of words in list larger than 2 letters
         return allPossibilities()
     }
-
+    
 }
 
 
-// MARK: - Private Methods
+// MARK: - Private methods
 extension MarkovChainer {
     
     /// Goes through the list and creates MdeUpWords  using Markov Chain algorithm.
@@ -106,10 +113,7 @@ extension MarkovChainer {
         guard word.isOfRequestedLengthQuality(quality.length) else { return false }
         guard !uniqueMadeUpWords.contains(word) else { return false }
         guard grams.hasPassedGramsChecker(word) else { return false }
-        guard !model.vocab.combinedVocabulary.contains(word) else { return false }
+        guard !combinedVocabulary.contains(word) else { return false }
         return true
     }
-
-    
-    
 }

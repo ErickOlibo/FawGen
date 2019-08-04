@@ -1,8 +1,8 @@
 //
 //  SynonymsFinder.swift
-//  ModelForFawGen
+//  FawGenModelAPI
 //
-//  Created by Erick Olibo on 21/07/2019.
+//  Created by Erick Olibo on 04/08/2019.
 //  Copyright © 2019 DEFKUT Creations OU. All rights reserved.
 //
 
@@ -11,10 +11,23 @@ import Foundation
 class SynonymsFinder {
     
     // MARK: - Private Properties
-    private var wordsRank = ModelConstants.synonymsWordsRank
-    private(set) var corpus = ModelConstants.synonymsCorpus    
+    private weak var model: FawGenModel!
+    private var wordsRank: [String : [String]]
+    private var corpus: Set<String>
     
-    // MARK: - Public Methods
+    init(_ model: FawGenModel) {
+        self.model = model
+        wordsRank = model.synonymsWordsRank
+        corpus = model.synonymsCorpus
+        print("[SynonymsFinder] Finder Corpus size: \(corpus.count)")
+    }
+    
+    
+}
+
+// MARK - Public methods
+extension SynonymsFinder {
+    
     /// Returns a list of synonyms for a given word
     /// - Parameter word: a word for which synonyms are requested
     /// - Returns: an array of words or nil if none found

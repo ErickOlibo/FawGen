@@ -1,8 +1,8 @@
 //
 //  Grams.swift
-//  ModelForFawGen
+//  FawGenModelAPI
 //
-//  Created by Erick Olibo on 16/07/2019.
+//  Created by Erick Olibo on 04/08/2019.
 //  Copyright © 2019 DEFKUT Creations OU. All rights reserved.
 //
 
@@ -11,57 +11,48 @@ import Foundation
 
 class Grams {
     
-    // private typeAlias
-    private typealias Start = Set<String>
-    private typealias Chains = [String : [String]]
-    private typealias Frequencies = [String : Int]
     
-    // MARK: - Properties
-    public var delegate: GramsDelegate?
+    private weak var model: FawGenModel!
+    
     private(set) var biGramChains = [String : [String]]()
     private(set) var triGramChains = [String : [String]]()
     
     private(set) var biGramFrequencies = [String : Int]()
-    private(set) var biGramStart = Set<String>()
-    private(set) var triGramStart = Set<String>()
+    private(set) var biGramsStart = Set<String>()
+    private(set) var triGramsStart = Set<String>()
     
     private(set) var wantedLeftBiGrams = Set<String>()
     private(set) var wantedLeftTriGrams = Set<String>()
     private(set) var wantedLeftFourGrams = Set<String>()
     private(set) var wantedRightFourGrams = Set<String>()
-
     
-    public func initialize() {
-        var start = Date()
-        self.biGramFrequencies = ModelConstants.biGramFrequencies
-        self.biGramStart = ModelConstants.biGramsStart
-        self.triGramStart = ModelConstants.triGramsStart
-        self.wantedLeftBiGrams = ModelConstants.wantedLeftBiGramsSet
-        self.wantedLeftTriGrams = ModelConstants.wantedLeftTriGramsSet
-        self.wantedLeftFourGrams = ModelConstants.wantedLeftFourGramsSet
-        self.wantedRightFourGrams = ModelConstants.wantedRightFourGramsSet
-        printModelAPI("GRAM Loading [1] - \(start.toNowProcessDuration)")
-        delegate?.gramsLoading(10)
+    init(_ model: FawGenModel) {
+        self.model = model
+        biGramChains = model.biGramChains
+        triGramChains = model.triGramChains
         
-        start = Date()
-        self.biGramChains = biGramsStartChains()
-        printModelAPI("GRAM Loading [2] - \(start.toNowProcessDuration)")
-        delegate?.gramsLoading(49)
+        biGramFrequencies = model.biGramFrequencies
+        biGramsStart = model.biGramsStart
+        triGramsStart = model.triGramsStart
         
-        start = Date()
-        self.triGramChains = triGramsStartChains()
-        printModelAPI("GRAM Loading [3] - \(start.toNowProcessDuration)")
-        delegate?.gramsLoading(100)
+        wantedLeftBiGrams = model.wantedLeftBiGramsSet
+        wantedLeftTriGrams = model.wantedLeftTriGramsSet
+        wantedLeftFourGrams = model.wantedLeftFourGramsSet
+        wantedRightFourGrams = model.wantedRightFourGramsSet
+        
     }
-  
+    
+    
+    
 }
+
 
 // MARK: - Public methods
 extension Grams {
     
     public var randomBiGramStart: String {
         while true {
-            guard let startGram = biGramStart.randomElement(), wantedLeftBiGrams.contains(startGram) else { continue }
+            guard let startGram = biGramsStart.randomElement(), wantedLeftBiGrams.contains(startGram) else { continue }
             return startGram
         }
     }
@@ -90,12 +81,6 @@ extension Grams {
         return (chains, starts)
     }
     
-}
-
-
-// MARK: - Private Methods
-extension Grams {
-    
     /// Checks a string of length at least 4 so see if, leftBiGram, leftTriGram,
     /// leftFourGram and rightFourGram are in the list of wanted
     /// Returns false if any of the test fails
@@ -109,6 +94,11 @@ extension Grams {
         return true
     }
     
+}
+
+// MARK: - Private Methods
+extension Grams {
+    
     private func generateBiGrams(for word: String) -> [String] {
         var biGrams = [String]()
         for idx in 0..<word.count {
@@ -119,32 +109,4 @@ extension Grams {
         return biGrams
     }
     
-    
-    
-    private func biGramsStartChains() -> Chains {
-        let rows = getBundleFileRowsAsSet(from: ModelConstants.markovBiGramChains)
-        var chains = Chains()
-        for row in rows {
-            var comp = row.components(separatedBy: .whitespaces)
-            let biGram = comp.removeFirst()
-            guard biGram.count == 2 else { continue }
-            chains[biGram] = comp
-        }
-        return chains
-    }
-    
-    private func triGramsStartChains() -> Chains {
-        let rows = getBundleFileRowsAsSet(from: ModelConstants.markovTriGramChains)
-        var chains = Chains()
-        for row in rows {
-            var comp = row.components(separatedBy: .whitespaces)
-            let triGram = comp.removeFirst()
-            guard triGram.count == 3 else { continue }
-            chains[triGram] = comp
-        }
-        return chains
-    }
-    
-    
-
 }

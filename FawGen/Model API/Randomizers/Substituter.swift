@@ -1,25 +1,36 @@
 //
 //  Substituter.swift
-//  ModelForFawGen
+//  FawGenModelAPI
 //
-//  Created by Erick Olibo on 14/07/2019.
+//  Created by Erick Olibo on 04/08/2019.
 //  Copyright © 2019 DEFKUT Creations OU. All rights reserved.
 //
 
 import Foundation
 
 class Substituter {
-
     
     // MARK: - Properties
-    private let model = PersistentModel.shared.model
-    private let grams = PersistentModel.shared.model.grams
     private var quality: QualityOptions = (nil, nil)
     private var list = Set<String>()
     private var uniqueMadeUpWords = Set<String>()
     private let maxResultsPerType = ModelConstants.maxResultsPerTypeOfAlgorithm * 2
     
-    // MARK: - Public Methods
+    private var combinedVocabulary: Set<String>
+    private weak var model: FawGenModel!
+    private weak var grams: Grams!
+    
+    init(_ model: FawGenModel, grams: Grams) {
+        combinedVocabulary = model.combinedVocabulary
+        self.grams = grams
+        print("[Substituter] Combined Vocab size: \(combinedVocabulary.count)")
+    }
+    
+}
+
+
+// MARK: - Public methods
+extension Substituter {
     
     /// Generates all possible MadeUpWords using the Substituter Algorithm. It goes through the list and
     /// substitute part of a word with another one
@@ -32,10 +43,12 @@ class Substituter {
         self.uniqueMadeUpWords = Set<String>()
         return allPossibilities()
     }
+    
 }
 
 
-// MARK: - Private Methods
+
+// MARK: - Private methods
 extension Substituter {
     
     /// Goes through each words of the list and created all possible subsitutions.
@@ -68,7 +81,6 @@ extension Substituter {
         return maxResults.count == 0 ? nil : maxResults
     }
     
-    
     /// Returns a true if the madeUpWord as passed the qualifying test. Length quality, a uniqueness,
     /// a biGram and triGram, and a corpus tests.
     /// - Parameter word: the newWord to be tester
@@ -76,8 +88,9 @@ extension Substituter {
         guard word.isOfRequestedLengthQuality(quality.length) else { return false }
         guard !uniqueMadeUpWords.contains(word) else { return false }
         guard grams.hasPassedGramsChecker(word) else { return false }
-        guard !model.vocab.combinedVocabulary.contains(word) else { return false }
+        guard !combinedVocabulary.contains(word) else { return false }
         return true
     }
+    
     
 }

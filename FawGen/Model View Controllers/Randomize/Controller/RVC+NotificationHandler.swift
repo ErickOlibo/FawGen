@@ -63,6 +63,7 @@ extension RandomizeViewController {
             let simpleAssistView = SimpleAssistView(frame: tableView.bounds)
             simpleAssistView.simpleAssistDelegate = self
             //letsGoBtn = simpleAssistView.letsGoButton
+            simpleAssistView.persistent = persistent
             tableView.tableFooterView = simpleAssistView
             tableView.isScrollEnabled = false
             //printConsole("[FooterView Bounds] - \(tableView.tableFooterView!.bounds)")

@@ -17,7 +17,6 @@ extension String {
     }
     
     
-    
     /// Returns true is the starting biGram is of similar letters (i.e. llamas)
     public var isStartingWithDoubleLetter: Bool {
         let oneChar = String(self.prefix(1)).lowercased()
@@ -38,13 +37,6 @@ extension String {
         return results
     }
     
-
-    
-    /// Check if word in finalCorpus
-    public func isContainedInCorpus() -> Bool {
-        
-        return ModelConstants.finalCorpus.contains(self)
-    }
     
     /// Returns true the string only contains any of the 26 letters of the English alphabet
     public var containsOnlyAlphabetLetters: Bool {
@@ -103,15 +95,6 @@ extension Int {
         return ModelConstants.minMaxWordLength.contains(self)
     }
     
-//    /// Checks if (1) - desired length is within the minMaxLength and adjust it
-//    /// and (2) - if not length chosen (length = 0) so random length with minMaxInAppLength
-//    /// - Note: a Integer is given a test of equal to zero first, then a test of inside
-//    /// minMaxLength and adjusted accordingly
-//    public var normalized: Int {
-//        if self == 0 { return Int().randomInAppLength }
-//        return self.correctedLength
-//    }
-    
     
     /// In case where the length is not specify, the max length is upsed.
     /// From the UI/UX perspective, the Length is set to OFF
@@ -129,15 +112,6 @@ extension Int {
         return ModelConstants.minMaxInAppWordLength.contains(self)
     }
     
-    
-//    public var convertedToString: String {
-//        let formatter = NumberFormatter()
-//        formatter.numberStyle = NumberFormatter.Style.spellOut
-//        if let result = formatter.string(for: self) {
-//            return result
-//        }
-//        return String()
-//    }
 
 }
 

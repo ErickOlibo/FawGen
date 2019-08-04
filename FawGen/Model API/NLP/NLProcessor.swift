@@ -1,8 +1,8 @@
 //
 //  NLProcessor.swift
-//  FawGen
+//  FawGenModelAPI
 //
-//  Created by Erick Olibo on 27/04/2019.
+//  Created by Erick Olibo on 04/08/2019.
 //  Copyright © 2019 DEFKUT Creations OU. All rights reserved.
 //
 
@@ -10,7 +10,8 @@ import Foundation
 import NaturalLanguage
 
 class NLProcessor {
-
+    
+    
     /// Tokenizes a string by words and returns a set of said words.
     /// - Warning: The returned Set does not take into considaration
     /// any type of representation of the word as it is set to lowercase to
@@ -31,25 +32,8 @@ class NLProcessor {
     }
     
     
-    /// Tokenizes a string by words and returns a array of said words.
-    /// - Warning: The returned Array does distinguished between
-    /// uppercased, lowercase, capitalized, and everything in between.
-    /// It contains dublicates when parameters does
-    /// - Returns: an array of words in the order found in the string
-    /// - Parameter keywords: a string and list of words
-    func tokenize(_ keywords: String) -> [String] {
-        var list = [String]()
-        let tokenizer = NLTokenizer(unit: .word)
-        tokenizer.string = keywords
-        tokenizer.enumerateTokens(in: keywords.startIndex..<keywords.endIndex) { (tokenRange, _) -> Bool in
-            let token = String(keywords[tokenRange])
-            list.append(token)
-            return true
-        }
-        return list
-    }
-    
 }
+
 
 extension String {
     /// - Warning: This var doesnt mean anything when it comes to a single word.

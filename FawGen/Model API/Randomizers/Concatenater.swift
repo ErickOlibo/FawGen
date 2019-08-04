@@ -1,8 +1,8 @@
 //
 //  Concatenater.swift
-//  ModelForFawGen
+//  FawGenModelAPI
 //
-//  Created by Erick Olibo on 15/07/2019.
+//  Created by Erick Olibo on 04/08/2019.
 //  Copyright © 2019 DEFKUT Creations OU. All rights reserved.
 //
 
@@ -10,12 +10,8 @@ import Foundation
 
 
 class Concatenater {
-
     
     // MARK: - Properties
-    
-    private let model = PersistentModel.shared.model
-    private let grams = PersistentModel.shared.model.grams
     private var quality: QualityOptions = (nil, nil)
     private var list = Set<String>()
     private var listByLength = [Int : Set<String>]()
@@ -28,8 +24,22 @@ class Concatenater {
     private let weightedRandomLength = [6,6, 7,7,7,7, 8,8,8,8, 9,9,9,9, 10,10,10,10, 11,11, 12,12]
     private let maxWordsPerSplit = 4 // the number of madeUpword to generate by splits of length
     
+    private var combinedVocabulary: Set<String>
+    private weak var model: FawGenModel!
+    private weak var grams: Grams!
     
-    // MARK: - Public Methods
+    init(_ model: FawGenModel, grams: Grams) {
+        combinedVocabulary = model.combinedVocabulary
+        self.grams = grams
+        print("[Concatenater] Combined Vocab size: \(combinedVocabulary.count)")
+    }
+    
+}
+
+
+
+// MARK: - Public methods
+extension Concatenater {
     
     /// Generates all possible MadeUpWords using the Concatenater Algorithm. It goes through the list and
     /// concatenate words with eachother
@@ -137,7 +147,7 @@ extension Concatenater {
         default:
             return nil
         }
-
+        
     }
     
     
@@ -150,8 +160,8 @@ extension Concatenater {
         guard word.isOfRequestedLengthQuality(quality.length) else { return false }
         guard !uniqueMadeUpWords.contains(word) else { return false }
         guard grams.hasPassedGramsChecker(word) else { return false }
-
-        guard !model.vocab.combinedVocabulary.contains(word) else { return false }
+        
+        guard !combinedVocabulary.contains(word) else { return false }
         return true
     }
     
@@ -203,3 +213,4 @@ extension Concatenater {
     }
     
 }
+
