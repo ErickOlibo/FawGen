@@ -2754,8 +2754,6 @@
 				A7FC85F6229DDA95002C386F /* Source */,
 				A7FC85F8229DDAAD002C386F /* Utilities */,
 				A7FC85F5229DD8A2002C386F /* Supporting Files */,
-				A7FC85EF229CEA82002C386F /* Info.plist */,
-				A7FC85E3229CEA81002C386F /* AppDelegate.swift */,
 				A7D40F7722F0800A002ADAE8 /* FawGen Model API */,
 			);
 			path = FawGen;
@@ -2764,6 +2762,8 @@
 		A7FC85F5229DD8A2002C386F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A7FC85EF229CEA82002C386F /* Info.plist */,
+				A7FC85E3229CEA81002C386F /* AppDelegate.swift */,
 				A74DAFEA22C51ADB005ACAD0 /* TO DO List */,
 				A7FC85EA229CEA82002C386F /* Assets.xcassets */,
 				A7FC85EC229CEA82002C386F /* LaunchScreen.storyboard */,
@@ -3640,7 +3640,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BLQ9SH2EFS;
-				INFOPLIST_FILE = FawGen/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/FawGen/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3658,7 +3658,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BLQ9SH2EFS;
-				INFOPLIST_FILE = FawGen/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/FawGen/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
