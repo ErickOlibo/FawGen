@@ -16,14 +16,14 @@ class SettingsViewController: UITableViewController {
     private let pathInroze = "https://itunes.apple.com/app/id1343541599"
     
     private struct AppIndexPath {
-        static let introduction = IndexPath(row: 1, section: 0)
+//        static let introduction = IndexPath(row: 1, section: 0)
         static let faq = IndexPath(row: 0, section: 1)
         static let feedback = IndexPath(row: 1, section: 1)
-        //static let story = IndexPath(row: 0, section: 2)
+//        static let story = IndexPath(row: 0, section: 2)
         static let terms = IndexPath(row: 0, section: 2)
         static let policy = IndexPath(row: 1, section: 2)
         static let openSource = IndexPath(row: 2, section: 2)
-        //static let disclamer = IndexPath(row: 4, section: 2)
+//        static let disclamer = IndexPath(row: 4, section: 2)
         static let writeReview = IndexPath(row: 3, section: 2)
         static let shareApp = IndexPath(row: 4, section: 2)
     }
@@ -53,14 +53,14 @@ class SettingsViewController: UITableViewController {
     
     
     private func setIndexPaths() {
-        indexPaths.append(AppIndexPath.introduction)
+//        indexPaths.append(AppIndexPath.introduction)
         indexPaths.append(AppIndexPath.faq)
         indexPaths.append(AppIndexPath.feedback)
-        //indexPaths.append(AppIndexPath.story)
+//        indexPaths.append(AppIndexPath.story)
         indexPaths.append(AppIndexPath.terms)
         indexPaths.append(AppIndexPath.policy)
         indexPaths.append(AppIndexPath.openSource)
-        //indexPaths.append(AppIndexPath.disclamer)
+//        indexPaths.append(AppIndexPath.disclamer)
         indexPaths.append(AppIndexPath.writeReview)
         for (idx, indexPath) in indexPaths.enumerated() {
             indexPathsCollection[indexPath] = titles[idx]
@@ -89,11 +89,11 @@ class SettingsViewController: UITableViewController {
             destination.navigationItem.title = "History"
         }
         
-        if (segue.identifier == "Introduction") {
-            guard let destination = segue.destination as? AboutViewController else { return }
-            destination.aboutURL = URL(string: UrlFor.explanation)
-            destination.navigationItem.title = "Introduction"
-        }
+//        if (segue.identifier == "Introduction") {
+//            guard let destination = segue.destination as? AboutViewController else { return }
+//            destination.aboutURL = URL(string: UrlFor.explanation)
+//            destination.navigationItem.title = "Introduction"
+//        }
         
         if (segue.identifier == "FAQ") {
             guard let destination = segue.destination as? AboutViewController else { return }
