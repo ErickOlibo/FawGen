@@ -14,18 +14,19 @@ import Foundation
 /// links are used. There is a need to change it once fawgen.com
 /// is up and running
 public struct UrlFor {
-    static let fawgen = "https://www.fawgen.com/"
+    static let fawgen = "https://www.fawgen.com/AppSettings/"
+    static let fawgenAssets = "https://www.fawgen.com/Assets/xcassets/"
     static let webLink = "https://www.inroze.com/webROze/"
     
-    static let explanation = UrlFor.webLink + "missing.html"
-    static let faq = UrlFor.webLink + "frequently.html"
-    static let feedback = UrlFor.webLink + "feedback.html"
-    static let fawgenStory = UrlFor.webLink + "about-inroze.html"
-    static let termOfUse =  UrlFor.webLink + "terms.html"
-    static let privacy = UrlFor.webLink + "privacy.html"
-    static let openSource = UrlFor.webLink + "open-source.html"
-    static let disclaimer = UrlFor.webLink + "frequently.html"
-    static let fakeIconsFolder = UrlFor.fawgen + "Assets/xcassets/fakeIcons/"
+    static let explanation = UrlFor.fawgen + "explanation.html"
+    static let faq = UrlFor.fawgen + "faq.html"
+    static let feedback = UrlFor.fawgen + "feedback.html"
+    static let fawgenStory = UrlFor.fawgen + "about-inroze.html"
+    static let termOfUse =  UrlFor.fawgen + "terms.html"
+    static let privacy = UrlFor.fawgen + "privacy.html"
+    static let openSource = UrlFor.fawgen + "open-source.html"
+    static let disclaimer = UrlFor.fawgen + "disclaimer.html"
+    static let fakeIconsFolder = UrlFor.fawgenAssets + "fakeIcons/"
     
     
 }
