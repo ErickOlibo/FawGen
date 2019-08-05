@@ -19,20 +19,20 @@ class SettingsViewController: UITableViewController {
         static let explanation = IndexPath(row: 1, section: 0)
         static let faq = IndexPath(row: 0, section: 1)
         static let feedback = IndexPath(row: 1, section: 1)
-        static let story = IndexPath(row: 0, section: 2)
-        static let terms = IndexPath(row: 1, section: 2)
-        static let policy = IndexPath(row: 2, section: 2)
-        static let openSource = IndexPath(row: 3, section: 2)
-        static let disclamer = IndexPath(row: 4, section: 2)
-        static let writeReview = IndexPath(row: 5, section: 2)
-        static let shareApp = IndexPath(row: 6, section: 2)
+        //static let story = IndexPath(row: 0, section: 2)
+        static let terms = IndexPath(row: 0, section: 2)
+        static let policy = IndexPath(row: 1, section: 2)
+        static let openSource = IndexPath(row: 2, section: 2)
+        //static let disclamer = IndexPath(row: 4, section: 2)
+        static let writeReview = IndexPath(row: 3, section: 2)
+        static let shareApp = IndexPath(row: 4, section: 2)
     }
     
     
     let dataBaseManager = DefaultDB()
     let reachability = Reachability()
     var indexPaths = [IndexPath]()
-    let titles = ["Fields Explanation", "F.A.Q.", "Feedback", "FawGen Story", "Terms of Use", "Privacy Policy", "Open-source Libraries", "Disclamer", "Write a Review"]
+    let titles = ["Explanation", "F.A.Q.", "Feedback", "Terms of Use", "Privacy Policy", "Open-source Libraries", "Write a Review"]
     var indexPathsCollection = [IndexPath : String]()
     
     // MARK: - Outlets
@@ -56,11 +56,11 @@ class SettingsViewController: UITableViewController {
         indexPaths.append(AppIndexPath.explanation)
         indexPaths.append(AppIndexPath.faq)
         indexPaths.append(AppIndexPath.feedback)
-        indexPaths.append(AppIndexPath.story)
+        //indexPaths.append(AppIndexPath.story)
         indexPaths.append(AppIndexPath.terms)
         indexPaths.append(AppIndexPath.policy)
         indexPaths.append(AppIndexPath.openSource)
-        indexPaths.append(AppIndexPath.disclamer)
+        //indexPaths.append(AppIndexPath.disclamer)
         indexPaths.append(AppIndexPath.writeReview)
         for (idx, indexPath) in indexPaths.enumerated() {
             indexPathsCollection[indexPath] = titles[idx]
@@ -89,7 +89,7 @@ class SettingsViewController: UITableViewController {
             destination.navigationItem.title = "History"
         }
         
-        if (segue.identifier == "Fields Explanation") {
+        if (segue.identifier == "Explanation") {
             guard let destination = segue.destination as? AboutViewController else { return }
             destination.aboutURL = URL(string: UrlFor.explanation)
             destination.navigationItem.title = "Explanation"
@@ -107,11 +107,11 @@ class SettingsViewController: UITableViewController {
             destination.navigationItem.title = "Feedback"
         }
         
-        if (segue.identifier == "FawGen Story") {
-            guard let destination = segue.destination as? AboutViewController else { return }
-            destination.aboutURL = URL(string: UrlFor.fawgenStory)
-            destination.navigationItem.title = "FawGen Story"
-        }
+//        if (segue.identifier == "FawGen Story") {
+//            guard let destination = segue.destination as? AboutViewController else { return }
+//            destination.aboutURL = URL(string: UrlFor.fawgenStory)
+//            destination.navigationItem.title = "FawGen Story"
+//        }
         
         if (segue.identifier == "Terms of Use") {
             guard let destination = segue.destination as? AboutViewController else { return }
@@ -131,11 +131,11 @@ class SettingsViewController: UITableViewController {
             destination.navigationItem.title = "Licenses"
         }
         
-        if (segue.identifier == "Disclaimer") {
-            guard let destination = segue.destination as? AboutViewController else { return }
-            destination.aboutURL = URL(string: UrlFor.disclaimer)
-            destination.navigationItem.title = "Disclaimer"
-        }
+//        if (segue.identifier == "Disclaimer") {
+//            guard let destination = segue.destination as? AboutViewController else { return }
+//            destination.aboutURL = URL(string: UrlFor.disclaimer)
+//            destination.navigationItem.title = "Disclaimer"
+//        }
         
     }
     
