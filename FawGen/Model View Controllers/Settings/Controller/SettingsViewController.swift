@@ -16,7 +16,7 @@ class SettingsViewController: UITableViewController {
     private let pathInroze = "https://itunes.apple.com/app/id1343541599"
     
     private struct AppIndexPath {
-        static let explanation = IndexPath(row: 1, section: 0)
+        static let introduction = IndexPath(row: 1, section: 0)
         static let faq = IndexPath(row: 0, section: 1)
         static let feedback = IndexPath(row: 1, section: 1)
         //static let story = IndexPath(row: 0, section: 2)
@@ -32,7 +32,7 @@ class SettingsViewController: UITableViewController {
     let dataBaseManager = DefaultDB()
     let reachability = Reachability()
     var indexPaths = [IndexPath]()
-    let titles = ["Explanation", "F.A.Q.", "Feedback", "Terms of Use", "Privacy Policy", "Open-source Libraries", "Write a Review"]
+    let titles = ["Introduction", "F.A.Q.", "Feedback", "Terms of Use", "Privacy Policy", "Open-source Libraries", "Write a Review"]
     var indexPathsCollection = [IndexPath : String]()
     
     // MARK: - Outlets
@@ -53,7 +53,7 @@ class SettingsViewController: UITableViewController {
     
     
     private func setIndexPaths() {
-        indexPaths.append(AppIndexPath.explanation)
+        indexPaths.append(AppIndexPath.introduction)
         indexPaths.append(AppIndexPath.faq)
         indexPaths.append(AppIndexPath.feedback)
         //indexPaths.append(AppIndexPath.story)
@@ -89,10 +89,10 @@ class SettingsViewController: UITableViewController {
             destination.navigationItem.title = "History"
         }
         
-        if (segue.identifier == "Explanation") {
+        if (segue.identifier == "Introduction") {
             guard let destination = segue.destination as? AboutViewController else { return }
             destination.aboutURL = URL(string: UrlFor.explanation)
-            destination.navigationItem.title = "Explanation"
+            destination.navigationItem.title = "Introduction"
         }
         
         if (segue.identifier == "FAQ") {
