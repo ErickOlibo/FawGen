@@ -236,7 +236,7 @@ class CheckerViewController: UIViewController {
     private func setupSaveTextToSeepechArea() {
         saveButton.layer.cornerRadius = 5.0
         saveButton.backgroundColor = .lightGray
-        saveButton.setTitle("save")
+        saveButton.setTitle("save", for: .normal)
 
         
     }
@@ -244,7 +244,7 @@ class CheckerViewController: UIViewController {
     
     private func setupNavBar() {
         navBar.rightButton.setTitle("Hide", for: .normal)
-        navBar.rightButton.setTitleColor(FawGenColors.primary.color)
+        navBar.rightButton.setTitleColor(FawGenColors.primary.color, for: .normal)
         navBar.rightButton.addTarget(self, action: #selector(hide), for: .touchUpInside)
         navBar.titleLabel.text = "Checker"
         navBar.titleLabel.textColor = FawGenColors.secondary.color

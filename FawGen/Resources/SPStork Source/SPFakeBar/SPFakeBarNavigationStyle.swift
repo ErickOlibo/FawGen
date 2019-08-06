@@ -21,17 +21,10 @@
 
 import UIKit
 
-public class SPLabel: UILabel {
+public enum SPFakeBarNavigationStyle {
     
-    init() {
-        super.init(frame: CGRect.zero)
-        self.commonInit()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        self.commonInit()
-    }
-    
-    internal func commonInit() {}
+    case large
+    case small
+    case stork
+    case noContent
 }

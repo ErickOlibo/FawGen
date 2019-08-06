@@ -75,7 +75,7 @@ private func logoColorsHex(for name: String) -> [String] {
 
 public func randomListOfLogoNameOf(size: Int) -> [String] {
     var collection = [String]()
-    let selected = listOfFakeLogoNames.shuffle().prefix(size)
+    let selected = listOfFakeLogoNames.shuffled().prefix(size)
     collection = Array(selected)
     return collection
 }

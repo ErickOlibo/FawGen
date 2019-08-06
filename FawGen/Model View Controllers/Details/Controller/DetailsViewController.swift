@@ -132,10 +132,10 @@ class DetailsViewController: UIViewController {
     private func updateSaveButtonUI() {
         if fakeWord.isSaved() {
             saveButton.backgroundColor = FawGenColors.primary.color
-            saveButton.setTitle("saved")
+            saveButton.setTitle("saved", for: .normal)
         } else {
             saveButton.backgroundColor = .lightGray
-            saveButton.setTitle("save")
+            saveButton.setTitle("save", for: .normal)
         }
     }
     

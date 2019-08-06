@@ -26,8 +26,8 @@ extension NewSetHomeView {
     public func setupUI() {
         containerView.backgroundColor = .clear
         //homeButton.setTitleColor(FawGenColors.secondary.color, for: .normal)
-        homeButton.setTitleColor(FawGenColors.primary.color)
-        newSetButton.setTitleColor(FawGenColors.primary.color)
+        homeButton.setTitleColor(FawGenColors.primary.color, for: .normal)
+        newSetButton.setTitleColor(FawGenColors.primary.color, for: .normal)
         
     }
 

@@ -32,11 +32,11 @@ extension CheckerViewController {
     private func updateSave() {
         if tmpFakeWord.isSaved() {
             saveButton.backgroundColor = FawGenColors.primary.color
-            saveButton.setTitle("saved")
+            saveButton.setTitle("saved", for: .normal)
             isSaved = true
         } else {
             saveButton.backgroundColor = .lightGray
-            saveButton.setTitle("save")
+            saveButton.setTitle("save", for: .normal)
             isSaved = false
         }
     }

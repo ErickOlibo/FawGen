@@ -82,13 +82,13 @@ class FGAlertView: UIView {
     private func setAlertForNoInternet() {
         alertTextLabel.text = "No Internet!"
         alertInfoLabel.text = "This action requires an Internet connection."
-        alertButton.setTitle("Cancel")
+        alertButton.setTitle("Cancel", for: .normal)
     }
     
     private func setAlertForNoResults() {
         alertTextLabel.text = "No Results!"
         alertInfoLabel.text = "The Engine couldn't generate new words. Change the filters or keywords and try again!"
-        alertButton.setTitle("")
+        alertButton.setTitle("", for: .normal)
         if let buttonImage = UIImage(named: "BackHome") {
             alertButton.setImage(buttonImage, for: .normal)
         }

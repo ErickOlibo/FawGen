@@ -105,9 +105,9 @@ extension DataSource {
         
         // gets the font
         let fontNames = FontsLister().getAllFontNames()
-        var tmpFontList = fontNames.shuffle()
+        var tmpFontList = fontNames.shuffled()
         for fakeWord in tmpCollection {
-            if tmpFontList.count == 0 { tmpFontList = fontNames.shuffle() }
+            if tmpFontList.count == 0 { tmpFontList = fontNames.shuffled() }
             let fontName = tmpFontList.removeFirst()
             var tmpFakeWord = fakeWord
             tmpFakeWord.font = fontName
