@@ -49,16 +49,20 @@ extension SimpleAssistModel {
         
         let tokensInNameToVector = tokens.compactMap { nameToVector[$0] }
         let size = tokensInNameToVector.count
-        switch size {
-        case 0:
-            return neighbors
-        case 1:
-            numbOfNeighbors = ModelConstants.numberOfNeighbors * 3
-        case 2:
-            numbOfNeighbors = lround((Double(ModelConstants.numberOfNeighbors) * 1.5))
-        default:
-            numbOfNeighbors = ModelConstants.numberOfNeighbors
-        }
+        
+        if size == 0 { return neighbors }
+        numbOfNeighbors = ModelConstants.numberOfNeighbors
+        
+//        switch size {
+//        case 0:
+//            return neighbors
+//        case 1:
+//            numbOfNeighbors = ModelConstants.numberOfNeighbors * 3
+//        case 2:
+//            numbOfNeighbors = lround((Double(ModelConstants.numberOfNeighbors) * 1.5))
+//        default:
+//            numbOfNeighbors = ModelConstants.numberOfNeighbors
+//        }
         
         for token in tokens {
             guard let vector = nameToVector[token] else { continue }
@@ -67,6 +71,7 @@ extension SimpleAssistModel {
             }
             neighbors.formUnion(nearNeighbors)
         }
+        printConsole("Size: [\(neighbors.count)] -> Neighbors: \(neighbors)")
         return neighbors
     }
 }

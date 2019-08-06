@@ -44,8 +44,8 @@ public struct ModelConstants  {
     public static let minMaxAlgo = (minAlgo...maxAlgo)
     
     public static let numberOfClusters = 194 // from the number of files imported
-    public static let numbCentroids = 5 // 5 is the default
-    public static let numberOfNeighbors = 5 // default now: 5 --> ADJUST THIS NUMBER later if issues
+    public static let numbCentroids = 3 // 5 is the default
+    public static let numberOfNeighbors = 2 // default now: 5 --> ADJUST THIS NUMBER later if issues
     
     public static let maxIterations = 100
     public static let maxResultsPerTypeOfAlgorithm = 10

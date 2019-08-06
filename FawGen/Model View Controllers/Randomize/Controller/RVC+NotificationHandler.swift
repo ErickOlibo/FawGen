@@ -81,6 +81,7 @@ extension RandomizeViewController {
         if let simpleAssistView = tableView.tableFooterView as? SimpleAssistView,
             simpleAssistView.keywordsGrowningTextView.isFirstResponder {
             //printConsole("In KEYBOARD WILL SHOW, Growing is First Responder")
+            simpleAssistView.persistent = persistent
             guard let userInfo = notification.userInfo else { return }
             guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
             keyboardFrame = keyboardSize.cgRectValue

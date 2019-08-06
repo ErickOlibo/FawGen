@@ -16,7 +16,7 @@ class SimpleAssistView: UIView {
     var persistent: Persistent!
 
     lazy var combinedCorpus: Set<String> = {
-        return persistent.model.combinedVocabulary
+        return persistent.model.combinedVocabulary // Empty
     }()
     enum StackViewState: String {
         case open
