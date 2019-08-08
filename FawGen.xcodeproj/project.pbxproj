@@ -384,6 +384,7 @@
 		A722066922A4BFF200E1C256 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722066822A4BFF200E1C256 /* GradientView.swift */; };
 		A722066F22A575FD00E1C256 /* RandomizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722066E22A575FD00E1C256 /* RandomizeViewController.swift */; };
 		A722067122A5765500E1C256 /* FakeWordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A722067022A5765500E1C256 /* FakeWordCell.swift */; };
+		A7358F0422FC901600E85D24 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7358F0322FC901600E85D24 /* WebKit.framework */; };
 		A7414F0A22C0668800E90AEA /* TEOGrowingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7414F0922C0668800E90AEA /* TEOGrowingTextView.swift */; };
 		A74DAFE322C451FC005ACAD0 /* CellSocialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74DAFE222C451FC005ACAD0 /* CellSocialView.swift */; };
 		A74DAFE522C453F3005ACAD0 /* CellSocialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A74DAFE422C453F3005ACAD0 /* CellSocialView.xib */; };
@@ -831,6 +832,7 @@
 		A722066822A4BFF200E1C256 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		A722066E22A575FD00E1C256 /* RandomizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomizeViewController.swift; sourceTree = "<group>"; };
 		A722067022A5765500E1C256 /* FakeWordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeWordCell.swift; sourceTree = "<group>"; };
+		A7358F0322FC901600E85D24 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		A7414F0922C0668800E90AEA /* TEOGrowingTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TEOGrowingTextView.swift; sourceTree = "<group>"; };
 		A74DAFE222C451FC005ACAD0 /* CellSocialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellSocialView.swift; sourceTree = "<group>"; };
 		A74DAFE422C453F3005ACAD0 /* CellSocialView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CellSocialView.xib; sourceTree = "<group>"; };
@@ -907,6 +909,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7358F0422FC901600E85D24 /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1690,6 +1693,14 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		A7358F0222FC901600E85D24 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A7358F0322FC901600E85D24 /* WebKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A74DAFEA22C51ADB005ACAD0 /* TO DO List */ = {
 			isa = PBXGroup;
 			children = (
@@ -1956,6 +1967,7 @@
 			children = (
 				A7FC85E2229CEA81002C386F /* FawGen */,
 				A7FC85E1229CEA81002C386F /* Products */,
+				A7358F0222FC901600E85D24 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2745,7 +2757,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.defkut.FawGen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -2764,7 +2776,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.defkut.FawGen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

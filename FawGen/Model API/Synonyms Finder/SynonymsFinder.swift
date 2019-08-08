@@ -19,7 +19,7 @@ class SynonymsFinder {
         self.model = model
         wordsRank = model.synonymsWordsRank
         corpus = model.synonymsCorpus
-        print("[SynonymsFinder] Finder Corpus size: \(corpus.count)")
+        //print("[SynonymsFinder] Finder Corpus size: \(corpus.count)")
     }
     
     

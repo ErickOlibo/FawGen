@@ -27,7 +27,7 @@ class MarkovChainer {
     init(_ model: FawGenModel, grams: Grams) {
         combinedVocabulary = model.combinedVocabulary
         self.grams = grams
-        print("[MarkovChainer] Combined Vocab size: \(combinedVocabulary.count)")
+        //print("[MarkovChainer] Combined Vocab size: \(combinedVocabulary.count)")
     }
     
     

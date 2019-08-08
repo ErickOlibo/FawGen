@@ -23,7 +23,7 @@ class Substituter {
     init(_ model: FawGenModel, grams: Grams) {
         combinedVocabulary = model.combinedVocabulary
         self.grams = grams
-        print("[Substituter] Combined Vocab size: \(combinedVocabulary.count)")
+        //print("[Substituter] Combined Vocab size: \(combinedVocabulary.count)")
     }
     
 }

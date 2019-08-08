@@ -25,7 +25,7 @@ class Swapper {
     init(_ model: FawGenModel, grams: Grams) {
         combinedVocabulary = model.combinedVocabulary
         self.grams = grams
-        print("[Swapper] Combined Vocab size: \(combinedVocabulary.count)")
+        //print("[Swapper] Combined Vocab size: \(combinedVocabulary.count)")
     }
     
     

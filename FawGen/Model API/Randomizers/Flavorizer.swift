@@ -42,7 +42,7 @@ class Flavorizer {
     init(_ model: FawGenModel, grams: Grams) {
         combinedVocabulary = model.combinedVocabulary
         self.grams = grams
-        print("[Flavorizer] Combined Vocab size: \(combinedVocabulary.count)")
+        //print("[Flavorizer] Combined Vocab size: \(combinedVocabulary.count)")
     }
     
     

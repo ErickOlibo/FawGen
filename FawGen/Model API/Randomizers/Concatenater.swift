@@ -31,7 +31,7 @@ class Concatenater {
     init(_ model: FawGenModel, grams: Grams) {
         combinedVocabulary = model.combinedVocabulary
         self.grams = grams
-        print("[Concatenater] Combined Vocab size: \(combinedVocabulary.count)")
+        //print("[Concatenater] Combined Vocab size: \(combinedVocabulary.count)")
     }
     
 }
