@@ -156,7 +156,7 @@ class SettingsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        printConsole("[didSelectRowAt] TABLE VIEW IndexPath: \(indexPath)")
+        //printConsole("[didSelectRowAt] TABLE VIEW IndexPath: \(indexPath)")
         
         if indexPath == AppIndexPath.writeReview {
             writeReview()
