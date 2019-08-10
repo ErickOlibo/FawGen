@@ -11,9 +11,7 @@ import UIKit
 class SettingsViewController: UITableViewController {
     
     // MARK: - Properties
-    private let isFawGen = false
     private let pathFawGen = "https://itunes.apple.com/app/id1475236378"
-    private let pathInroze = "https://itunes.apple.com/app/id1343541599"
     
     private struct AppIndexPath {
 //        static let introduction = IndexPath(row: 1, section: 0)
@@ -156,7 +154,6 @@ class SettingsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //printConsole("[didSelectRowAt] TABLE VIEW IndexPath: \(indexPath)")
         
         if indexPath == AppIndexPath.writeReview {
             writeReview()
@@ -172,16 +169,10 @@ class SettingsViewController: UITableViewController {
 }
 
 extension SettingsViewController {
-    
-    /// Get the Product URL
-    private func getProductURL() -> URL? {
-        let path = isFawGen ? pathFawGen : pathInroze
-        return URL(string: path)
-    }
+
     
     /// Sends the user to the App Store to wwrite a review about the app
     private func writeReview() {
-        //guard let productURL = getProductURL() else { return }
         guard let productURL = URL(string: pathFawGen) else { return }
         var compenents = URLComponents(url: productURL, resolvingAgainstBaseURL: false)
         compenents?.queryItems = [ URLQueryItem(name: "action", value: "write-review") ]
@@ -193,7 +184,7 @@ extension SettingsViewController {
     
     /// Opens the pop menu to give options on sharing the app with friends
     private func shareApp() {
-        guard let productURL = getProductURL() else { return }
+        guard let productURL = URL(string: pathFawGen) else { return }
         let activityViewController = UIActivityViewController(activityItems: [productURL], applicationActivities: nil)
         present(activityViewController, animated: true, completion: nil)
     }
