@@ -40,6 +40,12 @@ class SettingsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Settings"
+        let sections = tableView.numberOfSections
+        printConsole("TableView Sections: \(sections)")
+        if let footer = tableView.footerView(forSection: 0) {
+            let name = footer.textLabel?.text
+            printConsole("FOOTER Exist and Name: \(name ?? "NO NAME")")
+        }
         updateHistoryUI()
         setIndexPaths()
     }
@@ -187,6 +193,34 @@ extension SettingsViewController {
         guard let productURL = URL(string: pathFawGen) else { return }
         let activityViewController = UIActivityViewController(activityItems: [productURL], applicationActivities: nil)
         present(activityViewController, animated: true, completion: nil)
+    }
+    
+}
+
+
+extension SettingsViewController {
+    
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+        switch section {
+        case 0:
+            return nil
+        case 1:
+            return nil
+        case 2:
+            return "You are using FawGen v.\(version ?? "1.0.0")"
+        default:
+            return nil
+        }
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
+        if section == 2 {
+            let footer = view as! UITableViewHeaderFooterView
+            footer.textLabel?.textAlignment = .center
+            
+        }
     }
     
 }

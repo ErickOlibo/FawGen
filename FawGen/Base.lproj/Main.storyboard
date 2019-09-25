@@ -461,10 +461,10 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="ABOUT" id="nC2-8C-xEv">
+                            <tableViewSection headerTitle="ABOUT" footerTitle="You are using FawGen v.1.0.0" id="nC2-8C-xEv">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="ADG-Ye-IwM" imageView="YAV-3v-VF6" style="IBUITableViewCellStyleDefault" id="wkP-yS-RxZ" userLabel="Terms of Use">
-                                        <rect key="frame" x="0.0" y="343.33333206176758" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="350.66666412353516" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wkP-yS-RxZ" id="cSJ-MJ-3Wq">
                                             <rect key="frame" x="0.0" y="0.0" width="382.66666666666669" height="44"/>
@@ -488,7 +488,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="EFW-Dj-WRc" imageView="MAc-7R-X7M" style="IBUITableViewCellStyleDefault" id="0VQ-WZ-cRb" userLabel="Privacy Policy">
-                                        <rect key="frame" x="0.0" y="387.33333206176758" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="394.66666412353516" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0VQ-WZ-cRb" id="b4g-P9-o4U">
                                             <rect key="frame" x="0.0" y="0.0" width="382.66666666666669" height="44"/>
@@ -512,7 +512,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="DRU-21-ak1" imageView="aaK-2n-b67" style="IBUITableViewCellStyleDefault" id="pJD-t6-GE1" userLabel="Open-source Libraries">
-                                        <rect key="frame" x="0.0" y="431.33333206176758" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="438.66666412353516" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pJD-t6-GE1" id="Ug2-Lp-MD9">
                                             <rect key="frame" x="0.0" y="0.0" width="382.66666666666669" height="44"/>
@@ -536,7 +536,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" textLabel="DC6-RG-adc" imageView="OZF-Tt-t3g" style="IBUITableViewCellStyleDefault" id="5U6-p7-1Bj" userLabel="Rate on AppStore">
-                                        <rect key="frame" x="0.0" y="475.33333206176758" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="482.66666412353516" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5U6-p7-1Bj" id="iDY-od-9la">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -557,7 +557,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" textLabel="uD2-Kr-IaI" imageView="UQD-fa-MOs" style="IBUITableViewCellStyleDefault" id="U0f-Jg-B3V" userLabel="Share This App">
-                                        <rect key="frame" x="0.0" y="519.33333206176758" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="526.66666412353516" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="U0f-Jg-B3V" id="wcX-Vm-GsR">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
