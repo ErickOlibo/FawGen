@@ -18,7 +18,7 @@ public struct UrlFor {
     static let fawgenAssets = "https://www.fawgen.com/Assets/xcassets/"
     static let webLink = "https://www.inroze.com/webROze/"
     
-    static let explanation = UrlFor.fawgen + "introduction.html"
+    static let algoExplanation = UrlFor.fawgen + "algoExplanation.html"
     static let faq = UrlFor.fawgen + "questions.html"
     static let feedback = UrlFor.fawgen + "feedback.html"
     static let fawgenStory = UrlFor.fawgen + "about-inroze.html"

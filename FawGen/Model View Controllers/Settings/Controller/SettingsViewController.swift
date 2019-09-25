@@ -14,7 +14,7 @@ class SettingsViewController: UITableViewController {
     private let pathFawGen = "https://itunes.apple.com/app/id1475236378"
     
     private struct AppIndexPath {
-//        static let introduction = IndexPath(row: 1, section: 0)
+        static let algoExplanation = IndexPath(row: 1, section: 0)
         static let faq = IndexPath(row: 0, section: 1)
         static let feedback = IndexPath(row: 1, section: 1)
 //        static let story = IndexPath(row: 0, section: 2)
@@ -30,7 +30,7 @@ class SettingsViewController: UITableViewController {
     let dataBaseManager = DefaultDB()
     let reachability = Reachability()
     var indexPaths = [IndexPath]()
-    let titles = ["Introduction", "F.A.Q.", "Feedback", "Terms of Use", "Privacy Policy", "Open-source Libraries", "Write a Review"]
+    let titles = ["Algo Explanation", "F.A.Q.", "Feedback", "Terms of Use", "Privacy Policy", "Open-source Libraries", "Write a Review"]
     var indexPathsCollection = [IndexPath : String]()
     
     // MARK: - Outlets
@@ -51,7 +51,7 @@ class SettingsViewController: UITableViewController {
     
     
     private func setIndexPaths() {
-//        indexPaths.append(AppIndexPath.introduction)
+        indexPaths.append(AppIndexPath.algoExplanation)
         indexPaths.append(AppIndexPath.faq)
         indexPaths.append(AppIndexPath.feedback)
 //        indexPaths.append(AppIndexPath.story)
@@ -87,11 +87,11 @@ class SettingsViewController: UITableViewController {
             destination.navigationItem.title = "History"
         }
         
-//        if (segue.identifier == "Introduction") {
-//            guard let destination = segue.destination as? AboutViewController else { return }
-//            destination.aboutURL = URL(string: UrlFor.explanation)
-//            destination.navigationItem.title = "Introduction"
-//        }
+        if (segue.identifier == "Algo Explanation") {
+            guard let destination = segue.destination as? AboutViewController else { return }
+            destination.aboutURL = URL(string: UrlFor.algoExplanation)
+            destination.navigationItem.title = "Algo Explanation"
+        }
         
         if (segue.identifier == "FAQ") {
             guard let destination = segue.destination as? AboutViewController else { return }
