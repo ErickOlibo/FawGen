@@ -55,7 +55,7 @@ class SavedListViewController: UITableViewController {
         definesPresentationContext = true
         
         // New Stuff
-        searchController.dimsBackgroundDuringPresentation = false
+        searchController.obscuresBackgroundDuringPresentation = false
         //navigationItem.hidesSearchBarWhenScrolling = false
     }
     

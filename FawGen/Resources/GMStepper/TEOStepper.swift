@@ -19,7 +19,7 @@ public class TEOStepper: UIControl {
     /// Provides a collection of label as string (other than integer)
     /// to be display in the label view in the center of the slider
     /// - Author: Erick Olibo
-    /// - Note: Maybe puss this solution to the community
+    /// - Note: Maybe push this solution to the community
     public var textCollection: [Double : String] = [:] {
         didSet {
             isCollection = textCollection.count != 0
