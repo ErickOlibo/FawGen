@@ -396,6 +396,7 @@
 		A74DAFF822C6DF6C005ACAD0 /* CheckerVCExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74DAFF722C6DF6C005ACAD0 /* CheckerVCExtensions.swift */; };
 		A75C631E22C2911C00EB2333 /* SimpleAssistDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75C631D22C2911C00EB2333 /* SimpleAssistDelegate.swift */; };
 		A75C632122C2ED0400EB2333 /* NewSetHomeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75C632022C2ED0400EB2333 /* NewSetHomeDelegate.swift */; };
+		A75FA5BA2392B33900483BE6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = A75FA5B92392B33800483BE6 /* README.md */; };
 		A764F62622C95FCC009151D6 /* CheckerVC+URLsRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A764F62522C95FCC009151D6 /* CheckerVC+URLsRequests.swift */; };
 		A76915B522A0DB7300FB616F /* DomainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A76915B422A0DB7300FB616F /* DomainView.xib */; };
 		A76915B722A0DB8600FB616F /* DomainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76915B622A0DB8600FB616F /* DomainView.swift */; };
@@ -845,6 +846,7 @@
 		A74DAFF722C6DF6C005ACAD0 /* CheckerVCExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckerVCExtensions.swift; sourceTree = "<group>"; };
 		A75C631D22C2911C00EB2333 /* SimpleAssistDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleAssistDelegate.swift; sourceTree = "<group>"; };
 		A75C632022C2ED0400EB2333 /* NewSetHomeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSetHomeDelegate.swift; sourceTree = "<group>"; };
+		A75FA5B92392B33800483BE6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		A764F62522C95FCC009151D6 /* CheckerVC+URLsRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CheckerVC+URLsRequests.swift"; sourceTree = "<group>"; };
 		A76915B422A0DB7300FB616F /* DomainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DomainView.xib; sourceTree = "<group>"; };
 		A76915B622A0DB8600FB616F /* DomainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainView.swift; sourceTree = "<group>"; };
@@ -1982,6 +1984,7 @@
 		A7FC85E2229CEA81002C386F /* FawGen */ = {
 			isa = PBXGroup;
 			children = (
+				A75FA5B92392B33800483BE6 /* README.md */,
 				A71AA93C22F782CD00BE7F55 /* Model API */,
 				A7FC85E7229CEA81002C386F /* Main.storyboard */,
 				A70C4B8822ABFEB7001BD6CC /* Model View Controllers */,
@@ -2418,6 +2421,7 @@
 				A71AABC822F782CE00BE7F55 /* ThreeGears_22@2x.png in Resources */,
 				A71AAB0322F782CE00BE7F55 /* Cluster_100.txt in Resources */,
 				A71AAAD622F782CE00BE7F55 /* Cluster_177.txt in Resources */,
+				A75FA5BA2392B33900483BE6 /* README.md in Resources */,
 				A71AABE322F782CE00BE7F55 /* 4Letter.txt in Resources */,
 				A71AAB4922F782CE00BE7F55 /* Cluster_37.txt in Resources */,
 				A71AAABA22F782CE00BE7F55 /* Cluster_166.txt in Resources */,
